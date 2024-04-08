@@ -7,16 +7,28 @@ class PlatformsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Platforms'),
+        title: Padding(
+          padding: const EdgeInsets.only(left: 10.0),
+          child: Text('Platforms', style: Theme.of(context).textTheme.headlineSmall,),
+        ),
         centerTitle: false,
         actions: [
-          IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: () {
-
-            },
+          Padding(
+            padding: const EdgeInsets.only(right: 10.0),
+            child: IconButton(
+              icon: const Icon(Icons.search, size: 30,),
+              onPressed: () {
+            
+              },
+            ),
           ),
         ],
+        shape: const Border(
+          bottom: BorderSide(
+            color: Color.fromRGBO(239, 245, 243, 1),
+            width: 1
+          )
+        ),
       ),
     );
   }

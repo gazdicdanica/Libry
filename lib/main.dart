@@ -12,13 +12,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Groceries',
-      theme: ThemeData.dark().copyWith(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color.fromARGB(1, 205, 232, 223),
-        ),
-        scaffoldBackgroundColor: Colors.white,
-      ),
+      title: 'Package Manager App',
+      theme: ThemeData.light().copyWith(
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color.fromARGB(255, 205, 232, 223),
+          ),
+          textTheme: const TextTheme(
+            headlineSmall: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 72, 75, 73)),
+          )
+          ),
       home: const PlatformsScreen(),
     );
   }
