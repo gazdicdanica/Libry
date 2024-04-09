@@ -7,7 +7,6 @@ class PlatformsDataProvider{
     final apiKey = dotenv.env['API_KEY'];
     try{
       final res = await http.get(Uri.parse('https://libraries.io/api/platforms?api_key=$apiKey'));
-      print(res.body);
 
       return res.body;  
     }catch(e){

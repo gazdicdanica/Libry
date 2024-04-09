@@ -12,7 +12,6 @@ class PlatformsRepository{
   Future<List<Platform>> getPlatforms() async {
     final body = jsonDecode(await _dataProvider.getPlatforms());
     final List<Platform> platforms = body.map<Platform>((json) => Platform.fromJson(json)).toList();
-    print(platforms);
     return platforms;
   }
 }

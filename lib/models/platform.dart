@@ -16,7 +16,6 @@ class Platform {
   });
 
   factory Platform.fromJson(Map<String, dynamic> json) {
-    print(json);
     return Platform(
       name: json['name'],
       projectCount: json['project_count'],
