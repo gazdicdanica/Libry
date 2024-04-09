@@ -12,10 +12,10 @@ class CardWidget extends StatelessWidget {
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
       elevation: 4,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(10),
-        // TODO : reroute function
-        onTap: onTap,
+      // child: InkWell(
+      //   borderRadius: BorderRadius.circular(10),
+      //   // TODO : reroute function
+      //   onTap: onTap,
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
           child: Row(
@@ -31,7 +31,7 @@ class CardWidget extends StatelessWidget {
             ],
           ),
         ),
-      ),
+      // ),
     );
   }
 }
