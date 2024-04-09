@@ -15,29 +15,31 @@ class PlatformsCardOverlay extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(platform.name, style: Theme.of(context).textTheme.labelLarge,),
-          const SizedBox(
-            height: 15,
+          Text(
+            platform.name,
+            style: Theme.of(context).textTheme.labelLarge,
           ),
+          const SizedBox(height: 15),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Icon(MdiIcons.packageVariantClosed, color: textColor,),
-              const SizedBox(
-                width: 5,
+              Icon(
+                MdiIcons.packageVariantClosed,
+                color: textColor,
               ),
+              const SizedBox(width: 5),
               Text(
-                platform.projectCount.toString(), style: Theme.of(context).textTheme.bodyMedium,
+                platform.projectCount.toString(),
+                style: Theme.of(context).textTheme.bodyMedium,
               ),
-              const SizedBox(
-                width: 20,
-              ),
+              const SizedBox(width: 20),
               platform.defaultLanguage != null
                   ? Row(children: [
-                      Icon(MdiIcons.codeTags, color: textColor,),
-                      const SizedBox(
-                        width: 5,
+                      Icon(
+                        MdiIcons.codeTags,
+                        color: textColor,
                       ),
+                      const SizedBox(width: 5),
                       Text(platform.defaultLanguage!)
                     ])
                   : Container(),
