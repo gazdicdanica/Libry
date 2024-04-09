@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class CardWidget extends StatelessWidget {
-  const CardWidget({super.key, required this.color, required this.children});
+  const CardWidget({super.key, required this.color, required this.child});
 
   final Color color;
-  final List<Widget> children;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class CardWidget extends StatelessWidget {
                 //probably gonna need to change this height
                 height: 70,
               ),
-              ...children
+              child
             ],
           ),
         ),

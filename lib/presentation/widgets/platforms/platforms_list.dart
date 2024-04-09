@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_internship_2024_app/bloc/bloc/platforms_bloc.dart';
+import 'package:flutter_internship_2024_app/bloc/platforms_bloc/platforms_bloc.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/card_widget.dart';
+import 'package:flutter_internship_2024_app/presentation/widgets/platforms/platforms_card_overlay.dart';
 
 class PlatformsList extends StatefulWidget{
   const PlatformsList({super.key});
@@ -31,7 +32,7 @@ class _PlatformsListState extends State<PlatformsList> {
           child: ListView.builder(
             itemCount: state.platforms.length,
             itemBuilder: (context, index){
-              return CardWidget(color: state.platforms[index].colorObj, children: []);
+              return CardWidget(color: state.platforms[index].colorObj, child: PlatformsCardOverlay(platform: state.platforms[index],));
             },
           ),
         );
