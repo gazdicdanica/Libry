@@ -31,8 +31,6 @@ class _PlatformsListState extends State<PlatformsList> {
           child: ListView.builder(
             itemCount: state.platforms.length,
             itemBuilder: (context, index){
-              print(index);
-              print(state.platforms[index]);
               return CardWidget(color: state.platforms[index].colorObj, children: []);
             },
           ),
