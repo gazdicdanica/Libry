@@ -8,7 +8,7 @@ final class PlatformsInitial extends PlatformsState {}
 final class PlatformsLoading extends PlatformsState {}
 
 final class PlatformsSuccess extends PlatformsState {
-  final String platforms;
+  final List<Platform> platforms;
   
   PlatformsSuccess(this.platforms);
 }

@@ -27,7 +27,14 @@ class _PlatformsListState extends State<PlatformsList> {
       }
       if(state is PlatformsSuccess){
         return Center(
-          child: Text(state.platforms),
+          child: ListView.builder(
+            itemCount: state.platforms.length,
+            itemBuilder: (context, index){
+              return ListTile(
+                title: Text(state.platforms[index].name),
+              );
+            },
+          ),
         );
       }
       if(state is PlatformsFailure){

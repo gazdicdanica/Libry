@@ -14,4 +14,15 @@ class Platform {
     required this.color,
     required this.defaultLanguage,
   });
+
+  factory Platform.fromJson(Map<String, dynamic> json) {
+    print(json);
+    return Platform(
+      name: json['name'],
+      projectCount: json['project_count'],
+      homepage: json['homepage'],
+      color: json['color'],
+      defaultLanguage: json['default_language'] ?? '/',
+    );
+  }
 }
