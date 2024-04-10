@@ -22,12 +22,12 @@ final theme = ThemeData.light().copyWith(
         bodyMedium: const TextStyle(
           fontSize: 15,
           color: textColor,
-          fontWeight: FontWeight.w500
+          fontWeight: FontWeight.w500,
         ),
         titleLarge: const TextStyle(
-          fontSize: 20,
+          fontSize: 35,
           color: textColor,
-          fontWeight: FontWeight.bold
+          fontWeight: FontWeight.bold,
         ),
       ),
 );
