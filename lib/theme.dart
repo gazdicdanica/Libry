@@ -23,6 +23,12 @@ final theme = ThemeData.light().copyWith(
           fontSize: 15,
           color: textColor,
           fontWeight: FontWeight.w500
-        )
+        ),
+        bodyLarge: const TextStyle(
+          fontSize: 20,
+          color: textColor,
+          fontWeight: FontWeight.bold
+        ),
+
       ),
 );
