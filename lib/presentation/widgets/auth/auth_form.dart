@@ -1,5 +1,7 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_internship_2024_app/presentation/widgets/auth/form_field.dart';
 import 'package:flutter_internship_2024_app/theme.dart';
 
 final buttonStyle = ButtonStyle(
@@ -18,15 +20,41 @@ class AuthForm extends StatefulWidget {
 
 class _AuthFormState extends State<AuthForm> {
   final _form = GlobalKey<FormState>();
-  //TODO: change to true
-  var _isLogin = false;
   final _passwordController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
 
-  void _authenticate(){
-    final isValid = _form.currentState!.validate();
-    if(!isValid){
+  var _isLogin = true;
+  var _emailValid = true;
+  var _passwordValid = true;
+  var _confirmPasswordValid = true;
+
+  void _authenticate() {
+    if (!_form.currentState!.validate()) {
       return;
     }
+  }
+
+  void _resetForm() {
+    _form.currentState!.reset();
+
+    setState(() {
+      _isLogin = !_isLogin;
+      _emailValid = true;
+      _passwordValid = true;
+      _confirmPasswordValid = true;
+      _emailController.clear();
+      _passwordController.clear();
+      _confirmPasswordController.clear();
+    });
+  }
+
+  @override
+  void dispose() {
+    _passwordController.dispose();
+    _emailController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
   }
 
   @override
@@ -36,45 +64,44 @@ class _AuthFormState extends State<AuthForm> {
       child: Column(
         children: [
           //email
-          TextFormField(
-            decoration: const InputDecoration(
-              labelText: 'Email',
-              hintText: 'Your email address',
-              border: OutlineInputBorder(),
-              floatingLabelBehavior: FloatingLabelBehavior.always,
-            ),
-            keyboardType: TextInputType.emailAddress,
-            autocorrect: false,
-            textCapitalization: TextCapitalization.none,
+          CustomFormField(
+            controller: _emailController,
+            labelText: 'Email',
+            hintText: 'Your email address',
+            suffixIcon: _emailValid ? null : const Icon(Icons.error),
             validator: (value) {
               if (value == null ||
                   value.trim().isEmpty ||
                   !EmailValidator.validate(value)) {
+                setState(() {
+                  _emailValid = false;
+                });
                 return 'Email is not in correct format!';
               }
+              setState(() {
+                _emailValid = true;
+              });
               return null;
             },
           ),
           const SizedBox(
             height: 20,
           ),
-          // password
-          TextFormField(
+          CustomFormField(
             controller: _passwordController,
-            decoration: const InputDecoration(
-              labelText: 'Password',
-              hintText: 'Your password',
-              border: OutlineInputBorder(),
-              floatingLabelBehavior: FloatingLabelBehavior.always,
-            ),
-            keyboardType: TextInputType.text,
-            autocorrect: false,
-            textCapitalization: TextCapitalization.none,
-            obscureText: true,
+            labelText: 'Password',
+            hintText: 'Your password',
+            suffixIcon: _passwordValid ? null : const Icon(Icons.error),
             validator: (value) {
               if (value == null || value.trim().isEmpty || value.length < 6) {
+                setState(() {
+                  _passwordValid = false;
+                });
                 return 'Password should contain 6 characters!';
               }
+              setState(() {
+                _passwordValid = true;
+              });
               return null;
             },
           ),
@@ -92,7 +119,11 @@ class _AuthFormState extends State<AuthForm> {
                     style: ButtonStyle(
                         foregroundColor: MaterialStateProperty.all<Color>(
                             const Color.fromRGBO(0, 166, 141, 1))),
-                    child: const Text('Forgot your password?', style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),),
+                    child: const Text(
+                      'Forgot your password?',
+                      style: TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.normal),
+                    ),
                   ),
                   const SizedBox(
                     height: 5,
@@ -106,23 +137,24 @@ class _AuthFormState extends State<AuthForm> {
                 const SizedBox(
                   height: 20,
                 ),
-                TextFormField(
-                  decoration: const InputDecoration(
-                    labelText: 'Confirm Password',
-                    hintText: 'Repeat your password',
-                    border: OutlineInputBorder(),
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
-                  ),
-                  keyboardType: TextInputType.text,
-                  autocorrect: false,
-                  textCapitalization: TextCapitalization.none,
-                  obscureText: true,
+                CustomFormField(
+                  controller: _confirmPasswordController,
+                  labelText: 'Confirm password',
+                  hintText: 'Repeat your password',
+                  suffixIcon:
+                      _confirmPasswordValid ? null : const Icon(Icons.error),
                   validator: (value) {
                     if (value == null ||
                         value.trim().isEmpty ||
                         value != _passwordController.text) {
+                      setState(() {
+                        _confirmPasswordValid = false;
+                      });
                       return 'Passwords do not match!';
                     }
+                    setState(() {
+                      _confirmPasswordValid = true;
+                    });
                     return null;
                   },
                 ),
@@ -131,7 +163,6 @@ class _AuthFormState extends State<AuthForm> {
                 ),
               ],
             ),
-          // confirm password
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
@@ -146,12 +177,7 @@ class _AuthFormState extends State<AuthForm> {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  _form.currentState!.reset();
-                  _isLogin = !_isLogin;
-                });
-              },
+              onPressed: _resetForm,
               style: buttonStyle,
               child: Text(_isLogin ? 'Sign up' : 'Login'),
             ),
