@@ -6,9 +6,14 @@ import 'package:flutter_internship_2024_app/data/platforms/data_provider/platfor
 import 'package:flutter_internship_2024_app/data/platforms/repository/platforms_repository.dart';
 import 'package:flutter_internship_2024_app/presentation/screens/platforms_screen.dart';
 import 'package:flutter_internship_2024_app/theme.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 Future main() async {
   await dotenv.load(fileName: ".env");
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
