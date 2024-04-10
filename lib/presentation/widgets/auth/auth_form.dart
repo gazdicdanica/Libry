@@ -1,6 +1,6 @@
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/auth/form_field.dart';
 import 'package:flutter_internship_2024_app/theme.dart';
 
@@ -10,6 +10,8 @@ final buttonStyle = ButtonStyle(
   padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 15)),
   elevation: MaterialStateProperty.all(5),
 );
+
+final _firebase = FirebaseAuth.instance;
 
 class AuthForm extends StatefulWidget {
   const AuthForm({super.key});
@@ -29,9 +31,20 @@ class _AuthFormState extends State<AuthForm> {
   var _passwordValid = true;
   var _confirmPasswordValid = true;
 
-  void _authenticate() {
+  void _authenticate() async {
     if (!_form.currentState!.validate()) {
       return;
+    }
+    try {
+      if (!_isLogin) {
+        await _firebase.createUserWithEmailAndPassword(
+            email: _emailController.text.trim(),
+            password: _passwordController.text.trim());
+      }
+    } on FirebaseException catch (e) {
+      if (e.code == 'email-already-in-use') {
+        // TODO show error message
+      }
     }
   }
 
@@ -105,6 +118,7 @@ class _AuthFormState extends State<AuthForm> {
               return null;
             },
           ),
+
           if (_isLogin)
             SizedBox(
               width: double.infinity,
@@ -131,6 +145,7 @@ class _AuthFormState extends State<AuthForm> {
                 ],
               ),
             ),
+
           if (!_isLogin)
             Column(
               children: [
