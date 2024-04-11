@@ -27,24 +27,66 @@ class _AuthFormState extends State<AuthForm> {
   final _confirmPasswordController = TextEditingController();
 
   var _isLogin = true;
+  var _isAuth = false;
   var _emailValid = true;
   var _passwordValid = true;
   var _confirmPasswordValid = true;
+  String? _emailError;
+  String? _credentialsError;
+
+  void _showSnackbar(String message, {int dur = 3}) {
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(message),
+      backgroundColor: Colors.red,
+      duration: Duration(seconds: dur),
+    ));
+  }
 
   void _authenticate() async {
     if (!_form.currentState!.validate()) {
       return;
     }
     try {
+      setState(() {
+        _isAuth = true;
+        _emailError = null;
+        _credentialsError = null;
+      });
       if (!_isLogin) {
         await _firebase.createUserWithEmailAndPassword(
             email: _emailController.text.trim(),
             password: _passwordController.text.trim());
+      } else {
+        await _firebase.signInWithEmailAndPassword(
+            email: _emailController.text.trim(),
+            password: _passwordController.text.trim());
       }
     } on FirebaseException catch (e) {
-      if (e.code == 'email-already-in-use') {
-        // TODO show error message
+      setState(() {
+        _isAuth = false;
+      });
+      switch(e.code){
+        case 'email-already-in-use':
+          setState(() {
+            _emailValid = false;
+            _emailError = 'Email is already in use!';
+          });
+          break;
+        case 'invalid-credential':
+          setState(() {
+            _credentialsError = 'Invalid email or password!';
+          });
+          break;
+        case 'too-many-requests':
+          _showSnackbar(e.message!, dur: 10);
+          break;
+        default:
+          _showSnackbar('Authentication failed! Please try again later!');
+          break;
       }
+    }catch(e){
+      _showSnackbar('Authentication failed! Please try again later!');
     }
   }
 
@@ -72,15 +114,26 @@ class _AuthFormState extends State<AuthForm> {
 
   @override
   Widget build(BuildContext context) {
+    if (_isAuth) {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+
     return Form(
       key: _form,
       child: Column(
         children: [
+          Text(_credentialsError ?? '', style: const TextStyle(color:  Color.fromARGB(255, 151, 10, 0)),),
+          const SizedBox(
+            height: 10,
+          ),
           //email
           CustomFormField(
             controller: _emailController,
             labelText: 'Email',
             hintText: 'Your email address',
+            errorText: _emailError,
             suffixIcon: _emailValid ? null : const Icon(Icons.error),
             validator: (value) {
               if (value == null ||
