@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_internship_2024_app/presentation/screens/search_screen.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/platforms/platforms_list.dart';
 
 class PlatformsScreen extends StatelessWidget {
@@ -25,7 +26,13 @@ class PlatformsScreen extends StatelessWidget {
                 Icons.search,
                 size: 30,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (ctx) => const SearchScreen(),
+                  ),
+                );
+              },
             ),
           ),
           Padding(

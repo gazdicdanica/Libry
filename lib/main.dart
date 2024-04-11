@@ -2,7 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_internship_2024_app/bloc/libraries_bloc/libraries_bloc.dart';
 import 'package:flutter_internship_2024_app/bloc/platforms_bloc/platforms_bloc.dart';
+import 'package:flutter_internship_2024_app/bloc/search_bloc/search_bloc.dart';
+import 'package:flutter_internship_2024_app/data/libraries/data_provider/libraries_provider.dart';
+import 'package:flutter_internship_2024_app/data/libraries/repository/libraries_repository.dart';
 import 'package:flutter_internship_2024_app/data/platforms/data_provider/platforms_data_provider.dart';
 import 'package:flutter_internship_2024_app/data/platforms/repository/platforms_repository.dart';
 import 'package:flutter_internship_2024_app/presentation/screens/auth_screen.dart';
@@ -27,10 +31,30 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // open to refactoring
-    return RepositoryProvider(
-      create: (context) => PlatformsRepository(PlatformsDataProvider()),
-      child: BlocProvider(
-        create: (context) => PlatformsBloc(context.read<PlatformsRepository>()),
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider(
+          create: (context) => PlatformsRepository(PlatformsDataProvider()),
+        ),
+        RepositoryProvider(
+          create: (context) => (LibrariesRepository(LibrariesProvider(),
+              PlatformsRepository(PlatformsDataProvider()))),
+        ),
+      ],
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+              create: (context) =>
+                  PlatformsBloc(context.read<PlatformsRepository>())),
+          BlocProvider(
+            create: (context) =>
+                LibrariesBloc(context.read<LibrariesRepository>()),
+          ),
+          BlocProvider(
+            create: (context) =>
+                SearchBloc(context.read<LibrariesRepository>()),
+          ),
+        ],
         child: MaterialApp(
           title: 'Package Manager App',
           theme: theme,

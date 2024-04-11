@@ -37,8 +37,10 @@ class _PlatformsListState extends State<PlatformsList>
   }
 
   void _goToLibrariesPage(Platform platform) {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const LibrariesScreen()));
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => LibrariesScreen(
+              platform: platform,
+            )));
   }
 
   @override
