@@ -122,135 +122,138 @@ class _AuthFormState extends State<AuthForm> {
 
     return Form(
       key: _form,
-      child: Column(
-        children: [
-          Text(_credentialsError ?? '', style: const TextStyle(color:  Color.fromARGB(255, 151, 10, 0)),),
-          const SizedBox(
-            height: 10,
-          ),
-          //email
-          CustomFormField(
-            controller: _emailController,
-            labelText: 'Email',
-            hintText: 'Your email address',
-            errorText: _emailError,
-            suffixIcon: _emailValid ? null : const Icon(Icons.error),
-            validator: (value) {
-              if (value == null ||
-                  value.trim().isEmpty ||
-                  !EmailValidator.validate(value)) {
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 500),
+        child: Column(
+          children: [
+            Text(_credentialsError ?? '', style: const TextStyle(color:  Color.fromARGB(255, 151, 10, 0)),),
+            const SizedBox(
+              height: 10,
+            ),
+            //email
+            CustomFormField(
+              controller: _emailController,
+              labelText: 'Email',
+              hintText: 'Your email address',
+              errorText: _emailError,
+              suffixIcon: _emailValid ? null : const Icon(Icons.error),
+              validator: (value) {
+                if (value == null ||
+                    value.trim().isEmpty ||
+                    !EmailValidator.validate(value)) {
+                  setState(() {
+                    _emailValid = false;
+                  });
+                  return 'Email is not in correct format!';
+                }
                 setState(() {
-                  _emailValid = false;
+                  _emailValid = true;
                 });
-                return 'Email is not in correct format!';
-              }
-              setState(() {
-                _emailValid = true;
-              });
-              return null;
-            },
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          CustomFormField(
-            controller: _passwordController,
-            labelText: 'Password',
-            hintText: 'Your password',
-            suffixIcon: _passwordValid ? null : const Icon(Icons.error),
-            validator: (value) {
-              if (value == null || value.trim().isEmpty || value.length < 6) {
+                return null;
+              },
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            CustomFormField(
+              controller: _passwordController,
+              labelText: 'Password',
+              hintText: 'Your password',
+              suffixIcon: _passwordValid ? null : const Icon(Icons.error),
+              validator: (value) {
+                if (value == null || value.trim().isEmpty || value.length < 6) {
+                  setState(() {
+                    _passwordValid = false;
+                  });
+                  return 'Password should contain 6 characters!';
+                }
                 setState(() {
-                  _passwordValid = false;
+                  _passwordValid = true;
                 });
-                return 'Password should contain 6 characters!';
-              }
-              setState(() {
-                _passwordValid = true;
-              });
-              return null;
-            },
-          ),
-
-          if (_isLogin)
-            SizedBox(
-              width: double.infinity,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
+                return null;
+              },
+            ),
+        
+            if (_isLogin)
+              SizedBox(
+                width: double.infinity,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      style: ButtonStyle(
+                          foregroundColor: MaterialStateProperty.all<Color>(
+                              const Color.fromRGBO(0, 166, 141, 1))),
+                      child: const Text(
+                        'Forgot your password?',
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.normal),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                  ],
+                ),
+              ),
+        
+            if (!_isLogin)
+              Column(
                 children: [
                   const SizedBox(
-                    height: 5,
+                    height: 20,
                   ),
-                  TextButton(
-                    onPressed: () {},
-                    style: ButtonStyle(
-                        foregroundColor: MaterialStateProperty.all<Color>(
-                            const Color.fromRGBO(0, 166, 141, 1))),
-                    child: const Text(
-                      'Forgot your password?',
-                      style: TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.normal),
-                    ),
+                  CustomFormField(
+                    controller: _confirmPasswordController,
+                    labelText: 'Confirm password',
+                    hintText: 'Repeat your password',
+                    suffixIcon:
+                        _confirmPasswordValid ? null : const Icon(Icons.error),
+                    validator: (value) {
+                      if (value == null ||
+                          value.trim().isEmpty ||
+                          value != _passwordController.text) {
+                        setState(() {
+                          _confirmPasswordValid = false;
+                        });
+                        return 'Passwords do not match!';
+                      }
+                      setState(() {
+                        _confirmPasswordValid = true;
+                      });
+                      return null;
+                    },
                   ),
                   const SizedBox(
-                    height: 5,
+                    height: 40,
                   ),
                 ],
               ),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: _authenticate,
+                style: buttonStyle,
+                child: Text(_isLogin ? 'Login' : 'Sign up'),
+              ),
             ),
-
-          if (!_isLogin)
-            Column(
-              children: [
-                const SizedBox(
-                  height: 20,
-                ),
-                CustomFormField(
-                  controller: _confirmPasswordController,
-                  labelText: 'Confirm password',
-                  hintText: 'Repeat your password',
-                  suffixIcon:
-                      _confirmPasswordValid ? null : const Icon(Icons.error),
-                  validator: (value) {
-                    if (value == null ||
-                        value.trim().isEmpty ||
-                        value != _passwordController.text) {
-                      setState(() {
-                        _confirmPasswordValid = false;
-                      });
-                      return 'Passwords do not match!';
-                    }
-                    setState(() {
-                      _confirmPasswordValid = true;
-                    });
-                    return null;
-                  },
-                ),
-                const SizedBox(
-                  height: 40,
-                ),
-              ],
+            const SizedBox(
+              height: 20,
             ),
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: _authenticate,
-              style: buttonStyle,
-              child: Text(_isLogin ? 'Login' : 'Sign up'),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: _resetForm,
+                style: buttonStyle,
+                child: Text(_isLogin ? 'Sign up' : 'Login'),
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: _resetForm,
-              style: buttonStyle,
-              child: Text(_isLogin ? 'Sign up' : 'Login'),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
