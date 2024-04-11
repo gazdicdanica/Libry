@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_internship_2024_app/presentation/screens/search_screen.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/platforms/platforms_list.dart';
@@ -31,6 +33,18 @@ class PlatformsScreen extends StatelessWidget {
                     builder: (ctx) => const SearchScreen(),
                   ),
                 );
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 10.0),
+            child: IconButton(
+              icon: const Icon(
+                Icons.exit_to_app,
+                size: 30,
+              ),
+              onPressed: () {
+                FirebaseAuth.instance.signOut();
               },
             ),
           ),

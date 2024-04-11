@@ -7,7 +7,9 @@ environment:
   sdk: '>=3.3.3 <4.0.0'
 
 dependencies:
-  dotenv: ^4.2.0
+  email_validator: ^2.1.17
+  firebase_auth: ^4.19.1
+  firebase_core: ^2.29.0
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.5
