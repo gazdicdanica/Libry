@@ -1,11 +1,10 @@
 part of 'libraries_bloc.dart';
 
 @immutable
-sealed class LibrariesEvent{}
+sealed class LibrariesEvent {}
 
 class LibrairesFetched extends LibrariesEvent {
-  final String platform; 
+  final String platform;
 
   LibrairesFetched(this.platform);
-
 }

@@ -1,5 +1,6 @@
-class Library {
+import 'package:flutter/material.dart';
 
+class Library {
   final int? contributionsCount;
   final int? dependentReposCount;
   final int? dependentsCount;
@@ -13,30 +14,32 @@ class Library {
   final String? name;
   final String? platform;
   final int? rank;
-  Library({
-    required this.contributionsCount,
-    required this.dependentReposCount,
-    required this.dependentsCount,
-    required this.description,
-    required this.forks,
-    required this.homepage,
-    required this.keywords,
-    required this.language,
-    required this.latestDownloadUrl,
-    required this.latestReleaseNumber,
-    required this.name,
-    required this.platform,
-    required this.rank,
-  });
+  String? platformColor;
 
-  factory Library.fromMap(Map<String, dynamic> map){
+  Library(
+      {required this.contributionsCount,
+      required this.dependentReposCount,
+      required this.dependentsCount,
+      required this.description,
+      required this.forks,
+      required this.homepage,
+      required this.keywords,
+      required this.language,
+      required this.latestDownloadUrl,
+      required this.latestReleaseNumber,
+      required this.name,
+      required this.platform,
+      required this.rank,
+      this.platformColor});
+
+  factory Library.fromMap(Map<String, dynamic> map) {
     return Library(
       contributionsCount: map['contributioons_count'],
-      keywords: List<String>.from(map['keywords']), 
+      keywords: List<String>.from(map['keywords']),
       latestReleaseNumber: map['latest_release_number'],
-      dependentReposCount: map['dependent_repos_count'], 
-      dependentsCount: map['dependents_count'], 
-      description: map['description'], 
+      dependentReposCount: map['dependent_repos_count'],
+      dependentsCount: map['dependents_count'],
+      description: map['description'],
       forks: map['forks'],
       homepage: map['homepage'],
       language: map['language'],
@@ -44,9 +47,13 @@ class Library {
       name: map['name'],
       platform: map['platform'],
       rank: map['rank'],
-           
+      platformColor: '',
     );
   }
+  Color get colorObj => Color(
+      int.parse(platformColor!.toUpperCase().replaceAll("#", ""), radix: 16) +
+          0xFF000000);
+}
 
 //   {
 //   "contributions_count": 13,
@@ -97,4 +104,4 @@ class Library {
 //     },
 //    ]
 // }
-}
+

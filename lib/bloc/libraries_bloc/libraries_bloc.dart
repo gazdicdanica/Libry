@@ -6,24 +6,22 @@ import 'package:flutter/foundation.dart';
 part 'libraries_event.dart';
 part 'libraries_state.dart';
 
-class LibrariesBloc extends Bloc<LibrariesEvent,LibrariesState>{
+class LibrariesBloc extends Bloc<LibrariesEvent, LibrariesState> {
   final LibrariesRepository _librariesRepository;
-  LibrariesBloc(this._librariesRepository) : super(LibrariesInitial()){
-
+  LibrariesBloc(this._librariesRepository) : super(LibrariesInitial()) {
     on<LibrairesFetched>(_getCurrentLibraries);
   }
-    void _getCurrentLibraries(
-          LibrairesFetched event,
-          Emitter<LibrariesState> emit,)  
-      async{
-        try{
-         emit(LibrariesLoading());
-          final libraries= await _librariesRepository.getCurrentLibraires(event.platform);
-          emit(LibrariesSuccess(libraries));
-        }
-        catch (e){
-            emit(LibrariesFailure(e.toString()));
-        }
-          
+  void _getCurrentLibraries(
+    LibrairesFetched event,
+    Emitter<LibrariesState> emit,
+  ) async {
+    try {
+      emit(LibrariesLoading());
+      final libraries =
+          await _librariesRepository.getCurrentLibraires(event.platform);
+      emit(LibrariesSuccess(libraries));
+    } catch (e) {
+      emit(LibrariesFailure(e.toString()));
     }
+  }
 }

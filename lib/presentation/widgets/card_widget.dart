@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 class CardWidget extends StatelessWidget {
-  const CardWidget({super.key, required this.color, required this.child, required this.onTap});
+  const CardWidget({
+    super.key,
+    required this.color,
+    required this.child,
+    required this.onTap,
+  });
 
   final Color color;
   final Widget child;
