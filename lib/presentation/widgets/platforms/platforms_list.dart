@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_internship_2024_app/bloc/platforms_bloc/platforms_bloc.dart';
 import 'package:flutter_internship_2024_app/models/platform.dart';
@@ -66,7 +65,7 @@ class _PlatformsListState extends State<PlatformsList>
                   ),
                   Text(
                     state.errorMessage,
-                    style: Theme.of(context).textTheme.bodyLarge,
+                    style: Theme.of(context).textTheme.displayLarge,
                   ),
                 ],
               ),
@@ -107,7 +106,7 @@ class _PlatformsListState extends State<PlatformsList>
               ),
               Text(
                 "There are no platforms found.",
-                style: Theme.of(context).textTheme.bodyLarge,
+                style: Theme.of(context).textTheme.displayLarge,
               ),
             ],
           ),
