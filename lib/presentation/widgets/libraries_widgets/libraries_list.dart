@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_internship_2024_app/bloc/libraries_bloc/libraries_bloc.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/card_widget.dart';
+import 'package:flutter_internship_2024_app/presentation/widgets/error_message_widget.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/libraries_widgets/libraries_card_content.dart';
 
 class LibrariesList extends StatefulWidget {
@@ -54,9 +55,13 @@ class _LibrariesListState extends State<LibrariesList> {
         );
       }
       if (state is LibrariesFailure) {
-        return Center(
-          child: Text(state.error),
-        );
+        return ErrorMessageWidget(
+            errorMessage: state.error,
+            refreshFunction: () {
+              context
+                  .read<LibrariesBloc>()
+                  .add(LibrairesFetched(platfromName!));
+            });
       }
       return const SizedBox();
     });
