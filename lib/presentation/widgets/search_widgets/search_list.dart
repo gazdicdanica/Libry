@@ -7,7 +7,8 @@ import 'package:flutter_internship_2024_app/theme.dart';
 
 class SearchList extends StatefulWidget {
   final String searchText;
-  const SearchList({super.key, required this.searchText});
+  final String sort;
+  const SearchList({super.key, required this.searchText, required this.sort});
 
   @override
   State<SearchList> createState() => _SearchListState();
@@ -116,7 +117,7 @@ class _SearchListState extends State<SearchList>
                   onPressed: () {
                     context
                         .read<SearchBloc>()
-                        .add(LibrariesSearched(widget.searchText));
+                        .add(LibrariesSearched(widget.searchText, widget.sort));
                   },
                   child: const Icon(Icons.refresh),
                 ),

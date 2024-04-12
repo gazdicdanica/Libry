@@ -17,8 +17,8 @@ class LibrariesBloc extends Bloc<LibrariesEvent, LibrariesState> {
   ) async {
     try {
       emit(LibrariesLoading());
-      final libraries =
-          await _librariesRepository.getCurrentLibraires(event.platform);
+      final libraries = await _librariesRepository.getCurrentLibraires(
+          event.platform, event.sort);
       emit(LibrariesSuccess(libraries));
     } catch (e) {
       emit(LibrariesFailure(e.toString()));

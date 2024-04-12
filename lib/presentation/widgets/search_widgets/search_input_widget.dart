@@ -72,7 +72,7 @@ class _SearchInputState extends State<SearchInput> {
 
   void _submitSearch(BuildContext context, String searchText) {
     if (searchText.isNotEmpty) {
-      context.read<SearchBloc>().add(LibrariesSearched(searchText));
+      context.read<SearchBloc>().add(LibrariesSearched(searchText, "rank"));
     }
   }
 }

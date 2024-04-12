@@ -6,8 +6,9 @@ import 'package:flutter_internship_2024_app/presentation/widgets/libraries_widge
 
 class LibrariesList extends StatefulWidget {
   final platform;
+  final sort;
 
-  const LibrariesList({super.key, this.platform});
+  const LibrariesList({super.key, this.platform, this.sort});
 
   @override
   State<LibrariesList> createState() {
@@ -17,12 +18,14 @@ class LibrariesList extends StatefulWidget {
 
 class _LibrariesListState extends State<LibrariesList> {
   String? platfromName;
+  String? sort;
 
   @override
   void initState() {
     super.initState();
     platfromName = widget.platform.name;
-    context.read<LibrariesBloc>().add(LibrairesFetched(platfromName!));
+    sort = widget.sort;
+    context.read<LibrariesBloc>().add(LibrairesFetched(platfromName!, sort!));
   }
 
   @override
