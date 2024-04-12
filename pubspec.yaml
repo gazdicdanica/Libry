@@ -22,6 +22,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
+  patrol: ^3.6.1
 
 flutter:
   uses-material-design: true
@@ -30,6 +31,16 @@ flutter:
     - assets/images/icon.png
     - assets/images/libry.png
     - assets/Conversion_path.png
+
+
+patrol:
+  app_name: flutter_internship_2024_app
+  android:
+    package_name: com.levi9.flutter_internship_2024_app
+  ios:
+    bundle_id: com.levi9.flutterInternship2024App
+  macos:
+    bundle_id: com.levi9.flutterInternship2024App
 
 flutter_launcher_icons:
   android: "launcher_icon"
