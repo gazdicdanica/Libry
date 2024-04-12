@@ -66,7 +66,7 @@ class _AuthFormState extends State<AuthForm> {
       setState(() {
         _isAuth = false;
       });
-      switch(e.code){
+      switch (e.code) {
         case 'email-already-in-use':
           setState(() {
             _emailValid = false;
@@ -85,7 +85,7 @@ class _AuthFormState extends State<AuthForm> {
           _showSnackbar('Authentication failed! Please try again later!');
           break;
       }
-    }catch(e){
+    } catch (e) {
       _showSnackbar('Authentication failed! Please try again later!');
     }
   }
@@ -126,7 +126,10 @@ class _AuthFormState extends State<AuthForm> {
         constraints: const BoxConstraints(maxWidth: 500),
         child: Column(
           children: [
-            Text(_credentialsError ?? '', style: const TextStyle(color:  Color.fromARGB(255, 151, 10, 0)),),
+            Text(
+              _credentialsError ?? '',
+              style: const TextStyle(color: Color.fromARGB(255, 151, 10, 0)),
+            ),
             const SizedBox(
               height: 10,
             ),
@@ -173,7 +176,7 @@ class _AuthFormState extends State<AuthForm> {
                 return null;
               },
             ),
-        
+
             if (_isLogin)
               SizedBox(
                 width: double.infinity,
@@ -200,7 +203,7 @@ class _AuthFormState extends State<AuthForm> {
                   ],
                 ),
               ),
-        
+
             if (!_isLogin)
               Column(
                 children: [

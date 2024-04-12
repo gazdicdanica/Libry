@@ -31,39 +31,41 @@ class _LibrariesListState extends State<LibrariesList> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LibrariesBloc, LibrariesState>(
-        builder: (context, state) {
-      if (state is LibrariesLoading) {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      }
-
-      if (state is LibrariesSuccess) {
-        return Center(
-          child: ListView.builder(
-              itemCount: state.libraries.length,
-              itemBuilder: (context, index) {
-                return CardWidget(
-                  color: widget.platform.colorObj,
-                  onTap: () {},
-                  child: LibrariesCardContet(
-                    library: state.libraries[index],
-                  ),
-                );
-              }),
-        );
-      }
-      if (state is LibrariesFailure) {
-        return ErrorMessageWidget(
-            errorMessage: state.error,
-            refreshFunction: () {
-              context
-                  .read<LibrariesBloc>()
-                  .add(LibrairesFetched(platfromName!, sort!));
-            });
-      }
-      return const SizedBox();
-    });
+    return SafeArea(
+      child: BlocBuilder<LibrariesBloc, LibrariesState>(
+          builder: (context, state) {
+        if (state is LibrariesLoading) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      
+        if (state is LibrariesSuccess) {
+          return Center(
+            child: ListView.builder(
+                itemCount: state.libraries.length,
+                itemBuilder: (context, index) {
+                  return CardWidget(
+                    color: widget.platform.colorObj,
+                    onTap: () {},
+                    child: LibrariesCardContet(
+                      library: state.libraries[index],
+                    ),
+                  );
+                }),
+          );
+        }
+        if (state is LibrariesFailure) {
+          return ErrorMessageWidget(
+              errorMessage: state.error,
+              refreshFunction: () {
+                context
+                    .read<LibrariesBloc>()
+                    .add(LibrairesFetched(platfromName!, sort!));
+              });
+        }
+        return const SizedBox();
+      }),
+    );
   }
 }

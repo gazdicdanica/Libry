@@ -12,7 +12,7 @@ class LibrariesCardContet extends StatelessWidget {
   Widget build(BuildContext context) {
     bool position = MediaQuery.of(context).orientation == Orientation.portrait;
     double screenWidth = MediaQuery.of(context).size.width;
-    double remainigWidth = position ? screenWidth * 0.25 : screenWidth * 0.3;
+    double remainigWidth = position ? screenWidth * 0.2 : screenWidth * 0.25;
     double versionWidth = screenWidth * 0.026;
     double nameWidth = screenWidth * 0.06;
     List<String> keywords = [];
@@ -79,7 +79,7 @@ class LibrariesCardContet extends StatelessWidget {
                             height: 24,
                           ),
                           Container(
-                            width: screenWidth * 0.25,
+                            width: screenWidth * 0.2,
                             child: Text(
                               library.latestReleaseNumber != null
                                   ? (library.latestReleaseNumber!.length >
@@ -109,8 +109,8 @@ class LibrariesCardContet extends StatelessWidget {
                             ),
                             Container(
                               width: position
-                                  ? screenWidth * 0.25
-                                  : screenWidth * 0.5,
+                                  ? screenWidth * 0.2
+                                  : screenWidth * 0.4,
                               child: Text(
                                 keywordsString,
                                 style: Theme.of(context).textTheme.bodyMedium,
@@ -123,18 +123,18 @@ class LibrariesCardContet extends StatelessWidget {
                   ],
                 ),
               ]),
-          // SizedBox(width:  position ? screenWidth * 0.05 : screenWidth * 0.2),
-          /* Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                   //  SizedBox(width: screenWidth* 0.02,),
-                     Align(
-                      alignment: Alignment.topRight,
-                      child: Icon(MdiIcons.heartOutline,size: 30,)
-                      ),
-                    ],
-                 ) */
+        //   SizedBox(width:  position ? screenWidth * 0.05 : screenWidth * 0.2),
+        //    Row(
+        //             mainAxisAlignment: MainAxisAlignment.end,
+        //             crossAxisAlignment: CrossAxisAlignment.end,
+        //             children: [
+        //            //  SizedBox(width: screenWidth* 0.02,),
+        //              Align(
+        //               alignment: Alignment.topRight,
+        //               child: Icon(MdiIcons.heartOutline,size: 30,)
+        //               ),
+        //             ],
+        //          ) 
         ],
       ),
     );
