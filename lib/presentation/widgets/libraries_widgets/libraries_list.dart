@@ -60,7 +60,7 @@ class _LibrariesListState extends State<LibrariesList> {
             refreshFunction: () {
               context
                   .read<LibrariesBloc>()
-                  .add(LibrairesFetched(platfromName!));
+                  .add(LibrairesFetched(platfromName!, sort!));
             });
       }
       return const SizedBox();

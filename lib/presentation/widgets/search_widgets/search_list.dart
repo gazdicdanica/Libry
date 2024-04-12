@@ -91,7 +91,7 @@ class _SearchListState extends State<SearchList>
           return ErrorMessageWidget(
             errorMessage: state.errorMessage,
             refreshFunction: () {
-              context.read<SearchBloc>().add(LibrariesSearched(widget.searchText));
+              context.read<SearchBloc>().add(LibrariesSearched(widget.searchText, widget.sort));
             },
           );
         } else {
