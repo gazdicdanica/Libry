@@ -1,4 +1,5 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:io';
@@ -13,14 +14,12 @@ class LibrariesProvider {
         ),
       );
       if (res.statusCode != 200) {
-        throw ('Failed to load libraries.');
+        throw (t.libraries_error);
       }
       return res.body;
     } catch (e) {
       if (e is SocketException) {
-        throw ('No Internet Connection.');
-      } else if (e is TimeoutException) {
-        throw ('Request timed out.');
+        throw (t.internet_error);
       } else {
         throw (e.toString());
       }

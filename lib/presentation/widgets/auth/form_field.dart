@@ -7,6 +7,7 @@ class CustomFormField extends StatefulWidget {
   final String? Function(String?)? validator;
   final Widget? suffixIcon;
   final String? errorText;
+  final bool obscureText;
 
   const CustomFormField({super.key, 
     required this.controller,
@@ -15,6 +16,8 @@ class CustomFormField extends StatefulWidget {
     required this.validator,
     this.suffixIcon,
     this.errorText,
+    this.obscureText = false
+
   });
 
   @override
@@ -37,7 +40,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
       keyboardType: widget.labelText.toLowerCase().contains('email') ? TextInputType.emailAddress : TextInputType.text,
       autocorrect: false,
       textCapitalization: TextCapitalization.none,
-      obscureText: widget.labelText.toLowerCase().contains('password'),
+      obscureText: widget.obscureText,
       validator: widget.validator,
     );
   }

@@ -1,0 +1,30 @@
+{
+    "welcome": "Dobrodošli na Libry",
+    "email": "Email",
+    "email_hint": "Vaša email adresa",
+    "email_format_error": "Email adresa nije ispravnog formata",
+    "password": "Lozinka",
+    "password_hint": "Vaša lozinka",
+    "password_error": "Lozinka treba da sadrži najmanje 6 karaktera!",
+    "forgot_password": "Zaboravili ste lozinku?",
+    "confirm_password": "Potvrdi lozinku",
+    "confirm_password_hint": "Ponovite svoju lozinku",
+    "confirm_password_error": "Lozinke se ne poklapaju!",
+    "login": "Prijavi se",
+    "singup": "Registruj se",
+    "email_already_in_use": "Email adresa je već u upotrebi!",
+    "invalid_credential": "Email adresa ili lozinka nisu ispravni!",
+    "auth_failed": "Autentifikacija nije uspela! Molimo Vas pokušajte kasnije.",
+    
+    "platforms": "Platforme",
+    "platforms_empty": "Nema dostupnih platformi",
+    "tab_most_popular": "Najpopularniji paketi",
+    "tab_newest": "Najnoviji paketi",
+    "search": "Pretraga",
+    "search_hint": "Unesite ključnu reč da pronađete paket koji tražite.",
+    "search_empty": "Nema dostupnih paketa za uneti kriterijum pretrage.",
+    "libraries_error": "Greška prilikom učitavanja paketa!",
+    "platforms_error": "Greška prilikom učitavanja platformi!",
+    "internet_error": "Nemate pristup internetu!"
+
+}

@@ -1,6 +1,7 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/auth/form_field.dart';
 import 'package:flutter_internship_2024_app/theme.dart';
 
@@ -74,12 +75,10 @@ class _AuthFormState extends State<AuthForm> {
           });
           break;
         case 'invalid-credential':
+        case 'too-many-requests':
           setState(() {
             _credentialsError = 'Invalid email or password!';
           });
-          break;
-        case 'too-many-requests':
-          _showSnackbar(e.message!, dur: 10);
           break;
         default:
           _showSnackbar('Authentication failed! Please try again later!');
@@ -114,6 +113,8 @@ class _AuthFormState extends State<AuthForm> {
 
   @override
   Widget build(BuildContext context) {
+    final t = Translations.of(context);
+
     if (_isAuth) {
       return const Center(
         child: CircularProgressIndicator(),
@@ -136,8 +137,8 @@ class _AuthFormState extends State<AuthForm> {
             //email
             CustomFormField(
               controller: _emailController,
-              labelText: 'Email',
-              hintText: 'Your email address',
+              labelText: t.email,
+              hintText: t.email_hint,
               errorText: _emailError,
               suffixIcon: _emailValid ? null : const Icon(Icons.error),
               validator: (value) {
@@ -147,7 +148,7 @@ class _AuthFormState extends State<AuthForm> {
                   setState(() {
                     _emailValid = false;
                   });
-                  return 'Email is not in correct format!';
+                  return t.email_format_error;
                 }
                 setState(() {
                   _emailValid = true;
@@ -159,16 +160,17 @@ class _AuthFormState extends State<AuthForm> {
               height: 20,
             ),
             CustomFormField(
+              obscureText: true,
               controller: _passwordController,
-              labelText: 'Password',
-              hintText: 'Your password',
+              labelText: t.password,
+              hintText: t.password_hint,
               suffixIcon: _passwordValid ? null : const Icon(Icons.error),
               validator: (value) {
                 if (value == null || value.trim().isEmpty || value.length < 6) {
                   setState(() {
                     _passwordValid = false;
                   });
-                  return 'Password should contain 6 characters!';
+                  return t.password_error;
                 }
                 setState(() {
                   _passwordValid = true;
@@ -191,9 +193,9 @@ class _AuthFormState extends State<AuthForm> {
                       style: ButtonStyle(
                           foregroundColor: MaterialStateProperty.all<Color>(
                               const Color.fromRGBO(0, 166, 141, 1))),
-                      child: const Text(
-                        'Forgot your password?',
-                        style: TextStyle(
+                      child: Text(
+                        t.forgot_password,
+                        style: const TextStyle(
                             fontSize: 16, fontWeight: FontWeight.normal),
                       ),
                     ),
@@ -211,9 +213,10 @@ class _AuthFormState extends State<AuthForm> {
                     height: 20,
                   ),
                   CustomFormField(
+                    obscureText: true,
                     controller: _confirmPasswordController,
-                    labelText: 'Confirm password',
-                    hintText: 'Repeat your password',
+                    labelText: t.confirm_password,
+                    hintText: t.confirm_password_hint,
                     suffixIcon:
                         _confirmPasswordValid ? null : const Icon(Icons.error),
                     validator: (value) {
@@ -223,7 +226,7 @@ class _AuthFormState extends State<AuthForm> {
                         setState(() {
                           _confirmPasswordValid = false;
                         });
-                        return 'Passwords do not match!';
+                        return t.confirm_password_error;
                       }
                       setState(() {
                         _confirmPasswordValid = true;
@@ -241,7 +244,7 @@ class _AuthFormState extends State<AuthForm> {
               child: ElevatedButton(
                 onPressed: _authenticate,
                 style: buttonStyle,
-                child: Text(_isLogin ? 'Login' : 'Sign up'),
+                child: Text(_isLogin ? t.login : t.singup),
               ),
             ),
             const SizedBox(
@@ -252,7 +255,7 @@ class _AuthFormState extends State<AuthForm> {
               child: ElevatedButton(
                 onPressed: _resetForm,
                 style: buttonStyle,
-                child: Text(_isLogin ? 'Sign up' : 'Login'),
+                child: Text(_isLogin ? t.singup : t.login),
               ),
             ),
           ],

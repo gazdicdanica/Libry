@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_internship_2024_app/bloc/platforms_bloc/platforms_bloc.dart';
+import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 import 'package:flutter_internship_2024_app/models/platform.dart';
 import 'package:flutter_internship_2024_app/presentation/screens/libraries_screen.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/card_widget.dart';
@@ -46,6 +47,7 @@ class _PlatformsListState extends State<PlatformsList>
 
   @override
   Widget build(BuildContext context) {
+    final t = Translations.of(context);
     return SafeArea(
       child: BlocBuilder<PlatformsBloc, PlatformsState>(
           builder: (context, state) {
@@ -77,7 +79,7 @@ class _PlatformsListState extends State<PlatformsList>
                   height: 10,
                 ),
                 Text(
-                  "There are no platforms found.",
+                  t.platforms_empty,
                   style: Theme.of(context).textTheme.displayLarge,
                 ),
               ],
