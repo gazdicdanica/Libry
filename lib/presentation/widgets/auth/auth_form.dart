@@ -11,8 +11,9 @@ final buttonStyle = ButtonStyle(
   padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 15)),
   elevation: MaterialStateProperty.all(5),
 );
+  var _firebase = FirebaseAuth.instance;
 
-final _firebase = FirebaseAuth.instance;
+
 
 class AuthForm extends StatefulWidget {
   const AuthForm({super.key});
@@ -26,6 +27,7 @@ class _AuthFormState extends State<AuthForm> {
   final _passwordController = TextEditingController();
   final _emailController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
+
 
   var _isLogin = true;
   var _isAuth = false;
@@ -186,9 +188,14 @@ class _AuthFormState extends State<AuthForm> {
                     ),
                     TextButton(
                       onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
+                        final result= Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => const ResetScreen(
                         )));
+                        if( result ==true){
+                              setState(() {
+                               _firebase=FirebaseAuth.instance;
+                              });
+                        }
                       },
                       style: ButtonStyle(
                           foregroundColor: MaterialStateProperty.all<Color>(

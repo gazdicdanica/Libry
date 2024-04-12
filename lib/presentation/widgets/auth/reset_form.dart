@@ -1,8 +1,6 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_internship_2024_app/presentation/screens/auth_screen.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/auth/form_field.dart';
 import 'package:flutter_internship_2024_app/theme.dart';
@@ -35,6 +33,32 @@ class _ResetFormState extends State<ResetForm>{
 
   var _messageSend=false;
   var _emailValid=true;
+  String? errorMessage;
+ 
+  @override
+  void dispose() {
+    _emailController.dispose();
+    super.dispose();
+  }      
+  Future<void> _resetPassword() async {
+        if (_resetForm.currentState!.validate()) {
+          try {
+          await _firebase
+             .sendPasswordResetEmail(email: _emailController.text.trim(),);
+             setState(() {
+               _messageSend=true; 
+               errorMessage=null;
+             });
+
+          } on FirebaseAuthException catch (e){
+            setState(() {
+              errorMessage=e.message;
+            });
+
+            
+           }
+          }
+        }
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +81,7 @@ class _ResetFormState extends State<ResetForm>{
             controller: _emailController,
             labelText: 'Email',
             hintText: 'Your email address',
+           errorText: _emailValid ? null : 'Email does not exist',
             suffixIcon: _emailValid ? null : const Icon(Icons.error),
             validator: (value) {
               if (value == null ||
@@ -105,7 +130,7 @@ class _ResetFormState extends State<ResetForm>{
             width: double.infinity,
             child: ElevatedButton(
               onPressed:(){
-                  Navigator.of(context).push(MaterialPageRoute(builder: 
+                  Navigator.of(context).pop(MaterialPageRoute(builder: 
                   (context)=> const AuthScreen()));
               }  ,
               style:buttonStyle,
@@ -113,24 +138,12 @@ class _ResetFormState extends State<ResetForm>{
             ),
           ),
       ]),
-        
+      if(errorMessage!= null)
+            Text(errorMessage!),
       ],
      ),
+     
    );
-  }
-  Future<void> _resetPassword() async {
-    if (_resetForm.currentState!.validate()) {
-      try {
-        await _firebase.sendPasswordResetEmail(email: _emailController.text.trim());
-        setState(() {
-          _messageSend=true;
-        });
-      } catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text('Failed to send reset email. Please try again later.'),
-          backgroundColor: Colors.red,
-        ));
-      }
-    }
-  }
+   
+  }   
 }
