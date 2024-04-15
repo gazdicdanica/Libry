@@ -80,7 +80,6 @@ class _SearchListState extends State<SearchList>
             ),
           );
         } else if (state is SearchLoading) {
-<<<<<<< HEAD
           return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -90,14 +89,6 @@ class _SearchListState extends State<SearchList>
                 else
                   const SizedBox(height: 50),
                 const CircularProgressIndicator(),
-=======
-          return const Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(height: 250),
-                CircularProgressIndicator(),
->>>>>>> 8ed1df72fe846c6a01257f182ee8f894eb38053f
               ],
             ),
           );
@@ -115,14 +106,10 @@ class _SearchListState extends State<SearchList>
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-<<<<<<< HEAD
                 if (!isLandscape)
                   const SizedBox(height: 170)
                 else
                   const SizedBox(height: 20),
-=======
-                const SizedBox(height: 180),
->>>>>>> 8ed1df72fe846c6a01257f182ee8f894eb38053f
                 state is SearchSuccess
                     ? const Icon(Icons.emoji_nature_outlined,
                         size: 80, color: textColor)
