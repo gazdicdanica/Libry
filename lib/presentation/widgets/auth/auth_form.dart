@@ -26,43 +26,6 @@ class _AuthFormState extends State<AuthForm> {
 
   var _isLogin = true;
 
-  void _showSnackbar(String message, {int dur = 3}) {
-    ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(message),
-      backgroundColor: Colors.red,
-      duration: Duration(seconds: dur),
-    ));
-  }
-
-  void _resetForm(BuildContext context) {
-    _form.currentState!.reset();
-
-    BlocProvider.of<AuthBloc>(context).add(ResetAuth());
-    setState(() {
-      _isLogin = !_isLogin;
-    });
-    _emailController.clear();
-    _passwordController.clear();
-    _confirmPasswordController.clear();
-  }
-
-  @override
-  void dispose() {
-    _passwordController.dispose();
-    _emailController.dispose();
-    _confirmPasswordController.dispose();
-    super.dispose();
-  }
-
-  void _validateAndAuthenticate(BuildContext context) {
-    BlocProvider.of<AuthBloc>(context).add(ValidateAuth(
-        isLogin: _isLogin,
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim(),
-        confirmPassword: _confirmPasswordController.text.trim()));
-  }
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider<AuthBloc>(
@@ -203,5 +166,42 @@ class _AuthFormState extends State<AuthForm> {
         },
       ),
     );
+  }
+
+  void _showSnackbar(String message, {int dur = 3}) {
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(message),
+      backgroundColor: Colors.red,
+      duration: Duration(seconds: dur),
+    ));
+  }
+
+  void _resetForm(BuildContext context) {
+    _form.currentState!.reset();
+
+    BlocProvider.of<AuthBloc>(context).add(ResetAuth());
+    setState(() {
+      _isLogin = !_isLogin;
+    });
+    _emailController.clear();
+    _passwordController.clear();
+    _confirmPasswordController.clear();
+  }
+  
+  void _validateAndAuthenticate(BuildContext context) {
+    BlocProvider.of<AuthBloc>(context).add(ValidateAuth(
+        isLogin: _isLogin,
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
+        confirmPassword: _confirmPasswordController.text.trim()));
+  }
+
+  @override
+  void dispose() {
+    _passwordController.dispose();
+    _emailController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
   }
 }
