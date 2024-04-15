@@ -30,15 +30,18 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final platformsRepo = PlatformsRepository(PlatformsDataProvider());
     // open to refactoring
     return MultiRepositoryProvider(
       providers: [
-        RepositoryProvider(
-          create: (context) => PlatformsRepository(PlatformsDataProvider()),
+        RepositoryProvider.value(
+          value: platformsRepo,
         ),
         RepositoryProvider(
-          create: (context) => (LibrariesRepository(LibrariesDataProvider(),
-              PlatformsRepository(PlatformsDataProvider()))),
+          create: (context) => LibrariesRepository(
+            LibrariesDataProvider(),
+            platformsRepo,
+          ),
         ),
       ],
       child: MultiBlocProvider(
