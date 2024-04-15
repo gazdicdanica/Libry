@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 52 (26 per locale)
+/// Strings: 60 (30 per locale)
 ///
-/// Built on 2024-04-15 at 11:37 UTC
+/// Built on 2024-04-15 at 12:30 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -164,6 +164,10 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get email_already_in_use => 'Email is already in use!';
 	String get invalid_credential => 'Invalid email or password!';
 	String get auth_failed => 'Authentication failed! Please try again later!';
+	String get reset_password_title => 'Please enter your email below and we will send you a reset link.';
+	String get reset_password_btn => 'Send reset link';
+	String get reset_password_success => 'We\'ve sent you an email with a link to reset your password. Please check your emails.';
+	String get go_back => 'Go back';
 	String get platforms => 'Platforms';
 	String get platforms_empty => 'There are no platforms found';
 	String get tab_most_popular => 'Most popular packages';
@@ -216,6 +220,10 @@ class _StringsSr implements Translations {
 	@override String get email_already_in_use => 'Email adresa se već koristi!';
 	@override String get invalid_credential => 'Email adresa ili lozinka nisu ispravni!';
 	@override String get auth_failed => 'Autentifikacija nije uspela! Molimo Vas pokušajte kasnije.';
+	@override String get reset_password_title => 'Molim Vas upišite Vašu email adresu ispod i poslaćemo Vam reset link.';
+	@override String get reset_password_btn => 'Pošalji reset link';
+	@override String get reset_password_success => 'Poslali smo Vam email sa uputstivma kako da resetujete Vaš password. Molimo Vas proverite email sanduče.';
+	@override String get go_back => 'Idi nazad';
 	@override String get platforms => 'Platforme';
 	@override String get platforms_empty => 'Nema dostupnih platformi';
 	@override String get tab_most_popular => 'Najpopularniji paketi';
@@ -250,6 +258,10 @@ extension on Translations {
 			case 'email_already_in_use': return 'Email is already in use!';
 			case 'invalid_credential': return 'Invalid email or password!';
 			case 'auth_failed': return 'Authentication failed! Please try again later!';
+			case 'reset_password_title': return 'Please enter your email below and we will send you a reset link.';
+			case 'reset_password_btn': return 'Send reset link';
+			case 'reset_password_success': return 'We\'ve sent you an email with a link to reset your password. Please check your emails.';
+			case 'go_back': return 'Go back';
 			case 'platforms': return 'Platforms';
 			case 'platforms_empty': return 'There are no platforms found';
 			case 'tab_most_popular': return 'Most popular packages';
@@ -284,6 +296,10 @@ extension on _StringsSr {
 			case 'email_already_in_use': return 'Email adresa se već koristi!';
 			case 'invalid_credential': return 'Email adresa ili lozinka nisu ispravni!';
 			case 'auth_failed': return 'Autentifikacija nije uspela! Molimo Vas pokušajte kasnije.';
+			case 'reset_password_title': return 'Molim Vas upišite Vašu email adresu ispod i poslaćemo Vam reset link.';
+			case 'reset_password_btn': return 'Pošalji reset link';
+			case 'reset_password_success': return 'Poslali smo Vam email sa uputstivma kako da resetujete Vaš password. Molimo Vas proverite email sanduče.';
+			case 'go_back': return 'Idi nazad';
 			case 'platforms': return 'Platforme';
 			case 'platforms_empty': return 'Nema dostupnih platformi';
 			case 'tab_most_popular': return 'Najpopularniji paketi';

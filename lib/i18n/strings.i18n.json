@@ -16,6 +16,11 @@
     "invalid_credential": "Invalid email or password!",
     "auth_failed": "Authentication failed! Please try again later!", 
 
+    "reset_password_title": "Please enter your email below and we will send you a reset link.",
+    "reset_password_btn": "Send reset link",
+    "reset_password_success": "We've sent you an email with a link to reset your password. Please check your emails.",
+    "go_back": "Go back",
+
     "platforms": "Platforms",
     "platforms_empty": "There are no platforms found",
     "tab_most_popular": "Most popular packages",
