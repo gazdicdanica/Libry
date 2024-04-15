@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_internship_2024_app/bloc/platforms_bloc/platforms_bloc.dart';
 import 'package:flutter_internship_2024_app/models/platform.dart';
 import 'package:flutter_internship_2024_app/presentation/screens/libraries_screen.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/card_widget.dart';
+import 'package:flutter_internship_2024_app/presentation/widgets/error_message_widget.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/platforms/platforms_card_overlay.dart';
 import 'package:flutter_internship_2024_app/theme.dart';
 
@@ -49,41 +49,11 @@ class _PlatformsListState extends State<PlatformsList>
     return BlocBuilder<PlatformsBloc, PlatformsState>(
         builder: (context, state) {
       if (state is PlatformsFailure) {
-        return Stack(
-          children: [
-            Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  const Icon(
-                    Icons.error_outline,
-                    color: textColor,
-                    size: 60,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    state.errorMessage,
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
-                ],
-              ),
-            ),
-            Positioned(
-              bottom: 20,
-              right: 20,
-              child: FloatingActionButton(
-                backgroundColor: themeSeedColor,
-                onPressed: () {
-                  context.read<PlatformsBloc>().add(PlatformsRequested());
-                },
-                child: const Icon(Icons.refresh),
-              ),
-            ),
-          ],
-        );
+        return ErrorMessageWidget(
+            errorMessage: state.errorMessage,
+            refreshFunction: () {
+              context.read<PlatformsBloc>().add(PlatformsRequested());
+            });
       }
       if (state is! PlatformsSuccess) {
         return const Center(
@@ -107,7 +77,7 @@ class _PlatformsListState extends State<PlatformsList>
               ),
               Text(
                 "There are no platforms found.",
-                style: Theme.of(context).textTheme.bodyLarge,
+                style: Theme.of(context).textTheme.displayLarge,
               ),
             ],
           ),

@@ -7,6 +7,9 @@ environment:
   sdk: '>=3.3.3 <4.0.0'
 
 dependencies:
+  email_validator: ^2.1.17
+  firebase_auth: ^4.19.1
+  firebase_core: ^2.29.0
   dotenv: ^4.2.0
   flutter:
     sdk: flutter
@@ -29,6 +32,7 @@ flutter:
   assets: 
     - .env
     - assets/images/icon.png
+    - assets/images/icon_transparent.png
     - assets/images/libry.png
     - assets/Conversion_path.png
 
@@ -41,6 +45,8 @@ patrol:
     bundle_id: com.levi9.flutterInternship2024App
   macos:
     bundle_id: com.levi9.flutterInternship2024App
+
+    
 
 flutter_launcher_icons:
   android: "launcher_icon"

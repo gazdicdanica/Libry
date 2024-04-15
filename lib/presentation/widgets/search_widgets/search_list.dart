@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_internship_2024_app/bloc/search_bloc/search_bloc.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/card_widget.dart';
+import 'package:flutter_internship_2024_app/presentation/widgets/error_message_widget.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/libraries_widgets/libraries_card_content.dart';
 import 'package:flutter_internship_2024_app/theme.dart';
 
 class SearchList extends StatefulWidget {
   final String searchText;
-  const SearchList({super.key, required this.searchText});
+  final String sort;
+  const SearchList({super.key, required this.searchText, required this.sort});
 
   @override
   State<SearchList> createState() => _SearchListState();
@@ -86,42 +88,11 @@ class _SearchListState extends State<SearchList>
             child: CircularProgressIndicator(),
           );
         } else if (state is SearchFailure) {
-          return Stack(
-            children: [
-              Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    const Icon(
-                      Icons.error_outline,
-                      color: textColor,
-                      size: 60,
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      state.errorMessage,
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
-                  ],
-                ),
-              ),
-              Positioned(
-                bottom: 20,
-                right: 20,
-                child: FloatingActionButton(
-                  backgroundColor: themeSeedColor,
-                  onPressed: () {
-                    context
-                        .read<SearchBloc>()
-                        .add(LibrariesSearched(widget.searchText));
-                  },
-                  child: const Icon(Icons.refresh),
-                ),
-              ),
-            ],
+          return ErrorMessageWidget(
+            errorMessage: state.errorMessage,
+            refreshFunction: () {
+              context.read<SearchBloc>().add(LibrariesSearched(widget.searchText, widget.sort));
+            },
           );
         } else {
           return Center(

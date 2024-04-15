@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "52919179813",
+    "project_id": "flutter-praksa-2024",
+    "storage_bucket": "flutter-praksa-2024.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:52919179813:android:b77681496f35f36dabbdcc",
+        "android_client_info": {
+          "package_name": "com.levi9.flutter_internship_2024_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1FvsQPtfUts6lsboaFEDFFtkwobFDDgY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

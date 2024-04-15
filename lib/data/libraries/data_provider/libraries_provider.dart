@@ -4,12 +4,12 @@ import 'dart:async';
 import 'dart:io';
 
 class LibrariesProvider {
-  Future<String> getCurrentLibraires(String packageName) async {
+  Future<String> getCurrentLibraires(String packageName, String sort) async {
     final apiKey = dotenv.env['API_KEY'];
     try {
       final res = await http.get(
         Uri.parse(
-          'https://libraries.io/api/search?q=$packageName&api_key=$apiKey',
+          'https://libraries.io/api/search?q=$packageName&api_key=$apiKey&sort=$sort',
         ),
       );
       if (res.statusCode != 200) {

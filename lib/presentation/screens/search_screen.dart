@@ -11,6 +11,7 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   late String searchText = '';
+  late String sort = '';
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +40,10 @@ class _SearchScreenState extends State<SearchScreen> {
             },
           ),
           Expanded(
-            child: SearchList(searchText: searchText),
+            child: SearchList(
+              searchText: searchText,
+              sort: sort,
+            ),
           ),
         ],
       ),

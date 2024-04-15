@@ -35,10 +35,13 @@ target 'Runner' do
   target 'RunnerTests' do
     inherit! :search_paths
   end
+<<<<<<< HEAD
 
   target 'RunnerUITests' do
     inherit! :complete
   end
+=======
+>>>>>>> qa
 end
 
 post_install do |installer|
