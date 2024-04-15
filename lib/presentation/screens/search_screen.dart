@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/search_widgets/search_input_widget.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/search_widgets/search_list.dart';
@@ -33,23 +32,23 @@ class _SearchScreenState extends State<SearchScreen> {
         ),
       ),
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            SearchInput(
-              onTextChanged: (text) {
-                setState(() {
-                  searchText = text;
-                });
-              },
-            ),
-            Expanded(
-              child: SearchList(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              SearchInput(
+                onTextChanged: (text) {
+                  setState(() {
+                    searchText = text;
+                  });
+                },
+              ),
+              SearchList(
                 searchText: searchText,
                 sort: sort,
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

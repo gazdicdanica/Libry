@@ -6,7 +6,9 @@ import 'package:flutter_internship_2024_app/presentation/widgets/error_message_w
 import 'package:flutter_internship_2024_app/presentation/widgets/libraries_widgets/libraries_card_content.dart';
 
 class LibrariesList extends StatefulWidget {
+  // ignore: prefer_typing_uninitialized_variables
   final platform;
+  // ignore: prefer_typing_uninitialized_variables
   final sort;
 
   const LibrariesList({super.key, this.platform, this.sort});

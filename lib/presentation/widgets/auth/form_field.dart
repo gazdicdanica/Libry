@@ -4,16 +4,15 @@ class CustomFormField extends StatefulWidget {
   final TextEditingController controller;
   final String labelText;
   final String hintText;
-  final String? Function(String?)? validator;
   final Widget? suffixIcon;
   final String? errorText;
   final bool obscureText;
 
-  const CustomFormField({super.key, 
+  const CustomFormField({
+    super.key,
     required this.controller,
     required this.labelText,
     required this.hintText,
-    required this.validator,
     this.suffixIcon,
     this.errorText,
     this.obscureText = false
@@ -37,11 +36,12 @@ class _CustomFormFieldState extends State<CustomFormField> {
         floatingLabelBehavior: FloatingLabelBehavior.always,
         errorText: widget.errorText,
       ),
-      keyboardType: widget.labelText.toLowerCase().contains('email') ? TextInputType.emailAddress : TextInputType.text,
+      keyboardType: widget.labelText.toLowerCase().contains('email')
+          ? TextInputType.emailAddress
+          : TextInputType.text,
       autocorrect: false,
       textCapitalization: TextCapitalization.none,
       obscureText: widget.obscureText,
-      validator: widget.validator,
     );
   }
 }

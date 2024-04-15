@@ -45,7 +45,6 @@ class PlatformsScreen extends StatelessWidget {
                 size: 30,
               ),
               onPressed: () {
-                // TODO are you sure message ?
                 FirebaseAuth.instance.signOut();
               },
             ),
