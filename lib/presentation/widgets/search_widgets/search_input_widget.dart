@@ -19,12 +19,15 @@ class _SearchInputState extends State<SearchInput> {
     super.initState();
     _controller.clear();
     _focusNode = FocusNode();
+<<<<<<< HEAD
+=======
   }
 
   @override
   void dispose() {
     _focusNode.dispose();
     super.dispose();
+>>>>>>> 8ed1df72fe846c6a01257f182ee8f894eb38053f
   }
 
   @override
@@ -81,5 +84,11 @@ class _SearchInputState extends State<SearchInput> {
     if (searchText.isNotEmpty) {
       context.read<SearchBloc>().add(LibrariesSearched(searchText, "rank"));
     }
+  }
+
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
   }
 }
