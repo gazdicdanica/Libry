@@ -18,19 +18,6 @@ class LibrariesCardContet extends StatelessWidget {
     List<String> keywords = [];
     String keywordsString = '';
 
-    /*
-        for(int i=0; i < library.keywords!.length; i++){
-            keywordsText.add(library.keywords![i]);
-            keywordsString= keywordsText.join(',');
-
-            if(keywordsString.length >screenWidth* 0.030){
-              keywordsText.removeLast();
-              keywordsString=keywordsText.join(',');
-              break;
-            }
-
-        }*/
-
     for (String keyword in library.keywords!) {
       TextPainter textPainter = TextPainter(
         text: TextSpan(text: keyword),
@@ -73,12 +60,11 @@ class LibrariesCardContet extends StatelessWidget {
                       children: [
                         Row(children: [
                           Image.asset(
-                            'assets/Conversion_path.png', // Putanja do vaše PNG ikone
-                            width:
-                                24, // Opciono: Možete postaviti širinu i visinu ikone
+                            'assets/Conversion_path.png',
+                            width: 24,
                             height: 24,
                           ),
-                          Container(
+                          SizedBox(
                             width: screenWidth * 0.2,
                             child: Text(
                               library.latestReleaseNumber != null
@@ -98,7 +84,7 @@ class LibrariesCardContet extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             keywordsString == ''
-                                ? SizedBox()
+                                ? const SizedBox()
                                 : Icon(MdiIcons.tag,
                                     color: textColor,
                                     size: position
@@ -107,7 +93,7 @@ class LibrariesCardContet extends StatelessWidget {
                             SizedBox(
                               width: screenWidth * 0.01,
                             ),
-                            Container(
+                            SizedBox(
                               width: position
                                   ? screenWidth * 0.2
                                   : screenWidth * 0.4,
@@ -123,18 +109,6 @@ class LibrariesCardContet extends StatelessWidget {
                   ],
                 ),
               ]),
-        //   SizedBox(width:  position ? screenWidth * 0.05 : screenWidth * 0.2),
-        //    Row(
-        //             mainAxisAlignment: MainAxisAlignment.end,
-        //             crossAxisAlignment: CrossAxisAlignment.end,
-        //             children: [
-        //            //  SizedBox(width: screenWidth* 0.02,),
-        //              Align(
-        //               alignment: Alignment.topRight,
-        //               child: Icon(MdiIcons.heartOutline,size: 30,)
-        //               ),
-        //             ],
-        //          ) 
         ],
       ),
     );
