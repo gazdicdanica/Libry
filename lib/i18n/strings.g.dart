@@ -6,7 +6,7 @@
 /// Locales: 2
 /// Strings: 52 (26 per locale)
 ///
-/// Built on 2024-04-12 at 12:47 UTC
+/// Built on 2024-04-15 at 11:37 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -200,20 +200,20 @@ class _StringsSr implements Translations {
 	@override late final _StringsSr _root = this; // ignore: unused_field
 
 	// Translations
-	@override String get welcome => 'Dobrodošli na Libry';
-	@override String get email => 'Email';
+	@override String get welcome => 'Dobrodošli u Libry';
+	@override String get email => 'Email adresa';
 	@override String get email_hint => 'Vaša email adresa';
-	@override String get email_format_error => 'Email adresa nije ispravnog formata';
+	@override String get email_format_error => 'Email adresa nije u dobrom formatu!';
 	@override String get password => 'Lozinka';
 	@override String get password_hint => 'Vaša lozinka';
-	@override String get password_error => 'Lozinka treba da sadrži najmanje 6 karaktera!';
+	@override String get password_error => 'Lozinka mora da sadrži bar 6 karaktera!';
 	@override String get forgot_password => 'Zaboravili ste lozinku?';
-	@override String get confirm_password => 'Potvrdi lozinku';
-	@override String get confirm_password_hint => 'Ponovite svoju lozinku';
-	@override String get confirm_password_error => 'Lozinke se ne poklapaju!';
+	@override String get confirm_password => 'Potvrdite lozinku';
+	@override String get confirm_password_hint => 'Ponovite Vašu lozinku';
+	@override String get confirm_password_error => 'Lozinke se ne podudaraju!';
 	@override String get login => 'Prijavi se';
 	@override String get singup => 'Registruj se';
-	@override String get email_already_in_use => 'Email adresa je već u upotrebi!';
+	@override String get email_already_in_use => 'Email adresa se već koristi!';
 	@override String get invalid_credential => 'Email adresa ili lozinka nisu ispravni!';
 	@override String get auth_failed => 'Autentifikacija nije uspela! Molimo Vas pokušajte kasnije.';
 	@override String get platforms => 'Platforme';
@@ -268,20 +268,20 @@ extension on Translations {
 extension on _StringsSr {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
-			case 'welcome': return 'Dobrodošli na Libry';
-			case 'email': return 'Email';
+			case 'welcome': return 'Dobrodošli u Libry';
+			case 'email': return 'Email adresa';
 			case 'email_hint': return 'Vaša email adresa';
-			case 'email_format_error': return 'Email adresa nije ispravnog formata';
+			case 'email_format_error': return 'Email adresa nije u dobrom formatu!';
 			case 'password': return 'Lozinka';
 			case 'password_hint': return 'Vaša lozinka';
-			case 'password_error': return 'Lozinka treba da sadrži najmanje 6 karaktera!';
+			case 'password_error': return 'Lozinka mora da sadrži bar 6 karaktera!';
 			case 'forgot_password': return 'Zaboravili ste lozinku?';
-			case 'confirm_password': return 'Potvrdi lozinku';
-			case 'confirm_password_hint': return 'Ponovite svoju lozinku';
-			case 'confirm_password_error': return 'Lozinke se ne poklapaju!';
+			case 'confirm_password': return 'Potvrdite lozinku';
+			case 'confirm_password_hint': return 'Ponovite Vašu lozinku';
+			case 'confirm_password_error': return 'Lozinke se ne podudaraju!';
 			case 'login': return 'Prijavi se';
 			case 'singup': return 'Registruj se';
-			case 'email_already_in_use': return 'Email adresa je već u upotrebi!';
+			case 'email_already_in_use': return 'Email adresa se već koristi!';
 			case 'invalid_credential': return 'Email adresa ili lozinka nisu ispravni!';
 			case 'auth_failed': return 'Autentifikacija nije uspela! Molimo Vas pokušajte kasnije.';
 			case 'platforms': return 'Platforme';
