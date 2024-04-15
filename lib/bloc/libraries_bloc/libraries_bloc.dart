@@ -9,14 +9,14 @@ part 'libraries_state.dart';
 class LibrariesBloc extends Bloc<LibrariesEvent, LibrariesState> {
   final LibrariesRepository _librariesRepository;
   LibrariesBloc(this._librariesRepository) : super(LibrariesInitial()) {
-    on<LibrairesFetched>(_getCurrentLibraries);
+    on<FetchLibraries>(_getCurrentLibraries);
   }
   void _getCurrentLibraries(
-    LibrairesFetched event,
+    FetchLibraries event,
     Emitter<LibrariesState> emit,
   ) async {
+    emit(LibrariesLoading());
     try {
-      emit(LibrariesLoading());
       final libraries = await _librariesRepository.getCurrentLibraires(
           event.platform, event.sort);
       emit(LibrariesSuccess(libraries));

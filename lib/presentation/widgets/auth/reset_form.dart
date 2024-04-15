@@ -41,21 +41,21 @@ class _ResetFormState extends State<ResetForm>{
     super.dispose();
   }      
   Future<void> _resetPassword() async {
-    _messageSend=true; 
+   
         if (_resetForm.currentState!.validate()) {
           try {
           await _firebase
              .sendPasswordResetEmail(email: _emailController.text.trim(),);
              setState(() {
-               errorMessage=null;
+               _messageSend=true; 
              });
 
           } on FirebaseAuthException catch (e){
             setState(() {
-              errorMessage=e.message;
-            });
-
-            
+             
+                 _messageSend=true; 
+                  errorMessage=e.message;
+            });            
            }
           }
         }
@@ -64,91 +64,90 @@ class _ResetFormState extends State<ResetForm>{
   Widget build(BuildContext context) {
    return Form(
     key: _resetForm,
-     child: Column(
-      children: [
-        if(!_messageSend)
-        Column(
-        children: [ 
-          Text(
-            textAlign: TextAlign.center,
-            'Please enter your email below and we will send your a reset link.',
-             style: TextStyle(fontWeight : Theme.of(context).textTheme.titleLarge?.fontWeight),
-          ),
-         const SizedBox(
-             height: 30,
-          ),
-          CustomFormField(
-            controller: _emailController,
-            labelText: 'Email',
-            hintText: 'Your email address',
-           errorText: _emailValid ? null : 'Email does not exist',
-            suffixIcon: _emailValid ? null : const Icon(Icons.error),
-            validator: (value) {
-              if (value == null ||
-                  value.trim().isEmpty ||
-                  !EmailValidator.validate(value)) {
-                setState(() {
-                  _emailValid = false;
-                });
-                return 'Email is not in correct format!';
-              }
-              setState(() {
-                _emailValid = true;
-              });
-              return null;
-            },
-          ),
-          const SizedBox(
-                  height: 30,
-                ),
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed:(){
-                  _resetPassword();
-              } ,
-              style: buttonStyle,
-              child: const Text('Send reset link',
-                      style: TextStyle( fontSize: 16),),
-              ),
-          ),
-          ]
-        ),
-         
-        if(_messageSend)
-         Column(
-           children: [  Text(
-            textAlign: TextAlign.center,
-             'We have sent you an email with a link to reset your passwrod. Please check you emails. ',
-             style: TextStyle(color:  const Color.fromRGBO(72, 75, 73, 1),
-              fontWeight : Theme.of(context).textTheme.titleLarge?.fontWeight)
-          ),
-         const SizedBox(
-             height: 30,
-          ),
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed:(){
-                  Navigator.of(context).pop(MaterialPageRoute(builder: 
-                  (context)=> const AuthScreen()));
-              }  ,
-              style:buttonStyle,
-             child: const Text('Go back.',)
+     child: ConstrainedBox(
+       constraints: const BoxConstraints(maxWidth: 500),
+       child: Column(
+        children: [
+          if(!_messageSend)
+          Column(
+          children: [ 
+            Text(
+              textAlign: TextAlign.center,
+              'Please enter your email below and we will send your a reset link.',
+               style: TextStyle(fontWeight : Theme.of(context).textTheme.titleLarge?.fontWeight),
             ),
+           const SizedBox(
+               height: 30,
+            ),
+            CustomFormField(
+              controller: _emailController,
+              labelText: 'Email',
+              hintText: 'Your email address',
+             errorText: _emailValid ? null : 'Email does not exist',
+              suffixIcon: _emailValid ? null : const Icon(Icons.error),
+              validator: (value) {
+                if (value == null ||
+                    value.trim().isEmpty ||
+                    !EmailValidator.validate(value)) {
+                  setState(() {
+                    _emailValid = false;
+                  });
+                  return 'Email is not in correct format!';
+                }
+                setState(() {
+                  _emailValid = true;
+                });
+                return null;
+              },
+            ),
+            const SizedBox(
+                    height: 30,
+                  ),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed:(){
+                    _resetPassword();
+                } ,
+                style: buttonStyle,
+                child: const Text('Send reset link',
+                        style: TextStyle( fontSize: 16),),
+                ),
+            ),
+            ]
           ),
-          const SizedBox(
-             height: 30,
-          ),
-           if(errorMessage!= null)
-            const Text('An error has occurred. Please try again!', textAlign: TextAlign.center,
-            style:TextStyle(color: Colors.red, ) ,),
-      ]),
-       const SizedBox(
-             height: 30,
-          ),
-     
-      ],
+           
+          if(_messageSend)
+           Column(
+             children: [  Text(
+              textAlign: TextAlign.center,
+               'We have sent you an email with a link to reset your passwrod. Please check you emails. ',
+               style: TextStyle(color:  const Color.fromRGBO(72, 75, 73, 1),
+                fontWeight : Theme.of(context).textTheme.titleLarge?.fontWeight)
+            ),
+           const SizedBox(
+               height: 30,
+            ),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed:(){
+                    Navigator.of(context).pop(MaterialPageRoute(builder: 
+                    (context)=> const AuthScreen()));
+                }  ,
+                style:buttonStyle,
+               child: const Text('Go back.',)
+              ),
+            ),
+            const SizedBox(
+               height: 30,
+            ),
+            (errorMessage !=null) ? const Text('An error has occurred. Please try again!', textAlign: TextAlign.center,
+              style:TextStyle(color: Colors.red, ) ,) : SizedBox() ,
+        ]),
+         
+        ],
+       ),
      ),
      
    );
