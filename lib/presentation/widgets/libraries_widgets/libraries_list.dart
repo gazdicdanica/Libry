@@ -22,7 +22,7 @@ class _LibrariesListState extends State<LibrariesList> {
   void initState() {
     super.initState();
     platfromName = widget.platform.name;
-    context.read<LibrariesBloc>().add(LibrairesFetched(platfromName!));
+    context.read<LibrariesBloc>().add(FetchLibraries(platfromName!));
   }
 
   @override
