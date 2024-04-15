@@ -1,4 +1,3 @@
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_internship_2024_app/bloc/auth_bloc/auth_bloc.dart';
@@ -26,9 +25,6 @@ class _AuthFormState extends State<AuthForm> {
   final _confirmPasswordController = TextEditingController();
 
   var _isLogin = true;
-  var _emailValid = true;
-  var _passwordValid = true;
-  var _confirmPasswordValid = true;
 
   void _showSnackbar(String message, {int dur = 3}) {
     ScaffoldMessenger.of(context).clearSnackBars();
@@ -45,9 +41,6 @@ class _AuthFormState extends State<AuthForm> {
     BlocProvider.of<AuthBloc>(context).add(ResetAuth());
     setState(() {
       _isLogin = !_isLogin;
-      _emailValid = true;
-      _passwordValid = true;
-      _confirmPasswordValid = true;
     });
     _emailController.clear();
     _passwordController.clear();
@@ -62,12 +55,12 @@ class _AuthFormState extends State<AuthForm> {
     super.dispose();
   }
 
-  void _authenticate(BuildContext context) {
-    if (!_form.currentState!.validate()) {
-      return;
-    }
-    BlocProvider.of<AuthBloc>(context).add(
-        StartAuth(_emailController.text, _passwordController.text, _isLogin));
+  void _validateAndAuthenticate(BuildContext context) {
+    BlocProvider.of<AuthBloc>(context).add(ValidateAuth(
+        isLogin: _isLogin,
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
+        confirmPassword: _confirmPasswordController.text.trim()));
   }
 
   @override
@@ -76,7 +69,8 @@ class _AuthFormState extends State<AuthForm> {
       create: (context) => AuthBloc(),
       child: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) => {
-          if (state is AuthFailure) {_showSnackbar(state.errorMessage)}
+          if (state is AuthUnknownFailure)
+            {_showSnackbar(state.errorMessage)}
         },
         builder: (ctx, state) {
           if (state is AuthLoading) {
@@ -104,25 +98,13 @@ class _AuthFormState extends State<AuthForm> {
                     controller: _emailController,
                     labelText: 'Email',
                     hintText: 'Your email address',
-                    errorText:
-                        (state is AuthEmailFailure) ? state.errorMessage : null,
-                    suffixIcon: (state is AuthEmailFailure || !_emailValid)
+                    errorText: (state is AuthValidationFailure)
+                        ? state.emailError
+                        : null,
+                    suffixIcon: (state is AuthValidationFailure &&
+                            state.emailError != null)
                         ? const Icon(Icons.error)
                         : null,
-                    validator: (value) {
-                      if (value == null ||
-                          value.trim().isEmpty ||
-                          !EmailValidator.validate(value)) {
-                        setState(() {
-                          _emailValid = false;
-                        });
-                        return 'Email is not in correct format!';
-                      }
-                      setState(() {
-                        _emailValid = true;
-                      });
-                      return null;
-                    },
                   ),
                   const SizedBox(
                     height: 20,
@@ -131,21 +113,13 @@ class _AuthFormState extends State<AuthForm> {
                     controller: _passwordController,
                     labelText: 'Password',
                     hintText: 'Your password',
-                    suffixIcon: _passwordValid ? null : const Icon(Icons.error),
-                    validator: (value) {
-                      if (value == null ||
-                          value.trim().isEmpty ||
-                          value.length < 6) {
-                        setState(() {
-                          _passwordValid = false;
-                        });
-                        return 'Password should contain 6 characters!';
-                      }
-                      setState(() {
-                        _passwordValid = true;
-                      });
-                      return null;
-                    },
+                    errorText: (state is AuthValidationFailure)
+                        ? state.passwordError
+                        : null,
+                    suffixIcon: (state is AuthValidationFailure &&
+                            state.passwordError != null)
+                        ? const Icon(Icons.error)
+                        : null,
                   ),
 
                   if (_isLogin)
@@ -186,23 +160,13 @@ class _AuthFormState extends State<AuthForm> {
                           controller: _confirmPasswordController,
                           labelText: 'Confirm password',
                           hintText: 'Repeat your password',
-                          suffixIcon: _confirmPasswordValid
-                              ? null
-                              : const Icon(Icons.error),
-                          validator: (value) {
-                            if (value == null ||
-                                value.trim().isEmpty ||
-                                value != _passwordController.text) {
-                              setState(() {
-                                _confirmPasswordValid = false;
-                              });
-                              return 'Passwords do not match!';
-                            }
-                            setState(() {
-                              _confirmPasswordValid = true;
-                            });
-                            return null;
-                          },
+                          errorText: (state is AuthValidationFailure)
+                              ? state.confirmPasswordError
+                              : null,
+                          suffixIcon: (state is AuthValidationFailure &&
+                                  state.confirmPasswordError != null)
+                              ? const Icon(Icons.error)
+                              : null,
                         ),
                         const SizedBox(
                           height: 40,
@@ -213,7 +177,7 @@ class _AuthFormState extends State<AuthForm> {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        _authenticate(ctx);
+                        _validateAndAuthenticate(ctx);
                       },
                       style: buttonStyle,
                       child: Text(_isLogin ? 'Login' : 'Sign up'),

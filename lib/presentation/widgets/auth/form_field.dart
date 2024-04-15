@@ -4,7 +4,6 @@ class CustomFormField extends StatefulWidget {
   final TextEditingController controller;
   final String labelText;
   final String hintText;
-  final String? Function(String?)? validator;
   final Widget? suffixIcon;
   final String? errorText;
 
@@ -12,7 +11,6 @@ class CustomFormField extends StatefulWidget {
     required this.controller,
     required this.labelText,
     required this.hintText,
-    required this.validator,
     this.suffixIcon,
     this.errorText,
   });
@@ -37,8 +35,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
       keyboardType: widget.labelText.toLowerCase().contains('email') ? TextInputType.emailAddress : TextInputType.text,
       autocorrect: false,
       textCapitalization: TextCapitalization.none,
-      obscureText: widget.labelText.toLowerCase().contains('password'),
-      validator: widget.validator,
+      obscureText: widget.labelText.toLowerCase().contains('password')
     );
   }
 }
