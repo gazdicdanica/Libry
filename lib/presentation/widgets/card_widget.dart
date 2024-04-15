@@ -19,7 +19,6 @@ class CardWidget extends StatelessWidget {
       elevation: 4,
       child: InkWell(
         borderRadius: BorderRadius.circular(10),
-        // TODO : reroute function
         onTap: onTap,
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),

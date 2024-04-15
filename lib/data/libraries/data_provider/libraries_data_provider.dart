@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:io';
 
-class LibrariesProvider {
+class LibrariesDataProvider {
   Future<String> getCurrentLibraires(String packageName, String sort) async {
     final apiKey = dotenv.env['API_KEY'];
     try {

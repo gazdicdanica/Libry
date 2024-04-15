@@ -34,12 +34,6 @@ class _SearchListState extends State<SearchList>
   }
 
   @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return BlocConsumer<SearchBloc, SearchState>(
       listener: (context, state) {
@@ -60,6 +54,8 @@ class _SearchListState extends State<SearchList>
             child: AnimatedBuilder(
               animation: _animationController,
               child: ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: (state as SearchSuccess).libraries.length,
                 itemBuilder: (context, index) {
                   final library = state.libraries[index];
@@ -73,11 +69,13 @@ class _SearchListState extends State<SearchList>
                 },
               ),
               builder: (context, child) {
-                return Opacity(
-                  opacity: _animationController.value,
-                  child: Transform.translate(
-                    offset: Offset(0, 100 * (1 - _animationController.value)),
-                    child: child,
+                return Center(
+                  child: Opacity(
+                    opacity: _animationController.value,
+                    child: Transform.translate(
+                      offset: Offset(0, 100 * (1 - _animationController.value)),
+                      child: child,
+                    ),
                   ),
                 );
               },
@@ -85,13 +83,21 @@ class _SearchListState extends State<SearchList>
           );
         } else if (state is SearchLoading) {
           return const Center(
-            child: CircularProgressIndicator(),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(height: 250),
+                CircularProgressIndicator(),
+              ],
+            ),
           );
         } else if (state is SearchFailure) {
           return ErrorMessageWidget(
             errorMessage: state.errorMessage,
             refreshFunction: () {
-              context.read<SearchBloc>().add(LibrariesSearched(widget.searchText, widget.sort));
+              context
+                  .read<SearchBloc>()
+                  .add(LibrariesSearched(widget.searchText, widget.sort));
             },
           );
         } else {
@@ -99,6 +105,7 @@ class _SearchListState extends State<SearchList>
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                const SizedBox(height: 180),
                 state is SearchSuccess
                     ? const Icon(Icons.emoji_nature_outlined,
                         size: 80, color: textColor)
@@ -121,5 +128,11 @@ class _SearchListState extends State<SearchList>
         }
       },
     );
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
   }
 }

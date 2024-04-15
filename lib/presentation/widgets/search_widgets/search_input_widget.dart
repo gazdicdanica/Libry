@@ -12,12 +12,19 @@ class SearchInput extends StatefulWidget {
 
 class _SearchInputState extends State<SearchInput> {
   final _controller = TextEditingController();
-  final _focusNode = FocusNode();
+  late FocusNode _focusNode;
 
   @override
   void initState() {
     super.initState();
     _controller.clear();
+    _focusNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
   }
 
   @override
@@ -57,7 +64,7 @@ class _SearchInputState extends State<SearchInput> {
               onTap: () {
                 _controller.clear();
                 context.read<SearchBloc>().add(ResetSearch());
-                _focusNode.requestFocus();
+                _focusNode.unfocus();
               },
               child: const Icon(
                 Icons.close,
