@@ -66,6 +66,7 @@ class _AuthFormState extends State<AuthForm> {
 
   @override
   Widget build(BuildContext context) {
+    final t = Translations.of(context);
     return BlocProvider<AuthBloc>(
       create: (context) => AuthBloc(),
       child: BlocConsumer<AuthBloc, AuthState>(
