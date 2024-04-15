@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_internship_2024_app/bloc/libraries_bloc/libraries_bloc.dart';
+import 'package:flutter_internship_2024_app/models/platform.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/card_widget.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/error_message_widget.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/libraries_widgets/libraries_card_content.dart';
 
 class LibrariesList extends StatefulWidget {
+<<<<<<< HEAD
+  final Platform platform;
+  final String sort;
+=======
   // ignore: prefer_typing_uninitialized_variables
   final platform;
   // ignore: prefer_typing_uninitialized_variables
   final sort;
+>>>>>>> 8ed1df72fe846c6a01257f182ee8f894eb38053f
 
-  const LibrariesList({super.key, this.platform, this.sort});
+  const LibrariesList({super.key, required this.platform, required this.sort});
 
   @override
   State<LibrariesList> createState() {
@@ -34,14 +40,14 @@ class _LibrariesListState extends State<LibrariesList> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: BlocBuilder<LibrariesBloc, LibrariesState>(
-          builder: (context, state) {
+      child:
+          BlocBuilder<LibrariesBloc, LibrariesState>(builder: (context, state) {
         if (state is LibrariesLoading) {
           return const Center(
             child: CircularProgressIndicator(),
           );
         }
-      
+
         if (state is LibrariesSuccess) {
           return Center(
             child: ListView.builder(
