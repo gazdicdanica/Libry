@@ -41,12 +41,12 @@ class _ResetFormState extends State<ResetForm>{
     super.dispose();
   }      
   Future<void> _resetPassword() async {
+    _messageSend=true; 
         if (_resetForm.currentState!.validate()) {
           try {
           await _firebase
              .sendPasswordResetEmail(email: _emailController.text.trim(),);
              setState(() {
-               _messageSend=true; 
                errorMessage=null;
              });
 
@@ -137,9 +137,17 @@ class _ResetFormState extends State<ResetForm>{
              child: const Text('Go back.',)
             ),
           ),
+          const SizedBox(
+             height: 30,
+          ),
+           if(errorMessage!= null)
+            const Text('An error has occurred. Please try again!', textAlign: TextAlign.center,
+            style:TextStyle(color: Colors.red, ) ,),
       ]),
-      if(errorMessage!= null)
-            Text(errorMessage!),
+       const SizedBox(
+             height: 30,
+          ),
+     
       ],
      ),
      

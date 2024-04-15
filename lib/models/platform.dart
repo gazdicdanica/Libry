@@ -1,15 +1,13 @@
 import 'dart:ui';
 
 class Platform {
-
   final String name;
   final int projectCount;
   final String homepage;
   final String color;
   final String? defaultLanguage;
 
-
-  Platform({
+  const Platform({
     required this.name,
     required this.projectCount,
     required this.homepage,
@@ -27,6 +25,7 @@ class Platform {
     );
   }
 
-  Color get colorObj => Color(int.parse(color.toUpperCase().replaceAll("#", ""), radix: 16) + 0xFF000000);
-  
+  Color get colorObj =>
+      Color(int.parse(color.toUpperCase().replaceAll("#", ""), radix: 16) +
+          0xFF000000);
 }
