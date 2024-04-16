@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_internship_2024_app/bloc/auth_bloc/auth_bloc.dart';
-import 'package:flutter_internship_2024_app/presentation/screens/reset_screen.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/auth/form_field.dart';
 import 'package:flutter_internship_2024_app/theme.dart';
 
@@ -133,14 +132,7 @@ class _AuthFormState extends State<AuthForm> {
                             height: 5,
                           ),
                           TextButton(
-                            onPressed: () {
-                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const ResetScreen(
-                        ),
-                      ),
-                      );
-  
-                      },
+                            onPressed: () {},
                             style: ButtonStyle(
                                 foregroundColor:
                                     MaterialStateProperty.all<Color>(
