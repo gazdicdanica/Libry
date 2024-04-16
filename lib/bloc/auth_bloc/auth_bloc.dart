@@ -12,6 +12,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<StartAuth>(_authenticate);
     on<ResetAuth>(_reset);
     on<ValidateAuth>(_validate);
+    on<SendResetEmail>(_validateForgotPassword);
   }
 
   final _firebase = FirebaseAuth.instance;
@@ -71,4 +72,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(AuthUnknownFailure('Authentication failed! Please try again later!'));
     }
   }
+
+void _validateForgotPassword(SendResetEmail event, Emitter<AuthState> emit) async {
+  try {
+    await _firebase.sendPasswordResetEmail(email: event.email!);
+    emit(ForgotPasswordSuccess());
+  } on FirebaseAuthException catch (e) {
+    emit(ForgotPasswordFailure(emailError: e.message));
+  }
 }
+}
+

@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 
 const textColor = Color.fromARGB(255, 72, 75, 73);
@@ -28,6 +30,10 @@ final theme = ThemeData.light().copyWith(
           fontWeight: FontWeight.bold,
         ),
         displayLarge: const TextStyle(
-            fontSize: 20, color: textColor, fontWeight: FontWeight.bold),
+          fontSize: 20,
+          color: textColor,
+          fontWeight: FontWeight.bold
+        ),
+
       ),
 );
