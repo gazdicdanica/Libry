@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
+import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/search/search_input_widget.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/search/search_list.dart';
-=======
-import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
-import 'package:flutter_internship_2024_app/presentation/widgets/search_widgets/search_input_widget.dart';
-import 'package:flutter_internship_2024_app/presentation/widgets/search_widgets/search_list.dart';
->>>>>>> 6346bdaec7d5bafdb0276916531415a2d67a0056
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});

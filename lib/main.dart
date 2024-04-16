@@ -64,19 +64,14 @@ class MyApp extends StatelessWidget {
             title: 'Libry',
             theme: theme,
             home: StreamBuilder(
-            stream: FirebaseAuth.instance.authStateChanges(),
-            builder: (context, snapshot) {
-<<<<<<< HEAD
-              if (snapshot.hasData) {
-                return const MyAccountScreen();
-=======
-              if(snapshot.hasData){
-                return const PlatformsScreen();
->>>>>>> 6346bdaec7d5bafdb0276916531415a2d67a0056
-              }
-              return const AuthScreen();
-            },
-          ),
+              stream: FirebaseAuth.instance.authStateChanges(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return const MyAccountScreen();
+                }
+                return const AuthScreen();
+              },
+            ),
           ),
         ),
       ),

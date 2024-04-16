@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/my_account/account_detals_widget.dart';
 import 'package:confirm_dialog/confirm_dialog.dart';
 
@@ -9,13 +10,12 @@ class MyAccountScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser;
-
     return Scaffold(
       appBar: AppBar(
         title: Padding(
           padding: const EdgeInsets.only(left: 10.0),
           child: Text(
-            'My Account',
+            t.my_account,
             style: Theme.of(context).textTheme.headlineSmall,
           ),
         ),
@@ -31,10 +31,10 @@ class MyAccountScreen extends StatelessWidget {
               onPressed: () async {
                 if (await confirm(
                   context,
-                  title: const Text('Logout'),
-                  content: const Text('Are you sure you want to logout?'),
-                  textOK: const Text('Yes'),
-                  textCancel: const Text('No'),
+                  title: Text(t.logout),
+                  content: Text(t.confirm_logout),
+                  textOK: Text(t.yes),
+                  textCancel: Text(t.no),
                 )) {
                   return FirebaseAuth.instance.signOut();
                 }
