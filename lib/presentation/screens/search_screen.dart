@@ -29,55 +29,49 @@ class _SearchScreenState extends State<SearchScreen> {
           bottom: BorderSide(color: Color.fromRGBO(239, 245, 243, 1), width: 1),
         ),
       ),
-      body: SafeArea(
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            bool isLandscape =
-                MediaQuery.of(context).orientation == Orientation.landscape;
-            if (isLandscape) {
-              return SafeArea(
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      SearchInput(
-                        onTextChanged: (text) {
-                          setState(() {
-                            searchText = text;
-                          });
-                        },
-                      ),
-                      SearchList(
-                        searchText: searchText,
-                        sort: sort,
-                      ),
-                    ],
-                  ),
+      body: SingleChildScrollView(
+        child: SizedBox(
+          height: calculateBodyHeight(context),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              SearchInput(
+                onTextChanged: (text) {
+                  setState(() {
+                    searchText = text;
+                  });
+                },
+              ),
+              Expanded(
+                child: SearchList(
+                  searchText: searchText,
+                  sort: sort,
                 ),
-              );
-            } else {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  SearchInput(
-                    onTextChanged: (text) {
-                      setState(() {
-                        searchText = text;
-                      });
-                    },
-                  ),
-                  Expanded(
-                    child: SearchList(
-                      searchText: searchText,
-                      sort: sort,
-                    ),
-                  ),
-                ],
-              );
-            }
-          },
+              ),
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  double calculateBodyHeight(BuildContext context) {
+    double appBarHeight = AppBar().preferredSize.height;
+    double statusBarHeight = MediaQuery.of(context).padding.top;
+    double keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
+
+    bool isPortrait =
+        MediaQuery.of(context).orientation == Orientation.portrait;
+
+    if (isPortrait) {
+      return MediaQuery.of(context).size.height -
+          appBarHeight -
+          statusBarHeight -
+          keyboardHeight;
+    } else {
+      return MediaQuery.of(context).size.height -
+          appBarHeight -
+          statusBarHeight;
+    }
   }
 }

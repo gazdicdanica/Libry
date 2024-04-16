@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_internship_2024_app/bloc/search_bloc/search_bloc.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/card_widget.dart';
-import 'package:flutter_internship_2024_app/presentation/widgets/error_message_widget.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/libraries_widgets/libraries_card_content.dart';
 import 'package:flutter_internship_2024_app/theme.dart';
 
@@ -34,14 +33,24 @@ class _SearchListState extends State<SearchList>
   }
 
   @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocConsumer<SearchBloc, SearchState>(
       listener: (context, state) {
-        _showSearchList = state is SearchSuccess && state.libraries.isNotEmpty;
-        if (_showSearchList) {
+        if (state is SearchSuccess) {
+          setState(() {
+            _showSearchList = state.libraries.isNotEmpty;
+          });
           _animationController.forward();
         } else {
-          _animationController.reset();
+          setState(() {
+            _showSearchList = false;
+          });
         }
       },
       builder: (context, state) {
@@ -50,8 +59,6 @@ class _SearchListState extends State<SearchList>
             child: AnimatedBuilder(
               animation: _animationController,
               child: ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
                 itemCount: (state as SearchSuccess).libraries.length,
                 itemBuilder: (context, index) {
                   final library = state.libraries[index];
@@ -65,13 +72,11 @@ class _SearchListState extends State<SearchList>
                 },
               ),
               builder: (context, child) {
-                return Center(
-                  child: Opacity(
-                    opacity: _animationController.value,
-                    child: Transform.translate(
-                      offset: Offset(0, 100 * (1 - _animationController.value)),
-                      child: child,
-                    ),
+                return Opacity(
+                  opacity: _animationController.value,
+                  child: Transform.translate(
+                    offset: Offset(0, 100 * (1 - _animationController.value)),
+                    child: child,
                   ),
                 );
               },
@@ -79,21 +84,45 @@ class _SearchListState extends State<SearchList>
           );
         } else if (state is SearchLoading) {
           return const Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CircularProgressIndicator(),
-              ],
-            ),
+            child: CircularProgressIndicator(),
           );
         } else if (state is SearchFailure) {
-          return ErrorMessageWidget(
-            errorMessage: state.errorMessage,
-            refreshFunction: () {
-              context
-                  .read<SearchBloc>()
-                  .add(LibrariesSearched(widget.searchText, widget.sort));
-            },
+          return Stack(
+            children: [
+              Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    const Icon(
+                      Icons.error_outline,
+                      color: textColor,
+                      size: 60,
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      state.errorMessage,
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                  ],
+                ),
+              ),
+              Positioned(
+                bottom: 20,
+                right: 20,
+                child: FloatingActionButton(
+                  backgroundColor: themeSeedColor,
+                  onPressed: () {
+                    context
+                        .read<SearchBloc>()
+                        .add(LibrariesSearched(widget.searchText, widget.sort));
+                  },
+                  child: const Icon(Icons.refresh),
+                ),
+              ),
+            ],
           );
         } else {
           return Center(
@@ -122,11 +151,5 @@ class _SearchListState extends State<SearchList>
         }
       },
     );
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
   }
 }
