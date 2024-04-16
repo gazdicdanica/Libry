@@ -17,12 +17,11 @@ class PlatformsBloc extends Bloc<PlatformsEvent, PlatformsState> {
     on<RequestPlatforms>(_getPlatforms);
   }
 
-
   void _getPlatforms(RequestPlatforms event, Emitter<PlatformsState> emit) async {
     emit(PlatformsLoading());
 
     try{
-      final platforms = await _repository.getPlatforms();
+      final platforms = await _repository.fetchPlatforms();
       emit(PlatformsSuccess(platforms));
     }catch(e){
       emit(PlatformsFailure(e.toString()));

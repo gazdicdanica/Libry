@@ -32,86 +32,90 @@ class _PlatformsListState extends State<PlatformsList>
   }
 
   @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
-  }
-
-  void _goToLibrariesPage(Platform platform) {
-    Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => LibrariesScreen(
-              platform: platform,
-            )));
-  }
-
-  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: BlocBuilder<PlatformsBloc, PlatformsState>(
-          builder: (context, state) {
-        if (state is PlatformsFailure) {
-          return ErrorMessageWidget(
-              errorMessage: state.errorMessage,
-              refreshFunction: () {
-                context.read<PlatformsBloc>().add(RequestPlatforms());
-              });
-        }
-        if (state is! PlatformsSuccess) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-        _animationController.forward();
-        if (state.platforms.isEmpty) {
+        builder: (context, state) {
+          if (state is PlatformsFailure) {
+            return ErrorMessageWidget(
+                errorMessage: state.errorMessage,
+                refreshFunction: () {
+                  context.read<PlatformsBloc>().add(RequestPlatforms());
+                });
+          }
+          if (state is! PlatformsSuccess) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          _animationController.forward();
+          if (state.platforms.isEmpty) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  const Icon(
+                    Icons.emoji_nature,
+                    color: textColor,
+                    size: 80,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    "There are no platforms found.",
+                    style: Theme.of(context).textTheme.displayLarge,
+                  ),
+                ],
+              ),
+            );
+          }
           return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                const Icon(
-                  Icons.emoji_nature,
-                  color: textColor,
-                  size: 80,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  "There are no platforms found.",
-                  style: Theme.of(context).textTheme.displayLarge,
-                ),
-              ],
-            ),
-          );
-        }
-        return Center(
-          child: AnimatedBuilder(
-            animation: _animationController,
-            child: ListView.builder(
-              itemCount: state.platforms.length,
-              itemBuilder: (context, index) {
-                return CardWidget(
-                    color: state.platforms[index].colorObj,
-                    onTap: () {
-                      _goToLibrariesPage(state.platforms[index]);
-                    },
-                    child: PlatformsCardOverlay(
-                      platform: state.platforms[index],
-                    ));
+            child: AnimatedBuilder(
+              animation: _animationController,
+              child: ListView.builder(
+                itemCount: state.platforms.length,
+                itemBuilder: (context, index) {
+                  return CardWidget(
+                      color: state.platforms[index].colorObj,
+                      onTap: () {
+                        _goToLibrariesPage(state.platforms[index]);
+                      },
+                      child: PlatformsCardOverlay(
+                        platform: state.platforms[index],
+                      ));
+                },
+              ),
+              builder: (context, child) {
+                return Opacity(
+                  opacity: _animationController.value,
+                  child: Transform.translate(
+                    offset: Offset(0, 100 * (1 - _animationController.value)),
+                    child: child,
+                  ),
+                );
               },
             ),
-            builder: (context, child) {
-              return Opacity(
-                opacity: _animationController.value,
-                child: Transform.translate(
-                  offset: Offset(0, 100 * (1 - _animationController.value)),
-                  child: child,
-                ),
-              );
-            },
-          ),
-        );
-      }),
+          );
+        },
+      ),
     );
+  }
+
+  void _goToLibrariesPage(Platform platform) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => LibrariesScreen(
+          platform: platform,
+        ),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
   }
 }
