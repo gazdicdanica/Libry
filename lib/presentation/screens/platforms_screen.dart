@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 import 'package:flutter_internship_2024_app/presentation/screens/search_screen.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/platforms/platforms_list.dart';
 
@@ -8,12 +9,13 @@ class PlatformsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t = Translations.of(context);
     return Scaffold(
       appBar: AppBar(
         title: Padding(
           padding: const EdgeInsets.only(left: 10.0),
           child: Text(
-            'Platforms',
+            t.platforms,
             style: Theme.of(context).textTheme.headlineSmall,
           ),
         ),

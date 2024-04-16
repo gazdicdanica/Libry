@@ -9,6 +9,7 @@ import 'package:flutter_internship_2024_app/data/libraries/data_provider/librari
 import 'package:flutter_internship_2024_app/data/libraries/repository/libraries_repository.dart';
 import 'package:flutter_internship_2024_app/data/platforms/data_provider/platforms_data_provider.dart';
 import 'package:flutter_internship_2024_app/data/platforms/repository/platforms_repository.dart';
+import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 import 'package:flutter_internship_2024_app/presentation/screens/auth_screen.dart';
 import 'package:flutter_internship_2024_app/presentation/screens/platforms_screen.dart';
 import 'package:flutter_internship_2024_app/theme.dart';
@@ -17,6 +18,7 @@ import 'firebase_options.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  LocaleSettings.useDeviceLocale();
   await dotenv.load(fileName: ".env");
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -56,17 +58,19 @@ class MyApp extends StatelessWidget {
                 SearchBloc(context.read<LibrariesRepository>()),
           ),
         ],
-        child: MaterialApp(
-          title: 'Libry',
-          theme: theme,
-          home: StreamBuilder(
+        child: TranslationProvider(
+          child: MaterialApp(
+            title: 'Libry',
+            theme: theme,
+            home: StreamBuilder(
             stream: FirebaseAuth.instance.authStateChanges(),
             builder: (context, snapshot) {
-              if (snapshot.hasData) {
+              if(snapshot.hasData){
                 return const PlatformsScreen();
               }
               return const AuthScreen();
             },
+          ),
           ),
         ),
       ),

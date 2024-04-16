@@ -12,7 +12,7 @@ class LibrariesCardContet extends StatelessWidget {
   Widget build(BuildContext context) {
     bool position = MediaQuery.of(context).orientation == Orientation.portrait;
     double screenWidth = MediaQuery.of(context).size.width;
-    double remainigWidth = position ? screenWidth * 0.2 : screenWidth * 0.25;
+    double remainigWidth = position ? screenWidth * 0.25 : screenWidth * 0.3;
     double versionWidth = screenWidth * 0.026;
     double nameWidth = screenWidth * 0.06;
     List<String> keywords = [];
@@ -95,7 +95,7 @@ class LibrariesCardContet extends StatelessWidget {
                             ),
                             SizedBox(
                               width: position
-                                  ? screenWidth * 0.2
+                                  ? screenWidth * 0.25
                                   : screenWidth * 0.3,
                               child: Text(
                                 keywordsString,
