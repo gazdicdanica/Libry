@@ -22,12 +22,6 @@ class _SearchInputState extends State<SearchInput> {
   }
 
   @override
-  void dispose() {
-    _focusNode.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Container(
       width: 400,
@@ -81,5 +75,11 @@ class _SearchInputState extends State<SearchInput> {
     if (searchText.isNotEmpty) {
       context.read<SearchBloc>().add(LibrariesSearched(searchText, "rank"));
     }
+  }
+
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
   }
 }
