@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 60 (30 per locale)
+/// Strings: 66 (33 per locale)
 ///
-/// Built on 2024-04-16 at 11:59 UTC
+/// Built on 2024-04-16 at 13:12 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -178,6 +178,9 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get libraries_error => 'Failed to load libraries.';
 	String get platforms_error => 'Failed to load platforms.';
 	String get internet_error => 'No internet connection.';
+	String get navigation_home => 'Home';
+	String get navigation_favorites => 'Favorites';
+	String get navigation_profile => 'Profile';
 }
 
 // Path: <root>
@@ -234,6 +237,9 @@ class _StringsSr implements Translations {
 	@override String get libraries_error => 'Greška prilikom učitavanja paketa!';
 	@override String get platforms_error => 'Greška prilikom učitavanja platformi!';
 	@override String get internet_error => 'Nemate pristup internetu!';
+	@override String get navigation_home => 'Početna';
+	@override String get navigation_favorites => 'Omiljeno';
+	@override String get navigation_profile => 'Profil';
 }
 
 /// Flat map(s) containing all translations.
@@ -272,6 +278,9 @@ extension on Translations {
 			case 'libraries_error': return 'Failed to load libraries.';
 			case 'platforms_error': return 'Failed to load platforms.';
 			case 'internet_error': return 'No internet connection.';
+			case 'navigation_home': return 'Home';
+			case 'navigation_favorites': return 'Favorites';
+			case 'navigation_profile': return 'Profile';
 			default: return null;
 		}
 	}
@@ -310,6 +319,9 @@ extension on _StringsSr {
 			case 'libraries_error': return 'Greška prilikom učitavanja paketa!';
 			case 'platforms_error': return 'Greška prilikom učitavanja platformi!';
 			case 'internet_error': return 'Nemate pristup internetu!';
+			case 'navigation_home': return 'Početna';
+			case 'navigation_favorites': return 'Omiljeno';
+			case 'navigation_profile': return 'Profil';
 			default: return null;
 		}
 	}

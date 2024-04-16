@@ -30,6 +30,9 @@
     "search_empty": "Nema dostupnih paketa za uneti kriterijum pretrage.",
     "libraries_error": "Greška prilikom učitavanja paketa!",
     "platforms_error": "Greška prilikom učitavanja platformi!",
-    "internet_error": "Nemate pristup internetu!"
+    "internet_error": "Nemate pristup internetu!",
 
+    "navigation_home": "Početna",
+    "navigation_favorites": "Omiljeno",
+    "navigation_profile": "Profil"
 }

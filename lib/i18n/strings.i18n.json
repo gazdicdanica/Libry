@@ -30,6 +30,10 @@
     "search_empty": "There are no found packages for the entered search criteria!",
     "libraries_error": "Failed to load libraries.",
     "platforms_error": "Failed to load platforms.",
-    "internet_error": "No internet connection."
+    "internet_error": "No internet connection.",
+
+    "navigation_home": "Home",
+    "navigation_favorites": "Favorites",
+    "navigation_profile": "Profile"
 
 }
