@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 
 const textColor = Color.fromARGB(255, 72, 75, 73);
 const themeSeedColor = Color.fromARGB(255, 205, 232, 223);
+const bottomNavigationColor = Color.fromARGB(255, 233, 239, 236);
+
 
 final theme = ThemeData.light().copyWith(
   colorScheme: ColorScheme.fromSeed(

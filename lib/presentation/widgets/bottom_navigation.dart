@@ -32,28 +32,32 @@ class _BottomNavigationState extends State<BottomNavigation> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _widgetOptions.elementAt(_selectedIndex),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: _onItemTap,
-        items: [
-          BottomNavigationBarItem(
+      bottomNavigationBar: NavigationBar(
+        elevation: 5,
+        backgroundColor: bottomNavigationColor,
+        surfaceTintColor: bottomNavigationColor,
+        selectedIndex: _selectedIndex,
+        onDestinationSelected: _onItemTap,
+        indicatorColor: themeSeedColor,
+        destinations: [
+          NavigationDestination(
             icon: Icon(
               MdiIcons.packageVariantClosed,
-              color: textColor,
+              color: _selectedIndex == 0 ? textColor : textColor.withOpacity(0.6),
             ),
             label: t.navigation_home
           ),
-          BottomNavigationBarItem(
-            icon: const Icon(
+          NavigationDestination(
+            icon:  Icon(
               Icons.favorite_border,
-              color: textColor,
+              color: _selectedIndex == 1 ? textColor : textColor.withOpacity(0.6),
             ),
             label: t.navigation_favorites
           ),
-          BottomNavigationBarItem(
-            icon: const Icon(
+          NavigationDestination(
+            icon: Icon(
               Icons.person,
-              color: textColor,
+              color: _selectedIndex == 2 ? textColor : textColor.withOpacity(0.6),
             ),
             label: t.navigation_profile
           ),
