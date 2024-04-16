@@ -52,4 +52,17 @@ final class AuthValidationSuccess extends AuthState {
   List<Object> get props => [];
 }
 
+final class ForgotPasswordSuccess extends AuthState {
+  @override
+  List<Object> get props => [];
+}
+
+
+final class ForgotPasswordFailure extends AuthState{
+    final String? emailError;
+    ForgotPasswordFailure( {this.emailError});
+  @override
+  List<Object?> get props => [emailError];
+  
+}
 
