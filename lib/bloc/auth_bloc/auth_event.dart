@@ -21,3 +21,15 @@ final class ValidateAuth extends AuthEvent{
 }
 
 final class ResetAuth extends AuthEvent {}
+
+class ValidateEmail extends AuthEvent {
+  final String? email;
+
+  ValidateEmail({this.email});
+}
+
+class SendResetEmail extends AuthEvent {
+  final String? email;
+
+  SendResetEmail({this.email});
+}

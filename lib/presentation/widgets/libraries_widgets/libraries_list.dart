@@ -27,7 +27,7 @@ class _LibrariesListState extends State<LibrariesList> {
     super.initState();
     platfromName = widget.platform.name;
     sort = widget.sort;
-    context.read<LibrariesBloc>().add(LibrairesFetched(platfromName!, sort!));
+    context.read<LibrariesBloc>().add(FetchLibraries(platfromName!, sort!));
   }
 
   @override
@@ -62,7 +62,7 @@ class _LibrariesListState extends State<LibrariesList> {
               refreshFunction: () {
                 context
                     .read<LibrariesBloc>()
-                    .add(LibrairesFetched(platfromName!, sort!));
+                    .add(FetchLibraries(platfromName!, sort!));
               });
         }
         return const SizedBox();
