@@ -30,23 +30,52 @@ class _SearchScreenState extends State<SearchScreen> {
         ),
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              SearchInput(
-                onTextChanged: (text) {
-                  setState(() {
-                    searchText = text;
-                  });
-                },
-              ),
-              SearchList(
-                searchText: searchText,
-                sort: sort,
-              ),
-            ],
-          ),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            bool isLandscape =
+                MediaQuery.of(context).orientation == Orientation.landscape;
+            if (isLandscape) {
+              return SafeArea(
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      SearchInput(
+                        onTextChanged: (text) {
+                          setState(() {
+                            searchText = text;
+                          });
+                        },
+                      ),
+                      SearchList(
+                        searchText: searchText,
+                        sort: sort,
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            } else {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  SearchInput(
+                    onTextChanged: (text) {
+                      setState(() {
+                        searchText = text;
+                      });
+                    },
+                  ),
+                  Expanded(
+                    child: SearchList(
+                      searchText: searchText,
+                      sort: sort,
+                    ),
+                  ),
+                ],
+              );
+            }
+          },
         ),
       ),
     );

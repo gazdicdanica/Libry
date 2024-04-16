@@ -35,8 +35,6 @@ class _SearchListState extends State<SearchList>
 
   @override
   Widget build(BuildContext context) {
-    final isLandscape =
-        MediaQuery.of(context).orientation == Orientation.landscape;
     return BlocConsumer<SearchBloc, SearchState>(
       listener: (context, state) {
         _showSearchList = state is SearchSuccess && state.libraries.isNotEmpty;
@@ -80,15 +78,11 @@ class _SearchListState extends State<SearchList>
             ),
           );
         } else if (state is SearchLoading) {
-          return Center(
+          return const Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                if (!isLandscape)
-                  const SizedBox(height: 250)
-                else
-                  const SizedBox(height: 50),
-                const CircularProgressIndicator(),
+                CircularProgressIndicator(),
               ],
             ),
           );
@@ -106,10 +100,6 @@ class _SearchListState extends State<SearchList>
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                if (!isLandscape)
-                  const SizedBox(height: 170)
-                else
-                  const SizedBox(height: 20),
                 state is SearchSuccess
                     ? const Icon(Icons.emoji_nature_outlined,
                         size: 80, color: textColor)
