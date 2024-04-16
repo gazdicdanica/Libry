@@ -86,7 +86,7 @@ class LibrariesCardContet extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             keywordsString == ''
-                                ? SizedBox()
+                                ? const SizedBox()
                                 : Icon(MdiIcons.tag,
                                     color: textColor,
                                     size: position

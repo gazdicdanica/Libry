@@ -22,7 +22,7 @@ class _PlatformsListState extends State<PlatformsList>
   @override
   void initState() {
     super.initState();
-    context.read<PlatformsBloc>().add(PlatformsRequested());
+    context.read<PlatformsBloc>().add(RequestPlatforms());
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 500),
@@ -53,7 +53,7 @@ class _PlatformsListState extends State<PlatformsList>
           return ErrorMessageWidget(
               errorMessage: state.errorMessage,
               refreshFunction: () {
-                context.read<PlatformsBloc>().add(PlatformsRequested());
+                context.read<PlatformsBloc>().add(RequestPlatforms());
               });
         }
         if (state is! PlatformsSuccess) {
