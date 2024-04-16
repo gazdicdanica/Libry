@@ -27,18 +27,19 @@ Future main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // open to refactoring
+    final platformsRepo = PlatformsRepository(PlatformsDataProvider());
     return MultiRepositoryProvider(
       providers: [
-        RepositoryProvider(
-          create: (context) => PlatformsRepository(PlatformsDataProvider()),
+        RepositoryProvider.value(
+          value: platformsRepo,
         ),
         RepositoryProvider(
-          create: (context) => (LibrariesRepository(LibrariesDataProvider(),
-              PlatformsRepository(PlatformsDataProvider()))),
+          create: (context) => LibrariesRepository(
+            LibrariesDataProvider(),
+            platformsRepo,
+          ),
         ),
       ],
       child: MultiBlocProvider(
