@@ -7,15 +7,8 @@ import 'package:flutter_internship_2024_app/presentation/widgets/error_message_w
 import 'package:flutter_internship_2024_app/presentation/widgets/libraries_widgets/libraries_card_content.dart';
 
 class LibrariesList extends StatefulWidget {
-<<<<<<< HEAD
   final Platform platform;
   final String sort;
-=======
-  // ignore: prefer_typing_uninitialized_variables
-  final platform;
-  // ignore: prefer_typing_uninitialized_variables
-  final sort;
->>>>>>> 8ed1df72fe846c6a01257f182ee8f894eb38053f
 
   const LibrariesList({super.key, required this.platform, required this.sort});
 
