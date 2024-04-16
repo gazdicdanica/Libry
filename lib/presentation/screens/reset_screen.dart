@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_internship_2024_app/presentation/widgets/auth/auth_form.dart';
+import 'package:flutter_internship_2024_app/presentation/widgets/auth/reset_form.dart';
 
-class AuthScreen extends StatelessWidget {
-  const AuthScreen({super.key});
+class ResetScreen extends StatelessWidget {
+  const ResetScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -16,14 +17,15 @@ class AuthScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    'Welcome to Libry!',
+                    'Forgot your password?',
+                    textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   const SizedBox(
                     height: 30,
                   ),
-                  const AuthForm(),
-                 ],
+                  const ResetForm(),
+                ],
               ),
             ),
           ),

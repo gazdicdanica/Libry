@@ -5,7 +5,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_internship_2024_app/bloc/libraries_bloc/libraries_bloc.dart';
 import 'package:flutter_internship_2024_app/bloc/platforms_bloc/platforms_bloc.dart';
 import 'package:flutter_internship_2024_app/bloc/search_bloc/search_bloc.dart';
-import 'package:flutter_internship_2024_app/data/libraries/data_provider/libraries_provider.dart';
+import 'package:flutter_internship_2024_app/data/libraries/data_provider/libraries_data_provider.dart';
 import 'package:flutter_internship_2024_app/data/libraries/repository/libraries_repository.dart';
 import 'package:flutter_internship_2024_app/data/platforms/data_provider/platforms_data_provider.dart';
 import 'package:flutter_internship_2024_app/data/platforms/repository/platforms_repository.dart';
@@ -27,18 +27,19 @@ Future main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // open to refactoring
+    final platformsRepo = PlatformsRepository(PlatformsDataProvider());
     return MultiRepositoryProvider(
       providers: [
-        RepositoryProvider(
-          create: (context) => PlatformsRepository(PlatformsDataProvider()),
+        RepositoryProvider.value(
+          value: platformsRepo,
         ),
         RepositoryProvider(
-          create: (context) => (LibrariesRepository(LibrariesProvider(),
-              PlatformsRepository(PlatformsDataProvider()))),
+          create: (context) => LibrariesRepository(
+            LibrariesDataProvider(),
+            platformsRepo,
+          ),
         ),
       ],
       child: MultiBlocProvider(
@@ -56,17 +57,17 @@ class MyApp extends StatelessWidget {
           ),
         ],
         child: MaterialApp(
-          title: 'Package Manager App',
+          title: 'Libry',
           theme: theme,
           home: StreamBuilder(
-          stream: FirebaseAuth.instance.authStateChanges(),
-          builder: (context, snapshot) {
-            if(snapshot.hasData){
-              return const PlatformsScreen();
-            }
-            return const AuthScreen();
-          },
-        ),
+            stream: FirebaseAuth.instance.authStateChanges(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return const PlatformsScreen();
+              }
+              return const AuthScreen();
+            },
+          ),
         ),
       ),
     );

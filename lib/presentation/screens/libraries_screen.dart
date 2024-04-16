@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_internship_2024_app/models/platform.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/libraries_widgets/tab_bar.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/libraries_widgets/tab_bar_view.dart';
 
 class LibrariesScreen extends StatelessWidget {
-  final platform;
+  final Platform platform;
 
   const LibrariesScreen({super.key, required this.platform});
 
