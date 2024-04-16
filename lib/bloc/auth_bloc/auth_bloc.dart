@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
@@ -22,14 +23,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     String? passwordError;
     String? confirmPasswordError;
     if (event.email == null || event.email!.isEmpty ||!EmailValidator.validate(event.email!)) {
-      emailError = 'Email is not in correct format!';
+      emailError = t.email_format_error;
     } 
     if(event.password == null || event.password!.isEmpty || event.password!.length < 6){
-      passwordError = 'Password should contain 6 characters!';
+      passwordError = t.password_error;
     }
     if(!event.isLogin){
       if(event.confirmPassword == null || event.confirmPassword!.isEmpty || event.confirmPassword != event.password){
-        confirmPasswordError = 'Passwords do not match!';
+        confirmPasswordError = t.confirm_password_error;
       }
     }
     if(emailError != null || passwordError != null || confirmPasswordError != null){
@@ -58,18 +59,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     } on FirebaseException catch (e) {
       switch (e.code) {
         case 'email-already-in-use':
-          emit(AuthValidationFailure(emailError: 'Email is already in use!'));
+          emit(AuthValidationFailure(emailError: t.email_already_in_use));
           break;
         case 'invalid-credential':
         case 'too-many-requests':
-          emit(AuthCredentialsFailure('Invalid email or password!'));
+          emit(AuthCredentialsFailure(t.invalid_credential));
           break;
         default:
-          emit(AuthUnknownFailure('Authentication failed! Please try again later!'));
+          emit(AuthUnknownFailure(t.auth_failed));
           break;
       }
     } catch (e) {
-      emit(AuthUnknownFailure('Authentication failed! Please try again later!'));
+      emit(AuthUnknownFailure(t.auth_failed));
     }
   }
 
