@@ -6,7 +6,7 @@
 /// Locales: 2
 /// Strings: 60 (30 per locale)
 ///
-/// Built on 2024-04-15 at 12:30 UTC
+/// Built on 2024-04-16 at 11:59 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -222,7 +222,7 @@ class _StringsSr implements Translations {
 	@override String get auth_failed => 'Autentifikacija nije uspela! Molimo Vas pokušajte kasnije.';
 	@override String get reset_password_title => 'Molim Vas upišite Vašu email adresu ispod i poslaćemo Vam reset link.';
 	@override String get reset_password_btn => 'Pošalji reset link';
-	@override String get reset_password_success => 'Poslali smo Vam email sa uputstivma kako da resetujete Vaš password. Molimo Vas proverite email sanduče.';
+	@override String get reset_password_success => 'Poslali smo Vam email sa uputstvima kako da resetujete Vaš password. Molimo Vas proverite email sanduče.';
 	@override String get go_back => 'Idi nazad';
 	@override String get platforms => 'Platforme';
 	@override String get platforms_empty => 'Nema dostupnih platformi';
@@ -298,7 +298,7 @@ extension on _StringsSr {
 			case 'auth_failed': return 'Autentifikacija nije uspela! Molimo Vas pokušajte kasnije.';
 			case 'reset_password_title': return 'Molim Vas upišite Vašu email adresu ispod i poslaćemo Vam reset link.';
 			case 'reset_password_btn': return 'Pošalji reset link';
-			case 'reset_password_success': return 'Poslali smo Vam email sa uputstivma kako da resetujete Vaš password. Molimo Vas proverite email sanduče.';
+			case 'reset_password_success': return 'Poslali smo Vam email sa uputstvima kako da resetujete Vaš password. Molimo Vas proverite email sanduče.';
 			case 'go_back': return 'Idi nazad';
 			case 'platforms': return 'Platforme';
 			case 'platforms_empty': return 'Nema dostupnih platformi';
