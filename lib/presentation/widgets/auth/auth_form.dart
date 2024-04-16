@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_internship_2024_app/bloc/auth_bloc/auth_bloc.dart';
+import 'package:flutter_internship_2024_app/presentation/screens/reset_screen.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/auth/form_field.dart';
 import 'package:flutter_internship_2024_app/theme.dart';
 
@@ -26,43 +27,6 @@ class _AuthFormState extends State<AuthForm> {
   final _confirmPasswordController = TextEditingController();
 
   var _isLogin = true;
-
-  void _showSnackbar(String message, {int dur = 3}) {
-    ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(message),
-      backgroundColor: Colors.red,
-      duration: Duration(seconds: dur),
-    ));
-  }
-
-  void _resetForm(BuildContext context) {
-    _form.currentState!.reset();
-
-    BlocProvider.of<AuthBloc>(context).add(ResetAuth());
-    setState(() {
-      _isLogin = !_isLogin;
-    });
-    _emailController.clear();
-    _passwordController.clear();
-    _confirmPasswordController.clear();
-  }
-
-  @override
-  void dispose() {
-    _passwordController.dispose();
-    _emailController.dispose();
-    _confirmPasswordController.dispose();
-    super.dispose();
-  }
-
-  void _validateAndAuthenticate(BuildContext context) {
-    BlocProvider.of<AuthBloc>(context).add(ValidateAuth(
-        isLogin: _isLogin,
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim(),
-        confirmPassword: _confirmPasswordController.text.trim()));
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -135,7 +99,14 @@ class _AuthFormState extends State<AuthForm> {
                             height: 5,
                           ),
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                         Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const ResetScreen(
+                        ),
+                      ),
+                      );
+  
+                      },
                             style: ButtonStyle(
                                 foregroundColor:
                                     MaterialStateProperty.all<Color>(
@@ -207,5 +178,42 @@ class _AuthFormState extends State<AuthForm> {
         },
       ),
     );
+  }
+
+  void _showSnackbar(String message, {int dur = 3}) {
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(message),
+      backgroundColor: Colors.red,
+      duration: Duration(seconds: dur),
+    ));
+  }
+
+  void _resetForm(BuildContext context) {
+    _form.currentState!.reset();
+
+    BlocProvider.of<AuthBloc>(context).add(ResetAuth());
+    setState(() {
+      _isLogin = !_isLogin;
+    });
+    _emailController.clear();
+    _passwordController.clear();
+    _confirmPasswordController.clear();
+  }
+  
+  void _validateAndAuthenticate(BuildContext context) {
+    BlocProvider.of<AuthBloc>(context).add(ValidateAuth(
+        isLogin: _isLogin,
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
+        confirmPassword: _confirmPasswordController.text.trim()));
+  }
+
+  @override
+  void dispose() {
+    _passwordController.dispose();
+    _emailController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
   }
 }

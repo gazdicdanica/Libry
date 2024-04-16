@@ -25,7 +25,11 @@ class LibrariesRepository {
       final List<Library> libraries = List<Library>.from(
           data.map((libraryData) => Library.fromMap(libraryData)).toList());
 
-      final platforms = await platformsRepository.getPlatforms();
+      if (platformsRepository.platforms.isEmpty) {
+        await platformsRepository.fetchPlatforms();
+      }
+
+      final platforms = platformsRepository.platforms;
 
       for (var library in libraries) {
         final platformData = platforms
