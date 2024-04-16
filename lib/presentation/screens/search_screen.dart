@@ -33,6 +33,7 @@ class _SearchScreenState extends State<SearchScreen> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           SearchInput(
+            key: const Key('searchInputField'),
             onTextChanged: (text) {
               setState(() {
                 searchText = text;
@@ -40,6 +41,7 @@ class _SearchScreenState extends State<SearchScreen> {
             },
           ),
           Expanded(
+            key: const Key('searchList'),
             child: SearchList(
               searchText: searchText,
               sort: sort,

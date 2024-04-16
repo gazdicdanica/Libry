@@ -132,6 +132,7 @@ class _AuthFormState extends State<AuthForm> {
             ),
             //email
             CustomFormField(
+              key: const Key('email'),
               controller: _emailController,
               labelText: 'Email',
               hintText: 'Your email address',
@@ -156,6 +157,7 @@ class _AuthFormState extends State<AuthForm> {
               height: 20,
             ),
             CustomFormField(
+              key: const Key('password'),
               controller: _passwordController,
               labelText: 'Password',
               hintText: 'Your password',

@@ -20,6 +20,7 @@ class PlatformsScreen extends StatelessWidget {
         centerTitle: false,
         actions: [
           Padding(
+            key: const Key('search'),
             padding: const EdgeInsets.only(right: 10.0),
             child: IconButton(
               icon: const Icon(
@@ -36,6 +37,7 @@ class PlatformsScreen extends StatelessWidget {
             ),
           ),
           Padding(
+            key: const Key('logout'),
             padding: const EdgeInsets.only(right: 10.0),
             child: IconButton(
               icon: const Icon(

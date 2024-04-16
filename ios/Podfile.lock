@@ -1,33 +1,5 @@
 PODS:
-<<<<<<< HEAD
   - CocoaAsyncSocket (7.6.5)
-  - Flutter (1.0.0)
-  - patrol (0.0.1):
-    - CocoaAsyncSocket (~> 7.6)
-    - Flutter
-    - FlutterMacOS
-
-DEPENDENCIES:
-  - Flutter (from `Flutter`)
-  - patrol (from `.symlinks/plugins/patrol/darwin`)
-
-SPEC REPOS:
-  trunk:
-    - CocoaAsyncSocket
-
-EXTERNAL SOURCES:
-  Flutter:
-    :path: Flutter
-  patrol:
-    :path: ".symlinks/plugins/patrol/darwin"
-
-SPEC CHECKSUMS:
-  CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
-  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  patrol: 3e21d514020dbee24b3e3383caac9e8e051292ac
-
-PODFILE CHECKSUM: 04c13bb49ef2f68bc986037d32bd7a77dd1b584c
-=======
   - Firebase/Auth (10.22.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 10.22.0)
@@ -78,6 +50,10 @@ PODFILE CHECKSUM: 04c13bb49ef2f68bc986037d32bd7a77dd1b584c
     - GoogleUtilities/Logger
     - GoogleUtilities/Privacy
   - GTMSessionFetcher/Core (3.3.2)
+  - patrol (0.0.1):
+    - CocoaAsyncSocket (~> 7.6)
+    - Flutter
+    - FlutterMacOS
   - PromisesObjC (2.4.0)
   - RecaptchaInterop (100.0.0)
 
@@ -85,9 +61,11 @@ DEPENDENCIES:
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - Flutter (from `Flutter`)
+  - patrol (from `.symlinks/plugins/patrol/darwin`)
 
 SPEC REPOS:
   trunk:
+    - CocoaAsyncSocket
     - Firebase
     - FirebaseAppCheckInterop
     - FirebaseAuth
@@ -105,8 +83,11 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_core/ios"
   Flutter:
     :path: Flutter
+  patrol:
+    :path: ".symlinks/plugins/patrol/darwin"
 
 SPEC CHECKSUMS:
+  CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   Firebase: 797fd7297b7e1be954432743a0b3f90038e45a71
   firebase_auth: 35e39b82fa6703db53401e2d8708341597edc7be
   firebase_core: aaadbddb3cb2ee3792b9804f9dbb63e5f6f7b55c
@@ -117,10 +98,10 @@ SPEC CHECKSUMS:
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   GoogleUtilities: d053d902a8edaa9904e1bd00c37535385b8ed152
   GTMSessionFetcher: 0e876eea9782ec6462e91ab872711c357322c94f
+  patrol: 3e21d514020dbee24b3e3383caac9e8e051292ac
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
 
 PODFILE CHECKSUM: 819463e6a0290f5a72f145ba7cde16e8b6ef0796
->>>>>>> qa
 
 COCOAPODS: 1.15.2
