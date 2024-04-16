@@ -1,11 +1,11 @@
 import 'dart:convert';
 
-import 'package:flutter_internship_2024_app/data/libraries/data_provider/libraries_provider.dart';
+import 'package:flutter_internship_2024_app/data/libraries/data_provider/libraries_data_provider.dart';
 import 'package:flutter_internship_2024_app/data/platforms/repository/platforms_repository.dart';
 import 'package:flutter_internship_2024_app/models/library.dart';
 
 class LibrariesRepository {
-  final LibrariesProvider librariesProvider;
+  final LibrariesDataProvider librariesProvider;
   final PlatformsRepository platformsRepository;
 
   LibrariesRepository(
@@ -13,12 +13,13 @@ class LibrariesRepository {
     this.platformsRepository,
   );
 
-  Future<List<Library>> getCurrentLibraires(String platfrom) async {
+  Future<List<Library>> getCurrentLibraires(
+      String platfrom, String sort) async {
     try {
       String packageName = platfrom;
 
       final packageData =
-          await librariesProvider.getCurrentLibraires(packageName);
+          await librariesProvider.getCurrentLibraires(packageName, sort);
 
       final data = jsonDecode(packageData);
       final List<Library> libraries = List<Library>.from(

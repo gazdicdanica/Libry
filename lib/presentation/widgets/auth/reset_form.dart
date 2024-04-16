@@ -1,4 +1,4 @@
-import 'package:email_validator/email_validator.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_internship_2024_app/presentation/screens/auth_screen.dart';
@@ -83,20 +83,20 @@ class _ResetFormState extends State<ResetForm>{
             hintText: 'Your email address',
            errorText: _emailValid ? null : 'Email does not exist',
             suffixIcon: _emailValid ? null : const Icon(Icons.error),
-            validator: (value) {
-              if (value == null ||
-                  value.trim().isEmpty ||
-                  !EmailValidator.validate(value)) {
-                setState(() {
-                  _emailValid = false;
-                });
-                return 'Email is not in correct format!';
-              }
-              setState(() {
-                _emailValid = true;
-              });
-              return null;
-            },
+            // validator: (value) {
+            //   if (value == null ||
+            //       value.trim().isEmpty ||
+            //       !EmailValidator.validate(value)) {
+            //     setState(() {
+            //       _emailValid = false;
+            //     });
+            //     return 'Email is not in correct format!';
+            //   }
+            //   setState(() {
+            //     _emailValid = true;
+            //   });
+            //   return null;
+            // },
           ),
           const SizedBox(
                   height: 30,

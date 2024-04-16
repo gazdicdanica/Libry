@@ -11,6 +11,7 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   late String searchText = '';
+  late String sort = '';
 
   @override
   Widget build(BuildContext context) {
@@ -28,20 +29,25 @@ class _SearchScreenState extends State<SearchScreen> {
           bottom: BorderSide(color: Color.fromRGBO(239, 245, 243, 1), width: 1),
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          SearchInput(
-            onTextChanged: (text) {
-              setState(() {
-                searchText = text;
-              });
-            },
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              SearchInput(
+                onTextChanged: (text) {
+                  setState(() {
+                    searchText = text;
+                  });
+                },
+              ),
+              SearchList(
+                searchText: searchText,
+                sort: sort,
+              ),
+            ],
           ),
-          Expanded(
-            child: SearchList(searchText: searchText),
-          ),
-        ],
+        ),
       ),
     );
   }

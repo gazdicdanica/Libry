@@ -140,7 +140,6 @@
 				33CC10EE2044A3C60003C045 /* Products */,
 				D73912EC22F37F3D000D13A0 /* Frameworks */,
 				13F2F52332166E28C0C11F17 /* GoogleService-Info.plist */,
-				6854E8AF8C8147A436BF35A3 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};

@@ -1,7 +1,7 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_internship_2024_app/data/libraries/repository/libraries_repository.dart';
 import 'package:flutter_internship_2024_app/models/library.dart';
-import 'package:meta/meta.dart';
 
 part 'search_event.dart';
 part 'search_state.dart';
@@ -19,7 +19,8 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     emit(SearchLoading());
 
     try {
-      final libraries = await _repository.getCurrentLibraires(event.searchText);
+      final libraries =
+          await _repository.getCurrentLibraires(event.searchText, event.sort);
       emit(SearchSuccess(libraries));
     } catch (e) {
       emit(SearchFailure(e.toString()));

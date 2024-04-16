@@ -4,6 +4,7 @@ import 'package:flutter_internship_2024_app/bloc/platforms_bloc/platforms_bloc.d
 import 'package:flutter_internship_2024_app/models/platform.dart';
 import 'package:flutter_internship_2024_app/presentation/screens/libraries_screen.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/card_widget.dart';
+import 'package:flutter_internship_2024_app/presentation/widgets/error_message_widget.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/platforms/platforms_card_overlay.dart';
 import 'package:flutter_internship_2024_app/theme.dart';
 
@@ -21,7 +22,7 @@ class _PlatformsListState extends State<PlatformsList>
   @override
   void initState() {
     super.initState();
-    context.read<PlatformsBloc>().add(PlatformsRequested());
+    context.read<PlatformsBloc>().add(RequestPlatforms());
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 500),
@@ -45,100 +46,72 @@ class _PlatformsListState extends State<PlatformsList>
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PlatformsBloc, PlatformsState>(
-        builder: (context, state) {
-      if (state is PlatformsFailure) {
-        return Stack(
-          children: [
-            Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  const Icon(
-                    Icons.error_outline,
-                    color: textColor,
-                    size: 60,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    state.errorMessage,
-                    style: Theme.of(context).textTheme.displayLarge,
-                  ),
-                ],
-              ),
+    return SafeArea(
+      child: BlocBuilder<PlatformsBloc, PlatformsState>(
+          builder: (context, state) {
+        if (state is PlatformsFailure) {
+          return ErrorMessageWidget(
+              errorMessage: state.errorMessage,
+              refreshFunction: () {
+                context.read<PlatformsBloc>().add(RequestPlatforms());
+              });
+        }
+        if (state is! PlatformsSuccess) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+        _animationController.forward();
+        if (state.platforms.isEmpty) {
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                const Icon(
+                  Icons.emoji_nature,
+                  color: textColor,
+                  size: 80,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "There are no platforms found.",
+                  style: Theme.of(context).textTheme.displayLarge,
+                ),
+              ],
             ),
-            Positioned(
-              bottom: 20,
-              right: 20,
-              child: FloatingActionButton(
-                backgroundColor: themeSeedColor,
-                onPressed: () {
-                  context.read<PlatformsBloc>().add(PlatformsRequested());
-                },
-                child: const Icon(Icons.refresh),
-              ),
-            ),
-          ],
-        );
-      }
-      if (state is! PlatformsSuccess) {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      }
-      _animationController.forward();
-      if (state.platforms.isEmpty) {
+          );
+        }
         return Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              const Icon(
-                Icons.emoji_nature,
-                color: textColor,
-                size: 80,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Text(
-                "There are no platforms found.",
-                style: Theme.of(context).textTheme.displayLarge,
-              ),
-            ],
-          ),
-        );
-      }
-      return Center(
-        child: AnimatedBuilder(
-          animation: _animationController,
-          child: ListView.builder(
-            itemCount: state.platforms.length,
-            itemBuilder: (context, index) {
-              return CardWidget(
-                  color: state.platforms[index].colorObj,
-                  onTap: () {
-                    _goToLibrariesPage(state.platforms[index]);
-                  },
-                  child: PlatformsCardOverlay(
-                    platform: state.platforms[index],
-                  ));
+          child: AnimatedBuilder(
+            animation: _animationController,
+            child: ListView.builder(
+              itemCount: state.platforms.length,
+              itemBuilder: (context, index) {
+                return CardWidget(
+                    color: state.platforms[index].colorObj,
+                    onTap: () {
+                      _goToLibrariesPage(state.platforms[index]);
+                    },
+                    child: PlatformsCardOverlay(
+                      platform: state.platforms[index],
+                    ));
+              },
+            ),
+            builder: (context, child) {
+              return Opacity(
+                opacity: _animationController.value,
+                child: Transform.translate(
+                  offset: Offset(0, 100 * (1 - _animationController.value)),
+                  child: child,
+                ),
+              );
             },
           ),
-          builder: (context, child) {
-            return Opacity(
-              opacity: _animationController.value,
-              child: Transform.translate(
-                offset: Offset(0, 100 * (1 - _animationController.value)),
-                child: child,
-              ),
-            );
-          },
-        ),
-      );
-    });
+        );
+      }),
+    );
   }
 }

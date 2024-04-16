@@ -5,8 +5,9 @@ sealed class SearchEvent {}
 
 final class LibrariesSearched extends SearchEvent {
   final String searchText;
+  final String sort;
 
-  LibrariesSearched(this.searchText);
+  LibrariesSearched(this.searchText, this.sort);
 }
 
 final class ResetSearch extends SearchEvent {}
