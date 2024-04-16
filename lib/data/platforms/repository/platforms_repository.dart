@@ -6,12 +6,16 @@ import '../../../models/platform.dart';
 
 class PlatformsRepository{
   final PlatformsDataProvider _dataProvider;
+  List<Platform> _platforms = [];
 
   PlatformsRepository(this._dataProvider);
 
-  Future<List<Platform>> getPlatforms() async {
+  List<Platform> get platforms => _platforms;
+
+  Future<List<Platform>> fetchPlatforms() async {
     final body = jsonDecode(await _dataProvider.getPlatforms());
-    final List<Platform> platforms = body.map<Platform>((json) => Platform.fromJson(json)).toList();
-    return platforms;
+    _platforms = body.map<Platform>((json) => Platform.fromJson(json)).toList();
+    return _platforms;
   }
+
 }

@@ -1,4 +1,4 @@
-import 'dart:ui';
+
 
 import 'package:flutter/material.dart';
 
@@ -26,11 +26,6 @@ final theme = ThemeData.light().copyWith(
         ),
         titleLarge: const TextStyle(
           fontSize: 35,
-          color: textColor,
-          fontWeight: FontWeight.bold,
-        ),
-        displayLarge: const TextStyle(
-          fontSize: 20,
           color: textColor,
           fontWeight: FontWeight.bold
         ),

@@ -14,15 +14,14 @@ class PlatformsBloc extends Bloc<PlatformsEvent, PlatformsState> {
   final PlatformsRepository _repository;
 
   PlatformsBloc(this._repository) : super(PlatformsInitial()) {
-    on<PlatformsRequested>(_getPlatforms);
+    on<RequestPlatforms>(_getPlatforms);
   }
 
-
-  void _getPlatforms(PlatformsRequested event, Emitter<PlatformsState> emit) async {
+  void _getPlatforms(RequestPlatforms event, Emitter<PlatformsState> emit) async {
     emit(PlatformsLoading());
 
     try{
-      final platforms = await _repository.getPlatforms();
+      final platforms = await _repository.fetchPlatforms();
       emit(PlatformsSuccess(platforms));
     }catch(e){
       emit(PlatformsFailure(e.toString()));
