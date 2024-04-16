@@ -35,5 +35,8 @@
     "logout": "Odjavite se",
     "confirm_logout": "Da li ste sigurni da želite da se odjavite?",
     "yes": "Da",
-    "no": "Ne"
+    "no": "Ne",
+    "navigation_home": "Početna",
+    "navigation_favorites": "Omiljeno",
+    "navigation_profile": "Nalog"
 }

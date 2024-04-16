@@ -11,8 +11,7 @@ import 'package:flutter_internship_2024_app/data/platforms/data_provider/platfor
 import 'package:flutter_internship_2024_app/data/platforms/repository/platforms_repository.dart';
 import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 import 'package:flutter_internship_2024_app/presentation/screens/auth_screen.dart';
-import 'package:flutter_internship_2024_app/presentation/screens/my_account_screen.dart';
-import 'package:flutter_internship_2024_app/presentation/screens/platforms_screen.dart';
+import 'package:flutter_internship_2024_app/presentation/widgets/bottom_navigation.dart';
 import 'package:flutter_internship_2024_app/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -67,7 +66,7 @@ class MyApp extends StatelessWidget {
               stream: FirebaseAuth.instance.authStateChanges(),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  return const MyAccountScreen();
+                  return const BottomNavigation();
                 }
                 return const AuthScreen();
               },

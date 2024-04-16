@@ -35,5 +35,8 @@
     "logout": "Log out",
     "confirm_logout": "Are you sure you want to log out?",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "navigation_home": "Home",
+    "navigation_favorites": "Favorites",
+    "navigation_profile": "Account"
 }

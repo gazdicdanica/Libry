@@ -14,8 +14,8 @@ class ProfileAvatar extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          width: 150,
-          height: 150,
+          width: 130,
+          height: 130,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: lightGreyColor,
@@ -28,7 +28,7 @@ class ProfileAvatar extends StatelessWidget {
                 )
               : const Icon(
                   Icons.person_outlined,
-                  size: 100,
+                  size: 80,
                   color: darkGreyColor,
                 ),
         ),
@@ -36,15 +36,15 @@ class ProfileAvatar extends StatelessWidget {
           bottom: 0,
           right: 0,
           child: Container(
-            width: 40,
-            height: 40,
+            width: 35,
+            height: 35,
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
               color: darkGreenColor,
             ),
             child: const Icon(
               Icons.add,
-              size: 40,
+              size: 35,
               color: Colors.white,
             ),
           ),
