@@ -65,7 +65,7 @@ class LibrariesCardContet extends StatelessWidget {
                             height: 24,
                           ),
                           SizedBox(
-                            width: screenWidth * 0.2,
+                            width: screenWidth * 0.3,
                             child: Text(
                               library.latestReleaseNumber != null
                                   ? (library.latestReleaseNumber!.length >
@@ -96,7 +96,7 @@ class LibrariesCardContet extends StatelessWidget {
                             SizedBox(
                               width: position
                                   ? screenWidth * 0.2
-                                  : screenWidth * 0.4,
+                                  : screenWidth * 0.3,
                               child: Text(
                                 keywordsString,
                                 style: Theme.of(context).textTheme.bodyMedium,
