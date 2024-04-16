@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_internship_2024_app/presentation/screens/auth_screen.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/auth/reset_form.dart';
 
 class ResetScreen extends StatelessWidget {
@@ -8,19 +7,9 @@ class ResetScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children:[
-          Positioned(
-            top:50,
-            left: 20,
-            child:IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: () {
-                Navigator.of(context).pop(MaterialPageRoute(
-                  builder: (context) => const AuthScreen(),
-                ));})
-            ),
-           Center(
+      appBar: AppBar(),
+      body: SafeArea(
+        child: Center(
           child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(35.0),
@@ -35,12 +24,12 @@ class ResetScreen extends StatelessWidget {
                   const SizedBox(
                     height: 30,
                   ),
-                 const  ResetForm(),
-                 ],
+                  const ResetForm(),
+                ],
               ),
             ),
           ),
-        ),]
+        ),
       ),
     );
   }
