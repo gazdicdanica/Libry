@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -33,9 +34,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (!kReleaseMode) {
+      FirebaseAuth.instance.useAuthEmulator('127.0.0.1', 9099);
+    }
     final platformsRepo = PlatformsRepository(PlatformsDataProvider());
-    // remove this line if you want to use the real Firebase Auth service
-    // FirebaseAuth.instance.useAuthEmulator('127.0.0.1', 9099);
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider.value(
@@ -65,10 +67,9 @@ class MyApp extends StatelessWidget {
         ],
         child: BlocBuilder<LocaleBloc, LocaleState>(
           builder: (context, state) {
-            if(state is LocaleChanged){
+            if (state is LocaleChanged) {
               LocaleSettings.setLocale(state.locale);
-            }
-            else {
+            } else {
               LocaleSettings.useDeviceLocale();
             }
             return TranslationProvider(
