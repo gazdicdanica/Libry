@@ -15,11 +15,13 @@ import 'package:flutter_internship_2024_app/presentation/screens/auth_screen.dar
 import 'package:flutter_internship_2024_app/presentation/widgets/bottom_navigation.dart';
 import 'package:flutter_internship_2024_app/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_internship_2024_app/utils/shared_preferences_util.dart';
 import 'firebase_options.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
+  await SharedPreferencesUtil().init();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

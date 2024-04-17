@@ -28,14 +28,14 @@ class ToggleButton extends StatelessWidget {
                 const EdgeInsets.symmetric(vertical: 5.0, horizontal: 25.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(50.0),
-              color: (state is LocaleChanged && state.locale == locale) ? themeSeedColor : Colors.transparent,
+              color: _isSelectedLocale(state) ? themeSeedColor : Colors.transparent,
             ),
             child: Text(
               text,
               style: TextStyle(
                   fontSize: 22.0,
                   fontWeight: FontWeight.w600,
-                  color: (state is LocaleChanged && state.locale == locale) 
+                  color: _isSelectedLocale(state) 
                       ? textColor
                       : const Color.fromRGBO(0, 0, 0, 0.25)),
             ),
@@ -44,4 +44,7 @@ class ToggleButton extends StatelessWidget {
       ),
     );
   }
+
+  bool _isSelectedLocale(LocaleState state)=> LocaleSettings.currentLocale == locale;
+  
 }
