@@ -131,6 +131,7 @@ class _AuthFormState extends State<AuthForm> {
                           height: 20,
                         ),
                         CustomFormField(
+                          key: const Key('confirmPassword'),
                           controller: _confirmPasswordController,
                           labelText: 'Confirm password',
                           hintText: 'Repeat your password',
