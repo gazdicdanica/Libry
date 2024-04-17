@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_internship_2024_app/bloc/locale_bloc/locale_bloc.dart';
+import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 import 'package:flutter_internship_2024_app/theme.dart';
 
 class ToggleButton extends StatelessWidget {
-  const ToggleButton({super.key, required this.text, required this.isSelected});
+  const ToggleButton({super.key, required this.text, required this.isSelected, required this.locale});
 
   final String text;
+  final AppLocale locale;
   final bool isSelected;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        BlocProvider.of<LocaleBloc>(context).add(ChangeLocale(locale));
+      },
       borderRadius: BorderRadius.circular(50.0),
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 25.0),

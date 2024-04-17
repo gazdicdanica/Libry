@@ -9,6 +9,7 @@ class LogoutButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t = Translations.of(context);
     return TextButton(
       onPressed: () async {
         if (await confirm(

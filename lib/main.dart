@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_internship_2024_app/bloc/libraries_bloc/libraries_bloc.dart';
+import 'package:flutter_internship_2024_app/bloc/locale_bloc/locale_bloc.dart';
 import 'package:flutter_internship_2024_app/bloc/platforms_bloc/platforms_bloc.dart';
 import 'package:flutter_internship_2024_app/bloc/search_bloc/search_bloc.dart';
 import 'package:flutter_internship_2024_app/data/libraries/data_provider/libraries_data_provider.dart';
@@ -18,7 +19,6 @@ import 'firebase_options.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  LocaleSettings.useDeviceLocale();
   await dotenv.load(fileName: ".env");
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -57,21 +57,32 @@ class MyApp extends StatelessWidget {
             create: (context) =>
                 SearchBloc(context.read<LibrariesRepository>()),
           ),
+          BlocProvider(create: (context) => LocaleBloc()..add(InitLocale())),
         ],
-        child: TranslationProvider(
-          child: MaterialApp(
-            title: 'Libry',
-            theme: theme,
-            home: StreamBuilder(
-              stream: FirebaseAuth.instance.authStateChanges(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return const BottomNavigation();
-                }
-                return const AuthScreen();
-              },
-            ),
-          ),
+        child: BlocBuilder<LocaleBloc, LocaleState>(
+          builder: (context, state) {
+            if(state is LocaleChanged){
+              LocaleSettings.setLocale(state.locale);
+            }
+            else {
+              LocaleSettings.useDeviceLocale();
+            }
+            return TranslationProvider(
+              child: MaterialApp(
+                title: 'Libry',
+                theme: theme,
+                home: StreamBuilder(
+                  stream: FirebaseAuth.instance.authStateChanges(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return const BottomNavigation();
+                    }
+                    return const AuthScreen();
+                  },
+                ),
+              ),
+            );
+          },
         ),
       ),
     );
