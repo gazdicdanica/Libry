@@ -15,12 +15,10 @@
     "email_already_in_use": "Email adresa se već koristi!",
     "invalid_credential": "Email adresa ili lozinka nisu ispravni!",
     "auth_failed": "Autentifikacija nije uspela! Molimo Vas pokušajte kasnije.",
-
     "reset_password_title": "Molim Vas upišite Vašu email adresu ispod i poslaćemo Vam reset link.",
     "reset_password_btn": "Pošalji reset link",
     "reset_password_success": "Poslali smo Vam email sa uputstvima kako da resetujete Vaš password. Molimo Vas proverite email sanduče.",
     "go_back": "Idi nazad",
-    
     "platforms": "Platforme",
     "platforms_empty": "Nema dostupnih platformi",
     "tab_most_popular": "Najpopularniji paketi",
@@ -30,6 +28,18 @@
     "search_empty": "Nema dostupnih paketa za uneti kriterijum pretrage.",
     "libraries_error": "Greška prilikom učitavanja paketa!",
     "platforms_error": "Greška prilikom učitavanja platformi!",
-    "internet_error": "Nemate pristup internetu!"
-
+    "internet_error": "Nemate pristup internetu!",
+    "my_account": "Moj nalog",
+    "name": "Ime",
+    "lastname": "Prezime",
+    "logout": "Odjavite se",
+    "change": "izmeni",
+    "confirm_logout": "Da li ste sigurni da želite da se odjavite?",
+    "yes": "Da",
+    "no": "Ne",
+    "theme": "Tema",
+    "language": "Jezik",
+    "navigation_home": "Početna",
+    "navigation_favorites": "Omiljeno",
+    "navigation_profile": "Nalog"
 }

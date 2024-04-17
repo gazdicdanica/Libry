@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 60 (30 per locale)
+/// Strings: 86 (43 per locale)
 ///
-/// Built on 2024-04-16 at 11:59 UTC
+/// Built on 2024-04-16 at 17:46 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -178,6 +178,19 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get libraries_error => 'Failed to load libraries.';
 	String get platforms_error => 'Failed to load platforms.';
 	String get internet_error => 'No internet connection.';
+	String get my_account => 'My Account';
+	String get name => 'Name';
+	String get lastname => 'Last name';
+	String get logout => 'Log out';
+	String get change => 'change';
+	String get confirm_logout => 'Are you sure you want to log out?';
+	String get yes => 'Yes';
+	String get no => 'No';
+	String get theme => 'Theme';
+	String get language => 'Language';
+	String get navigation_home => 'Home';
+	String get navigation_favorites => 'Favorites';
+	String get navigation_profile => 'Account';
 }
 
 // Path: <root>
@@ -234,6 +247,19 @@ class _StringsSr implements Translations {
 	@override String get libraries_error => 'Greška prilikom učitavanja paketa!';
 	@override String get platforms_error => 'Greška prilikom učitavanja platformi!';
 	@override String get internet_error => 'Nemate pristup internetu!';
+	@override String get my_account => 'Moj nalog';
+	@override String get name => 'Ime';
+	@override String get lastname => 'Prezime';
+	@override String get logout => 'Odjavite se';
+	@override String get change => 'izmeni';
+	@override String get confirm_logout => 'Da li ste sigurni da želite da se odjavite?';
+	@override String get yes => 'Da';
+	@override String get no => 'Ne';
+	@override String get theme => 'Tema';
+	@override String get language => 'Jezik';
+	@override String get navigation_home => 'Početna';
+	@override String get navigation_favorites => 'Omiljeno';
+	@override String get navigation_profile => 'Nalog';
 }
 
 /// Flat map(s) containing all translations.
@@ -272,6 +298,19 @@ extension on Translations {
 			case 'libraries_error': return 'Failed to load libraries.';
 			case 'platforms_error': return 'Failed to load platforms.';
 			case 'internet_error': return 'No internet connection.';
+			case 'my_account': return 'My Account';
+			case 'name': return 'Name';
+			case 'lastname': return 'Last name';
+			case 'logout': return 'Log out';
+			case 'change': return 'change';
+			case 'confirm_logout': return 'Are you sure you want to log out?';
+			case 'yes': return 'Yes';
+			case 'no': return 'No';
+			case 'theme': return 'Theme';
+			case 'language': return 'Language';
+			case 'navigation_home': return 'Home';
+			case 'navigation_favorites': return 'Favorites';
+			case 'navigation_profile': return 'Account';
 			default: return null;
 		}
 	}
@@ -310,6 +349,19 @@ extension on _StringsSr {
 			case 'libraries_error': return 'Greška prilikom učitavanja paketa!';
 			case 'platforms_error': return 'Greška prilikom učitavanja platformi!';
 			case 'internet_error': return 'Nemate pristup internetu!';
+			case 'my_account': return 'Moj nalog';
+			case 'name': return 'Ime';
+			case 'lastname': return 'Prezime';
+			case 'logout': return 'Odjavite se';
+			case 'change': return 'izmeni';
+			case 'confirm_logout': return 'Da li ste sigurni da želite da se odjavite?';
+			case 'yes': return 'Da';
+			case 'no': return 'Ne';
+			case 'theme': return 'Tema';
+			case 'language': return 'Jezik';
+			case 'navigation_home': return 'Početna';
+			case 'navigation_favorites': return 'Omiljeno';
+			case 'navigation_profile': return 'Nalog';
 			default: return null;
 		}
 	}
