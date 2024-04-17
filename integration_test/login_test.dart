@@ -30,22 +30,18 @@ void main() {
 
       expect($('Platforms').visible, equals(true));
 
-      await $(searchBtn).tap();
-      await $.pump(); 
+      // await $(searchBtn).tap();
+      // await $.pump(); 
 
-      await $.enterText(searchField, 'kotlin');
+      // await $.enterText(searchField, 'kotlin');
       
-      await $.tester.sendKeyEvent(LogicalKeyboardKey.enter);
-
-     
-      
-      
+      // await $.tester.sendKeyEvent(LogicalKeyboardKey.enter);
 
       //expect($(searchList).visible, equals(true));
 
 
-      // await $(logoutBtn).tap();
-      // await $.pump();
+      await $(logoutBtn).tap();
+      await $.pump();
 
   });
 }

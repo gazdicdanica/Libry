@@ -59,6 +59,7 @@ class _AuthFormState extends State<AuthForm> {
                   ),
                   //email
                   CustomFormField(
+                    key: const Key('email'),
                     controller: _emailController,
                     labelText: 'Email',
                     hintText: 'Your email address',
@@ -74,6 +75,7 @@ class _AuthFormState extends State<AuthForm> {
                     height: 20,
                   ),
                   CustomFormField(
+                    key: const Key('password'),
                     controller: _passwordController,
                     labelText: 'Password',
                     hintText: 'Your password',
@@ -109,6 +111,7 @@ class _AuthFormState extends State<AuthForm> {
                                     MaterialStateProperty.all<Color>(
                                         const Color.fromRGBO(0, 166, 141, 1))),
                             child: const Text(
+                              key: Key('forgotPassword'),
                               'Forgot your password?',
                               style: TextStyle(
                                   fontSize: 16, fontWeight: FontWeight.normal),
