@@ -28,6 +28,9 @@ final theme = ThemeData.light().copyWith(
           fontWeight: FontWeight.w500,
         ),
         titleLarge: const TextStyle(
-            fontSize: 35, color: textColor, fontWeight: FontWeight.bold),
+          fontSize: 35,
+          color: textColor,
+          fontWeight: FontWeight.bold,
+        ),
       ),
 );

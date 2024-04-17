@@ -26,7 +26,7 @@ class AuthScreen extends StatelessWidget {
                     height: 30,
                   ),
                   const AuthForm(),
-                 ],
+                ],
               ),
             ),
           ),

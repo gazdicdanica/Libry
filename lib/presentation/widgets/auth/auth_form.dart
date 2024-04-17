@@ -35,8 +35,7 @@ class _AuthFormState extends State<AuthForm> {
       create: (context) => AuthBloc(),
       child: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) => {
-          if (state is AuthUnknownFailure)
-            {_showSnackbar(state.errorMessage)}
+          if (state is AuthUnknownFailure) {_showSnackbar(state.errorMessage)}
         },
         builder: (ctx, state) {
           if (state is AuthLoading) {
@@ -100,13 +99,12 @@ class _AuthFormState extends State<AuthForm> {
                           ),
                           TextButton(
                             onPressed: () {
-                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const ResetScreen(
-                        ),
-                      ),
-                      );
-  
-                      },
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => const ResetScreen(),
+                                ),
+                              );
+                            },
                             style: ButtonStyle(
                                 foregroundColor:
                                     MaterialStateProperty.all<Color>(
@@ -200,7 +198,7 @@ class _AuthFormState extends State<AuthForm> {
     _passwordController.clear();
     _confirmPasswordController.clear();
   }
-  
+
   void _validateAndAuthenticate(BuildContext context) {
     BlocProvider.of<AuthBloc>(context).add(ValidateAuth(
         isLogin: _isLogin,
