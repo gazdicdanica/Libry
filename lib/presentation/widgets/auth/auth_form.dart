@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_internship_2024_app/bloc/auth_bloc/auth_bloc.dart';
 import 'package:flutter_internship_2024_app/presentation/screens/reset_screen.dart';
@@ -29,12 +30,12 @@ class _AuthFormState extends State<AuthForm> {
 
   @override
   Widget build(BuildContext context) {
+    final t = Translations.of(context);
     return BlocProvider<AuthBloc>(
       create: (context) => AuthBloc(),
       child: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) => {
-          if (state is AuthUnknownFailure)
-            {_showSnackbar(state.errorMessage)}
+          if (state is AuthUnknownFailure) {_showSnackbar(state.errorMessage)}
         },
         builder: (ctx, state) {
           if (state is AuthLoading) {
@@ -60,8 +61,8 @@ class _AuthFormState extends State<AuthForm> {
                   //email
                   CustomFormField(
                     controller: _emailController,
-                    labelText: 'Email',
-                    hintText: 'Your email address',
+                    labelText: t.email,
+                    hintText: t.email_hint,
                     errorText: (state is AuthValidationFailure)
                         ? state.emailError
                         : null,
@@ -75,8 +76,8 @@ class _AuthFormState extends State<AuthForm> {
                   ),
                   CustomFormField(
                     controller: _passwordController,
-                    labelText: 'Password',
-                    hintText: 'Your password',
+                    labelText: t.password,
+                    hintText: t.password_hint,
                     errorText: (state is AuthValidationFailure)
                         ? state.passwordError
                         : null,
@@ -84,6 +85,7 @@ class _AuthFormState extends State<AuthForm> {
                             state.passwordError != null)
                         ? const Icon(Icons.error)
                         : null,
+                    obscureText: true,
                   ),
 
                   if (_isLogin)
@@ -97,20 +99,19 @@ class _AuthFormState extends State<AuthForm> {
                           ),
                           TextButton(
                             onPressed: () {
-                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const ResetScreen(
-                        ),
-                      ),
-                      );
-  
-                      },
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => const ResetScreen(),
+                                ),
+                              );
+                            },
                             style: ButtonStyle(
                                 foregroundColor:
                                     MaterialStateProperty.all<Color>(
                                         const Color.fromRGBO(0, 166, 141, 1))),
-                            child: const Text(
-                              'Forgot your password?',
-                              style: TextStyle(
+                            child: Text(
+                              t.forgot_password,
+                              style: const TextStyle(
                                   fontSize: 16, fontWeight: FontWeight.normal),
                             ),
                           ),
@@ -129,8 +130,8 @@ class _AuthFormState extends State<AuthForm> {
                         ),
                         CustomFormField(
                           controller: _confirmPasswordController,
-                          labelText: 'Confirm password',
-                          hintText: 'Repeat your password',
+                          labelText: t.confirm_password,
+                          hintText: t.confirm_password_hint,
                           errorText: (state is AuthValidationFailure)
                               ? state.confirmPasswordError
                               : null,
@@ -138,6 +139,7 @@ class _AuthFormState extends State<AuthForm> {
                                   state.confirmPasswordError != null)
                               ? const Icon(Icons.error)
                               : null,
+                          obscureText: true,
                         ),
                         const SizedBox(
                           height: 40,
@@ -151,7 +153,7 @@ class _AuthFormState extends State<AuthForm> {
                         _validateAndAuthenticate(ctx);
                       },
                       style: buttonStyle,
-                      child: Text(_isLogin ? 'Login' : 'Sign up'),
+                      child: Text(_isLogin ? t.login : t.singup),
                     ),
                   ),
                   const SizedBox(
@@ -164,7 +166,7 @@ class _AuthFormState extends State<AuthForm> {
                         _resetForm(ctx);
                       },
                       style: buttonStyle,
-                      child: Text(_isLogin ? 'Sign up' : 'Login'),
+                      child: Text(_isLogin ? t.singup : t.login),
                     ),
                   ),
                 ],
@@ -196,7 +198,7 @@ class _AuthFormState extends State<AuthForm> {
     _passwordController.clear();
     _confirmPasswordController.clear();
   }
-  
+
   void _validateAndAuthenticate(BuildContext context) {
     BlocProvider.of<AuthBloc>(context).add(ValidateAuth(
         isLogin: _isLogin,

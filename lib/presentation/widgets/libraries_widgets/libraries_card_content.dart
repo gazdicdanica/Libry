@@ -95,7 +95,7 @@ class LibrariesCardContet extends StatelessWidget {
                             ),
                             SizedBox(
                               width: position
-                                  ? screenWidth * 0.2
+                                  ? screenWidth * 0.25
                                   : screenWidth * 0.3,
                               child: Text(
                                 keywordsString,

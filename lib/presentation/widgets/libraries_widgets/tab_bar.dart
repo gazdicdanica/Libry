@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 import 'package:flutter_internship_2024_app/theme.dart';
 
 class TabBarWidget extends StatelessWidget {
@@ -6,6 +7,8 @@ class TabBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t = Translations.of(context);
+
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
@@ -13,18 +16,18 @@ class TabBarWidget extends StatelessWidget {
           width: 0.5,
         ),
       ),
-      child: const TabBar(
-        indicator: BoxDecoration(
+      child: TabBar(
+        indicator: const BoxDecoration(
           color: Color.fromRGBO(205, 232, 223, 1),
         ),
         indicatorSize: TabBarIndicatorSize.tab,
         labelColor: textColor,
         tabs: <Widget>[
           Tab(
-            text: 'Most popular packages',
+            text: t.tab_most_popular,
           ),
           Tab(
-            text: 'Newest packages',
+            text: t.tab_newest,
           ),
         ],
       ),

@@ -1,0 +1,6 @@
+workflows:
+  main:
+    environment:
+      API_KEY: $API_KEY
+    scripts:
+      - echo $API_KEY
