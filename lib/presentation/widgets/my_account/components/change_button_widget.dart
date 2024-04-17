@@ -12,23 +12,19 @@ class ChangeButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Row(children: [
-        TextButton(
-          style: TextButton.styleFrom(
-              foregroundColor: darkGreenColor,
-                    padding: const EdgeInsets.all(4.0),
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    minimumSize: Size.zero,
-          ),
-          onPressed: onPressed,
-          child: Text(t.change,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              )),
-        ),
-      ]),
+    return TextButton(
+      style: TextButton.styleFrom(
+        foregroundColor: darkGreenColor,
+        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 4.0),
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        minimumSize: Size.zero,
+      ),
+      onPressed: onPressed,
+      child: Text(t.change,
+          style: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w700,
+          )),
     );
   }
 }
