@@ -7,10 +7,10 @@ class DividerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.only(bottom: 8.0, left: 8.0, right: 8.0, top: 5.0),
         child: Container(
           height: 1,
-          color: Colors.grey,
+          color: const Color.fromRGBO(0, 0, 0, 0.25),
         ),
       ),
     );
