@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 import 'package:flutter_internship_2024_app/utils/shared_preferences_util.dart';
@@ -23,8 +24,9 @@ class LocaleBloc extends Bloc<LocaleEvent, LocaleState> {
     }
   }
 
-  void _changeLocale(ChangeLocale event, Emitter<LocaleState> emit) {
+  void _changeLocale(ChangeLocale event, Emitter<LocaleState> emit) async{
     prefs.saveLocale(event.locale.languageCode);
+    await FirebaseAuth.instance.setLanguageCode(event.locale.languageCode);
     emit(LocaleChanged(event.locale));
   }
 }
