@@ -22,19 +22,30 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     String? emailError;
     String? passwordError;
     String? confirmPasswordError;
-    if (event.email == null || event.email!.isEmpty ||!EmailValidator.validate(event.email!)) {
+    if (event.email == null ||
+        event.email!.isEmpty ||
+        !EmailValidator.validate(event.email!)) {
       emailError = t.email_format_error;
-    } 
-    if(event.password == null || event.password!.isEmpty || event.password!.length < 6){
+    }
+    if (event.password == null ||
+        event.password!.isEmpty ||
+        event.password!.length < 6) {
       passwordError = t.password_error;
     }
-    if(!event.isLogin){
-      if(event.confirmPassword == null || event.confirmPassword!.isEmpty || event.confirmPassword != event.password){
+    if (!event.isLogin) {
+      if (event.confirmPassword == null ||
+          event.confirmPassword!.isEmpty ||
+          event.confirmPassword != event.password) {
         confirmPasswordError = t.confirm_password_error;
       }
     }
-    if(emailError != null || passwordError != null || confirmPasswordError != null){
-      emit(AuthValidationFailure(emailError: emailError, passwordError: passwordError, confirmPasswordError: confirmPasswordError));
+    if (emailError != null ||
+        passwordError != null ||
+        confirmPasswordError != null) {
+      emit(AuthValidationFailure(
+          emailError: emailError,
+          passwordError: passwordError,
+          confirmPasswordError: confirmPasswordError));
     } else {
       add(StartAuth(event.email!, event.password!, event.isLogin));
     }
@@ -74,13 +85,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
   }
 
-void _validateForgotPassword(SendResetEmail event, Emitter<AuthState> emit) async {
-  try {
-    await _firebase.sendPasswordResetEmail(email: event.email!);
-    emit(ForgotPasswordSuccess());
-  } on FirebaseAuthException catch (e) {
-    emit(ForgotPasswordFailure(emailError: e.message));
+  void _validateForgotPassword(
+      SendResetEmail event, Emitter<AuthState> emit) async {
+    try {
+      await _firebase.sendPasswordResetEmail(email: event.email!);
+      emit(ForgotPasswordSuccess());
+    } on FirebaseAuthException catch (e) {
+      emit(ForgotPasswordFailure(emailError: e.message));
+    }
   }
 }
-}
-
