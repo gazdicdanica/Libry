@@ -7,9 +7,11 @@ class SettingsInfoRow extends StatelessWidget {
   const SettingsInfoRow({
     super.key,
     required this.label,
+    required this.onPressed,
   });
 
   final String label;
+  final void Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class SettingsInfoRow extends StatelessWidget {
         Row(
           children: [
             LabelWidget(label: label),
-            const ChangeButtonWidget(),
+            ChangeButtonWidget(onPressed: onPressed,),
           ],
         ),
         const Row(
