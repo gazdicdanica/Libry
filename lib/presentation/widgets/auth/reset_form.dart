@@ -32,27 +32,19 @@ class _ResetFormState extends State<ResetForm> {
   String? errorMessage;
   String? emailError ='';
 
-  @override
-  void dispose() {
-    _emailController.dispose();
-    super.dispose();
-  }
 
 void _validateEmail(String email){
   
    if ( email.isEmpty ||!EmailValidator.validate(email)) {
         setState(() {
            emailError = 'Email is not in correct format!';
-    
         });
     } 
     else{
       setState(() {
           emailError='';
       });
-    
     }
-   
 }
 
 void _sendResetEmail(BuildContext context) {
@@ -62,7 +54,6 @@ void _sendResetEmail(BuildContext context) {
     email: _emailController.text.trim(),
   ));
   }
- 
 }
 
   @override
@@ -179,4 +170,10 @@ void _sendResetEmail(BuildContext context) {
       ),
     );
   }
+  @override
+  void dispose() {
+    _emailController.dispose();
+    super.dispose();
+  }
+
 }
