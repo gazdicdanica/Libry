@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/my_account/components/logout_button_widget.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/my_account/profile_avatar_widget.dart';
-import 'package:flutter_internship_2024_app/presentation/widgets/my_account/settings_info_widget.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/my_account/user_info_widget.dart';
 
 class AccountDetails extends StatelessWidget {
