@@ -17,11 +17,11 @@ class _BottomNavigationState extends State<BottomNavigation> {
 
   final List<Widget> _widgetOptions = <Widget>[
     const PlatformsScreen(),
-    const Center(
-      child: Text(
-        'Index 1: Favorites',
-      ),
-    ),
+    // const Center(
+    //   child: Text(
+    //     'Index 1: Favorites',
+    //   ),
+    // ),
     const MyAccountScreen(),
   ];
 
@@ -45,14 +45,14 @@ class _BottomNavigationState extends State<BottomNavigation> {
                     : textColor.withOpacity(0.6),
               ),
               label: t.navigation_home),
-          NavigationDestination(
-              icon: Icon(
-                Icons.favorite_border,
-                color: _selectedIndex == 1
-                    ? textColor
-                    : textColor.withOpacity(0.6),
-              ),
-              label: t.navigation_favorites),
+          // NavigationDestination(
+          //     icon: Icon(
+          //       Icons.favorite_border,
+          //       color: _selectedIndex == 1
+          //           ? textColor
+          //           : textColor.withOpacity(0.6),
+          //     ),
+          //     label: t.navigation_favorites),
           NavigationDestination(
               icon: Icon(
                 Icons.person,

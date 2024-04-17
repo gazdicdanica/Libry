@@ -32,23 +32,23 @@ class ProfileAvatar extends StatelessWidget {
                   color: darkGreyColor,
                 ),
         ),
-        Positioned(
-          bottom: 0,
-          right: 0,
-          child: Container(
-            width: 40,
-            height: 40,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              color: darkGreenColor,
-            ),
-            child: const Icon(
-              Icons.add,
-              size: 40,
-              color: Colors.white,
-            ),
-          ),
-        ),
+        // Positioned(
+        //   bottom: 0,
+        //   right: 0,
+        //   child: Container(
+        //     width: 40,
+        //     height: 40,
+        //     decoration: const BoxDecoration(
+        //       shape: BoxShape.circle,
+        //       color: darkGreenColor,
+        //     ),
+        //     child: const Icon(
+        //       Icons.add,
+        //       size: 40,
+        //       color: Colors.white,
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }
