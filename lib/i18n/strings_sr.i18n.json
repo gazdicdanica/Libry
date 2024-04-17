@@ -33,9 +33,12 @@
     "name": "Ime",
     "lastname": "Prezime",
     "logout": "Odjavite se",
+    "change": "izmeni",
     "confirm_logout": "Da li ste sigurni da želite da se odjavite?",
     "yes": "Da",
     "no": "Ne",
+    "theme": "Tema",
+    "language": "Jezik",
     "navigation_home": "Početna",
     "navigation_favorites": "Omiljeno",
     "navigation_profile": "Nalog"
