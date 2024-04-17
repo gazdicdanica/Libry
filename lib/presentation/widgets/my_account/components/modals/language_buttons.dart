@@ -14,9 +14,9 @@ class LanguageButtons extends StatelessWidget {
         Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            ToggleButton(text: t.language_en, isSelected: true, locale: AppLocale.en,),
+            ToggleButton(text: t.language_en, locale: AppLocale.en,),
             const SizedBox(height: 15),
-            ToggleButton(text: t.language_sr, isSelected: false, locale: AppLocale.sr,),
+            ToggleButton(text: t.language_sr, locale: AppLocale.sr,),
           ],
         ),
       ],
