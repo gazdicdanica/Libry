@@ -13,23 +13,40 @@ class FavoritesList extends StatefulWidget{
     
     return _FavoritesListState();
   }
-
 }
 
 class _FavoritesListState extends State<FavoritesList>{
+  
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: widget.libraries.isEmpty ?
-          const Center(
-            child: Text('No favorite'),
-          )
+           Padding(
+             padding: const EdgeInsets.fromLTRB(20, 230, 20, 20),
+             child: Center(
+              child: Column(children: 
+              [
+               SizedBox(
+                width: 70,
+                 child: Image.asset(
+                                'assets/Group.png',
+                              ),
+               ),
+               const SizedBox(height: 20,),
+                const Text('There are no favorite packages yet!',
+                     
+                    ),
+                const SizedBox(height: 20,),
+                const Text('If you want to receive updates about your favorite packages, add it to favorites by pressing star icon. ')
+              ]),
+                       ),
+           )
        : Center(
             child: ListView.builder(
                 itemCount: widget.libraries.length,
                 itemBuilder: (context, index) {
                   return CardWidget(
-                    color: Colors.black,
+                    color: widget.libraries[index].colorObj,
                     onTap: () {},
                     child: LibrariesCardContet(
                       library: widget.libraries[index],

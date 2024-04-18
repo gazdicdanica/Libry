@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/auth/auth_form.dart';
 
 class AuthScreen extends StatelessWidget {
@@ -6,6 +7,7 @@ class AuthScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t = Translations.of(context);
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -16,8 +18,9 @@ class AuthScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    'Welcome to Libry!',
+                    t.welcome,
                     style: Theme.of(context).textTheme.titleLarge,
+                    textAlign: TextAlign.center,
                   ),
                   const SizedBox(
                     height: 30,
