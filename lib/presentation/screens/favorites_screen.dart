@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_internship_2024_app/models/library.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/favorites/favorites_list.dart';
-import 'package:flutter_internship_2024_app/presentation/widgets/libraries_widgets/tab_bar.dart';
 
 class FavoritesScreen extends StatelessWidget {
 

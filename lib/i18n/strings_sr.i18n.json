@@ -41,5 +41,11 @@
     "language": "Jezik",
     "navigation_home": "Početna",
     "navigation_favorites": "Omiljeno",
-    "navigation_profile": "Nalog"
+    "navigation_profile": "Nalog",
+    "language_en": "Engleski",
+    "language_sr": "Srpski",
+    "favorites" : "Omiljeno",
+    "add_favorites" : "Biblioteka dodata u omiljene",
+    "remove_favorites" : "Biblioteka uklonjena iz omiljenih",
+    "error_favorites" : "Greška prilikom dodavanja u omiljene"
 }

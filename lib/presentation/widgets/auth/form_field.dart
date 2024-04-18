@@ -8,16 +8,14 @@ class CustomFormField extends StatefulWidget {
   final String? errorText;
   final bool obscureText;
 
-  const CustomFormField({
-    super.key,
-    required this.controller,
-    required this.labelText,
-    required this.hintText,
-    this.suffixIcon,
-    this.errorText,
-    this.obscureText = false
-
-  });
+  const CustomFormField(
+      {super.key,
+      required this.controller,
+      required this.labelText,
+      required this.hintText,
+      this.suffixIcon,
+      this.errorText,
+      this.obscureText = false});
 
   @override
   State<CustomFormField> createState() => _CustomFormFieldState();

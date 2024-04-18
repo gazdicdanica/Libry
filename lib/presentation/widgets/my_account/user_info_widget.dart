@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/my_account/components/divider_widget.dart';
-import 'package:flutter_internship_2024_app/presentation/widgets/my_account/components/label_widget.dart';
 
 class UserInfoRow extends StatelessWidget {
   const UserInfoRow({
@@ -17,18 +16,17 @@ class UserInfoRow extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          children: [
-            LabelWidget(label: label),
-            LabelWidget(label: value),
-          ],
+        ListTile(
+          title: Text(
+            label,
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          subtitle: Text(
+            value,
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
         ),
-        const Row(
-          children: [
-            DividerWidget(),
-            DividerWidget(),
-          ],
-        ),
+        const DividerWidget(),
       ],
     );
   }

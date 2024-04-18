@@ -8,11 +8,13 @@ class LibrariesDataProvider {
   Future<String> getCurrentLibraires(String packageName, String sort) async {
     final apiKey = dotenv.env['API_KEY'];
     try {
-      final res = await http.get(
-        Uri.parse(
-          'https://libraries.io/api/search?q=$packageName&api_key=$apiKey&sort=$sort',
-        ),
-      ).timeout(const Duration(seconds: 20),
+      final res = await http
+          .get(
+            Uri.parse(
+              'https://libraries.io/api/search?q=$packageName&api_key=$apiKey&sort=$sort',
+            ),
+          )
+          .timeout(const Duration(seconds: 20),
               onTimeout: () => throw TimeoutException(t.internet_error));
       if (res.statusCode != 200) {
         throw (t.libraries_error);

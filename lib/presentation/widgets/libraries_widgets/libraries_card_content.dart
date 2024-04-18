@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_internship_2024_app/models/library.dart';
 import 'package:flutter_internship_2024_app/theme.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 
 class LibrariesCardContet extends StatefulWidget {
   const LibrariesCardContet({super.key, required this.library});
@@ -15,7 +16,7 @@ class LibrariesCardContet extends StatefulWidget {
 }
 
 class _LibrariesCardContetState extends State<LibrariesCardContet> {
-
+  
   @override
   void initState() {
     checkFavoriteStatus();
@@ -25,6 +26,7 @@ class _LibrariesCardContetState extends State<LibrariesCardContet> {
 
   @override
   Widget build(BuildContext context) {
+    
     bool position = MediaQuery.of(context).orientation == Orientation.portrait;
     double screenWidth = MediaQuery.of(context).size.width;
     double remainigWidth = screenWidth * 0.2 ;
@@ -166,6 +168,7 @@ class _LibrariesCardContetState extends State<LibrariesCardContet> {
     }
 
     void addToFavorite(Library library){
+       final t=Translations.of(context);
       try{
         User? user=FirebaseAuth.instance.currentUser;
         if(user != null){
@@ -176,12 +179,10 @@ class _LibrariesCardContetState extends State<LibrariesCardContet> {
               .doc(userId)
               .collection('libraries')
               .doc(libraryName)
-              .delete()
-              .then((value)  {
+              .delete();
                 ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Biblioteka uklonjena iz omiljenih')),
+                 SnackBar(content: Text(t.remove_favorite)),
               );
-              });
             
               }else{
                 FirebaseFirestore.instance.collection('favorites')
@@ -196,12 +197,12 @@ class _LibrariesCardContetState extends State<LibrariesCardContet> {
                 'colorHex':library.platformColor,
                 });
                     ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Biblioteka dodata u omiljene')),
+                    SnackBar(content: Text(t.add_favorite)),
                   );}
         }
       }catch (e){
           ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Greška prilikom dodavanja u favorite')),
+          SnackBar(content: Text(t.error_favorites)),
       );
      } 
     }

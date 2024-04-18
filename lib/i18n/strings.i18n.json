@@ -41,5 +41,11 @@
     "language": "Language",
     "navigation_home": "Home",
     "navigation_favorites": "Favorites",
-    "navigation_profile": "Account"
+    "navigation_profile": "Account",
+    "language_en": "English",
+    "language_sr": "Serbian",
+    "favorites":"Favorites",
+    "add_favorites" : "Library added to favorites.",
+    "remove_favorites" : "Library removed from favorites",
+    "error_favorites" :"Error occurred while adding to favorites"
 }

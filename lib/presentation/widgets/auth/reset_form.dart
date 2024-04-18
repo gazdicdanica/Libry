@@ -1,5 +1,3 @@
-
-
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,7 +29,7 @@ class _ResetFormState extends State<ResetForm> {
 
   var _messageSend = false;
   String? errorMessage;
-  String? emailError ='';
+  String? emailError = '';
 
 
 void _validateEmail(String email){
@@ -44,7 +42,7 @@ void _validateEmail(String email){
     } 
     else{
       setState(() {
-          emailError='';
+        emailError = '';
       });
     }
 }
@@ -64,15 +62,15 @@ void _sendResetEmail(BuildContext context) {
       create: (context) => AuthBloc(),
       child: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
-          if(state is ForgotPasswordSuccess){
+          if (state is ForgotPasswordSuccess) {
             setState(() {
-                _messageSend=true;
+              _messageSend = true;
             });
           }
-          if(state is ForgotPasswordFailure){
-              setState(() {
-                _messageSend=true;
-                errorMessage=state.emailError;
+          if (state is ForgotPasswordFailure) {
+            setState(() {
+              _messageSend = true;
+              errorMessage = state.emailError;
             });
           }
         },
@@ -101,12 +99,9 @@ void _sendResetEmail(BuildContext context) {
                         controller: _emailController,
                         labelText: t.email,
                         hintText: t.email_hint,
-                        errorText: (emailError != '')
-                        ? emailError
-                        : null,
-                        suffixIcon:(emailError != '')
-                        ? const Icon(Icons.error)
-                        : null,
+                        errorText: (emailError != '') ? emailError : null,
+                        suffixIcon:
+                            (emailError != '') ? const Icon(Icons.error) : null,
                       ),
                       const SizedBox(
                         height: 30,
