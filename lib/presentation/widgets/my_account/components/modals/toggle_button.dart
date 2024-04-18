@@ -28,7 +28,7 @@ class ToggleButton extends StatelessWidget {
                 const EdgeInsets.symmetric(vertical: 5.0, horizontal: 25.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(50.0),
-              color: _isSelectedLocale() ? themeSeedColor : Colors.transparent,
+              color: _getBackgroundColor(context),
             ),
             child: Text(
               text,
@@ -46,5 +46,16 @@ class ToggleButton extends StatelessWidget {
   }
 
   bool _isSelectedLocale() => LocaleSettings.currentLocale == locale;
+
+  Color _getBackgroundColor(BuildContext context) {
+    if(_isSelectedLocale()){
+      final brightness = Theme.of(context).brightness;
+
+      return brightness == Brightness.light
+          ? themeSeedColor
+          : darkGreenColor;
+    }
+    return Colors.transparent;
+  }
   
 }
