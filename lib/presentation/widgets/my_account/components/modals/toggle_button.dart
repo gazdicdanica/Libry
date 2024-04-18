@@ -36,8 +36,8 @@ class ToggleButton extends StatelessWidget {
                   fontSize: 22.0,
                   fontWeight: FontWeight.w600,
                   color: _isSelectedLocale() 
-                      ? textColor
-                      : const Color.fromRGBO(0, 0, 0, 0.25)),
+                      ? Theme.of(context).colorScheme.onPrimary
+                      : Theme.of(context).colorScheme.onPrimary.withOpacity(0.25)),
             ),
           );
         },

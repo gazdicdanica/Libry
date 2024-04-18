@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
-import 'package:flutter_internship_2024_app/theme.dart';
 
 class TabBarWidget extends StatelessWidget {
   const TabBarWidget({super.key});
@@ -17,11 +16,7 @@ class TabBarWidget extends StatelessWidget {
         ),
       ),
       child: TabBar(
-        indicator: const BoxDecoration(
-          color: Color.fromRGBO(205, 232, 223, 1),
-        ),
         indicatorSize: TabBarIndicatorSize.tab,
-        labelColor: textColor,
         tabs: <Widget>[
           Tab(
             text: t.tab_most_popular,

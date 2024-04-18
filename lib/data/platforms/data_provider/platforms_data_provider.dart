@@ -12,14 +12,14 @@ class PlatformsDataProvider {
       final res = await http
           .get(Uri.parse('https://libraries.io/api/platforms?api_key=$apiKey'))
           .timeout(const Duration(seconds: 20),
-              onTimeout: () => throw TimeoutException(t.internet_error));
+              onTimeout: () => throw t.platforms_error);
       if (res.statusCode != 200) {
-        throw(t.platforms_error);
+        throw (t.platforms_error);
       }
       return res.body;
     } catch (e) {
       if (e is SocketException) {
-        throw(t.internet_error);
+        throw (t.internet_error);
       } else {
         throw (e.toString());
       }

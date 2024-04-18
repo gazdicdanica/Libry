@@ -23,13 +23,16 @@ class _SearchInputState extends State<SearchInput> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Container(
       width: 400,
       height: 60,
       margin: const EdgeInsets.all(15),
-      decoration: const BoxDecoration(
-        color: Color.fromRGBO(239, 245, 243, 1),
-        borderRadius: BorderRadius.all(Radius.circular(30)),
+      decoration: BoxDecoration(
+        color: theme.brightness == Brightness.light
+            ? const Color.fromRGBO(239, 245, 243, 1)
+            : const Color.fromARGB(255, 33, 35, 33),
+        borderRadius: const BorderRadius.all(Radius.circular(30)),
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -60,9 +63,9 @@ class _SearchInputState extends State<SearchInput> {
                 context.read<SearchBloc>().add(ResetSearch());
                 _focusNode.unfocus();
               },
-              child: const Icon(
+              child: Icon(
                 Icons.close,
-                color: Color.fromRGBO(72, 75, 73, 1),
+                color: theme.colorScheme.onBackground,
               ),
             ),
           ],
