@@ -47,5 +47,5 @@
     "favorites":"Favorites",
     "add_favorites" : "Library added to favorites.",
     "remove_favorites" : "Library removed from favorites",
-    "error_favorites" :"Error occurred while adding to favorites"
+    "error_favorites" :"Error occurred while updating favorites"
 }

@@ -47,5 +47,5 @@
     "favorites" : "Omiljeno",
     "add_favorites" : "Biblioteka dodata u omiljene",
     "remove_favorites" : "Biblioteka uklonjena iz omiljenih",
-    "error_favorites" : "Greška prilikom dodavanja u omiljene"
+    "error_favorites" : "Greška prilikom azuriranja omiljenih biblioteka"
 }

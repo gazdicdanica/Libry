@@ -20,6 +20,7 @@ class _LibrariesCardContetState extends State<LibrariesCardContet> {
   @override
   void initState() {
     checkFavoriteStatus();
+
     super.initState();
   }
   
@@ -64,7 +65,7 @@ class _LibrariesCardContetState extends State<LibrariesCardContet> {
                     textAlign: TextAlign.start,
                     style: Theme.of(context).textTheme.labelLarge,
                      maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
+                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
                 const SizedBox(
@@ -142,12 +143,12 @@ class _LibrariesCardContetState extends State<LibrariesCardContet> {
       ),
     );
   }
-
-  void checkFavoriteStatus() async{
+    void checkFavoriteStatus() async{
     User? user=FirebaseAuth.instance.currentUser;
         if(user != null){
           String userId=user.uid;
-          String libraryName= widget.library.name!;
+           String libraryName= widget.library.name!.replaceAll(RegExp(r'[^\w\s]+'), '');
+          // String libraryId=widget.library.uid;
           DocumentSnapshot doc= await FirebaseFirestore.instance
             .collection('favorites')
             .doc(userId)
@@ -173,15 +174,17 @@ class _LibrariesCardContetState extends State<LibrariesCardContet> {
         User? user=FirebaseAuth.instance.currentUser;
         if(user != null){
           String userId=user.uid;
-          String libraryName= library.name!;
+          String libraryName=  library.name!.replaceAll(RegExp(r'[^\w\s]+'), '');
+          // String libraryId=widget.library.uid;
           if(!widget.library.isFavorite){
             FirebaseFirestore.instance.collection('favorites')
               .doc(userId)
               .collection('libraries')
               .doc(libraryName)
               .delete();
+                   ScaffoldMessenger.of(context).hideCurrentSnackBar();
                 ScaffoldMessenger.of(context).showSnackBar(
-                 SnackBar(content: Text(t.remove_favorite)),
+                 SnackBar(content: Text(t.remove_favorites)),
               );
             
               }else{
@@ -190,14 +193,16 @@ class _LibrariesCardContetState extends State<LibrariesCardContet> {
                 .collection('libraries')
                 .doc(libraryName)
                 .set({
+               // 'uid':lib,
                 'name':library.name,
                 'latestRelaseNumber':library.latestReleaseNumber,
                 'keywords': library.keywords,
                 'isFavorite':true,
                 'colorHex':library.platformColor,
                 });
+                    ScaffoldMessenger.of(context).hideCurrentSnackBar();
                     ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(t.add_favorite)),
+                    SnackBar(content: Text(t.add_favorites)),
                   );}
         }
       }catch (e){

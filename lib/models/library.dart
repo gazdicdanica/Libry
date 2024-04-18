@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Library {
+ //final String uid;
   final int? contributionsCount;
   final int? dependentReposCount;
   final int? dependentsCount;
@@ -18,7 +19,9 @@ class Library {
   bool isFavorite;
 
   Library(
-      {required this.contributionsCount,
+      {
+    //  required this.uid,
+      required this.contributionsCount,
       required this.dependentReposCount,
       required this.dependentsCount,
       required this.description,
@@ -36,7 +39,9 @@ class Library {
       });
 
   factory Library.fromMap(Map<String, dynamic> map) {
+    //String uid=const Uuid().v4();
     return Library(
+      //uid: '',
       contributionsCount: map['contributioons_count'],
       keywords: List<String>.from(map['keywords']),
       latestReleaseNumber: map['latest_release_number'],
@@ -52,6 +57,7 @@ class Library {
       rank: map['rank'],
       platformColor: '',
       isFavorite: false,
+
     );
   }
   Color get colorObj => Color(

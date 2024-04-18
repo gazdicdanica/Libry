@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 import 'package:flutter_internship_2024_app/models/library.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/favorites/favorites_list.dart';
 
@@ -10,6 +11,7 @@ class FavoritesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t=Translations.of(context);
     final User? user= FirebaseAuth.instance.currentUser;
    
     return DefaultTabController(
@@ -19,11 +21,15 @@ class FavoritesScreen extends StatelessWidget {
           title: Padding(
             padding: const EdgeInsets.only(left: 10.0),
             child: Text(
-              'Favorites',
+              t.favorites,
               style: Theme.of(context).textTheme.headlineSmall,
             ),
           ),
           centerTitle: false,     
+           shape: const Border(
+          bottom: BorderSide(color: Color.fromRGBO(239, 245, 243, 1),
+           width: 1),
+           ),
         ),
          body:  SafeArea(
           child:StreamBuilder<QuerySnapshot>(
@@ -43,6 +49,7 @@ class FavoritesScreen extends StatelessWidget {
              }
              final List<Library> favoriteLibraries= snapshot.data!.docs
                 .map((doc) => Library(
+                 // uid: doc['uid'],
                   name:doc['name'],
                   latestReleaseNumber: doc['latestRelaseNumber'],
                   keywords: List<String>.from(doc['keywords']),
@@ -58,6 +65,7 @@ class FavoritesScreen extends StatelessWidget {
                         latestDownloadUrl: '', 
                         platform: '', 
                         rank: null,
+                        
                   )).toList();
                   return FavoritesList( libraries: favoriteLibraries,);
             },),),
