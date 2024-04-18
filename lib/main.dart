@@ -29,11 +29,7 @@ Future main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  ThemeMode initialThemeMode = ThemeMode.system;
-  final themeMode = SharedPreferencesUtil().getTheme();
-  if (themeMode != null) {
-    initialThemeMode = themeMode;
-  }
+  ThemeMode initialThemeMode = SharedPreferencesUtil().getTheme() ?? ThemeMode.system;
 
   if (kDebugMode) {
     await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);

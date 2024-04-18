@@ -11,7 +11,7 @@ class PlatformsDataProvider {
     try {
       final res = await http
           .get(Uri.parse('https://libraries.io/api/platforms?api_key=$apiKey'))
-          .timeout(const Duration(seconds: 20),
+          .timeout(const Duration(seconds: 60),
               onTimeout: () => throw t.platforms_error);
       if (res.statusCode != 200) {
         throw (t.platforms_error);
