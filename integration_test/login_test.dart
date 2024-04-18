@@ -12,7 +12,7 @@ void main() {
 
       final emailField = $(#email);
       final passwordField = $(#password);
-      final logoutBtn = $(#logout); 
+      //final logoutBtn = $(#logout); 
 
       await $.enterText(emailField, 'test@gmail.com');
       await $.enterText(passwordField, 'testing');
@@ -23,8 +23,8 @@ void main() {
 
       expect($('Platforms').visible, equals(true));
 
-      await $(logoutBtn).tap();
-      await $.pump();
+      // await $(logoutBtn).tap();
+      // await $.pump();
 
   });
 

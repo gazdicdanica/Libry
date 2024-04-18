@@ -1,9 +1,8 @@
-
-
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_internship_2024_app/bloc/auth_bloc/auth_bloc.dart';
+import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 import 'package:flutter_internship_2024_app/presentation/screens/auth_screen.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/auth/form_field.dart';
 import 'package:flutter_internship_2024_app/theme.dart';
@@ -30,7 +29,7 @@ class _ResetFormState extends State<ResetForm> {
 
   var _messageSend = false;
   String? errorMessage;
-  String? emailError ='';
+  String? emailError = '';
 
   @override
   void dispose() {
@@ -38,32 +37,26 @@ class _ResetFormState extends State<ResetForm> {
     super.dispose();
   }
 
-void _validateEmail(String email){
-  
-   if ( email.isEmpty ||!EmailValidator.validate(email)) {
-        setState(() {
-           emailError = 'Email is not in correct format!';
-    
-        });
-    } 
-    else{
+  void _validateEmail(String email) {
+    if (email.isEmpty || !EmailValidator.validate(email)) {
       setState(() {
-          emailError='';
+        emailError = t.email_format_error;
       });
-    
+    } else {
+      setState(() {
+        emailError = '';
+      });
     }
-   
-}
-
-void _sendResetEmail(BuildContext context) {
-  _validateEmail(_emailController.text.trim());
-  if(emailError == ''){
-     BlocProvider.of<AuthBloc>(context).add(SendResetEmail(
-    email: _emailController.text.trim(),
-  ));
   }
- 
-}
+
+  void _sendResetEmail(BuildContext context) {
+    _validateEmail(_emailController.text.trim());
+    if (emailError == '') {
+      BlocProvider.of<AuthBloc>(context).add(SendResetEmail(
+        email: _emailController.text.trim(),
+      ));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,15 +64,15 @@ void _sendResetEmail(BuildContext context) {
       create: (context) => AuthBloc(),
       child: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
-          if(state is ForgotPasswordSuccess){
+          if (state is ForgotPasswordSuccess) {
             setState(() {
-                _messageSend=true;
+              _messageSend = true;
             });
           }
-          if(state is ForgotPasswordFailure){
-              setState(() {
-                _messageSend=true;
-                errorMessage=state.emailError;
+          if (state is ForgotPasswordFailure) {
+            setState(() {
+              _messageSend = true;
+              errorMessage = state.emailError;
             });
           }
         },
@@ -94,7 +87,7 @@ void _sendResetEmail(BuildContext context) {
                     Column(children: [
                       Text(
                         textAlign: TextAlign.center,
-                        'Please enter your email below and we will send your a reset link.',
+                        t.reset_password_title,
                         style: TextStyle(
                             fontWeight: Theme.of(context)
                                 .textTheme
@@ -106,14 +99,11 @@ void _sendResetEmail(BuildContext context) {
                       ),
                       CustomFormField(
                         controller: _emailController,
-                        labelText: 'Email',
-                        hintText: 'Your email address',
-                        errorText: (emailError != '')
-                        ? emailError
-                        : null,
-                        suffixIcon:(emailError != '')
-                        ? const Icon(Icons.error)
-                        : null,
+                        labelText: t.email,
+                        hintText: t.email_hint,
+                        errorText: (emailError != '') ? emailError : null,
+                        suffixIcon:
+                            (emailError != '') ? const Icon(Icons.error) : null,
                       ),
                       const SizedBox(
                         height: 30,
@@ -125,9 +115,9 @@ void _sendResetEmail(BuildContext context) {
                             _sendResetEmail(context);
                           },
                           style: buttonStyle,
-                          child: const Text(
-                            'Send reset link',
-                            style: TextStyle(fontSize: 16),
+                          child: Text(
+                            t.reset_password_btn,
+                            style: const TextStyle(fontSize: 16),
                           ),
                         ),
                       ),
@@ -136,7 +126,7 @@ void _sendResetEmail(BuildContext context) {
                     Column(children: [
                       Text(
                           textAlign: TextAlign.center,
-                          'We have sent you an email with a link to reset your passwrod. Please check you emails. ',
+                          t.reset_password_success,
                           style: TextStyle(
                               color: const Color.fromRGBO(72, 75, 73, 1),
                               fontWeight: Theme.of(context)
@@ -154,18 +144,18 @@ void _sendResetEmail(BuildContext context) {
                                   builder: (context) => const AuthScreen()));
                             },
                             style: buttonStyle,
-                            child: const Text(
-                              'Go back.',
+                            child: Text(
+                              t.go_back,
                             )),
                       ),
                       const SizedBox(
                         height: 30,
                       ),
                       (state is ForgotPasswordFailure)
-                          ? const Text(
-                              'An error has occurred. Please try again!',
+                          ? Text(
+                              t.confirm_password_error,
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Colors.red,
                               ),
                             )

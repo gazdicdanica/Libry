@@ -6,15 +6,16 @@ class CustomFormField extends StatefulWidget {
   final String hintText;
   final Widget? suffixIcon;
   final String? errorText;
+  final bool obscureText;
 
-  const CustomFormField({
-    super.key,
-    required this.controller,
-    required this.labelText,
-    required this.hintText,
-    this.suffixIcon,
-    this.errorText,
-  });
+  const CustomFormField(
+      {super.key,
+      required this.controller,
+      required this.labelText,
+      required this.hintText,
+      this.suffixIcon,
+      this.errorText,
+      this.obscureText = false});
 
   @override
   State<CustomFormField> createState() => _CustomFormFieldState();
@@ -38,7 +39,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
           : TextInputType.text,
       autocorrect: false,
       textCapitalization: TextCapitalization.none,
-      obscureText: widget.labelText.toLowerCase().contains('password')
+      obscureText: widget.obscureText,
     );
   }
 }
