@@ -22,6 +22,9 @@ class LibraryDetailsScreen extends StatelessWidget {
             style: Theme.of(context).textTheme.headlineSmall,
           ),
         ),
+        shape: const Border(
+          bottom: BorderSide(color: Color.fromRGBO(239, 245, 243, 1), width: 1),
+        ),
         centerTitle: false,
       ),
       body: SafeArea(
