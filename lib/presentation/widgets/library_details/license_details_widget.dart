@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 import 'package:flutter_internship_2024_app/theme.dart';
 
 class LicenseDetails extends StatelessWidget {
@@ -7,6 +8,7 @@ class LicenseDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t = Translations.of(context);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(
@@ -15,9 +17,10 @@ class LicenseDetails extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                "Licenses",
-                style: TextStyle(
+              Text(
+                overflow: TextOverflow.ellipsis,
+                t.licenses,
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),

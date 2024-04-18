@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 90 (45 per locale)
+/// Strings: 106 (53 per locale)
 ///
-/// Built on 2024-04-17 at 09:33 UTC
+/// Built on 2024-04-18 at 13:03 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -193,6 +193,14 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get navigation_profile => 'Account';
 	String get language_en => 'English';
 	String get language_sr => 'Serbian';
+	String get library_details => 'Library details';
+	String get licenses => 'Licenses';
+	String get repo_status => 'Repository status';
+	String get platform => 'Platform';
+	String get stars => 'Stars';
+	String get latest_release_num => 'Latest release number';
+	String get published_at => 'Published at';
+	String get latest_stable_release => 'Latest stable release';
 }
 
 // Path: <root>
@@ -264,6 +272,14 @@ class _StringsSr implements Translations {
 	@override String get navigation_profile => 'Nalog';
 	@override String get language_en => 'Engleski';
 	@override String get language_sr => 'Srpski';
+	@override String get library_details => 'Detalji biblioteke';
+	@override String get licenses => 'Licence';
+	@override String get repo_status => 'Status repozitorijuma';
+	@override String get platform => 'Platforma';
+	@override String get stars => 'Zvezde';
+	@override String get latest_release_num => 'Broj poslednjeg izdanja';
+	@override String get published_at => 'Objavljeno u';
+	@override String get latest_stable_release => 'Stabilno izdanje';
 }
 
 /// Flat map(s) containing all translations.
@@ -317,6 +333,14 @@ extension on Translations {
 			case 'navigation_profile': return 'Account';
 			case 'language_en': return 'English';
 			case 'language_sr': return 'Serbian';
+			case 'library_details': return 'Library details';
+			case 'licenses': return 'Licenses';
+			case 'repo_status': return 'Repository status';
+			case 'platform': return 'Platform';
+			case 'stars': return 'Stars';
+			case 'latest_release_num': return 'Latest release number';
+			case 'published_at': return 'Published at';
+			case 'latest_stable_release': return 'Latest stable release';
 			default: return null;
 		}
 	}
@@ -370,6 +394,14 @@ extension on _StringsSr {
 			case 'navigation_profile': return 'Nalog';
 			case 'language_en': return 'Engleski';
 			case 'language_sr': return 'Srpski';
+			case 'library_details': return 'Detalji biblioteke';
+			case 'licenses': return 'Licence';
+			case 'repo_status': return 'Status repozitorijuma';
+			case 'platform': return 'Platforma';
+			case 'stars': return 'Zvezde';
+			case 'latest_release_num': return 'Broj poslednjeg izdanja';
+			case 'published_at': return 'Objavljeno u';
+			case 'latest_stable_release': return 'Stabilno izdanje';
 			default: return null;
 		}
 	}

@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/divider_widget.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/library_details/label_widget.dart';
 
@@ -25,8 +27,8 @@ class LibraryInfo extends StatelessWidget {
         ),
         const Row(
           children: [
-            DividerWidget(),
-            DividerWidget(),
+            Expanded(child: DividerWidget()),
+            Expanded(child: DividerWidget()),
           ],
         ),
       ],

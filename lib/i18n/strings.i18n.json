@@ -43,5 +43,13 @@
     "navigation_favorites": "Favorites",
     "navigation_profile": "Account",
     "language_en": "English",
-    "language_sr": "Serbian"
+    "language_sr": "Serbian",
+    "library_details": "Library details",
+    "licenses": "Licenses",
+    "repo_status": "Repository status",
+    "platform": "Platform",
+    "stars": "Stars",
+    "latest_release_num": "Latest release number",
+    "published_at": "Published at",
+    "latest_stable_release": "Latest stable release"
 }
