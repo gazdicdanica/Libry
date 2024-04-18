@@ -197,6 +197,8 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
   String get add_favorites => 'Library added to favorites';
   String get remove_favorites => 'Library removed from favorites';
   String get  error_favorites => 'Error occurred while updating favorites';
+  String get no_favorites => 'There are no favorite packages yet';
+  String get explanation_adding => 'If you want to receive updates about your favorite packages, add it to favorites by pressing heart icon.';
 }
 
 // Path: <root>
@@ -272,6 +274,8 @@ class _StringsSr implements Translations {
   @override String get add_favorites => 'Biblioteka dodata u omiljene';
   @override String get remove_favorites => 'Biblioteka uklonjena iz omiljenih';
   @override String get  error_favorites => 'Greška prilikom azuriranja omiljenih biblioteka';
+  @override String get no_favorites => 'Nemate omiljene pakete!';
+  @override String get explanation_adding => 'Ako želite da dobijate ažuriranja o vašim omiljenim paketima, dodajte ih u omiljene pritiskom na ikonu srca.';
 }
 
 /// Flat map(s) containing all translations.

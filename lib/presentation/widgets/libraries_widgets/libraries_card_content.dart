@@ -147,8 +147,7 @@ class _LibrariesCardContetState extends State<LibrariesCardContet> {
     User? user=FirebaseAuth.instance.currentUser;
         if(user != null){
           String userId=user.uid;
-           String libraryName= widget.library.name!.replaceAll(RegExp(r'[^\w\s]+'), '');
-          // String libraryId=widget.library.uid;
+          String libraryName= widget.library.name!.replaceAll(RegExp(r'[^\w\s]+'), '');
           DocumentSnapshot doc= await FirebaseFirestore.instance
             .collection('favorites')
             .doc(userId)
@@ -175,7 +174,6 @@ class _LibrariesCardContetState extends State<LibrariesCardContet> {
         if(user != null){
           String userId=user.uid;
           String libraryName=  library.name!.replaceAll(RegExp(r'[^\w\s]+'), '');
-          // String libraryId=widget.library.uid;
           if(!widget.library.isFavorite){
             FirebaseFirestore.instance.collection('favorites')
               .doc(userId)

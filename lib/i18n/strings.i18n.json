@@ -47,5 +47,8 @@
     "favorites":"Favorites",
     "add_favorites" : "Library added to favorites.",
     "remove_favorites" : "Library removed from favorites",
-    "error_favorites" :"Error occurred while updating favorites"
+    "error_favorites" :"Error occurred while updating favorites",
+    "no_favorites": "There are no favorite packages yet",
+    "explanation_adding":"If you want to receive updates about your favorite packages, add it to favorites by pressing heart icon."
+
 }
