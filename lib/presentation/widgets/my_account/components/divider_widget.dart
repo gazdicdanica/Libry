@@ -5,14 +5,13 @@ class DividerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
+    return Padding(
+        padding: const EdgeInsets.only(bottom: 8.0, left: 15.0, right: 15.0),
         child: Container(
           height: 1,
-          color: Colors.grey,
+          color: const Color.fromRGBO(0, 0, 0, 0.25),
         ),
-      ),
+      
     );
   }
 }
