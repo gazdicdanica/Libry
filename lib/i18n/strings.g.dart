@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 86 (43 per locale)
+/// Strings: 90 (45 per locale)
 ///
-/// Built on 2024-04-16 at 17:46 UTC
+/// Built on 2024-04-17 at 09:33 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -191,6 +191,8 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get navigation_home => 'Home';
 	String get navigation_favorites => 'Favorites';
 	String get navigation_profile => 'Account';
+	String get language_en => 'English';
+	String get language_sr => 'Serbian';
 }
 
 // Path: <root>
@@ -260,6 +262,8 @@ class _StringsSr implements Translations {
 	@override String get navigation_home => 'Početna';
 	@override String get navigation_favorites => 'Omiljeno';
 	@override String get navigation_profile => 'Nalog';
+	@override String get language_en => 'Engleski';
+	@override String get language_sr => 'Srpski';
 }
 
 /// Flat map(s) containing all translations.
@@ -311,6 +315,8 @@ extension on Translations {
 			case 'navigation_home': return 'Home';
 			case 'navigation_favorites': return 'Favorites';
 			case 'navigation_profile': return 'Account';
+			case 'language_en': return 'English';
+			case 'language_sr': return 'Serbian';
 			default: return null;
 		}
 	}
@@ -362,6 +368,8 @@ extension on _StringsSr {
 			case 'navigation_home': return 'Početna';
 			case 'navigation_favorites': return 'Omiljeno';
 			case 'navigation_profile': return 'Nalog';
+			case 'language_en': return 'Engleski';
+			case 'language_sr': return 'Srpski';
 			default: return null;
 		}
 	}
