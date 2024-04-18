@@ -21,6 +21,7 @@ import 'firebase_options.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  LocaleSettings.useDeviceLocale();
   await dotenv.load(fileName: ".env");
   await SharedPreferencesUtil().init();
   await Firebase.initializeApp(
