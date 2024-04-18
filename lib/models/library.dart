@@ -8,48 +8,71 @@ class Library {
   final int? forks;
   final String? homepage;
   final List<String>? keywords;
+  final List<String>? licenses;
   final String? language;
   final String? latestDownloadUrl;
   final String? latestReleaseNumber;
+  final String? latestStableReleaseNumber;
+  final String? latestReleasePublishedAt;
+  final String? latestStableReleasePublishedAt;
   final String? name;
   final String? platform;
   final int? rank;
+  final int? stars;
   String? platformColor;
+  final String? repositoryStatus;
 
-  Library(
-      {required this.contributionsCount,
-      required this.dependentReposCount,
-      required this.dependentsCount,
-      required this.description,
-      required this.forks,
-      required this.homepage,
-      required this.keywords,
-      required this.language,
-      required this.latestDownloadUrl,
-      required this.latestReleaseNumber,
-      required this.name,
-      required this.platform,
-      required this.rank,
-      this.platformColor});
+  Library({
+    required this.contributionsCount,
+    required this.dependentReposCount,
+    required this.dependentsCount,
+    required this.description,
+    required this.forks,
+    required this.homepage,
+    required this.keywords,
+    required this.licenses,
+    required this.language,
+    required this.latestDownloadUrl,
+    required this.latestReleaseNumber,
+    required this.latestStableReleaseNumber,
+    required this.latestReleasePublishedAt,
+    required this.latestStableReleasePublishedAt,
+    required this.name,
+    required this.platform,
+    required this.rank,
+    required this.stars,
+    this.platformColor,
+    required this.repositoryStatus,
+  });
 
   factory Library.fromMap(Map<String, dynamic> map) {
     return Library(
-      contributionsCount: map['contributioons_count'],
-      keywords: List<String>.from(map['keywords']),
-      latestReleaseNumber: map['latest_release_number'],
+      contributionsCount: map['contributions_count'],
+      keywords: List<String>.from(map['keywords'] ?? []),
+      licenses: map['licenses'] is List<String>
+          ? List<String>.from(map['licenses'] ?? [])
+          : [map['licenses'] ?? '/'],
+      latestReleaseNumber: map['latest_release_number'] ?? '/',
+      latestStableReleaseNumber: map['latest_stable_release_number'] ?? '/',
+      latestReleasePublishedAt: map['latest_release_published_at'] ?? '/',
+      latestStableReleasePublishedAt:
+          map['latest_stable_release_published_at'] ?? '/',
       dependentReposCount: map['dependent_repos_count'],
       dependentsCount: map['dependents_count'],
-      description: map['description'],
+      description: map['description'] ?? '/',
       forks: map['forks'],
-      homepage: map['homepage'],
-      language: map['language'],
-      latestDownloadUrl: map['latest_download_url'],
-      name: map['name'],
-      platform: map['platform'],
+      homepage: map['homepage'] ?? '/',
+      language: map['language'] ?? '/',
+      latestDownloadUrl: map['latest_download_url'] ?? '/',
+      name: map['name'] ?? '/',
+      platform: map['platform'] ?? '/',
       rank: map['rank'],
-      platformColor: '',
+      stars: map['stars'],
+      platformColor: map['platformColor'] ?? '/',
+      repositoryStatus: map['repository_status'] ?? '/',
     );
   }
+
   Color get colorObj => Color(
       int.parse(platformColor!.toUpperCase().replaceAll("#", ""), radix: 16) +
           0xFF000000);

@@ -14,7 +14,7 @@ class LibrariesDataProvider {
               'https://libraries.io/api/search?q=$packageName&api_key=$apiKey&sort=$sort',
             ),
           )
-          .timeout(const Duration(seconds: 20),
+          .timeout(const Duration(seconds: 80),
               onTimeout: () => throw TimeoutException(t.internet_error));
       if (res.statusCode != 200) {
         throw (t.libraries_error);

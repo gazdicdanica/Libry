@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/divider_widget.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/library_details/label_widget.dart';
 
-class UserInfoRow extends StatelessWidget {
-  const UserInfoRow({
+class LibraryInfo extends StatelessWidget {
+  const LibraryInfo({
     super.key,
     required this.label,
     required this.value,
