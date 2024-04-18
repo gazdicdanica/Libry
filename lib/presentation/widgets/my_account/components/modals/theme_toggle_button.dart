@@ -1,43 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_internship_2024_app/bloc/locale_bloc/locale_bloc.dart';
-import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
+import 'package:flutter_internship_2024_app/bloc/theme_bloc/theme_bloc.dart';
 import 'package:flutter_internship_2024_app/theme.dart';
 
-class ToggleButton extends StatelessWidget {
-  const ToggleButton(
-      {super.key,
-      required this.text,
-      required this.locale});
+class ThemeToggleButton extends StatelessWidget {
+  const ThemeToggleButton(
+      {super.key, required this.text, required this.themeMode});
 
   final String text;
-  final AppLocale locale;
+  final ThemeMode themeMode;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        BlocProvider.of<LocaleBloc>(context).add(ChangeLocale(locale));
+        BlocProvider.of<ThemeBloc>(context).add(ChangeTheme(themeMode));
         Navigator.pop(context);
       },
       borderRadius: BorderRadius.circular(50.0),
-      child: BlocBuilder<LocaleBloc, LocaleState>(
+      child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (context, state) {
           return Container(
             padding:
                 const EdgeInsets.symmetric(vertical: 5.0, horizontal: 25.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(50.0),
-              color: _getBackgroundColor(context),
+              color: _getBackgroundColor(context, state),
             ),
             child: Text(
               text,
               style: TextStyle(
                   fontSize: 22.0,
                   fontWeight: FontWeight.w600,
-                  color: _isSelectedLocale() 
+                  color: _isSelectedTheme(state)
                       ? Theme.of(context).colorScheme.onPrimary
-                      : Theme.of(context).colorScheme.onPrimary.withOpacity(0.25)),
+                      : Theme.of(context)
+                          .colorScheme
+                          .onPrimary
+                          .withOpacity(0.25)),
             ),
           );
         },
@@ -45,17 +45,14 @@ class ToggleButton extends StatelessWidget {
     );
   }
 
-  bool _isSelectedLocale() => LocaleSettings.currentLocale == locale;
+  bool _isSelectedTheme(ThemeState state) => state is ThemeChanged && state.themeMode == themeMode;
 
-  Color _getBackgroundColor(BuildContext context) {
-    if(_isSelectedLocale()){
+  Color _getBackgroundColor(BuildContext context, ThemeState state) {
+    if (_isSelectedTheme(state)) {
       final brightness = Theme.of(context).brightness;
 
-      return brightness == Brightness.light
-          ? themeSeedColor
-          : darkGreenColor;
+      return brightness == Brightness.light ? themeSeedColor : darkGreenColor;
     }
     return Colors.transparent;
   }
-  
 }

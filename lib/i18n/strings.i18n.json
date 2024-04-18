@@ -43,5 +43,8 @@
     "navigation_favorites": "Favorites",
     "navigation_profile": "Account",
     "language_en": "English",
-    "language_sr": "Serbian"
+    "language_sr": "Serbian",
+    "theme_system": "System theme",
+    "theme_light": "Light theme",
+    "theme_dark": "Dark theme"
 }

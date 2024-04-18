@@ -43,5 +43,8 @@
     "navigation_favorites": "Omiljeno",
     "navigation_profile": "Nalog",
     "language_en": "Engleski",
-    "language_sr": "Srpski"
+    "language_sr": "Srpski",
+    "theme_system": "Sistemska tema",
+    "theme_light": "Svetla tema",
+    "theme_dark": "Tamna tema"
 }
