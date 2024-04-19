@@ -53,7 +53,8 @@
     "stars": "Zvezde",
     "latest_release_num": "Broj poslednjeg izdanja",
     "published_at": "Objavljeno u",
-    "latest_stable_release": "Stabilno izdanje""theme_system": "Sistemska tema",
+    "latest_stable_release": "Stabilno izdanje",
+    "theme_system": "Sistemska tema",
     "theme_light": "Svetla tema",
     "theme_dark": "Tamna tema"
 }

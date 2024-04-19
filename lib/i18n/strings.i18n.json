@@ -53,7 +53,8 @@
     "stars": "Stars",
     "latest_release_num": "Latest release number",
     "published_at": "Published at",
-    "latest_stable_release": "Latest stable release""theme_system": "System theme",
+    "latest_stable_release": "Latest stable release",
+    "theme_system": "System theme",
     "theme_light": "Light theme",
     "theme_dark": "Dark theme"
 }
