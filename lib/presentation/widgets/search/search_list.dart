@@ -99,7 +99,6 @@ class _SearchListState extends State<SearchList>
                   children: [
                     const Icon(
                       Icons.error_outline,
-                      color: textColor,
                       size: 60,
                     ),
                     const SizedBox(
@@ -134,8 +133,8 @@ class _SearchListState extends State<SearchList>
               children: [
                 state is SearchSuccess
                     ? const Icon(Icons.emoji_nature_outlined,
-                        size: 80, color: textColor)
-                    : const Icon(Icons.search, size: 80, color: textColor),
+                        size: 80)
+                    : const Icon(Icons.search, size: 80,),
                 const SizedBox(height: 20),
                 Text(
                   state is SearchSuccess
@@ -144,7 +143,6 @@ class _SearchListState extends State<SearchList>
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontSize: 20,
-                    color: textColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 90 (45 per locale)
+/// Strings: 96 (48 per locale)
 ///
-/// Built on 2024-04-17 at 09:33 UTC
+/// Built on 2024-04-18 at 13:02 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -167,6 +167,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get reset_password_title => 'Please enter your email below and we will send you a reset link.';
 	String get reset_password_btn => 'Send reset link';
 	String get reset_password_success => 'We\'ve sent you an email with a link to reset your password. Please check your emails.';
+	String get reset_password_error => 'Failed to send reset link. Please try again later!';
 	String get go_back => 'Go back';
 	String get platforms => 'Platforms';
 	String get platforms_empty => 'There are no platforms found';
@@ -193,6 +194,9 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get navigation_profile => 'Account';
 	String get language_en => 'English';
 	String get language_sr => 'Serbian';
+	String get theme_system => 'System theme';
+	String get theme_light => 'Light theme';
+	String get theme_dark => 'Dark theme';
 }
 
 // Path: <root>
@@ -238,6 +242,7 @@ class _StringsSr implements Translations {
 	@override String get reset_password_title => 'Molim Vas upišite Vašu email adresu ispod i poslaćemo Vam reset link.';
 	@override String get reset_password_btn => 'Pošalji reset link';
 	@override String get reset_password_success => 'Poslali smo Vam email sa uputstvima kako da resetujete Vaš password. Molimo Vas proverite email sanduče.';
+	@override String get reset_password_error => 'Greška prilikom slanja emaila! Molimo Vas pokušajte kasnije.';
 	@override String get go_back => 'Idi nazad';
 	@override String get platforms => 'Platforme';
 	@override String get platforms_empty => 'Nema dostupnih platformi';
@@ -264,6 +269,9 @@ class _StringsSr implements Translations {
 	@override String get navigation_profile => 'Nalog';
 	@override String get language_en => 'Engleski';
 	@override String get language_sr => 'Srpski';
+	@override String get theme_system => 'Sistemska tema';
+	@override String get theme_light => 'Svetla tema';
+	@override String get theme_dark => 'Tamna tema';
 }
 
 /// Flat map(s) containing all translations.
@@ -291,6 +299,7 @@ extension on Translations {
 			case 'reset_password_title': return 'Please enter your email below and we will send you a reset link.';
 			case 'reset_password_btn': return 'Send reset link';
 			case 'reset_password_success': return 'We\'ve sent you an email with a link to reset your password. Please check your emails.';
+			case 'reset_password_error': return 'Failed to send reset link. Please try again later!';
 			case 'go_back': return 'Go back';
 			case 'platforms': return 'Platforms';
 			case 'platforms_empty': return 'There are no platforms found';
@@ -317,6 +326,9 @@ extension on Translations {
 			case 'navigation_profile': return 'Account';
 			case 'language_en': return 'English';
 			case 'language_sr': return 'Serbian';
+			case 'theme_system': return 'System theme';
+			case 'theme_light': return 'Light theme';
+			case 'theme_dark': return 'Dark theme';
 			default: return null;
 		}
 	}
@@ -344,6 +356,7 @@ extension on _StringsSr {
 			case 'reset_password_title': return 'Molim Vas upišite Vašu email adresu ispod i poslaćemo Vam reset link.';
 			case 'reset_password_btn': return 'Pošalji reset link';
 			case 'reset_password_success': return 'Poslali smo Vam email sa uputstvima kako da resetujete Vaš password. Molimo Vas proverite email sanduče.';
+			case 'reset_password_error': return 'Greška prilikom slanja emaila! Molimo Vas pokušajte kasnije.';
 			case 'go_back': return 'Idi nazad';
 			case 'platforms': return 'Platforme';
 			case 'platforms_empty': return 'Nema dostupnih platformi';
@@ -370,6 +383,9 @@ extension on _StringsSr {
 			case 'navigation_profile': return 'Nalog';
 			case 'language_en': return 'Engleski';
 			case 'language_sr': return 'Srpski';
+			case 'theme_system': return 'Sistemska tema';
+			case 'theme_light': return 'Svetla tema';
+			case 'theme_dark': return 'Tamna tema';
 			default: return null;
 		}
 	}

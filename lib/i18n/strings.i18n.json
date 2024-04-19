@@ -18,6 +18,7 @@
     "reset_password_title": "Please enter your email below and we will send you a reset link.",
     "reset_password_btn": "Send reset link",
     "reset_password_success": "We've sent you an email with a link to reset your password. Please check your emails.",
+    "reset_password_error": "Failed to send reset link. Please try again later!",
     "go_back": "Go back",
     "platforms": "Platforms",
     "platforms_empty": "There are no platforms found",
@@ -43,5 +44,8 @@
     "navigation_favorites": "Favorites",
     "navigation_profile": "Account",
     "language_en": "English",
-    "language_sr": "Serbian"
+    "language_sr": "Serbian",
+    "theme_system": "System theme",
+    "theme_light": "Light theme",
+    "theme_dark": "Dark theme"
 }

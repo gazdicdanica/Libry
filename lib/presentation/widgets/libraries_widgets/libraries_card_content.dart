@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_internship_2024_app/models/library.dart';
-import 'package:flutter_internship_2024_app/theme.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class LibrariesCardContet extends StatelessWidget {
@@ -59,11 +58,7 @@ class LibrariesCardContet extends StatelessWidget {
                     Row(
                       children: [
                         Row(children: [
-                          Image.asset(
-                            'assets/Conversion_path.png',
-                            width: 24,
-                            height: 24,
-                          ),
+                          Icon(MdiIcons.sourceRepository, size: 20),
                           SizedBox(
                             width: screenWidth * 0.3,
                             child: Text(
@@ -86,10 +81,7 @@ class LibrariesCardContet extends StatelessWidget {
                             keywordsString == ''
                                 ? const SizedBox()
                                 : Icon(MdiIcons.tag,
-                                    color: textColor,
-                                    size: position
-                                        ? screenWidth * 0.05
-                                        : screenWidth * 0.03),
+                                    size: 20),
                             SizedBox(
                               width: screenWidth * 0.01,
                             ),

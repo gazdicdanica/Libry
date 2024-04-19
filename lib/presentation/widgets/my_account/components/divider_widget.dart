@@ -9,7 +9,7 @@ class DividerWidget extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 8.0, left: 15.0, right: 15.0),
         child: Container(
           height: 1,
-          color: const Color.fromRGBO(0, 0, 0, 0.25),
+          color: Theme.of(context).colorScheme.onBackground.withOpacity(0.25)
         ),
       
     );
