@@ -29,20 +29,19 @@ class LibraryDetailsScreen extends StatelessWidget {
       ),
       body: SafeArea(
           child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              LibraryHeaderDetails(library: library),
-              const SizedBox(height: 7),
-              KeywordsDetails(keywords: library.keywords),
-              const SizedBox(height: 10),
-              DetailsWidget(library: library),
-            ],
-          ),
+              child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            LibraryHeaderDetails(library: library),
+            const SizedBox(height: 7),
+            KeywordsDetails(keywords: library.filteredKeywords),
+            const SizedBox(height: 10),
+            DetailsWidget(library: library),
+          ],
         ),
-      )),
+      ))),
     );
   }
 }

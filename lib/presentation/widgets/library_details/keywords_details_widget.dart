@@ -9,6 +9,9 @@ class KeywordsDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = Translations.of(context);
+    if (keywords == null || keywords!.isEmpty) {
+      return const SizedBox();
+    }
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(

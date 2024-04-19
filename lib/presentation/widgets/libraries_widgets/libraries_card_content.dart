@@ -18,7 +18,7 @@ class LibrariesCardContet extends StatelessWidget {
     List<String> keywords = [];
     String keywordsString = '';
 
-    for (String keyword in library.keywords!) {
+    for (String keyword in library.filteredKeywords!) {
       TextPainter textPainter = TextPainter(
         text: TextSpan(text: keyword),
         textDirection: TextDirection.ltr,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_internship_2024_app/models/library.dart';
+import 'package:flutter_internship_2024_app/presentation/widgets/library_webview/library_webview_widget.dart';
 import 'package:flutter_internship_2024_app/theme.dart';
 
 class LibraryHeaderDetails extends StatelessWidget {
@@ -43,7 +44,14 @@ class LibraryHeaderDetails extends StatelessWidget {
                 children: [
                   IconButton(
                     icon: const Icon(Icons.link),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                LibraryWebView(url: library.homepage!)),
+                      );
+                    },
                     padding: const EdgeInsets.only(bottom: 2),
                   ),
                   IconButton(

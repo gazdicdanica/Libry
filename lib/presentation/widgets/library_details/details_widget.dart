@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 import 'package:flutter_internship_2024_app/models/library.dart';
-import 'package:flutter_internship_2024_app/presentation/widgets/divider_widget.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/library_details/label_widget.dart';
 import 'package:flutter_internship_2024_app/theme.dart';
 import 'package:intl/intl.dart';
@@ -16,41 +15,73 @@ class DetailsWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildInfoContainer(
-          label: t.repo_status,
-          value: library.repositoryStatus!,
+        _buildInfoContainers([
+          t.repo_status,
+          t.platform,
+          t.language,
+          t.license,
+          t.stars,
+          t.latest_release_num,
+          t.published_at,
+          t.latest_stable_release,
+          t.published_at,
+        ], [
+          library.repositoryStatus!,
+          library.platform!,
+          library.language!,
+          library.license!,
+          library.stars.toString(),
+          library.latestReleaseNumber!,
+          _formatDate(library.latestReleasePublishedAt),
+          library.latestStableReleaseNumber!,
+          _formatDate(library.latestStableReleasePublishedAt),
+        ]),
+      ],
+    );
+  }
+
+  Widget _buildInfoContainers(List<String> labels, List<String> values) {
+    return Row(
+      children: [
+        Expanded(
+          child: Container(
+            padding: const EdgeInsets.only(bottom: 22),
+            decoration: const BoxDecoration(
+              color: lightGreenColor,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(15),
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: labels.map((label) {
+                return Container(
+                  padding: const EdgeInsets.all(8),
+                  child: LabelWidget(label: label),
+                );
+              }).toList(),
+            ),
+          ),
         ),
-        _buildInfoContainer(
-          label: t.platform,
-          value: library.platform!,
-        ),
-        _buildInfoContainer(
-          label: t.language,
-          value: library.language!,
-        ),
-        _buildInfoContainer(
-          label: t.license,
-          value: library.license!,
-        ),
-        _buildInfoContainer(
-          label: t.stars,
-          value: library.stars.toString(),
-        ),
-        _buildInfoContainer(
-          label: t.latest_release_num,
-          value: library.latestReleaseNumber!,
-        ),
-        _buildInfoContainer(
-          label: t.published_at,
-          value: _formatDate(library.latestReleasePublishedAt),
-        ),
-        _buildInfoContainer(
-          label: t.latest_stable_release,
-          value: library.latestStableReleaseNumber!,
-        ),
-        _buildInfoContainer(
-          label: t.published_at,
-          value: _formatDate(library.latestStableReleasePublishedAt),
+        Expanded(
+          child: Container(
+            padding: const EdgeInsets.only(bottom: 22),
+            decoration: const BoxDecoration(
+              color: lightGreyColor,
+              borderRadius: BorderRadius.only(
+                bottomRight: Radius.circular(15),
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: values.map((value) {
+                return Container(
+                  padding: const EdgeInsets.all(8),
+                  child: LabelWidget(label: value),
+                );
+              }).toList(),
+            ),
+          ),
         ),
       ],
     );
@@ -60,53 +91,7 @@ class DetailsWidget extends StatelessWidget {
     if (dateString != null && dateString.isNotEmpty) {
       return DateFormat('dd.MM.yyyy, HH:mm').format(DateTime.parse(dateString));
     } else {
-      return '';
+      return '/';
     }
-  }
-
-  Widget _buildInfoContainer({
-    required String label,
-    required String value,
-  }) {
-    return FractionallySizedBox(
-      widthFactor: 1.0,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Expanded(
-                child: Container(
-                  color: lightGreenColor,
-                  child: LabelWidget(label: label),
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  color: lightGreyColor,
-                  child: LabelWidget(label: value),
-                ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: Container(
-                  color: lightGreenColor,
-                  child: const DividerWidget(),
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  color: lightGreyColor,
-                  child: const DividerWidget(),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
   }
 }
