@@ -27,9 +27,9 @@ Future main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  if (kReleaseMode) {
-      FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
-    }
+  if (kDebugMode) {
+    FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
+  }
   runApp(const MyApp());
 }
 
@@ -38,6 +38,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     final platformsRepo = PlatformsRepository(PlatformsDataProvider());
     return MultiRepositoryProvider(
       providers: [

@@ -151,7 +151,7 @@ void _sendResetEmail(BuildContext context) {
                       ),
                       (state is ForgotPasswordFailure)
                           ? Text(
-                              t.confirm_password_error,
+                              t.auth_failed,
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 color: Colors.red,
