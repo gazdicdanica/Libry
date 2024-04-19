@@ -38,7 +38,7 @@ class _FavoritesListState extends State<FavoritesList>{
                         color: textColor)
                ),
                  const SizedBox(height: 20,),
-                 Text(t.add_favorites,
+                 Text(t.no_favorites,
                     style:  const TextStyle(
                     fontSize: 20,
                     color: textColor,

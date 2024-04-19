@@ -45,9 +45,9 @@
     "language_en": "Engleski",
     "language_sr": "Srpski",
     "favorites" : "Omiljeno",
-    "add_favorites" : "Biblioteka dodata u omiljene",
-    "remove_favorites" : "Biblioteka uklonjena iz omiljenih",
-    "error_favorites" : "Greška prilikom azuriranja omiljenih biblioteka",
+    "add_favorites" : "Paket dodat u omiljene",
+    "remove_favorites" : "Paket uklonjen iz omiljenih",
+    "error_favorites" : "Greška prilikom ažuriranja omiljenih paketa",
     "no_favorites": "Nemate omiljene pakete!",
     "explanation_adding" : "Ako želite da dobijate ažuriranja o vašim omiljenim paketima, dodajte ih u omiljene pritiskom na ikonu srca."
 

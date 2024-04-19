@@ -191,7 +191,6 @@ class _LibrariesCardContetState extends State<LibrariesCardContet> {
                 .collection('libraries')
                 .doc(libraryName)
                 .set({
-               // 'uid':lib,
                 'name':library.name,
                 'latestRelaseNumber':library.latestReleaseNumber,
                 'keywords': library.keywords,

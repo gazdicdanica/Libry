@@ -271,9 +271,9 @@ class _StringsSr implements Translations {
 	@override String get language_en => 'Engleski';
 	@override String get language_sr => 'Srpski';
   @override String get favorites => 'Omiljeno';
-  @override String get add_favorites => 'Biblioteka dodata u omiljene';
-  @override String get remove_favorites => 'Biblioteka uklonjena iz omiljenih';
-  @override String get  error_favorites => 'Greška prilikom azuriranja omiljenih biblioteka';
+  @override String get add_favorites => 'Paket dodat u omiljene';
+  @override String get remove_favorites => 'Paket uklonjen iz omiljenih';
+  @override String get  error_favorites => 'Greška prilikom ažuriranja omiljenih paketa';
   @override String get no_favorites => 'Nemate omiljene pakete!';
   @override String get explanation_adding => 'Ako želite da dobijate ažuriranja o vašim omiljenim paketima, dodajte ih u omiljene pritiskom na ikonu srca.';
 }
@@ -330,8 +330,8 @@ extension on Translations {
 			case 'language_en': return 'English';
 			case 'language_sr': return 'Serbian';
       case 'favorites': return 'Favorites';
-      case 'add_favorites' : return 'Library added to favorites.';
-      case 'remove_favorites' : return 'Library removed from favorites';
+      case 'add_favorites' : return 'Package added to favorites.';
+      case 'remove_favorites' : return 'Package removed from favorites';
       case 'error_favorites'  : return 'Error occurred while updating favorites';
       case 'no_favorites' : return 'There are no favorite packages yet!';
       case 'explanation_adding' : return 'If you want to receive updates about your favorite packages, add it to favorites by pressing heart icon.';
@@ -390,10 +390,10 @@ extension on _StringsSr {
 			case 'language_en': return 'Engleski';
 			case 'language_sr': return 'Srpski';
       case 'favorites': return 'Omiljeno';
-      case 'add_favorites' : return 'Biblioteka dodata u omiljene';
-      case 'remove_favorites' : return 'Biblioteka uklonjena iz omiljenih';
-      case 'error_favorites'  : return 'Greška prilikom ažuriranja omiljenih biblioteka';
-      case 'no_favorites' : return 'Nemate omiljene biblioteke!';
+      case 'add_favorites' : return 'Paket dodat u omiljene';
+      case 'remove_favorites' : return 'Paket uklonjen iz omiljenih';
+      case 'error_favorites'  : return 'Greška prilikom ažuriranja omiljenih paketa';
+      case 'no_favorites' : return 'Nemate omiljene pakete!';
       case 'explanation_adding' : return 'Ako želite da dobijate ažuriranja o vašim omiljenim paketima, dodajte ih u omiljene pritiskom na ikonu srca.';
 			default: return null;
 		}

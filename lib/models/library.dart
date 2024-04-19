@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class Library {
- //final String uid;
   final int? contributionsCount;
   final int? dependentReposCount;
   final int? dependentsCount;
@@ -20,7 +19,6 @@ class Library {
 
   Library(
       {
-    //  required this.uid,
       required this.contributionsCount,
       required this.dependentReposCount,
       required this.dependentsCount,
@@ -39,9 +37,7 @@ class Library {
       });
 
   factory Library.fromMap(Map<String, dynamic> map) {
-    //String uid=const Uuid().v4();
     return Library(
-      //uid: '',
       contributionsCount: map['contributioons_count'],
       keywords: List<String>.from(map['keywords']),
       latestReleaseNumber: map['latest_release_number'],
