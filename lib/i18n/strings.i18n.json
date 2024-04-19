@@ -45,11 +45,13 @@
     "navigation_profile": "Account",
     "language_en": "English",
     "language_sr": "Serbian",
-    "favorites":"Favorites",
-    "add_favorites" : "Library added to favorites.",
-    "remove_favorites" : "Library removed from favorites",
-    "error_favorites" :"Error occurred while updating favorites",
-    "no_favorites": "There are no favorite packages yet",
-    "explanation_adding":"If you want to receive updates about your favorite packages, add it to favorites by pressing heart icon."
-
+    "library_details": "Library details",
+    "license": "License",
+    "keywords": "Keywords",
+    "repo_status": "Repository status",
+    "platform": "Platform",
+    "stars": "Stars",
+    "latest_release_num": "Latest release number",
+    "published_at": "Published at",
+    "latest_stable_release": "Latest stable release"
 }

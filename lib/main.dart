@@ -27,7 +27,7 @@ Future main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  if (kDebugMode) {
+  if (kReleaseMode) {
     FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
   }
   runApp(const MyApp());

@@ -19,7 +19,7 @@ class _LibrariesCardContetState extends State<LibrariesCardContet> {
   
   @override
   void initState() {
-    checkFavoriteStatus();
+   // checkFavoriteStatus();
 
     super.initState();
   }
@@ -27,6 +27,7 @@ class _LibrariesCardContetState extends State<LibrariesCardContet> {
 
   @override
   Widget build(BuildContext context) {
+    checkFavoriteStatus();
     
     bool position = MediaQuery.of(context).orientation == Orientation.portrait;
     double screenWidth = MediaQuery.of(context).size.width;

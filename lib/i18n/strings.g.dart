@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 92 (46 per locale)
+/// Strings: 108 (54 per locale)
 ///
-/// Built on 2024-04-18 at 15:41 UTC
+/// Built on 2024-04-19 at 08:32 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -194,6 +194,15 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get navigation_profile => 'Account';
 	String get language_en => 'English';
 	String get language_sr => 'Serbian';
+	String get library_details => 'Library details';
+	String get license => 'License';
+	String get keywords => 'Keywords';
+	String get repo_status => 'Repository status';
+	String get platform => 'Platform';
+	String get stars => 'Stars';
+	String get latest_release_num => 'Latest release number';
+	String get published_at => 'Published at';
+	String get latest_stable_release => 'Latest stable release';
   String get favorites => 'Favorites';
   String get add_favorites => 'Library added to favorites';
   String get remove_favorites => 'Library removed from favorites';
@@ -272,6 +281,15 @@ class _StringsSr implements Translations {
 	@override String get navigation_profile => 'Nalog';
 	@override String get language_en => 'Engleski';
 	@override String get language_sr => 'Srpski';
+	@override String get library_details => 'Detalji biblioteke';
+	@override String get license => 'Licenca';
+	@override String get keywords => 'Ključne reči';
+	@override String get repo_status => 'Status repozitorijuma';
+	@override String get platform => 'Platforma';
+	@override String get stars => 'Zvezde';
+	@override String get latest_release_num => 'Broj poslednjeg izdanja';
+	@override String get published_at => 'Objavljeno u';
+	@override String get latest_stable_release => 'Stabilno izdanje';
   @override String get favorites => 'Omiljeno';
   @override String get add_favorites => 'Paket dodat u omiljene';
   @override String get remove_favorites => 'Paket uklonjen iz omiljenih';
@@ -332,6 +350,15 @@ extension on Translations {
 			case 'navigation_profile': return 'Account';
 			case 'language_en': return 'English';
 			case 'language_sr': return 'Serbian';
+			case 'library_details': return 'Library details';
+			case 'license': return 'License';
+			case 'keywords': return 'Keywords';
+			case 'repo_status': return 'Repository status';
+			case 'platform': return 'Platform';
+			case 'stars': return 'Stars';
+			case 'latest_release_num': return 'Latest release number';
+			case 'published_at': return 'Published at';
+			case 'latest_stable_release': return 'Latest stable release';
       case 'favorites': return 'Favorites';
       case 'add_favorites' : return 'Package added to favorites.';
       case 'remove_favorites' : return 'Package removed from favorites';
@@ -393,6 +420,15 @@ extension on _StringsSr {
 			case 'navigation_profile': return 'Nalog';
 			case 'language_en': return 'Engleski';
 			case 'language_sr': return 'Srpski';
+			case 'library_details': return 'Detalji biblioteke';
+			case 'license': return 'Licenca';
+			case 'keywords': return 'Ključne reči';
+			case 'repo_status': return 'Status repozitorijuma';
+			case 'platform': return 'Platforma';
+			case 'stars': return 'Zvezde';
+			case 'latest_release_num': return 'Broj poslednjeg izdanja';
+			case 'published_at': return 'Objavljeno u';
+			case 'latest_stable_release': return 'Stabilno izdanje';
       case 'favorites': return 'Omiljeno';
       case 'add_favorites' : return 'Paket dodat u omiljene';
       case 'remove_favorites' : return 'Paket uklonjen iz omiljenih';

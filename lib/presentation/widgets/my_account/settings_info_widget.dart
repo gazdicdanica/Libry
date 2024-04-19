@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_internship_2024_app/bloc/locale_bloc/locale_bloc.dart';
 import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/my_account/components/change_button_widget.dart';
-import 'package:flutter_internship_2024_app/presentation/widgets/my_account/components/divider_widget.dart';
+import 'package:flutter_internship_2024_app/presentation/widgets/divider_widget.dart';
 
 class SettingsInfoRow extends StatelessWidget {
   const SettingsInfoRow({

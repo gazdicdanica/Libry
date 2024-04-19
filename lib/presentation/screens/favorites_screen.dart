@@ -49,7 +49,6 @@ class FavoritesScreen extends StatelessWidget {
              }
              final List<Library> favoriteLibraries= snapshot.data!.docs
                 .map((doc) => Library(
-                 // uid: doc['uid'],
                   name:doc['name'],
                   latestReleaseNumber: doc['latestRelaseNumber'],
                   keywords: List<String>.from(doc['keywords']),
@@ -65,6 +64,7 @@ class FavoritesScreen extends StatelessWidget {
                         latestDownloadUrl: '', 
                         platform: '', 
                         rank: null,
+                        license: '', latestStableReleaseNumber: '', latestStableReleasePublishedAt: '', latestReleasePublishedAt: '', repositoryStatus: '', stars: null,
                         
                   )).toList();
                   return FavoritesList( libraries: favoriteLibraries,);

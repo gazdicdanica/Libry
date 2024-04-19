@@ -14,6 +14,7 @@ class LabelWidget extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(left: 8.0),
         child: Text(
+          overflow: TextOverflow.ellipsis,
           '$label ',
           style: Theme.of(context).textTheme.titleMedium,
         ),
