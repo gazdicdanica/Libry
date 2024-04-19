@@ -29,6 +29,10 @@ class DetailsWidget extends StatelessWidget {
           value: library.language!,
         ),
         _buildInfoContainer(
+          label: t.license,
+          value: library.license!,
+        ),
+        _buildInfoContainer(
           label: t.stars,
           value: library.stars.toString(),
         ),

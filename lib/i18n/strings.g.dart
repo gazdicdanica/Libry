@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 106 (53 per locale)
+/// Strings: 108 (54 per locale)
 ///
-/// Built on 2024-04-18 at 13:03 UTC
+/// Built on 2024-04-19 at 08:32 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -194,7 +194,8 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get language_en => 'English';
 	String get language_sr => 'Serbian';
 	String get library_details => 'Library details';
-	String get licenses => 'Licenses';
+	String get license => 'License';
+	String get keywords => 'Keywords';
 	String get repo_status => 'Repository status';
 	String get platform => 'Platform';
 	String get stars => 'Stars';
@@ -273,7 +274,8 @@ class _StringsSr implements Translations {
 	@override String get language_en => 'Engleski';
 	@override String get language_sr => 'Srpski';
 	@override String get library_details => 'Detalji biblioteke';
-	@override String get licenses => 'Licence';
+	@override String get license => 'Licenca';
+	@override String get keywords => 'Ključne reči';
 	@override String get repo_status => 'Status repozitorijuma';
 	@override String get platform => 'Platforma';
 	@override String get stars => 'Zvezde';
@@ -334,7 +336,8 @@ extension on Translations {
 			case 'language_en': return 'English';
 			case 'language_sr': return 'Serbian';
 			case 'library_details': return 'Library details';
-			case 'licenses': return 'Licenses';
+			case 'license': return 'License';
+			case 'keywords': return 'Keywords';
 			case 'repo_status': return 'Repository status';
 			case 'platform': return 'Platform';
 			case 'stars': return 'Stars';
@@ -395,7 +398,8 @@ extension on _StringsSr {
 			case 'language_en': return 'Engleski';
 			case 'language_sr': return 'Srpski';
 			case 'library_details': return 'Detalji biblioteke';
-			case 'licenses': return 'Licence';
+			case 'license': return 'Licenca';
+			case 'keywords': return 'Ključne reči';
 			case 'repo_status': return 'Status repozitorijuma';
 			case 'platform': return 'Platforma';
 			case 'stars': return 'Zvezde';

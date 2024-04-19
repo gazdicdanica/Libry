@@ -8,7 +8,7 @@ class Library {
   final int? forks;
   final String? homepage;
   final List<String>? keywords;
-  final List<String>? licenses;
+  final String? license;
   final String? language;
   final String? latestDownloadUrl;
   final String? latestReleaseNumber;
@@ -30,7 +30,7 @@ class Library {
     required this.forks,
     required this.homepage,
     required this.keywords,
-    required this.licenses,
+    required this.license,
     required this.language,
     required this.latestDownloadUrl,
     required this.latestReleaseNumber,
@@ -49,9 +49,7 @@ class Library {
     return Library(
       contributionsCount: map['contributions_count'],
       keywords: List<String>.from(map['keywords'] ?? []),
-      licenses: map['licenses'] is List<String>
-          ? List<String>.from(map['licenses'] ?? [])
-          : [map['licenses'] ?? '/'],
+      license: map['licenses'] ?? '/',
       latestReleaseNumber: map['latest_release_number'] ?? '/',
       latestStableReleaseNumber: map['latest_stable_release_number'] ?? '/',
       latestReleasePublishedAt: map['latest_release_published_at'] ?? '/',

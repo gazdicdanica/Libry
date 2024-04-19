@@ -3,7 +3,7 @@ import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 import 'package:flutter_internship_2024_app/models/library.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/library_details/details_widget.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/library_details/header_details_widget.dart';
-import 'package:flutter_internship_2024_app/presentation/widgets/library_details/license_details_widget.dart';
+import 'package:flutter_internship_2024_app/presentation/widgets/library_details/keywords_details_widget.dart';
 
 class LibraryDetailsScreen extends StatelessWidget {
   final Library library;
@@ -36,7 +36,7 @@ class LibraryDetailsScreen extends StatelessWidget {
             children: [
               LibraryHeaderDetails(library: library),
               const SizedBox(height: 7),
-              LicenseDetails(licenses: library.licenses),
+              KeywordsDetails(keywords: library.keywords),
               const SizedBox(height: 10),
               DetailsWidget(library: library),
             ],
