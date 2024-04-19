@@ -1,0 +1,11 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background color -->
+    <item android:drawable="@color/dark_splash_background" />
+
+    <!-- Linear layout to wrap the bitmap -->
+    <item>
+        <bitmap
+            android:gravity="center_horizontal"
+            android:src="@mipmap/launch_image" />
+    </item>
+</layer-list>

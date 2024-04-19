@@ -4,14 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_internship_2024_app/bloc/auth_bloc/auth_bloc.dart';
 import 'package:flutter_internship_2024_app/presentation/screens/reset_screen.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/auth/form_field.dart';
-import 'package:flutter_internship_2024_app/theme.dart';
-
-final buttonStyle = ButtonStyle(
-  foregroundColor: MaterialStateProperty.all<Color>(textColor),
-  backgroundColor: MaterialStateProperty.all<Color>(themeSeedColor),
-  padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 15)),
-  elevation: MaterialStateProperty.all(5),
-);
 
 class AuthForm extends StatefulWidget {
   const AuthForm({super.key});
@@ -106,6 +98,7 @@ class _AuthFormState extends State<AuthForm> {
                               );
                             },
                             style: ButtonStyle(
+                                backgroundColor:MaterialStateProperty.all<Color> (Colors.transparent),
                                 foregroundColor:
                                     MaterialStateProperty.all<Color>(
                                         const Color.fromRGBO(0, 166, 141, 1))),
@@ -152,7 +145,7 @@ class _AuthFormState extends State<AuthForm> {
                       onPressed: () {
                         _validateAndAuthenticate(ctx);
                       },
-                      style: buttonStyle,
+                      style: Theme.of(context).textButtonTheme.style,
                       child: Text(_isLogin ? t.login : t.singup),
                     ),
                   ),
@@ -165,7 +158,7 @@ class _AuthFormState extends State<AuthForm> {
                       onPressed: () {
                         _resetForm(ctx);
                       },
-                      style: buttonStyle,
+                      style: Theme.of(context).textButtonTheme.style,
                       child: Text(_isLogin ? t.singup : t.login),
                     ),
                   ),

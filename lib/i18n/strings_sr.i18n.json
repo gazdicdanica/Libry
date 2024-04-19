@@ -18,6 +18,7 @@
     "reset_password_title": "Molim Vas upišite Vašu email adresu ispod i poslaćemo Vam reset link.",
     "reset_password_btn": "Pošalji reset link",
     "reset_password_success": "Poslali smo Vam email sa uputstvima kako da resetujete Vaš password. Molimo Vas proverite email sanduče.",
+    "reset_password_error": "Greška prilikom slanja emaila! Molimo Vas pokušajte kasnije.",
     "go_back": "Idi nazad",
     "platforms": "Platforme",
     "platforms_empty": "Nema dostupnih platformi",
@@ -52,5 +53,7 @@
     "stars": "Zvezde",
     "latest_release_num": "Broj poslednjeg izdanja",
     "published_at": "Objavljeno u",
-    "latest_stable_release": "Stabilno izdanje"
+    "latest_stable_release": "Stabilno izdanje""theme_system": "Sistemska tema",
+    "theme_light": "Svetla tema",
+    "theme_dark": "Tamna tema"
 }

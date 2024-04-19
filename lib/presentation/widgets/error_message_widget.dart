@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_internship_2024_app/theme.dart';
 
 class ErrorMessageWidget extends StatelessWidget {
   const ErrorMessageWidget(
@@ -19,7 +18,6 @@ class ErrorMessageWidget extends StatelessWidget {
             children: [
               const Icon(
                 Icons.error_outline,
-                color: textColor,
                 size: 60,
               ),
               const SizedBox(
@@ -36,7 +34,6 @@ class ErrorMessageWidget extends StatelessWidget {
           bottom: 20,
           right: 20,
           child: FloatingActionButton(
-            backgroundColor: themeSeedColor,
             onPressed: refreshFunction,
             child: const Icon(Icons.refresh),
           ),
