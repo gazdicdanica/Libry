@@ -329,6 +329,13 @@ extension on Translations {
 			case 'navigation_profile': return 'Account';
 			case 'language_en': return 'English';
 			case 'language_sr': return 'Serbian';
+      case 'favorites': return 'Favorites';
+      case 'add_favorites' : return 'Library added to favorites.';
+      case 'remove_favorites' : return 'Library removed from favorites';
+      case 'error_favorites'  : return 'Error occurred while updating favorites';
+      case 'no_favorites' : return 'There are no favorite packages yet!';
+      case 'explanation_adding' : return 'If you want to receive updates about your favorite packages, add it to favorites by pressing heart icon.';
+
 			default: return null;
 		}
 	}
@@ -382,6 +389,12 @@ extension on _StringsSr {
 			case 'navigation_profile': return 'Nalog';
 			case 'language_en': return 'Engleski';
 			case 'language_sr': return 'Srpski';
+      case 'favorites': return 'Omiljeno';
+      case 'add_favorites' : return 'Biblioteka dodata u omiljene';
+      case 'remove_favorites' : return 'Biblioteka uklonjena iz omiljenih';
+      case 'error_favorites'  : return 'Greška prilikom ažuriranja omiljenih biblioteka';
+      case 'no_favorites' : return 'Nemate omiljene biblioteke!';
+      case 'explanation_adding' : return 'Ako želite da dobijate ažuriranja o vašim omiljenim paketima, dodajte ih u omiljene pritiskom na ikonu srca.';
 			default: return null;
 		}
 	}

@@ -47,5 +47,9 @@
     "favorites" : "Omiljeno",
     "add_favorites" : "Biblioteka dodata u omiljene",
     "remove_favorites" : "Biblioteka uklonjena iz omiljenih",
-    "error_favorites" : "Greška prilikom azuriranja omiljenih biblioteka"
+    "error_favorites" : "Greška prilikom azuriranja omiljenih biblioteka",
+    "no_favorites": "Nemate omiljene pakete!",
+    "explanation_adding" : "Ako želite da dobijate ažuriranja o vašim omiljenim paketima, dodajte ih u omiljene pritiskom na ikonu srca."
+
+
 }
