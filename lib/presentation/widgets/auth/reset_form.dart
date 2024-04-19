@@ -5,14 +5,6 @@ import 'package:flutter_internship_2024_app/bloc/auth_bloc/auth_bloc.dart';
 import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 import 'package:flutter_internship_2024_app/presentation/screens/auth_screen.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/auth/form_field.dart';
-import 'package:flutter_internship_2024_app/theme.dart';
-
-final buttonStyle = ButtonStyle(
-  foregroundColor: MaterialStateProperty.all<Color>(textColor),
-  backgroundColor: MaterialStateProperty.all<Color>(themeSeedColor),
-  padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 15)),
-  elevation: MaterialStateProperty.all(5),
-);
 
 class ResetForm extends StatefulWidget {
   const ResetForm({super.key});
@@ -114,7 +106,7 @@ class _ResetFormState extends State<ResetForm> {
                           onPressed: () {
                             _sendResetEmail(context);
                           },
-                          style: buttonStyle,
+                          style: Theme.of(context).textButtonTheme.style!,
                           child: Text(
                             t.reset_password_btn,
                             style: const TextStyle(fontSize: 16),
@@ -143,7 +135,7 @@ class _ResetFormState extends State<ResetForm> {
                               Navigator.of(context).pop(MaterialPageRoute(
                                   builder: (context) => const AuthScreen()));
                             },
-                            style: buttonStyle,
+                            style: Theme.of(context).textButtonTheme.style!,
                             child: Text(
                               t.go_back,
                             )),

@@ -15,7 +15,7 @@ class LibrariesDataProvider {
             ),
           )
           .timeout(const Duration(seconds: 60),
-              onTimeout: () => throw t.internet_error);
+              onTimeout: () => throw t.libraries_error);
       if (res.statusCode != 200) {
         throw (t.libraries_error);
       }

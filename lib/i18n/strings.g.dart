@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 92 (46 per locale)
+/// Strings: 96 (48 per locale)
 ///
-/// Built on 2024-04-18 at 15:41 UTC
+/// Built on 2024-04-18 at 13:02 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -194,6 +194,9 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get navigation_profile => 'Account';
 	String get language_en => 'English';
 	String get language_sr => 'Serbian';
+	String get theme_system => 'System theme';
+	String get theme_light => 'Light theme';
+	String get theme_dark => 'Dark theme';
 }
 
 // Path: <root>
@@ -266,6 +269,9 @@ class _StringsSr implements Translations {
 	@override String get navigation_profile => 'Nalog';
 	@override String get language_en => 'Engleski';
 	@override String get language_sr => 'Srpski';
+	@override String get theme_system => 'Sistemska tema';
+	@override String get theme_light => 'Svetla tema';
+	@override String get theme_dark => 'Tamna tema';
 }
 
 /// Flat map(s) containing all translations.
@@ -320,6 +326,9 @@ extension on Translations {
 			case 'navigation_profile': return 'Account';
 			case 'language_en': return 'English';
 			case 'language_sr': return 'Serbian';
+			case 'theme_system': return 'System theme';
+			case 'theme_light': return 'Light theme';
+			case 'theme_dark': return 'Dark theme';
 			default: return null;
 		}
 	}
@@ -374,6 +383,9 @@ extension on _StringsSr {
 			case 'navigation_profile': return 'Nalog';
 			case 'language_en': return 'Engleski';
 			case 'language_sr': return 'Srpski';
+			case 'theme_system': return 'Sistemska tema';
+			case 'theme_light': return 'Svetla tema';
+			case 'theme_dark': return 'Tamna tema';
 			default: return null;
 		}
 	}
