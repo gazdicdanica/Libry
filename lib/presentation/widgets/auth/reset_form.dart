@@ -145,7 +145,7 @@ class _ResetFormState extends State<ResetForm> {
                       ),
                       (state is ForgotPasswordFailure)
                           ? Text(
-                              t.confirm_password_error,
+                              t.auth_failed,
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 color: Colors.red,
