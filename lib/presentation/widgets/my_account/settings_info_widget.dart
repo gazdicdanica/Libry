@@ -18,6 +18,7 @@ class SettingsInfoRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t = Translations.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

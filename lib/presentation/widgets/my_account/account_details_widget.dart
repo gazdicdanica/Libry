@@ -62,6 +62,7 @@ class AccountDetails extends StatelessWidget {
     );
   }
 
+
   void _showModalSheet(BuildContext context, Widget content) {
     showModalBottomSheet(
         useSafeArea: true,
