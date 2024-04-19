@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:flutter/foundation.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -27,9 +27,9 @@ Future main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  // if (kDebugMode) {
-  //   FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
-  // }
+  if (kDebugMode) {
+    FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
+  }
   runApp(const MyApp());
 }
 
