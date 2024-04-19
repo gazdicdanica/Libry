@@ -152,6 +152,7 @@ class _AuthFormState extends State<AuthForm> {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
+                      key: const Key('login'),
                       onPressed: () {
                         _validateAndAuthenticate(ctx);
                       },

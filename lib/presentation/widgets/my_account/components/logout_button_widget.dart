@@ -11,6 +11,7 @@ class LogoutButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = Translations.of(context);
     return TextButton(
+      key: const Key('yes'),
       onPressed: () async {
         if (await confirm(
           context,
@@ -23,6 +24,7 @@ class LogoutButton extends StatelessWidget {
         }
       },
       child: Text(
+        key: const Key('logout'),
         t.logout,
         style: const TextStyle(color: redColor, fontSize: 22),
       ),
