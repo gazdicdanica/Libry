@@ -27,6 +27,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
 
   @override
   Widget build(BuildContext context) {
+    final t = Translations.of(context);
     return Scaffold(
       body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: NavigationBar(
@@ -55,6 +56,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
           //     label: t.navigation_favorites),
           NavigationDestination(
               icon: Icon(
+                key: const Key('account'),
                 Icons.person,
                 color: _selectedIndex == 2
                     ? textColor

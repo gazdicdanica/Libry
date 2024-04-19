@@ -9,6 +9,7 @@ class MyAccountScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser;
+    final t = Translations.of(context);
     return Scaffold(
       appBar: AppBar(
         title: Padding(

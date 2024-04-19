@@ -14,6 +14,7 @@ class LibrariesScreen extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
+          key: const ValueKey('key'),
           title: Padding(
             padding: const EdgeInsets.only(left: 10.0),
             child: Text(

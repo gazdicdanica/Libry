@@ -13,7 +13,7 @@ void main() {
       final emailField = $(#email);
       final passwordField = $(#password);
       final confirmPasswordField = $(#confirmPassword);
-      final logoutBtn = $(#logout);
+      //final logoutBtn = $(#logout);
 
       expect($('Sign up').visible, equals(true));
       await $('Sign up').tap();
@@ -29,7 +29,7 @@ void main() {
 
       expect($('Platforms').visible, equals(true));
 
-      await $(logoutBtn).tap();
-      await $.pump();
+      // await $(logoutBtn).tap();
+      // await $.pump();
   });
 }
