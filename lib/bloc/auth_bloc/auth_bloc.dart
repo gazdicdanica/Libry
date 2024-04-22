@@ -3,20 +3,20 @@ import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_internship_2024_app/data/auth/repository/auth_repository.dart';
 import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  AuthBloc() : super(AuthInitial()) {
+  final AuthRepository _authRepository;
+  AuthBloc(this._authRepository) : super(AuthInitial()) {
     on<StartAuth>(_authenticate);
     on<ResetAuth>(_reset);
     on<ValidateAuth>(_validate);
-    on<SendResetEmail>(_validateForgotPassword);
+    on<SendResetEmail>(_sendForgotPasswordEmail);
   }
-
-  final _firebase = FirebaseAuth.instance;
 
   void _validate(ValidateAuth event, Emitter<AuthState> emit) {
     String? emailError;
@@ -59,12 +59,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(AuthLoading());
     try {
       if (!event.isLogin) {
-        await _firebase.createUserWithEmailAndPassword(
-            email: event.email, password: event.password);
+        await _authRepository.register(event.email, event.password);
         emit(AuthSuccess());
       } else {
-        await _firebase.signInWithEmailAndPassword(
-            email: event.email, password: event.password);
+        await _authRepository.login(event.email, event.password);
         emit(AuthSuccess());
       }
     } on FirebaseException catch (e) {
@@ -85,10 +83,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
   }
 
-  void _validateForgotPassword(
+  void _sendForgotPasswordEmail(
       SendResetEmail event, Emitter<AuthState> emit) async {
     try {
-      await _firebase.sendPasswordResetEmail(email: event.email!);
+      await _authRepository.resetPassword(event.email!);
       emit(ForgotPasswordSuccess());
     } on FirebaseAuthException catch (e) {
       emit(ForgotPasswordFailure(emailError: e.message));

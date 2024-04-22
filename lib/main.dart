@@ -43,9 +43,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (!kReleaseMode) {
-      FirebaseAuth.instance.useAuthEmulator('127.0.0.1', 9099);
-    }
     final platformsRepo = PlatformsRepository(PlatformsDataProvider());
     return MultiRepositoryProvider(
       providers: [
