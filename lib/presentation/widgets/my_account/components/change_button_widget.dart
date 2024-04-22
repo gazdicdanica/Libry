@@ -18,6 +18,7 @@ class ChangeButtonWidget extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 4.0),
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         minimumSize: Size.zero,
+        backgroundColor: Colors.transparent
       ),
       onPressed: onPressed,
       child: Text(t.change,

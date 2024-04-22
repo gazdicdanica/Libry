@@ -4,6 +4,7 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
+/// Strings: 96 (48 per locale)
 /// Strings: 108 (54 per locale)
 ///
 /// Built on 2024-04-19 at 08:32 UTC
@@ -209,6 +210,9 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
   String get no_favorites => 'There are no favorite packages yet';
   String get explanation_adding => 'If you want to receive updates about your favorite packages, add it to favorites by pressing heart icon.';
  
+	String get theme_system => 'System theme';
+	String get theme_light => 'Light theme';
+	String get theme_dark => 'Dark theme';
 }
 
 // Path: <root>
@@ -296,6 +300,9 @@ class _StringsSr implements Translations {
   @override String get no_favorites => 'Nemate omiljene pakete!';
   @override String get explanation_adding => 'Ako želite da dobijate ažuriranja o vašim omiljenim paketima, dodajte ih u omiljene pritiskom na ikonu srca.';
  
+	@override String get theme_system => 'Sistemska tema';
+	@override String get theme_light => 'Svetla tema';
+	@override String get theme_dark => 'Tamna tema';
 }
 
 /// Flat map(s) containing all translations.
@@ -364,6 +371,9 @@ extension on Translations {
       case 'error_favorites'  : return 'Error occurred while updating favorites';
       case 'no_favorites' : return 'There are no favorite packages yet!';
       case 'explanation_adding' : return 'If you want to receive updates about your favorite packages, add it to favorites by pressing heart icon.';
+			case 'theme_system': return 'System theme';
+			case 'theme_light': return 'Light theme';
+			case 'theme_dark': return 'Dark theme';
 			default: return null;
 		}
 	}
@@ -432,6 +442,9 @@ extension on _StringsSr {
       case 'error_favorites'  : return 'Greška prilikom ažuriranja omiljenih paketa';
       case 'no_favorites' : return 'Nemate omiljene pakete!';
       case 'explanation_adding' : return 'Ako želite da dobijate ažuriranja o vašim omiljenim paketima, dodajte ih u omiljene pritiskom na ikonu srca.';
+			case 'theme_system': return 'Sistemska tema';
+			case 'theme_light': return 'Svetla tema';
+			case 'theme_dark': return 'Tamna tema';
       default: return null;
 		}
 	}

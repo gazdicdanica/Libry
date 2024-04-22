@@ -7,7 +7,6 @@ import 'package:flutter_internship_2024_app/presentation/screens/libraries_scree
 import 'package:flutter_internship_2024_app/presentation/widgets/card_widget.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/error_message_widget.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/platforms/platforms_card_overlay.dart';
-import 'package:flutter_internship_2024_app/theme.dart';
 
 class PlatformsList extends StatefulWidget {
   const PlatformsList({super.key});
@@ -58,7 +57,6 @@ class _PlatformsListState extends State<PlatformsList>
                 children: [
                   const Icon(
                     Icons.emoji_nature,
-                    color: textColor,
                     size: 80,
                   ),
                   const SizedBox(

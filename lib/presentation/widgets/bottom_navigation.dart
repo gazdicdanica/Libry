@@ -28,19 +28,13 @@ class _BottomNavigationState extends State<BottomNavigation> {
     return Scaffold(
       body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: NavigationBar(
-        elevation: 5,
-        backgroundColor: bottomNavigationColor,
-        surfaceTintColor: bottomNavigationColor,
+        
         selectedIndex: _selectedIndex,
         onDestinationSelected: _onItemTap,
-        indicatorColor: themeSeedColor,
         destinations: [
           NavigationDestination(
               icon: Icon(
                 MdiIcons.packageVariantClosed,
-                color: _selectedIndex == 0
-                    ? textColor
-                    : textColor.withOpacity(0.6),
               ),
               label: t.navigation_home),
           NavigationDestination(
@@ -52,11 +46,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
               ),
               label: t.navigation_favorites),
           NavigationDestination(
-              icon: Icon(
+              icon: const Icon(
                 Icons.person,
-                color: _selectedIndex == 2
-                    ? textColor
-                    : textColor.withOpacity(0.6),
               ),
               label: t.navigation_profile),
         ],

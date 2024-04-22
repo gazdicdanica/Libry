@@ -11,6 +11,9 @@ class LogoutButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = Translations.of(context);
     return TextButton(
+      style: TextButton.styleFrom(
+        backgroundColor: Colors.transparent,
+      ),
       onPressed: () async {
         if (await confirm(
           context,
