@@ -45,7 +45,7 @@ class DetailsWidget extends StatelessWidget {
       children: [
         Expanded(
           child: Container(
-            padding: const EdgeInsets.only(bottom: 22),
+            // padding: const EdgeInsets.only(bottom: 22),
             decoration: const BoxDecoration(
               color: lightGreenColor,
               borderRadius: BorderRadius.only(
@@ -65,7 +65,7 @@ class DetailsWidget extends StatelessWidget {
         ),
         Expanded(
           child: Container(
-            padding: const EdgeInsets.only(bottom: 22),
+            // padding: const EdgeInsets.only(bottom: 22),
             decoration: const BoxDecoration(
               color: lightGreyColor,
               borderRadius: BorderRadius.only(
