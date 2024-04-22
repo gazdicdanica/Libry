@@ -30,6 +30,7 @@
     "libraries_error": "Greška prilikom učitavanja paketa!",
     "platforms_error": "Greška prilikom učitavanja platformi!",
     "internet_error": "Nemate pristup internetu!",
+    "error": "Došlo je do greške. Pokušajte ponovo kasnije.",
     "my_account": "Moj nalog",
     "name": "Ime",
     "lastname": "Prezime",
@@ -57,5 +58,7 @@
     "homepage": "Početna stranica",
     "theme_system": "Sistemska tema",
     "theme_light": "Svetla tema",
-    "theme_dark": "Tamna tema"
+    "theme_dark": "Tamna tema",
+    "back_history": "Nema stavki u istoriji",
+    "forward_history": "Nema stavki ispred"
 }

@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 118 (59 per locale)
+/// Strings: 124 (62 per locale)
 ///
-/// Built on 2024-04-22 at 09:57 UTC
+/// Built on 2024-04-22 at 12:26 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -179,6 +179,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get libraries_error => 'Failed to load libraries.';
 	String get platforms_error => 'Failed to load platforms.';
 	String get internet_error => 'No internet connection.';
+	String get error => 'Error occurred. Try again later.';
 	String get my_account => 'My Account';
 	String get name => 'Name';
 	String get lastname => 'Last name';
@@ -207,6 +208,8 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get theme_system => 'System theme';
 	String get theme_light => 'Light theme';
 	String get theme_dark => 'Dark theme';
+	String get back_history => 'No back history item';
+	String get forward_history => 'No forward history item';
 }
 
 // Path: <root>
@@ -264,6 +267,7 @@ class _StringsSr implements Translations {
 	@override String get libraries_error => 'Greška prilikom učitavanja paketa!';
 	@override String get platforms_error => 'Greška prilikom učitavanja platformi!';
 	@override String get internet_error => 'Nemate pristup internetu!';
+	@override String get error => 'Došlo je do greške. Pokušajte ponovo kasnije.';
 	@override String get my_account => 'Moj nalog';
 	@override String get name => 'Ime';
 	@override String get lastname => 'Prezime';
@@ -292,6 +296,8 @@ class _StringsSr implements Translations {
 	@override String get theme_system => 'Sistemska tema';
 	@override String get theme_light => 'Svetla tema';
 	@override String get theme_dark => 'Tamna tema';
+	@override String get back_history => 'Nema stavki u istoriji';
+	@override String get forward_history => 'Nema stavki ispred';
 }
 
 /// Flat map(s) containing all translations.
@@ -331,6 +337,7 @@ extension on Translations {
 			case 'libraries_error': return 'Failed to load libraries.';
 			case 'platforms_error': return 'Failed to load platforms.';
 			case 'internet_error': return 'No internet connection.';
+			case 'error': return 'Error occurred. Try again later.';
 			case 'my_account': return 'My Account';
 			case 'name': return 'Name';
 			case 'lastname': return 'Last name';
@@ -359,6 +366,8 @@ extension on Translations {
 			case 'theme_system': return 'System theme';
 			case 'theme_light': return 'Light theme';
 			case 'theme_dark': return 'Dark theme';
+			case 'back_history': return 'No back history item';
+			case 'forward_history': return 'No forward history item';
 			default: return null;
 		}
 	}
@@ -398,6 +407,7 @@ extension on _StringsSr {
 			case 'libraries_error': return 'Greška prilikom učitavanja paketa!';
 			case 'platforms_error': return 'Greška prilikom učitavanja platformi!';
 			case 'internet_error': return 'Nemate pristup internetu!';
+			case 'error': return 'Došlo je do greške. Pokušajte ponovo kasnije.';
 			case 'my_account': return 'Moj nalog';
 			case 'name': return 'Ime';
 			case 'lastname': return 'Prezime';
@@ -426,6 +436,8 @@ extension on _StringsSr {
 			case 'theme_system': return 'Sistemska tema';
 			case 'theme_light': return 'Svetla tema';
 			case 'theme_dark': return 'Tamna tema';
+			case 'back_history': return 'Nema stavki u istoriji';
+			case 'forward_history': return 'Nema stavki ispred';
 			default: return null;
 		}
 	}

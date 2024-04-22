@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class NavigationControls extends StatelessWidget {
@@ -8,6 +9,7 @@ class NavigationControls extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t = Translations.of(context);
     return Row(
       children: <Widget>[
         IconButton(
@@ -17,8 +19,9 @@ class NavigationControls extends StatelessWidget {
             if (await controller.canGoBack()) {
               await controller.goBack();
             } else {
+              messenger.removeCurrentSnackBar();
               messenger.showSnackBar(
-                const SnackBar(content: Text('No back history item')),
+                SnackBar(content: Text(t.back_history)),
               );
               return;
             }
@@ -31,8 +34,9 @@ class NavigationControls extends StatelessWidget {
             if (await controller.canGoForward()) {
               await controller.goForward();
             } else {
+              messenger.removeCurrentSnackBar();
               messenger.showSnackBar(
-                const SnackBar(content: Text('No forward history item')),
+                SnackBar(content: Text(t.forward_history)),
               );
               return;
             }
