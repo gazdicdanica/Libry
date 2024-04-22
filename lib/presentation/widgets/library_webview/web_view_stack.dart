@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
-import 'package:flutter_internship_2024_app/presentation/widgets/error_message_widget.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebViewStack extends StatefulWidget {
@@ -13,8 +11,6 @@ class WebViewStack extends StatefulWidget {
 
 class _WebViewStackState extends State<WebViewStack> {
   var loadingPercentage = 0;
-  bool _isVisible = false;
-  bool _isOffline = false;
 
   @override
   void initState() {
@@ -24,7 +20,6 @@ class _WebViewStackState extends State<WebViewStack> {
         onPageStarted: (url) {
           setState(() {
             loadingPercentage = 0;
-            _isVisible = false;
           });
         },
         onProgress: (progress) {
@@ -37,19 +32,12 @@ class _WebViewStackState extends State<WebViewStack> {
             loadingPercentage = 100;
           });
         },
-        onWebResourceError: (WebResourceError error) {
-          setState(() {
-            _isVisible = true;
-            _isOffline = true;
-          });
-        },
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final t = Translations.of(context);
     return Stack(
       children: [
         WebViewWidget(
@@ -59,18 +47,6 @@ class _WebViewStackState extends State<WebViewStack> {
           LinearProgressIndicator(
             value: loadingPercentage / 100.0,
           ),
-        Visibility(
-          visible: _isVisible,
-          child: ErrorMessageWidget(
-            errorMessage: _isOffline ? t.internet_error : t.error,
-            refreshFunction: () {
-              setState(() {
-                _isVisible = false;
-              });
-              widget.controller.reload();
-            },
-          ),
-        ),
       ],
     );
   }
