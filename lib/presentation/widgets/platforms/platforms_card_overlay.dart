@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_internship_2024_app/models/platform.dart';
-import 'package:flutter_internship_2024_app/theme.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class PlatformsCardOverlay extends StatelessWidget {
@@ -25,7 +24,6 @@ class PlatformsCardOverlay extends StatelessWidget {
             children: [
               Icon(
                 MdiIcons.packageVariantClosed,
-                color: textColor,
               ),
               const SizedBox(width: 5),
               Text(
@@ -37,7 +35,6 @@ class PlatformsCardOverlay extends StatelessWidget {
                   ? Row(children: [
                       Icon(
                         MdiIcons.codeTags,
-                        color: textColor,
                       ),
                       const SizedBox(width: 5),
                       Text(platform.defaultLanguage!)

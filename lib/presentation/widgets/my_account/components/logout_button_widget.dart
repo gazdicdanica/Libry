@@ -12,6 +12,9 @@ class LogoutButton extends StatelessWidget {
     final t = Translations.of(context);
     return TextButton(
       key: const Key('yes'),
+      style: TextButton.styleFrom(
+        backgroundColor: Colors.transparent,
+      ),
       onPressed: () async {
         if (await confirm(
           context,

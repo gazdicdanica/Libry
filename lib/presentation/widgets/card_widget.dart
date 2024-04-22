@@ -28,7 +28,6 @@ class CardWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20), color: color),
                 width: 8,
-                //probably gonna need to change this height
                 height: 70,
               ),
               child

@@ -18,6 +18,7 @@
     "reset_password_title": "Molim Vas upišite Vašu email adresu ispod i poslaćemo Vam reset link.",
     "reset_password_btn": "Pošalji reset link",
     "reset_password_success": "Poslali smo Vam email sa uputstvima kako da resetujete Vaš password. Molimo Vas proverite email sanduče.",
+    "reset_password_error": "Greška prilikom slanja emaila! Molimo Vas pokušajte kasnije.",
     "go_back": "Idi nazad",
     "platforms": "Platforme",
     "platforms_empty": "Nema dostupnih platformi",
@@ -43,5 +44,8 @@
     "navigation_favorites": "Omiljeno",
     "navigation_profile": "Nalog",
     "language_en": "Engleski",
-    "language_sr": "Srpski"
+    "language_sr": "Srpski",
+    "theme_system": "Sistemska tema",
+    "theme_light": "Svetla tema",
+    "theme_dark": "Tamna tema"
 }
