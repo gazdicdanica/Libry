@@ -34,6 +34,7 @@ class ErrorMessageWidget extends StatelessWidget {
           bottom: 20,
           right: 20,
           child: FloatingActionButton(
+            key: const Key('reload'),
             onPressed: refreshFunction,
             child: const Icon(Icons.refresh),
           ),

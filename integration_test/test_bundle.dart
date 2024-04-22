@@ -9,7 +9,7 @@ import 'package:patrol/src/native/contracts/contracts.dart';
 import 'package:test_api/src/backend/invoker.dart';
 
 // START: GENERATED TEST IMPORTS
-import 'app_test.dart' as app_test;
+import 'native_test.dart' as native_test;
 // END: GENERATED TEST IMPORTS
 
 Future<void> main() async {
@@ -66,7 +66,7 @@ Future<void> main() async {
   });
 
   // START: GENERATED TEST GROUPS
-  group('app_test', app_test.main);
+  group('native_test', native_test.main);
   // END: GENERATED TEST GROUPS
 
   final dartTestGroup = await testExplorationCompleter.future;

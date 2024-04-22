@@ -22,6 +22,7 @@ class ChangeButtonWidget extends StatelessWidget {
       ),
       onPressed: onPressed,
       child: Text(t.change,
+          key: const Key('changeTheme'),
           style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w700,

@@ -48,6 +48,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
           //     ),
           //     label: t.navigation_favorites),
           NavigationDestination(
+              key: const Key('account'),
               icon: const Icon(
                 Icons.person,
               ),
