@@ -60,5 +60,10 @@
     "theme_light": "Light theme",
     "theme_dark": "Dark theme",
     "back_history": "No back history item",
-    "forward_history": "No forward history item"
+    "forward_history": "No forward history item",
+    "add_favorites": "Package added to favorites.",
+    "remove_favorites": "Package removed from favorites",
+    "error_favorites": "Error occurred while updating favorites",
+    "no_favorites": "There are no favorite packages yet!",
+    "explanation_adding": "If you want to receive updates about your favorite packages, add it to favorites by pressing heart icon."
 }

@@ -60,5 +60,10 @@
     "theme_light": "Svetla tema",
     "theme_dark": "Tamna tema",
     "back_history": "Nema stavki u istoriji",
-    "forward_history": "Nema stavki ispred"
+    "forward_history": "Nema stavki ispred",
+    "add_favorites": "Paket dodat u omiljene",
+    "remove_favorites": "Paket uklonjen iz omiljenih",
+    "error_favorites": "Greška prilikom ažuriranja omiljenih paketa",
+    "no_favorites": "Nemate omiljene pakete!",
+    "explanation_adding": "Ako želite da dobijate ažuriranja o vašim omiljenim paketima, dodajte ih u omiljene pritiskom na ikonu srca."
 }

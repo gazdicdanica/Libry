@@ -20,6 +20,7 @@ class Library {
   final int? rank;
   final int? stars;
   String? platformColor;
+  bool isFavorite;
   final String? repositoryStatus;
 
   Library({
@@ -42,6 +43,7 @@ class Library {
     required this.rank,
     required this.stars,
     this.platformColor,
+    required this.isFavorite,
     required this.repositoryStatus,
   });
 
@@ -68,6 +70,7 @@ class Library {
       stars: map['stars'] ?? '/',
       platformColor: map['platformColor'] ?? '/',
       repositoryStatus: map['repository_status'] ?? '/',
+      isFavorite: false,
     );
   }
 
