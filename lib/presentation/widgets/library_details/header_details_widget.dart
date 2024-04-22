@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_internship_2024_app/models/library.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/library_webview/library_webview_widget.dart';
-import 'package:flutter_internship_2024_app/theme.dart';
 
 class LibraryHeaderDetails extends StatelessWidget {
   final Library library;
@@ -21,7 +20,7 @@ class LibraryHeaderDetails extends StatelessWidget {
             bottom: 12,
           ),
           decoration: BoxDecoration(
-            color: lightGreenColor,
+            color: Theme.of(context).colorScheme.primary,
             borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(15),
               topRight: Radius.circular(15),
@@ -82,8 +81,8 @@ class LibraryHeaderDetails extends StatelessWidget {
               top: 12,
               bottom: 12,
             ),
-            decoration: const BoxDecoration(
-              color: lightGreyColor,
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.background,
             ),
             child: Text(
               library.description!,

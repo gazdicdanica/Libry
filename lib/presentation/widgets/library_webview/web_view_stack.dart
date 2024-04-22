@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_internship_2024_app/presentation/widgets/error_message_widget.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebViewStack extends StatefulWidget {
@@ -11,6 +12,9 @@ class WebViewStack extends StatefulWidget {
 
 class _WebViewStackState extends State<WebViewStack> {
   var loadingPercentage = 0;
+  bool _isVisible = false;
+  bool _isOffline = false;
+  final int _errorCode = 0;
 
   @override
   void initState() {
@@ -20,6 +24,7 @@ class _WebViewStackState extends State<WebViewStack> {
         onPageStarted: (url) {
           setState(() {
             loadingPercentage = 0;
+            _isVisible = false;
           });
         },
         onProgress: (progress) {
@@ -30,6 +35,12 @@ class _WebViewStackState extends State<WebViewStack> {
         onPageFinished: (url) {
           setState(() {
             loadingPercentage = 100;
+          });
+        },
+        onWebResourceError: (WebResourceError error) {
+          setState(() {
+            _isVisible = true;
+            _isOffline = true;
           });
         },
       ),
@@ -47,6 +58,20 @@ class _WebViewStackState extends State<WebViewStack> {
           LinearProgressIndicator(
             value: loadingPercentage / 100.0,
           ),
+        Visibility(
+          visible: _isVisible,
+          child: ErrorMessageWidget(
+            errorMessage: _isOffline
+                ? 'No internet connection'
+                : 'Error $_errorCode occurred',
+            refreshFunction: () {
+              setState(() {
+                _isVisible = false;
+              });
+              widget.controller.reload();
+            },
+          ),
+        ),
       ],
     );
   }

@@ -54,6 +54,7 @@
     "latest_release_num": "Latest release number",
     "published_at": "Published at",
     "latest_stable_release": "Latest stable release",
+    "homepage": "Homepage",
     "theme_system": "System theme",
     "theme_light": "Light theme",
     "theme_dark": "Dark theme"

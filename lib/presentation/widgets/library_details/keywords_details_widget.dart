@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
-import 'package:flutter_internship_2024_app/theme.dart';
 
 class KeywordsDetails extends StatelessWidget {
   final List<String>? keywords;
+
   const KeywordsDetails({super.key, required this.keywords});
 
   @override
@@ -43,7 +43,7 @@ class KeywordsDetails extends StatelessWidget {
                       horizontal: 20,
                     ),
                     decoration: BoxDecoration(
-                      color: lightGreenColor,
+                      color: Theme.of(context).colorScheme.primary,
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(

@@ -13,13 +13,16 @@ const bottomNavigationColor = Color.fromARGB(255, 233, 239, 236);
 final theme = ThemeData.light().copyWith(
   colorScheme: ColorScheme.fromSeed(
       seedColor: themeSeedColor,
+      primary: lightGreenColor,
       onPrimary: textColor,
       onBackground: textColor,
+      background: lightGreyColor,
       brightness: Brightness.light),
   tabBarTheme: const TabBarTheme().copyWith(
     indicator: const BoxDecoration(
       color: themeSeedColor,
     ),
+    labelColor: darkGreyColor,
   ),
   textTheme: ThemeData.light().textTheme.copyWith(
         headlineSmall: const TextStyle(
@@ -65,8 +68,10 @@ final theme = ThemeData.light().copyWith(
 
 final darkTheme = ThemeData.dark().copyWith(
   colorScheme: ColorScheme.fromSeed(
+    primary: darkGreenColor,
     seedColor: darkGreenColor,
     onPrimary: lightGreyColor,
+    background: darkGreyColor,
     onBackground: lightGreyColor,
     brightness: Brightness.dark,
   ),

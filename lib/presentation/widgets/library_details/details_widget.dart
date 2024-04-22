@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 import 'package:flutter_internship_2024_app/models/library.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/library_details/label_widget.dart';
-import 'package:flutter_internship_2024_app/theme.dart';
 import 'package:intl/intl.dart';
 
 class DetailsWidget extends StatelessWidget {
@@ -47,9 +46,9 @@ class DetailsWidget extends StatelessWidget {
         Expanded(
           child: Container(
             padding: const EdgeInsets.only(bottom: 32),
-            decoration: const BoxDecoration(
-              color: lightGreenColor,
-              borderRadius: BorderRadius.only(
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.primary,
+              borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(15),
               ),
             ),
@@ -72,7 +71,7 @@ class DetailsWidget extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.only(bottom: 30),
             decoration: BoxDecoration(
-              color: lightGreyColor,
+              color: Theme.of(context).colorScheme.background,
               borderRadius: const BorderRadius.only(
                 bottomRight: Radius.circular(15),
               ),
