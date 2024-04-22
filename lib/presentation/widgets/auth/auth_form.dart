@@ -191,7 +191,7 @@ class _AuthFormState extends State<AuthForm> {
     _passwordController.clear();
     _confirmPasswordController.clear();
   }
-
+  
   void _validateAndAuthenticate(BuildContext context) {
     BlocProvider.of<AuthBloc>(context).add(ValidateAuth(
         isLogin: _isLogin,
