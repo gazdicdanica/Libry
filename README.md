@@ -13,6 +13,18 @@ Libry is a package manager application designed to streamline package discovery 
 - You can use **Visual Studio Code** with the Flutter and Dart plugins.
 - Simulators: both Android and iOS development.
 
+### Install the Local Emulator Suite
+
+Before installing the Emulator Suite you will need:
+
+1. *Node.js* version 16.0 or higher. [Download here](https://nodejs.org/en/download)
+2. *Java JDK* version 11 or higher. [Download here](https://jdk.java.net/)
+
+To install the Emulator Suite:
+1. Install the Firebase CLI.
+2. You will need CLI version 8.14.0 or higher to use the Emulator Suite. [Installation guide](https://firebase.google.com/docs/cli)
+
+
 ## Steps to Launch the Application 
 
 1. Clone this repository to your local machine:
@@ -35,7 +47,13 @@ Libry is a package manager application designed to streamline package discovery 
    flutter pub get
    ```
 
-5. Build and run the Flutter project on your device or emulator:
+5. Before running the project in debug mode, start emulators with the following command:
+
+   ```bash
+   firebase emulators:start
+    ```
+
+6. Build and run the Flutter project on your device or emulator:
 
    ```bash
    flutter run

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_internship_2024_app/presentation/widgets/search_widgets/search_input_widget.dart';
-import 'package:flutter_internship_2024_app/presentation/widgets/search_widgets/search_list.dart';
+import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
+import 'package:flutter_internship_2024_app/presentation/widgets/search/search_input_widget.dart';
+import 'package:flutter_internship_2024_app/presentation/widgets/search/search_list.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -15,12 +16,13 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final t = Translations.of(context);
     return Scaffold(
       appBar: AppBar(
         title: Padding(
           padding: const EdgeInsets.only(left: 10.0),
           child: Text(
-            'Search',
+            t.search,
             style: Theme.of(context).textTheme.headlineSmall,
           ),
         ),
@@ -29,26 +31,28 @@ class _SearchScreenState extends State<SearchScreen> {
           bottom: BorderSide(color: Color.fromRGBO(239, 245, 243, 1), width: 1),
         ),
       ),
-      body: SingleChildScrollView(
-        child: SizedBox(
-          height: calculateBodyHeight(context),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              SearchInput(
-                onTextChanged: (text) {
-                  setState(() {
-                    searchText = text;
-                  });
-                },
-              ),
-              Expanded(
-                child: SearchList(
-                  searchText: searchText,
-                  sort: sort,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: SizedBox(
+            height: calculateBodyHeight(context),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                SearchInput(
+                  onTextChanged: (text) {
+                    setState(() {
+                      searchText = text;
+                    });
+                  },
                 ),
-              ),
-            ],
+                Expanded(
+                  child: SearchList(
+                    searchText: searchText,
+                    sort: sort,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

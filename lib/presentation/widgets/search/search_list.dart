@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_internship_2024_app/bloc/search_bloc/search_bloc.dart';
+import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/card_widget.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/libraries_widgets/libraries_card_content.dart';
 import 'package:flutter_internship_2024_app/theme.dart';
@@ -40,6 +41,8 @@ class _SearchListState extends State<SearchList>
 
   @override
   Widget build(BuildContext context) {
+    final t = Translations.of(context);
+    
     return BlocConsumer<SearchBloc, SearchState>(
       listener: (context, state) {
         if (state is SearchSuccess) {
@@ -96,7 +99,6 @@ class _SearchListState extends State<SearchList>
                   children: [
                     const Icon(
                       Icons.error_outline,
-                      color: textColor,
                       size: 60,
                     ),
                     const SizedBox(
@@ -131,17 +133,16 @@ class _SearchListState extends State<SearchList>
               children: [
                 state is SearchSuccess
                     ? const Icon(Icons.emoji_nature_outlined,
-                        size: 80, color: textColor)
-                    : const Icon(Icons.search, size: 80, color: textColor),
+                        size: 80)
+                    : const Icon(Icons.search, size: 80,),
                 const SizedBox(height: 20),
                 Text(
                   state is SearchSuccess
-                      ? 'There are no found packages for the entered search criteria!'
-                      : 'Enter search keyword in order to find packages you are looking for.',
+                      ? t.search_empty
+                      : t.search_hint,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontSize: 20,
-                    color: textColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_internship_2024_app/bloc/platforms_bloc/platforms_bloc.dart';
+import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 import 'package:flutter_internship_2024_app/models/platform.dart';
 import 'package:flutter_internship_2024_app/presentation/screens/libraries_screen.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/card_widget.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/error_message_widget.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/platforms/platforms_card_overlay.dart';
-import 'package:flutter_internship_2024_app/theme.dart';
 
 class PlatformsList extends StatefulWidget {
   const PlatformsList({super.key});
@@ -57,14 +57,13 @@ class _PlatformsListState extends State<PlatformsList>
                 children: [
                   const Icon(
                     Icons.emoji_nature,
-                    color: textColor,
                     size: 80,
                   ),
                   const SizedBox(
                     height: 10,
                   ),
                   Text(
-                    "There are no platforms found.",
+                    t.platforms_empty,
                     style: Theme.of(context).textTheme.displayLarge,
                   ),
                 ],
