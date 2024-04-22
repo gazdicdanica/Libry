@@ -28,6 +28,7 @@ void main() {
       await $.enterText(passwordField, 'testing');
       await $.enterText(confirmPasswordField, 'testing');
 
+
       expect($('Sign up').visible, equals(true), reason: 'Sign up button is not found before accessing Sign up form');
       await $('Sign up').tap();
       await $.pump();

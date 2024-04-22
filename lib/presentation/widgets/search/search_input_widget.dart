@@ -41,6 +41,7 @@ class _SearchInputState extends State<SearchInput> {
           children: [
             Expanded(
               child: TextField(
+                key: const Key('searchInputField'),
                 autofocus: true,
                 controller: _controller,
                 focusNode: _focusNode,
@@ -64,6 +65,7 @@ class _SearchInputState extends State<SearchInput> {
                 _focusNode.unfocus();
               },
               child: Icon(
+                key: const Key('removeBtn'),
                 Icons.close,
                 color: theme.colorScheme.onBackground,
               ),

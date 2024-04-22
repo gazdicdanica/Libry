@@ -19,6 +19,7 @@ class _SearchScreenState extends State<SearchScreen> {
     final t = Translations.of(context);
     return Scaffold(
       appBar: AppBar(
+        key: const Key('backBtn'),
         title: Padding(
           padding: const EdgeInsets.only(left: 10.0),
           child: Text(
