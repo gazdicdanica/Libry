@@ -20,11 +20,20 @@ class LibraryHeaderDetails extends StatelessWidget {
             top: 12,
             bottom: 12,
           ),
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             color: lightGreenColor,
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(15),
               topRight: Radius.circular(15),
+            ),
+            border: Border(
+              bottom: BorderSide(
+                color: Theme.of(context)
+                    .colorScheme
+                    .onBackground
+                    .withOpacity(0.25),
+                width: 1.5,
+              ),
             ),
           ),
           child: Row(
@@ -54,11 +63,11 @@ class LibraryHeaderDetails extends StatelessWidget {
                     },
                     padding: const EdgeInsets.only(bottom: 2),
                   ),
-                  IconButton(
-                    icon: const Icon(Icons.favorite_border),
-                    onPressed: () {},
-                    padding: const EdgeInsets.only(bottom: 2),
-                  ),
+                  // IconButton(
+                  //   icon: const Icon(Icons.favorite_border),
+                  //   onPressed: () {},
+                  //   padding: const EdgeInsets.only(bottom: 2),
+                  // ),
                 ],
               ),
             ],

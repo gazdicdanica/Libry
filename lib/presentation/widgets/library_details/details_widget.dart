@@ -15,7 +15,7 @@ class DetailsWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildInfoContainers([
+        _buildInfoContainers(context, [
           t.repo_status,
           t.platform,
           t.language,
@@ -40,12 +40,13 @@ class DetailsWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildInfoContainers(List<String> labels, List<String> values) {
+  Widget _buildInfoContainers(
+      BuildContext context, List<String> labels, List<String> values) {
     return Row(
       children: [
         Expanded(
           child: Container(
-            // padding: const EdgeInsets.only(bottom: 22),
+            padding: const EdgeInsets.only(bottom: 32),
             decoration: const BoxDecoration(
               color: lightGreenColor,
               borderRadius: BorderRadius.only(
@@ -54,10 +55,14 @@ class DetailsWidget extends StatelessWidget {
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: labels.map((label) {
-                return Container(
-                  padding: const EdgeInsets.all(8),
-                  child: LabelWidget(label: label),
+              children: labels.asMap().entries.map((entry) {
+                return Row(
+                  children: [
+                    LabelWidget(
+                      label: entry.value,
+                      isLastInRow: entry.key == labels.length - 1,
+                    ),
+                  ],
                 );
               }).toList(),
             ),
@@ -65,19 +70,53 @@ class DetailsWidget extends StatelessWidget {
         ),
         Expanded(
           child: Container(
-            // padding: const EdgeInsets.only(bottom: 22),
-            decoration: const BoxDecoration(
+            padding: const EdgeInsets.only(bottom: 30),
+            decoration: BoxDecoration(
               color: lightGreyColor,
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 bottomRight: Radius.circular(15),
               ),
+              border: Border(
+                bottom: BorderSide(
+                  color: Theme.of(context)
+                      .colorScheme
+                      .onBackground
+                      .withOpacity(0.25),
+                  width: 1,
+                ),
+                top: BorderSide(
+                  color: Theme.of(context)
+                      .colorScheme
+                      .onBackground
+                      .withOpacity(0.25),
+                  width: 0.5,
+                ),
+                left: BorderSide(
+                  color: Theme.of(context)
+                      .colorScheme
+                      .onBackground
+                      .withOpacity(0.25),
+                  width: 2,
+                ),
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.2),
+                  blurRadius: 4,
+                  offset: const Offset(-2, 0),
+                ),
+              ],
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: values.map((value) {
-                return Container(
-                  padding: const EdgeInsets.all(8),
-                  child: LabelWidget(label: value),
+              children: values.asMap().entries.map((entry) {
+                return Row(
+                  children: [
+                    LabelWidget(
+                      label: entry.value,
+                      isLastInRow: entry.key == labels.length - 1,
+                    ),
+                  ],
                 );
               }).toList(),
             ),
