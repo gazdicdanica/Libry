@@ -194,6 +194,9 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get navigation_profile => 'Account';
 	String get language_en => 'English';
 	String get language_sr => 'Serbian';
+	String get theme_system => 'System theme';
+	String get theme_light => 'Light theme';
+	String get theme_dark => 'Dark theme';
 	String get library_details => 'Library details';
 	String get license => 'License';
 	String get keywords => 'Keywords';
@@ -281,6 +284,9 @@ class _StringsSr implements Translations {
 	@override String get navigation_profile => 'Nalog';
 	@override String get language_en => 'Engleski';
 	@override String get language_sr => 'Srpski';
+	@override String get theme_system => 'Sistemska tema';
+	@override String get theme_light => 'Svetla tema';
+	@override String get theme_dark => 'Tamna tema';
 	@override String get library_details => 'Detalji biblioteke';
 	@override String get license => 'Licenca';
 	@override String get keywords => 'Ključne reči';
@@ -350,6 +356,9 @@ extension on Translations {
 			case 'navigation_profile': return 'Account';
 			case 'language_en': return 'English';
 			case 'language_sr': return 'Serbian';
+			case 'theme_system': return 'System theme';
+			case 'theme_light': return 'Light theme';
+			case 'theme_dark': return 'Dark theme';
 			case 'library_details': return 'Library details';
 			case 'license': return 'License';
 			case 'keywords': return 'Keywords';
@@ -418,6 +427,9 @@ extension on _StringsSr {
 			case 'navigation_profile': return 'Nalog';
 			case 'language_en': return 'Engleski';
 			case 'language_sr': return 'Srpski';
+			case 'theme_system': return 'Sistemska tema';
+			case 'theme_light': return 'Svetla tema';
+			case 'theme_dark': return 'Tamna tema';
 			case 'library_details': return 'Detalji biblioteke';
 			case 'license': return 'Licenca';
 			case 'keywords': return 'Ključne reči';

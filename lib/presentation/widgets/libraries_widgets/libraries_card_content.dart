@@ -108,11 +108,7 @@ class _LibrariesCardContetState extends State<LibrariesCardContet> {
                         Row(
                           children: [
                             Row(children: [
-                              Image.asset(
-                                'assets/Conversion_path.png',
-                                width: 24,
-                                height: 24,
-                              ),
+                              Icon(MdiIcons.sourceRepository, size: 20),
                               SizedBox(
                                 width: position ? 100 : 150,
                                 child: Text(
@@ -132,7 +128,7 @@ class _LibrariesCardContetState extends State<LibrariesCardContet> {
                                 keywordsString == ''
                                     ? const SizedBox()
                                     : Icon(MdiIcons.tag,
-                                        color: textColor, size: 24),
+                                        color: textColor, size: 20),
                                 SizedBox(
                                   child: Text(
                                     keywordsString,

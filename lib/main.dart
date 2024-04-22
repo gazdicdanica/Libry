@@ -8,6 +8,7 @@ import 'package:flutter_internship_2024_app/bloc/libraries_bloc/libraries_bloc.d
 import 'package:flutter_internship_2024_app/bloc/locale_bloc/locale_bloc.dart';
 import 'package:flutter_internship_2024_app/bloc/platforms_bloc/platforms_bloc.dart';
 import 'package:flutter_internship_2024_app/bloc/search_bloc/search_bloc.dart';
+import 'package:flutter_internship_2024_app/bloc/theme_bloc/theme_bloc.dart';
 import 'package:flutter_internship_2024_app/data/libraries/data_provider/libraries_data_provider.dart';
 import 'package:flutter_internship_2024_app/data/libraries/repository/libraries_repository.dart';
 import 'package:flutter_internship_2024_app/data/platforms/data_provider/platforms_data_provider.dart';
@@ -28,18 +29,24 @@ Future main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  if (kReleaseMode) {
-    FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
+
+  ThemeMode initialThemeMode = SharedPreferencesUtil().getTheme() ?? ThemeMode.system;
+
+  if (kDebugMode) {
+    await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
   }
-  runApp(const MyApp());
+  runApp(MyApp(initialThemeMode));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp(this.themeMode, {super.key});
+  final ThemeMode themeMode;
 
   @override
   Widget build(BuildContext context) {
-    
+    if (!kReleaseMode) {
+      FirebaseAuth.instance.useAuthEmulator('127.0.0.1', 9099);
+    }
     final platformsRepo = PlatformsRepository(PlatformsDataProvider());
     return MultiRepositoryProvider(
       providers: [
@@ -67,6 +74,7 @@ class MyApp extends StatelessWidget {
                 SearchBloc(context.read<LibrariesRepository>()),
           ),
           BlocProvider(create: (context) => LocaleBloc()..add(InitLocale())),
+          BlocProvider(create: (context) => ThemeBloc()..add(ChangeTheme(themeMode))),
           BlocProvider(create: (context) => context.read<FavoritesBloc>())
         ],
         child: BlocBuilder<LocaleBloc, LocaleState>(
@@ -76,20 +84,26 @@ class MyApp extends StatelessWidget {
             } else {
               LocaleSettings.useDeviceLocale();
             }
-            return TranslationProvider(
-              child: MaterialApp(
-                title: 'Libry',
-                theme: theme,
-                home: StreamBuilder(
-                  stream: FirebaseAuth.instance.authStateChanges(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      return const BottomNavigation();
-                    }
-                    return const AuthScreen();
-                  },
-                ),
-              ),
+            return BlocBuilder<ThemeBloc, ThemeState>(
+              builder: (context, state) {
+                return TranslationProvider(
+                  child: MaterialApp(
+                    title: 'Libry',
+                    theme: theme,
+                    darkTheme: darkTheme,
+                    themeMode: state is ThemeChanged ? state.themeMode:themeMode,
+                    home: StreamBuilder(
+                      stream: FirebaseAuth.instance.authStateChanges(),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return const BottomNavigation();
+                        }
+                        return const AuthScreen();
+                      },
+                    ),
+                  ),
+                );
+              },
             );
           },
         ),

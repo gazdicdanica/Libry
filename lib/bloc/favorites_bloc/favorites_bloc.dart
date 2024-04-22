@@ -56,7 +56,7 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState>
       bool isConnected = await checkInternetConnection(); 
 
       if (!isConnected) {
-        emit(FavoritesFailure());
+        emit(FavoriteNoInternet());
         return;
       }
 
