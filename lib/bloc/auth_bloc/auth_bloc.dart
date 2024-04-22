@@ -1,4 +1,3 @@
-import 'package:email_validator/email_validator.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -18,13 +17,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<SendResetEmail>(_sendForgotPasswordEmail);
   }
 
+  bool _isEmailValid(String email) => RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email);
+
   void _validate(ValidateAuth event, Emitter<AuthState> emit) {
     String? emailError;
     String? passwordError;
     String? confirmPasswordError;
     if (event.email == null ||
         event.email!.isEmpty ||
-        !EmailValidator.validate(event.email!)) {
+        !_isEmailValid(event.email!)) {
       emailError = t.email_format_error;
     }
     if (event.password == null ||
