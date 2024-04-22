@@ -5,7 +5,7 @@ import 'package:flutter_internship_2024_app/main.dart' as app;
 
 void main() {
 
-group('Sign in group of tests', () { 
+//group('Sign in group of tests', () { 
   patrolTest('Successfull Sign up and Logout', ($) async {
 
       app.main();
@@ -24,7 +24,7 @@ group('Sign in group of tests', () {
       await $('Sign up').tap();
       await $.pump();
 
-      await $.enterText(emailField, 'test10@gmail.com');
+      await $.enterText(emailField, 'test2@gmail.com');
       await $.enterText(passwordField, 'testing');
       await $.enterText(confirmPasswordField, 'testing');
 
@@ -49,6 +49,7 @@ group('Sign in group of tests', () {
 
       expect($('Welcome to Libry').visible, equals(true), reason: 'Welcome to Libry are not visible');
   });
+
 
   patrolTest('Unsuccessfull Sign up - all empty fields', ($) async {
 
@@ -79,5 +80,34 @@ group('Sign in group of tests', () {
 
   });
 
-});
+
+  patrolTest('Unsuccessfull Sign up - invalid input fields', ($) async {
+
+      app.main();
+      await $.pumpAndSettle();
+
+      final emailField = $(#email);
+      final passwordField = $(#password);
+      final confirmPasswordField = $(#confirmPassword);
+
+      await $('Sign up').waitUntilVisible(timeout: const Duration(seconds: 5));
+
+      expect($('Sign up').visible, equals(true), reason: 'Sign up button is not found before accessing Sign up form');
+      await $('Sign up').tap();
+      await $.pump();
+
+      await $.enterText(emailField, 'testt.com');
+      await $.enterText(passwordField, '123');
+      await $.enterText(confirmPasswordField, '12');
+
+      expect($('Sign up').visible, equals(true), reason: 'Sign up button is not found before accessing Sign up form');
+      await $('Sign up').tap();
+      await $.pump();
+
+      expect($('Email is not in correct format!').visible, equals(true), reason: 'Email error message is not visible');
+      expect($('Password should contain 6 characters!').visible, equals(true), reason: 'Password error message is not visible');
+      expect($('Passwords do not match!').visible, equals(true), reason: 'Confirm password error message is not visible');
+  });
+
+//});
 }
