@@ -74,8 +74,11 @@ class MyApp extends StatelessWidget {
                 SearchBloc(context.read<LibrariesRepository>()),
           ),
           BlocProvider(create: (context) => LocaleBloc()..add(InitLocale())),
+
           BlocProvider(create: (context) => ThemeBloc()..add(ChangeTheme(themeMode))),
+
           BlocProvider(create: (context) => context.read<FavoritesBloc>())
+
         ],
         child: BlocBuilder<LocaleBloc, LocaleState>(
           builder: (context, state) {

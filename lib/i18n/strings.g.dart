@@ -194,9 +194,6 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get navigation_profile => 'Account';
 	String get language_en => 'English';
 	String get language_sr => 'Serbian';
-	String get theme_system => 'System theme';
-	String get theme_light => 'Light theme';
-	String get theme_dark => 'Dark theme';
 	String get library_details => 'Library details';
 	String get license => 'License';
 	String get keywords => 'Keywords';
@@ -212,6 +209,9 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
   String get no_favorites => 'There are no favorite packages yet';
   String get explanation_adding => 'If you want to receive updates about your favorite packages, add it to favorites by pressing heart icon.';
  
+	String get theme_system => 'System theme';
+	String get theme_light => 'Light theme';
+	String get theme_dark => 'Dark theme';
 }
 
 // Path: <root>
@@ -444,6 +444,9 @@ extension on _StringsSr {
       case 'error_favorites'  : return 'Greška prilikom ažuriranja omiljenih paketa';
       case 'no_favorites' : return 'Nemate omiljene pakete!';
       case 'explanation_adding' : return 'Ako želite da dobijate ažuriranja o vašim omiljenim paketima, dodajte ih u omiljene pritiskom na ikonu srca.';
+			case 'theme_system': return 'Sistemska tema';
+			case 'theme_light': return 'Svetla tema';
+			case 'theme_dark': return 'Tamna tema';
       default: return null;
 		}
 	}
