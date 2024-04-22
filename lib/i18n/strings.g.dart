@@ -203,12 +203,12 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get latest_release_num => 'Latest release number';
 	String get published_at => 'Published at';
 	String get latest_stable_release => 'Latest stable release';
-  String get favorites => 'Favorites';
   String get add_favorites => 'Library added to favorites';
   String get remove_favorites => 'Library removed from favorites';
   String get  error_favorites => 'Error occurred while updating favorites';
   String get no_favorites => 'There are no favorite packages yet';
   String get explanation_adding => 'If you want to receive updates about your favorite packages, add it to favorites by pressing heart icon.';
+ 
 }
 
 // Path: <root>
@@ -290,12 +290,12 @@ class _StringsSr implements Translations {
 	@override String get latest_release_num => 'Broj poslednjeg izdanja';
 	@override String get published_at => 'Objavljeno u';
 	@override String get latest_stable_release => 'Stabilno izdanje';
-  @override String get favorites => 'Omiljeno';
   @override String get add_favorites => 'Paket dodat u omiljene';
   @override String get remove_favorites => 'Paket uklonjen iz omiljenih';
   @override String get  error_favorites => 'Greška prilikom ažuriranja omiljenih paketa';
   @override String get no_favorites => 'Nemate omiljene pakete!';
   @override String get explanation_adding => 'Ako želite da dobijate ažuriranja o vašim omiljenim paketima, dodajte ih u omiljene pritiskom na ikonu srca.';
+ 
 }
 
 /// Flat map(s) containing all translations.
@@ -359,13 +359,11 @@ extension on Translations {
 			case 'latest_release_num': return 'Latest release number';
 			case 'published_at': return 'Published at';
 			case 'latest_stable_release': return 'Latest stable release';
-      case 'favorites': return 'Favorites';
       case 'add_favorites' : return 'Package added to favorites.';
       case 'remove_favorites' : return 'Package removed from favorites';
       case 'error_favorites'  : return 'Error occurred while updating favorites';
       case 'no_favorites' : return 'There are no favorite packages yet!';
       case 'explanation_adding' : return 'If you want to receive updates about your favorite packages, add it to favorites by pressing heart icon.';
-
 			default: return null;
 		}
 	}
@@ -429,13 +427,12 @@ extension on _StringsSr {
 			case 'latest_release_num': return 'Broj poslednjeg izdanja';
 			case 'published_at': return 'Objavljeno u';
 			case 'latest_stable_release': return 'Stabilno izdanje';
-      case 'favorites': return 'Omiljeno';
       case 'add_favorites' : return 'Paket dodat u omiljene';
       case 'remove_favorites' : return 'Paket uklonjen iz omiljenih';
       case 'error_favorites'  : return 'Greška prilikom ažuriranja omiljenih paketa';
       case 'no_favorites' : return 'Nemate omiljene pakete!';
       case 'explanation_adding' : return 'Ako želite da dobijate ažuriranja o vašim omiljenim paketima, dodajte ih u omiljene pritiskom na ikonu srca.';
-			default: return null;
+      default: return null;
 		}
 	}
 }

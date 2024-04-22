@@ -21,7 +21,7 @@ class FavoritesScreen extends StatelessWidget {
           title: Padding(
             padding: const EdgeInsets.only(left: 10.0),
             child: Text(
-              t.favorites,
+              t.navigation_favorites,
               style: Theme.of(context).textTheme.headlineSmall,
             ),
           ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 import 'package:flutter_internship_2024_app/models/library.dart';
+import 'package:flutter_internship_2024_app/presentation/screens/library_details_screen.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/card_widget.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/libraries_widgets/libraries_card_content.dart';
 import 'package:flutter_internship_2024_app/theme.dart';
@@ -62,7 +63,9 @@ class _FavoritesListState extends State<FavoritesList>{
                 itemBuilder: (context, index) {
                   return CardWidget(
                     color: widget.libraries[index].colorObj,
-                    onTap: () {},
+                    onTap: () {
+                         _goToDetailsScreen(widget.libraries[index]);
+                    },
                     child: LibrariesCardContet(
                       library: widget.libraries[index],
                     ),
@@ -72,5 +75,13 @@ class _FavoritesListState extends State<FavoritesList>{
 
    );
   }
-
+    void _goToDetailsScreen(Library library) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => LibraryDetailsScreen(
+          library: library,
+        ),
+      ),
+    );
+  }
 }
