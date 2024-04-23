@@ -72,7 +72,7 @@ class DeleteAccountButton extends StatelessWidget {
                 },
                 child: Text(
                   t.delete_account,
-                  style: const TextStyle(color: darkGreenColor, fontSize: 18),
+                  style: const TextStyle(color: darkGreenColor, fontSize: 16),
                   textAlign: TextAlign.center,
                 ),
               ),

@@ -101,8 +101,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   void _deleteAccount(DeleteAccount event, Emitter<AuthState> emit) async {
     emit(AuthLoading());
     try {
-      _authRepository.deleteAccount(event, emit);
+      _authRepository.deleteAccount(event.user);
       emit(AccountDeleted());
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'requires-recent-login') {
+        emit(ReauthenticationNeeded());
+      } else {
+        emit(AuthDeletionFailure(e.toString()));
+      }
     } catch (e) {
       emit(AuthDeletionFailure(e.toString()));
     }
@@ -112,7 +118,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(AuthLoading());
     try {
       await _authRepository.reauthenticate(event.user, event.password);
-      emit(AuthSuccess());
+      emit(AccountDeleted());
     } catch (e) {
       emit(AuthDeletionFailure(e.toString()));
     }

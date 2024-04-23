@@ -80,7 +80,7 @@ class MyApp extends StatelessWidget {
               create: (context) => LocaleBloc(prefsRepo)..add(InitLocale())),
           BlocProvider(
               create: (context) =>
-                  ThemeBloc(prefsRepo)..add(ChangeTheme(themeMode)))
+                  ThemeBloc(prefsRepo)..add(ChangeTheme(themeMode))),
         ],
         child: BlocBuilder<LocaleBloc, LocaleState>(
           builder: (context, state) {
