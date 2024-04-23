@@ -40,3 +40,10 @@ final class DeleteAccount extends AuthEvent {
 
   DeleteAccount(this.user);
 }
+
+final class Reauthenticate extends AuthEvent {
+  final User user;
+  final String password;
+
+  Reauthenticate(this.user, this.password);
+}

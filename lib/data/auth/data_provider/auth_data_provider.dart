@@ -20,4 +20,12 @@ class AuthDataProvider {
   Future<void> deleteAccount(User user) async {
     return user.delete();
   }
+
+  Future<void> reauthenticate(User user, String password) async {
+    final credential = EmailAuthProvider.credential(
+      email: user.email!,
+      password: password,
+    );
+    await user.reauthenticateWithCredential(credential);
+  }
 }

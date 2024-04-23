@@ -29,9 +29,9 @@ Future main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  if (kDebugMode) {
-    await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
-  }
+  // if (kDebugMode) {
+  //   await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
+  // }
 
   final prefsDataProvider = PrefsDataProvider();
   await prefsDataProvider.init();
@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final platformsRepo = PlatformsRepository(PlatformsDataProvider());
-    
+
     final themeMode = prefsRepo.getTheme() ?? ThemeMode.system;
 
     return MultiRepositoryProvider(
@@ -76,8 +76,11 @@ class MyApp extends StatelessWidget {
             create: (context) =>
                 SearchBloc(context.read<LibrariesRepository>()),
           ),
-          BlocProvider(create: (context) => LocaleBloc(prefsRepo)..add(InitLocale())),
-          BlocProvider(create: (context) => ThemeBloc(prefsRepo)..add(ChangeTheme(themeMode)))
+          BlocProvider(
+              create: (context) => LocaleBloc(prefsRepo)..add(InitLocale())),
+          BlocProvider(
+              create: (context) =>
+                  ThemeBloc(prefsRepo)..add(ChangeTheme(themeMode)))
         ],
         child: BlocBuilder<LocaleBloc, LocaleState>(
           builder: (context, state) {
@@ -93,7 +96,8 @@ class MyApp extends StatelessWidget {
                     title: 'Libry',
                     theme: theme,
                     darkTheme: darkTheme,
-                    themeMode: state is ThemeChanged ? state.themeMode:themeMode,
+                    themeMode:
+                        state is ThemeChanged ? state.themeMode : themeMode,
                     home: StreamBuilder(
                       stream: FirebaseAuth.instance.authStateChanges(),
                       builder: (context, snapshot) {

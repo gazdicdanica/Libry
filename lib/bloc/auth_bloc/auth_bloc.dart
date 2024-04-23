@@ -16,6 +16,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<ValidateAuth>(_validate);
     on<SendResetEmail>(_sendForgotPasswordEmail);
     on<DeleteAccount>(_deleteAccount);
+    on<Reauthenticate>(_reauthenticate);
   }
 
   bool _isEmailValid(String email) => RegExp(
@@ -100,10 +101,20 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   void _deleteAccount(DeleteAccount event, Emitter<AuthState> emit) async {
     emit(AuthLoading());
     try {
-      await _authRepository.deleteAccount(event.user);
+      _authRepository.deleteAccount(event, emit);
       emit(AccountDeleted());
     } catch (e) {
-      emit(AuthUnknownFailure(t.delete_account_error));
+      emit(AuthDeletionFailure(e.toString()));
+    }
+  }
+
+  void _reauthenticate(Reauthenticate event, Emitter<AuthState> emit) async {
+    emit(AuthLoading());
+    try {
+      await _authRepository.reauthenticate(event.user, event.password);
+      emit(AuthSuccess());
+    } catch (e) {
+      emit(AuthDeletionFailure(e.toString()));
     }
   }
 }

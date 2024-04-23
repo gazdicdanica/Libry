@@ -77,3 +77,8 @@ final class AuthDeletionFailure extends AuthState {
   @override
   List<Object> get props => [errorMessage];
 }
+
+final class ReauthenticationNeeded extends AuthState {
+  @override
+  List<Object> get props => [];
+}

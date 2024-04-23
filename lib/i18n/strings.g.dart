@@ -6,7 +6,7 @@
 /// Locales: 2
 /// Strings: 106 (53 per locale)
 ///
-/// Built on 2024-04-23 at 07:12 UTC
+/// Built on 2024-04-23 at 08:53 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -276,7 +276,7 @@ class _StringsSr implements Translations {
 	@override String get theme_system => 'Sistemska tema';
 	@override String get theme_light => 'Svetla tema';
 	@override String get theme_dark => 'Tamna tema';
-	@override String get delete_account => 'Brisanje naloga';
+	@override String get delete_account => 'Obriši nalog';
 	@override String get confirm_delete_account => 'Da li ste sigurni da želite da obrišete svoj nalog?';
 	@override String get sorry_youre_leaving => 'Žao nam je što odlazite...';
 	@override String get delete_account_error => 'Nije uspelo brisanje korisničkog naloga. Molimo pokušajte ponovo kasnije.';
@@ -398,7 +398,7 @@ extension on _StringsSr {
 			case 'theme_system': return 'Sistemska tema';
 			case 'theme_light': return 'Svetla tema';
 			case 'theme_dark': return 'Tamna tema';
-			case 'delete_account': return 'Brisanje naloga';
+			case 'delete_account': return 'Obriši nalog';
 			case 'confirm_delete_account': return 'Da li ste sigurni da želite da obrišete svoj nalog?';
 			case 'sorry_youre_leaving': return 'Žao nam je što odlazite...';
 			case 'delete_account_error': return 'Nije uspelo brisanje korisničkog naloga. Molimo pokušajte ponovo kasnije.';
