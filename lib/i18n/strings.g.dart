@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 96 (48 per locale)
+/// Strings: 100 (50 per locale)
 ///
-/// Built on 2024-04-18 at 13:02 UTC
+/// Built on 2024-04-23 at 08:10 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -197,6 +197,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get theme_system => 'System theme';
 	String get theme_light => 'Light theme';
 	String get theme_dark => 'Dark theme';
+	String get end_of_list => 'You\'ve reached the end';
 }
 
 // Path: <root>
@@ -272,6 +273,7 @@ class _StringsSr implements Translations {
 	@override String get theme_system => 'Sistemska tema';
 	@override String get theme_light => 'Svetla tema';
 	@override String get theme_dark => 'Tamna tema';
+	@override String get end_of_list => 'Došli ste do kraja';
 }
 
 /// Flat map(s) containing all translations.
@@ -329,6 +331,7 @@ extension on Translations {
 			case 'theme_system': return 'System theme';
 			case 'theme_light': return 'Light theme';
 			case 'theme_dark': return 'Dark theme';
+			case 'end_of_list': return 'You\'ve reached the end';
 			default: return null;
 		}
 	}
@@ -386,6 +389,7 @@ extension on _StringsSr {
 			case 'theme_system': return 'Sistemska tema';
 			case 'theme_light': return 'Svetla tema';
 			case 'theme_dark': return 'Tamna tema';
+			case 'end_of_list': return 'Došli ste do kraja';
 			default: return null;
 		}
 	}

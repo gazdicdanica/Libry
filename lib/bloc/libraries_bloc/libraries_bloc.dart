@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_internship_2024_app/data/libraries/repository/libraries_repository.dart';
 import 'package:flutter_internship_2024_app/models/library.dart';
@@ -18,7 +19,7 @@ class LibrariesBloc extends Bloc<LibrariesEvent, LibrariesState> {
     emit(LibrariesLoading());
     try {
       final libraries = await _librariesRepository.getCurrentLibraires(
-          event.platform, event.sort);
+          event.platform, event.sort, event.page);
       emit(LibrariesSuccess(libraries));
     } catch (e) {
       emit(LibrariesFailure(e.toString()));

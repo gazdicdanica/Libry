@@ -20,7 +20,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
     try {
       final libraries =
-          await _repository.getCurrentLibraires(event.searchText, event.sort);
+          await _repository.getCurrentLibraires(event.searchText, event.sort, 1);
       emit(SearchSuccess(libraries));
     } catch (e) {
       emit(SearchFailure(e.toString()));
