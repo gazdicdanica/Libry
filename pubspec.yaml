@@ -24,12 +24,13 @@ dependencies:
   equatable: ^2.0.5
   confirm_dialog: ^1.0.3
   connectivity_plus: ^6.0.2
-  firebase_storage: ^11.7.2
-  cloud_firestore: ^4.17.0
   intl: ^0.19.0
   webview_flutter: ^4.7.0
   shared_preferences: ^2.2.3
   uuid: ^3.0.0
+  flutter_onboarding_slider: ^1.0.11
+  cloud_firestore: ^4.17.0
+  
 
 dev_dependencies:
   flutter_test:
@@ -42,8 +43,12 @@ flutter:
   uses-material-design: true
   assets: 
     - .env
-    - assets/Conversion_path.png
     - assets/images/libry_transparent.png
+    - assets/images/favorites.jpeg
+    - assets/images/search.jpeg
+    - assets/images/details.jpeg
+    - assets/images/1713866345889.jpeg
+    - assets/images/1713866345900.jpeg
 
 flutter_launcher_icons:
   android: "launcher_icon"

@@ -1,5 +1,5 @@
+
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -14,12 +14,14 @@ import 'package:flutter_internship_2024_app/data/libraries/repository/libraries_
 import 'package:flutter_internship_2024_app/data/platforms/data_provider/platforms_data_provider.dart';
 import 'package:flutter_internship_2024_app/data/platforms/repository/platforms_repository.dart';
 import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
+import 'package:flutter_internship_2024_app/onbording/onbording.dart';
 import 'package:flutter_internship_2024_app/presentation/screens/auth_screen.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/bottom_navigation.dart';
 import 'package:flutter_internship_2024_app/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_internship_2024_app/utils/shared_preferences_util.dart';
 import 'firebase_options.dart';
+
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,9 +35,9 @@ Future main() async {
   ThemeMode initialThemeMode =
       SharedPreferencesUtil().getTheme() ?? ThemeMode.system;
 
-  if (kDebugMode) {
-    await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
-  }
+  // if (kDebugMode) {
+  //   await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
+  // }
   runApp(MyApp(initialThemeMode));
 }
 
@@ -45,9 +47,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (!kReleaseMode) {
-      FirebaseAuth.instance.useAuthEmulator('127.0.0.1', 9099);
-    }
+    // if (!kReleaseMode) {
+    //   FirebaseAuth.instance.useAuthEmulator('127.0.0.1', 9099);
+    // }
     final platformsRepo = PlatformsRepository(PlatformsDataProvider());
     return MultiRepositoryProvider(
       providers: [
@@ -86,6 +88,7 @@ class MyApp extends StatelessWidget {
             } else {
               LocaleSettings.useDeviceLocale();
             }
+            
             return BlocBuilder<ThemeBloc, ThemeState>(
               builder: (context, state) {
                 return TranslationProvider(
@@ -101,7 +104,7 @@ class MyApp extends StatelessWidget {
                         if (snapshot.hasData) {
                           return const BottomNavigation();
                         }
-                        return const AuthScreen();
+                        return  Onbording();
                       },
                     ),
                   ),
