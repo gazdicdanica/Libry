@@ -18,29 +18,33 @@ void main() {
       final logoutBtn = $(#logout); 
 
       //SIGN UP
+      await $.scrollUntilVisible(finder: $('Sign up'));
+
       await $('Sign up').waitUntilVisible(timeout: const Duration(seconds: 5));
 
       expect($('Sign up').visible, equals(true), reason: 'Sign up button is not found before accessing Sign up form');
       await $('Sign up').tap();
       await $.pump();
 
-      await $.enterText(emailField, 'test4@gmail.com');
+      await $.enterText(emailField, 'test3@gmail.com');
       await $.enterText(passwordField, 'testing');
       await $.enterText(confirmPasswordField, 'testing');
 
-
+      //SCROLLABLE
+      await $.scrollUntilVisible(finder: $('Sign up'));
       expect($('Sign up').visible, equals(true), reason: 'Sign up button is not found before accessing Sign up form');
       await $('Sign up').tap();
       await $.pump();
 
-      await $('Platforms').waitUntilVisible(timeout: const Duration(seconds: 5));
-      expect($('Platforms').visible, equals(true), reason: 'Platforms are not visible before sign up/login');
+      await $('NPM').waitUntilVisible(timeout: const Duration(seconds: 5));
+      expect($('NPM').visible, equals(true), reason: 'NPM are not visible before sign up/login');
 
       //ACCOUNT
       await $(accountBtn).tap();
       await $.pump();
 
       //LOG OUT
+      await $.scrollUntilVisible(finder: logoutBtn);
       await $(logoutBtn).tap();
       await $.pump();
 
@@ -61,6 +65,7 @@ void main() {
       final passwordField = $(#password);
       final confirmPasswordField = $(#confirmPassword);
 
+      await $.scrollUntilVisible(finder: $('Sign up'));
       await $('Sign up').waitUntilVisible(timeout: const Duration(seconds: 5));
 
       expect($('Sign up').visible, equals(true), reason: 'Sign up button is not found before accessing Sign up form');
@@ -71,6 +76,7 @@ void main() {
       await $.enterText(passwordField, '');
       await $.enterText(confirmPasswordField, '');
 
+      await $.scrollUntilVisible(finder: $('Sign up'));
       expect($('Sign up').visible, equals(true), reason: 'Sign up button is not found before accessing Sign up form');
       await $('Sign up').tap();
       await $.pump();
@@ -91,6 +97,7 @@ void main() {
       final passwordField = $(#password);
       final confirmPasswordField = $(#confirmPassword);
 
+      await $.scrollUntilVisible(finder: $('Sign up'));
       await $('Sign up').waitUntilVisible(timeout: const Duration(seconds: 5));
 
       expect($('Sign up').visible, equals(true), reason: 'Sign up button is not found before accessing Sign up form');
@@ -101,6 +108,7 @@ void main() {
       await $.enterText(passwordField, '123');
       await $.enterText(confirmPasswordField, '12');
 
+      await $.scrollUntilVisible(finder: $('Sign up'));
       expect($('Sign up').visible, equals(true), reason: 'Sign up button is not found before accessing Sign up form');
       await $('Sign up').tap();
       await $.pump();
@@ -110,5 +118,36 @@ void main() {
       expect($('Passwords do not match!').visible, equals(true), reason: 'Confirm password error message is not visible');
   });
 
+
+  patrolTest('Unsuccessfull Sign up - Email already in use', ($) async {
+
+      app.main();
+      await $.pumpAndSettle();
+
+      final emailField = $(#email);
+      final passwordField = $(#password);
+      final confirmPasswordField = $(#confirmPassword);
+
+      //SIGN UP
+      await $.scrollUntilVisible(finder: $('Sign up'));
+
+      await $('Sign up').waitUntilVisible(timeout: const Duration(seconds: 5));
+
+      expect($('Sign up').visible, equals(true), reason: 'Sign up button is not found before accessing Sign up form');
+      await $('Sign up').tap();
+      await $.pump();
+
+      await $.enterText(emailField, 'test2@gmail.com');
+      await $.enterText(passwordField, 'testing');
+      await $.enterText(confirmPasswordField, 'testing');
+
+      //SCROLLABLE
+      await $.scrollUntilVisible(finder: $('Sign up'));
+      expect($('Sign up').visible, equals(true), reason: 'Sign up button is not found before accessing Sign up form');
+      await $('Sign up').tap();
+      await $.pump();
+
+      expect($('Email is already in use!').visible, equals(true), reason: 'Email error message is not visible');
+  });
 //});
 }

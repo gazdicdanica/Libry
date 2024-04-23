@@ -35,6 +35,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
         onDestinationSelected: _onItemTap,
         destinations: [
           NavigationDestination(
+              key: const Key('home'),
               icon: Icon(
                 MdiIcons.packageVariantClosed,
               ),

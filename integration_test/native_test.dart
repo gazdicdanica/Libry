@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:patrol/patrol.dart';
 
@@ -88,21 +89,21 @@ void main() {
     await $(loginBtn).tap();
     await $.pump();
 
-    await $('Platforms').waitUntilVisible(timeout: const Duration(seconds: 5));
-    expect($('Platforms').visible, equals(true), reason: 'Platforms are not visible before sign up/login');
+    await $('NPM').waitUntilVisible(timeout: const Duration(seconds: 30));
+    expect($('NPM').visible, equals(true), reason: 'NPM is not visible before sign up/login');
 
     await $(searchBtn).tap();
     await $.pump();
 
     await $.enterText(searchInputField, 'meta');
+
     await $(removeBtn).tap();
     await $.pump();
     
     // await $('meta').waitUntilVisible(timeout: const Duration(seconds: 30));
     // expect($('meta').visible, equals(true), reason: 'Meta is not visible');
 
-    await $(backBtn).tap();
-    await $.pump();
+    await $.native.pressBack();
   
     await $('NPM').waitUntilVisible(timeout: const Duration(seconds: 30));
     expect($('NPM').visible, equals(true), reason: 'NPM are not visible before sign up/login');

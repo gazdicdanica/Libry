@@ -19,9 +19,11 @@ class TabBarWidget extends StatelessWidget {
         indicatorSize: TabBarIndicatorSize.tab,
         tabs: <Widget>[
           Tab(
+            key: const Key('mpl'),
             text: t.tab_most_popular,
           ),
           Tab(
+            key: const Key('nwl'),
             text: t.tab_newest,
           ),
         ],
