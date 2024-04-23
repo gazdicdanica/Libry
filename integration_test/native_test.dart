@@ -1,4 +1,3 @@
-import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:patrol/patrol.dart';
 
@@ -31,10 +30,10 @@ void main() {
 
     await $(loginBtn).waitUntilVisible(timeout: const Duration(seconds: 5));
 
-    await $.enterText(emailField, 'test4@gmail.com');
+    await $.enterText(emailField, 'test@gmail.com');
     await $.enterText(passwordField, 'testing');
 
-    // await $.native.enterTextByIndex('test4@gmail.com', index: 0); // enter username
+    //await $.native.enterTextByIndex('test4@gmail.com', index: 0); // enter username
     // await $.native.enterTextByIndex('testing', index: 1); // enter password
 
     await $.native.disableCellular();
@@ -78,12 +77,11 @@ void main() {
     final loginBtn = $(#login);
     final searchBtn = $(#search);
     final searchInputField = $(#searchInputField);
-    final backBtn = $(#backBtn);
     final removeBtn = $(#removeBtn);
     final accountBtn = $(#account);
     final logoutBtn = $(#logout);
 
-    await $.enterText(emailField, 'test4@gmail.com');
+    await $.enterText(emailField, 'test@gmail.com');
     await $.enterText(passwordField, 'testing');
 
     await $(loginBtn).tap();
@@ -92,16 +90,20 @@ void main() {
     await $('NPM').waitUntilVisible(timeout: const Duration(seconds: 30));
     expect($('NPM').visible, equals(true), reason: 'NPM is not visible before sign up/login');
 
+
+    //SEARCH???
     await $(searchBtn).tap();
     await $.pump();
 
     await $.enterText(searchInputField, 'meta');
+    await $.pump();
+    
+
+    await $('meta').waitUntilVisible(timeout: const Duration(seconds: 30));
+    expect($('meta').visible, equals(true), reason: 'Meta is not visible');
 
     await $(removeBtn).tap();
     await $.pump();
-    
-    // await $('meta').waitUntilVisible(timeout: const Duration(seconds: 30));
-    // expect($('meta').visible, equals(true), reason: 'Meta is not visible');
 
     await $.native.pressBack();
   

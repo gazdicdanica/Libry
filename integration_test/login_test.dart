@@ -27,7 +27,7 @@ void main() {
       await $(loginBtn).tap();
       await $.pump();
 
-      await $('NPM').waitUntilVisible(timeout: const Duration(seconds: 5));
+      await $('NPM').waitUntilVisible(timeout: const Duration(seconds: 15));
       expect($('NPM').visible, equals(true), reason: 'NPM are not visible before sign up/login');
 
       //ACCOUNT
@@ -39,8 +39,8 @@ void main() {
       await $(changeTheme).tap();
       await $.pump();
       
-      await $('Light theme').waitUntilVisible(timeout: const Duration(seconds: 5));
-      await $('Light theme').tap();
+      await $('Dark theme').waitUntilVisible(timeout: const Duration(seconds: 5));
+      await $('Dark theme').tap();
       await $.pump();
 
       //LOG OUT

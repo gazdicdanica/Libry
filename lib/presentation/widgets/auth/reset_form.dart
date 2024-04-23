@@ -78,6 +78,7 @@ class _ResetFormState extends State<ResetForm> {
                   if (!_messageSend)
                     Column(children: [
                       Text(
+                        key: const Key('forgotMessage'),
                         textAlign: TextAlign.center,
                         t.reset_password_title,
                         style: TextStyle(
@@ -103,6 +104,7 @@ class _ResetFormState extends State<ResetForm> {
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
+                          key: const Key('resetLink'),
                           onPressed: () {
                             _sendResetEmail(context);
                           },
@@ -117,6 +119,7 @@ class _ResetFormState extends State<ResetForm> {
                   if (_messageSend)
                     Column(children: [
                       Text(
+                        key: const Key('resetMessage'),
                           textAlign: TextAlign.center,
                           t.reset_password_success,
                           style: TextStyle(
@@ -137,6 +140,7 @@ class _ResetFormState extends State<ResetForm> {
                             },
                             style: Theme.of(context).textButtonTheme.style!,
                             child: Text(
+                              key: const Key('goBack'),
                               t.go_back,
                             )),
                       ),

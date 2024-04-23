@@ -105,6 +105,7 @@ class _AuthFormState extends State<AuthForm> {
                                     MaterialStateProperty.all<Color>(
                                         const Color.fromRGBO(0, 166, 141, 1))),
                             child: Text(
+                              key: const Key('forgotPassword'),
                               t.forgot_password,
                               style: const TextStyle(
                                   fontSize: 16, fontWeight: FontWeight.normal),
