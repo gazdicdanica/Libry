@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_internship_2024_app/presentation/widgets/my_account/components/divider_widget.dart';
+import 'package:flutter_internship_2024_app/presentation/widgets/divider_widget.dart';
 
 class UserInfoRow extends StatelessWidget {
   const UserInfoRow({

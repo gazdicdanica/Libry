@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_internship_2024_app/bloc/libraries_bloc/libraries_bloc.dart';
+import 'package:flutter_internship_2024_app/models/library.dart';
 import 'package:flutter_internship_2024_app/models/platform.dart';
+import 'package:flutter_internship_2024_app/presentation/screens/library_details_screen.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/card_widget.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/error_message_widget.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/libraries_widgets/libraries_card_content.dart';
@@ -29,7 +31,8 @@ class _LibrariesListState extends State<LibrariesList> {
     sort = widget.sort;
     context.read<LibrariesBloc>().add(FetchLibraries(platfromName!, sort!));
   }
-
+  
+  
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -48,7 +51,9 @@ class _LibrariesListState extends State<LibrariesList> {
                 itemBuilder: (context, index) {
                   return CardWidget(
                     color: widget.platform.colorObj,
-                    onTap: () {},
+                    onTap: () {
+                      _goToDetailsScreen(state.libraries[index]);
+                    },
                     child: LibrariesCardContet(
                       library: state.libraries[index],
                     ),
@@ -67,6 +72,16 @@ class _LibrariesListState extends State<LibrariesList> {
         }
         return const SizedBox();
       }),
+    );
+  }
+
+  void _goToDetailsScreen(Library library) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => LibraryDetailsScreen(
+          library: library,
+        ),
+      ),
     );
   }
 }

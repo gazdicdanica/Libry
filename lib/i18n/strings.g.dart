@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 106 (53 per locale)
+/// Strings: 142 (71 per locale)
 ///
-/// Built on 2024-04-23 at 08:53 UTC
+/// Built on 2024-04-23 at 17:29 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -179,6 +179,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get libraries_error => 'Failed to load libraries.';
 	String get platforms_error => 'Failed to load platforms.';
 	String get internet_error => 'No internet connection.';
+	String get error => 'Error occurred. Try again later.';
 	String get my_account => 'My Account';
 	String get name => 'Name';
 	String get lastname => 'Last name';
@@ -194,6 +195,16 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get navigation_profile => 'Account';
 	String get language_en => 'English';
 	String get language_sr => 'Serbian';
+	String get library_details => 'Library details';
+	String get license => 'License';
+	String get keywords => 'Keywords';
+	String get repo_status => 'Repository status';
+	String get platform => 'Platform';
+	String get stars => 'Stars';
+	String get latest_release_num => 'Latest release number';
+	String get published_at => 'Published at';
+	String get latest_stable_release => 'Latest stable release';
+	String get homepage => 'Homepage';
 	String get theme_system => 'System theme';
 	String get theme_light => 'Light theme';
 	String get theme_dark => 'Dark theme';
@@ -201,6 +212,13 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get confirm_delete_account => 'Are you sure you want to delete your account?';
 	String get sorry_youre_leaving => 'Sorry you are leaving...';
 	String get delete_account_error => 'Failed to delete user account. Please try again later.';
+	String get back_history => 'No back history item';
+	String get forward_history => 'No forward history item';
+	String get add_favorites => 'Package added to favorites.';
+	String get remove_favorites => 'Package removed from favorites';
+	String get error_favorites => 'Error occurred while updating favorites';
+	String get no_favorites => 'There are no favorite packages yet!';
+	String get explanation_adding => 'If you want to receive updates about your favorite packages, add it to favorites by pressing heart icon.';
 }
 
 // Path: <root>
@@ -258,6 +276,7 @@ class _StringsSr implements Translations {
 	@override String get libraries_error => 'Greška prilikom učitavanja paketa!';
 	@override String get platforms_error => 'Greška prilikom učitavanja platformi!';
 	@override String get internet_error => 'Nemate pristup internetu!';
+	@override String get error => 'Došlo je do greške. Pokušajte ponovo kasnije.';
 	@override String get my_account => 'Moj nalog';
 	@override String get name => 'Ime';
 	@override String get lastname => 'Prezime';
@@ -273,6 +292,16 @@ class _StringsSr implements Translations {
 	@override String get navigation_profile => 'Nalog';
 	@override String get language_en => 'Engleski';
 	@override String get language_sr => 'Srpski';
+	@override String get library_details => 'Detalji biblioteke';
+	@override String get license => 'Licenca';
+	@override String get keywords => 'Ključne reči';
+	@override String get repo_status => 'Status repozitorijuma';
+	@override String get platform => 'Platforma';
+	@override String get stars => 'Zvezde';
+	@override String get latest_release_num => 'Broj poslednjeg izdanja';
+	@override String get published_at => 'Objavljeno u';
+	@override String get latest_stable_release => 'Stabilno izdanje';
+	@override String get homepage => 'Početna stranica';
 	@override String get theme_system => 'Sistemska tema';
 	@override String get theme_light => 'Svetla tema';
 	@override String get theme_dark => 'Tamna tema';
@@ -280,6 +309,13 @@ class _StringsSr implements Translations {
 	@override String get confirm_delete_account => 'Da li ste sigurni da želite da obrišete svoj nalog?';
 	@override String get sorry_youre_leaving => 'Žao nam je što odlazite...';
 	@override String get delete_account_error => 'Nije uspelo brisanje korisničkog naloga. Molimo pokušajte ponovo kasnije.';
+	@override String get back_history => 'Nema stavki u istoriji';
+	@override String get forward_history => 'Nema stavki ispred';
+	@override String get add_favorites => 'Paket dodat u omiljene';
+	@override String get remove_favorites => 'Paket uklonjen iz omiljenih';
+	@override String get error_favorites => 'Greška prilikom ažuriranja omiljenih paketa';
+	@override String get no_favorites => 'Nemate omiljene pakete!';
+	@override String get explanation_adding => 'Ako želite da dobijate ažuriranja o vašim omiljenim paketima, dodajte ih u omiljene pritiskom na ikonu srca.';
 }
 
 /// Flat map(s) containing all translations.
@@ -319,6 +355,7 @@ extension on Translations {
 			case 'libraries_error': return 'Failed to load libraries.';
 			case 'platforms_error': return 'Failed to load platforms.';
 			case 'internet_error': return 'No internet connection.';
+			case 'error': return 'Error occurred. Try again later.';
 			case 'my_account': return 'My Account';
 			case 'name': return 'Name';
 			case 'lastname': return 'Last name';
@@ -334,6 +371,16 @@ extension on Translations {
 			case 'navigation_profile': return 'Account';
 			case 'language_en': return 'English';
 			case 'language_sr': return 'Serbian';
+			case 'library_details': return 'Library details';
+			case 'license': return 'License';
+			case 'keywords': return 'Keywords';
+			case 'repo_status': return 'Repository status';
+			case 'platform': return 'Platform';
+			case 'stars': return 'Stars';
+			case 'latest_release_num': return 'Latest release number';
+			case 'published_at': return 'Published at';
+			case 'latest_stable_release': return 'Latest stable release';
+			case 'homepage': return 'Homepage';
 			case 'theme_system': return 'System theme';
 			case 'theme_light': return 'Light theme';
 			case 'theme_dark': return 'Dark theme';
@@ -341,6 +388,13 @@ extension on Translations {
 			case 'confirm_delete_account': return 'Are you sure you want to delete your account?';
 			case 'sorry_youre_leaving': return 'Sorry you are leaving...';
 			case 'delete_account_error': return 'Failed to delete user account. Please try again later.';
+			case 'back_history': return 'No back history item';
+			case 'forward_history': return 'No forward history item';
+			case 'add_favorites': return 'Package added to favorites.';
+			case 'remove_favorites': return 'Package removed from favorites';
+			case 'error_favorites': return 'Error occurred while updating favorites';
+			case 'no_favorites': return 'There are no favorite packages yet!';
+			case 'explanation_adding': return 'If you want to receive updates about your favorite packages, add it to favorites by pressing heart icon.';
 			default: return null;
 		}
 	}
@@ -380,6 +434,7 @@ extension on _StringsSr {
 			case 'libraries_error': return 'Greška prilikom učitavanja paketa!';
 			case 'platforms_error': return 'Greška prilikom učitavanja platformi!';
 			case 'internet_error': return 'Nemate pristup internetu!';
+			case 'error': return 'Došlo je do greške. Pokušajte ponovo kasnije.';
 			case 'my_account': return 'Moj nalog';
 			case 'name': return 'Ime';
 			case 'lastname': return 'Prezime';
@@ -395,6 +450,16 @@ extension on _StringsSr {
 			case 'navigation_profile': return 'Nalog';
 			case 'language_en': return 'Engleski';
 			case 'language_sr': return 'Srpski';
+			case 'library_details': return 'Detalji biblioteke';
+			case 'license': return 'Licenca';
+			case 'keywords': return 'Ključne reči';
+			case 'repo_status': return 'Status repozitorijuma';
+			case 'platform': return 'Platforma';
+			case 'stars': return 'Zvezde';
+			case 'latest_release_num': return 'Broj poslednjeg izdanja';
+			case 'published_at': return 'Objavljeno u';
+			case 'latest_stable_release': return 'Stabilno izdanje';
+			case 'homepage': return 'Početna stranica';
 			case 'theme_system': return 'Sistemska tema';
 			case 'theme_light': return 'Svetla tema';
 			case 'theme_dark': return 'Tamna tema';
@@ -402,6 +467,13 @@ extension on _StringsSr {
 			case 'confirm_delete_account': return 'Da li ste sigurni da želite da obrišete svoj nalog?';
 			case 'sorry_youre_leaving': return 'Žao nam je što odlazite...';
 			case 'delete_account_error': return 'Nije uspelo brisanje korisničkog naloga. Molimo pokušajte ponovo kasnije.';
+			case 'back_history': return 'Nema stavki u istoriji';
+			case 'forward_history': return 'Nema stavki ispred';
+			case 'add_favorites': return 'Paket dodat u omiljene';
+			case 'remove_favorites': return 'Paket uklonjen iz omiljenih';
+			case 'error_favorites': return 'Greška prilikom ažuriranja omiljenih paketa';
+			case 'no_favorites': return 'Nemate omiljene pakete!';
+			case 'explanation_adding': return 'Ako želite da dobijate ažuriranja o vašim omiljenim paketima, dodajte ih u omiljene pritiskom na ikonu srca.';
 			default: return null;
 		}
 	}

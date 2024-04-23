@@ -25,32 +25,30 @@ class _ResetFormState extends State<ResetForm> {
   String? errorMessage;
   String? emailError = '';
 
-  @override
-  void dispose() {
-    _emailController.dispose();
-    super.dispose();
-  }
 
-  void _validateEmail(String email) {
-    if (email.isEmpty || !EmailValidator.validate(email)) {
-      setState(() {
-        emailError = t.email_format_error;
-      });
-    } else {
+void _validateEmail(String email){
+  
+   if ( email.isEmpty ||!EmailValidator.validate(email)) {
+        setState(() {
+           emailError = t.email_format_error;
+    
+        });
+    } 
+    else{
       setState(() {
         emailError = '';
       });
     }
-  }
+}
 
-  void _sendResetEmail(BuildContext context) {
-    _validateEmail(_emailController.text.trim());
-    if (emailError == '') {
-      BlocProvider.of<AuthBloc>(context).add(SendResetEmail(
-        email: _emailController.text.trim(),
-      ));
-    }
+void _sendResetEmail(BuildContext context) {
+  _validateEmail(_emailController.text.trim());
+  if(emailError == ''){
+     BlocProvider.of<AuthBloc>(context).add(SendResetEmail(
+    email: _emailController.text.trim(),
+  ));
   }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -167,4 +165,10 @@ class _ResetFormState extends State<ResetForm> {
       ),
     );
   }
+  @override
+  void dispose() {
+    _emailController.dispose();
+    super.dispose();
+  }
+
 }
