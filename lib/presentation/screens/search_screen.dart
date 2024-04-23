@@ -66,16 +66,17 @@ class _SearchScreenState extends State<SearchScreen> {
 
     bool isPortrait =
         MediaQuery.of(context).orientation == Orientation.portrait;
+    int padding = Theme.of(context).platform == TargetPlatform.iOS ? 40 : 0;
 
     if (isPortrait) {
       return MediaQuery.of(context).size.height -
           appBarHeight -
           statusBarHeight -
-          keyboardHeight;
+          keyboardHeight - padding;
     } else {
       return MediaQuery.of(context).size.height -
           appBarHeight -
-          statusBarHeight;
+          statusBarHeight - padding;
     }
   }
 }
