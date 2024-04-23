@@ -11,13 +11,14 @@ final class StartAuth extends AuthEvent {
   StartAuth(this.email, this.password, this.isLogin);
 }
 
-final class ValidateAuth extends AuthEvent{
+final class ValidateAuth extends AuthEvent {
   final String? email;
   final String? password;
   final String? confirmPassword;
   final bool isLogin;
 
-  ValidateAuth({this.email, this.password, this.confirmPassword, required this.isLogin});
+  ValidateAuth(
+      {this.email, this.password, this.confirmPassword, required this.isLogin});
 }
 
 final class ResetAuth extends AuthEvent {}
@@ -32,4 +33,10 @@ class SendResetEmail extends AuthEvent {
   final String? email;
 
   SendResetEmail({this.email});
+}
+
+final class DeleteAccount extends AuthEvent {
+  final User user;
+
+  DeleteAccount(this.user);
 }

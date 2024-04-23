@@ -15,9 +15,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<ResetAuth>(_reset);
     on<ValidateAuth>(_validate);
     on<SendResetEmail>(_sendForgotPasswordEmail);
+    on<DeleteAccount>(_deleteAccount);
   }
 
-  bool _isEmailValid(String email) => RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email);
+  bool _isEmailValid(String email) => RegExp(
+          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+      .hasMatch(email);
 
   void _validate(ValidateAuth event, Emitter<AuthState> emit) {
     String? emailError;
@@ -91,6 +94,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(ForgotPasswordSuccess());
     } on FirebaseAuthException catch (e) {
       emit(ForgotPasswordFailure(emailError: e.message));
+    }
+  }
+
+  void _deleteAccount(DeleteAccount event, Emitter<AuthState> emit) async {
+    emit(AuthLoading());
+    try {
+      await _authRepository.deleteAccount(event.user);
+      emit(AccountDeleted());
+    } catch (e) {
+      emit(AuthUnknownFailure(t.delete_account_error));
     }
   }
 }

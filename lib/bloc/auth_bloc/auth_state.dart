@@ -1,7 +1,7 @@
 part of 'auth_bloc.dart';
 
 @immutable
-sealed class AuthState extends Equatable{}
+sealed class AuthState extends Equatable {}
 
 final class AuthInitial extends AuthState {
   @override
@@ -14,6 +14,11 @@ final class AuthLoading extends AuthState {
 }
 
 final class AuthSuccess extends AuthState {
+  @override
+  List<Object> get props => [];
+}
+
+final class AccountDeleted extends AuthState {
   @override
   List<Object> get props => [];
 }
@@ -35,16 +40,16 @@ final class AuthCredentialsFailure extends AuthFailure {
   AuthCredentialsFailure(super.errorMessage);
 }
 
-final class AuthValidationFailure extends AuthState{
+final class AuthValidationFailure extends AuthState {
   final String? emailError;
   final String? passwordError;
   final String? confirmPasswordError;
 
-  AuthValidationFailure({this.emailError, this.passwordError, this.confirmPasswordError});
+  AuthValidationFailure(
+      {this.emailError, this.passwordError, this.confirmPasswordError});
 
   @override
   List<Object?> get props => [emailError, passwordError, confirmPasswordError];
-
 }
 
 final class AuthValidationSuccess extends AuthState {
@@ -57,12 +62,18 @@ final class ForgotPasswordSuccess extends AuthState {
   List<Object> get props => [];
 }
 
-
-final class ForgotPasswordFailure extends AuthState{
-    final String? emailError;
-    ForgotPasswordFailure( {this.emailError});
+final class ForgotPasswordFailure extends AuthState {
+  final String? emailError;
+  ForgotPasswordFailure({this.emailError});
   @override
   List<Object?> get props => [emailError];
-  
 }
 
+final class AuthDeletionFailure extends AuthState {
+  final String errorMessage;
+
+  AuthDeletionFailure(this.errorMessage);
+
+  @override
+  List<Object> get props => [errorMessage];
+}
