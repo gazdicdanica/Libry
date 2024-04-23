@@ -47,5 +47,9 @@
     "language_sr": "Srpski",
     "theme_system": "Sistemska tema",
     "theme_light": "Svetla tema",
-    "theme_dark": "Tamna tema"
+    "theme_dark": "Tamna tema",
+    "delete_account": "Brisanje naloga",
+    "confirm_delete_account": "Da li ste sigurni da želite da obrišete svoj nalog?",
+    "sorry_youre_leaving": "Žao nam je što odlazite...",
+    "delete_account_error": "Nije uspelo brisanje korisničkog naloga. Molimo pokušajte ponovo kasnije."
 }

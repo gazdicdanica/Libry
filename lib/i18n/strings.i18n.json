@@ -47,5 +47,9 @@
     "language_sr": "Serbian",
     "theme_system": "System theme",
     "theme_light": "Light theme",
-    "theme_dark": "Dark theme"
+    "theme_dark": "Dark theme",
+    "delete_account": "Delete account",
+    "confirm_delete_account": "Are you sure you want to delete your account?",
+    "sorry_youre_leaving": "Sorry you are leaving...",
+    "delete_account_error": "Failed to delete user account. Please try again later."
 }
