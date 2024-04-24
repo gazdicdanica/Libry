@@ -8,7 +8,7 @@ import 'package:flutter_internship_2024_app/models/library.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/card_widget.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/error_message_widget.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/libraries_widgets/libraries_card_content.dart';
-import 'package:flutter_internship_2024_app/presentation/widgets/no_items_found.dart';
+import 'package:flutter_internship_2024_app/presentation/widgets/pagination/hint_widget.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/pagination/end_indicator.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/pagination/new_page_error.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -110,31 +110,15 @@ class _SearchListState extends State<SearchList>
             newPageErrorIndicatorBuilder: (context) => NewPageErrorIndicator(
                 onTryAgain: () => _pagingController.retryLastFailedRequest()),
             noMoreItemsIndicatorBuilder: (context) => const EndIndicator(),
-            noItemsFoundIndicatorBuilder: (context) =>
-                NoItemsFound(message: t.search_empty),
+            noItemsFoundIndicatorBuilder: (context) => HintWidget(
+                message: t.search_empty, icon: Icons.emoji_nature_outlined),
           ),
         ),
       );
     } else {
-      return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(
-              Icons.search,
-              size: 80,
-            ),
-            const SizedBox(height: 20),
-            Text(
-              t.search_hint,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
+      return HintWidget(
+        message: t.search_hint,
+        icon: Icons.search,
       );
     }
   }
