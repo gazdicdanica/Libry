@@ -62,13 +62,16 @@ class _AuthFormState extends State<AuthForm> {
                       controller: _emailController,
                       labelText: t.email,
                       hintText: t.email_hint,
-                      errorText: (state is AuthValidationFailure)
+                      errorText: (state is AuthValidationFailure &&
+                              state.emailError != null)
                           ? state.emailError
                           : null,
                       suffixIcon: (state is AuthValidationFailure &&
                               state.emailError != null)
                           ? const Icon(Icons.error)
                           : null,
+                      onChanged: (value) => ctx.read<AuthBloc>()..add(
+                        ValidateAuth(email: value, password: _passwordController.text.trim(), confirmPassword: _confirmPasswordController.text.trim(), isLogin: _isLogin),)
                     ),
                     const SizedBox(
                       height: 20,
@@ -77,7 +80,8 @@ class _AuthFormState extends State<AuthForm> {
                       controller: _passwordController,
                       labelText: t.password,
                       hintText: t.password_hint,
-                      errorText: (state is AuthValidationFailure)
+                      errorText: (state is AuthValidationFailure&&
+                              state.passwordError != null)
                           ? state.passwordError
                           : null,
                       suffixIcon: (state is AuthValidationFailure &&
@@ -85,6 +89,10 @@ class _AuthFormState extends State<AuthForm> {
                           ? const Icon(Icons.error)
                           : null,
                       obscureText: true,
+                      onChanged: (value) => ctx.read<AuthBloc>()
+                        ..add(
+                          ValidateAuth(password: value, confirmPassword: _confirmPasswordController.text.trim(), email: _emailController.text.trim(), isLogin: _isLogin),
+                        ),
                     ),
 
                     if (_isLogin)
@@ -135,7 +143,8 @@ class _AuthFormState extends State<AuthForm> {
                             controller: _confirmPasswordController,
                             labelText: t.confirm_password,
                             hintText: t.confirm_password_hint,
-                            errorText: (state is AuthValidationFailure)
+                            errorText: (state is AuthValidationFailure &&
+                                    state.confirmPasswordError != null)
                                 ? state.confirmPasswordError
                                 : null,
                             suffixIcon: (state is AuthValidationFailure &&
@@ -143,6 +152,15 @@ class _AuthFormState extends State<AuthForm> {
                                 ? const Icon(Icons.error)
                                 : null,
                             obscureText: true,
+                            onChanged: (value) => ctx.read<AuthBloc>()
+                              ..add(
+                                ValidateAuth(
+                                  confirmPassword: value,
+                                  email: _emailController.text.trim(),
+                                  isLogin: _isLogin,
+                                  password: _passwordController.text.trim(),
+                                ),
+                              ),
                           ),
                           const SizedBox(
                             height: 40,
@@ -153,7 +171,7 @@ class _AuthFormState extends State<AuthForm> {
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () {
-                          _validateAndAuthenticate(ctx);
+                          _authenticateIfValid(ctx);
                         },
                         style: Theme.of(context).textButtonTheme.style,
                         child: Text(_isLogin ? t.login : t.singup),
@@ -226,12 +244,18 @@ class _AuthFormState extends State<AuthForm> {
     _confirmPasswordController.clear();
   }
 
-  void _validateAndAuthenticate(BuildContext context) {
-    BlocProvider.of<AuthBloc>(context).add(ValidateAuth(
-        isLogin: _isLogin,
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim(),
-        confirmPassword: _confirmPasswordController.text.trim()));
+  void _authenticateIfValid(BuildContext context) {
+    final state = context.read<AuthBloc>().state;
+    if (state is AuthValidationFailure) {
+      return;
+    }
+    BlocProvider.of<AuthBloc>(context).add(
+      StartAuth(
+        _emailController.text.trim(),
+        _passwordController.text.trim(),
+        _isLogin,
+      ),
+    );
   }
 
   @override

@@ -17,26 +17,32 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<SendResetEmail>(_sendForgotPasswordEmail);
   }
 
-  bool _isEmailValid(String email) => RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email);
+  bool _isEmailValid(String? email) =>
+      email != null &&
+      email.isNotEmpty &&
+      RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+          .hasMatch(email);
+
+  bool _isPasswordValid(String? password) =>
+      password != null && password.isNotEmpty && password.length >= 6;
+
+  bool _isConfirmPasswordValid(String? password, String? confirmPassword) =>
+      confirmPassword != null &&
+      confirmPassword.isNotEmpty &&
+      confirmPassword == password;
 
   void _validate(ValidateAuth event, Emitter<AuthState> emit) {
     String? emailError;
     String? passwordError;
     String? confirmPasswordError;
-    if (event.email == null ||
-        event.email!.isEmpty ||
-        !_isEmailValid(event.email!)) {
+    if (!_isEmailValid(event.email)) {
       emailError = t.email_format_error;
     }
-    if (event.password == null ||
-        event.password!.isEmpty ||
-        event.password!.length < 6) {
+    if (!_isPasswordValid(event.password)) {
       passwordError = t.password_error;
     }
     if (!event.isLogin) {
-      if (event.confirmPassword == null ||
-          event.confirmPassword!.isEmpty ||
-          event.confirmPassword != event.password) {
+      if (!_isConfirmPasswordValid(event.password, event.confirmPassword)) {
         confirmPasswordError = t.confirm_password_error;
       }
     }
@@ -47,8 +53,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           emailError: emailError,
           passwordError: passwordError,
           confirmPasswordError: confirmPasswordError));
-    } else {
-      add(StartAuth(event.email!, event.password!, event.isLogin));
+    }else{
+      emit(AuthValidationSuccess());
     }
   }
 
