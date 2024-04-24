@@ -47,5 +47,6 @@
     "language_sr": "Serbian",
     "theme_system": "System theme",
     "theme_light": "Light theme",
-    "theme_dark": "Dark theme"
+    "theme_dark": "Dark theme",
+    "end_of_list": "You've reached the end"
 }

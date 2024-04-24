@@ -14,12 +14,12 @@ class LibrariesRepository {
   );
 
   Future<List<Library>> getCurrentLibraires(
-      String platfrom, String sort) async {
+      String platfrom, String sort, int page) async {
     try {
       String packageName = platfrom;
 
       final packageData =
-          await librariesProvider.getCurrentLibraires(packageName, sort);
+          await librariesProvider.getCurrentLibraires(packageName, sort, page);
 
       final data = jsonDecode(packageData);
       final List<Library> libraries = List<Library>.from(
