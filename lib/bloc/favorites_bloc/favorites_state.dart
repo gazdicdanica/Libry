@@ -9,3 +9,4 @@ final class FavoritesFailure extends FavoritesState{}
 final class FavoritesRemoveSucess extends FavoritesState{}
 final class FavoriteNoInternet extends FavoritesState{
 }
+final class FavoritesCheckStatusSucess extends FavoritesState{}

@@ -4,7 +4,6 @@ import 'package:flutter_internship_2024_app/models/library.dart';
 import 'package:flutter_internship_2024_app/presentation/screens/library_details_screen.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/card_widget.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/libraries_widgets/libraries_card_content.dart';
-import 'package:flutter_internship_2024_app/theme.dart';
 
 class FavoritesList extends StatefulWidget {
   final List<Library> libraries;
@@ -31,7 +30,7 @@ class _FavoritesListState extends State<FavoritesList> {
                   const SizedBox(
                       width: 70,
                       child: Icon(Icons.emoji_nature_outlined,
-                          size: 90, color: textColor)),
+                          size: 90,)),
                   const SizedBox(
                     height: 20,
                   ),
@@ -39,7 +38,6 @@ class _FavoritesListState extends State<FavoritesList> {
                     t.no_favorites,
                     style: const TextStyle(
                       fontSize: 20,
-                      color: textColor,
                       fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.center,
@@ -51,7 +49,6 @@ class _FavoritesListState extends State<FavoritesList> {
                     t.explanation_adding,
                     style: const TextStyle(
                         fontSize: 20,
-                        color: textColor,
                         fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center,
                   )

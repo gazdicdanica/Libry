@@ -1,9 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_internship_2024_app/bloc/favorites_bloc/favorites_bloc.dart';
 import 'package:flutter_internship_2024_app/bloc/libraries_bloc/libraries_bloc.dart';
 import 'package:flutter_internship_2024_app/bloc/locale_bloc/locale_bloc.dart';
 import 'package:flutter_internship_2024_app/bloc/platforms_bloc/platforms_bloc.dart';
@@ -33,10 +31,10 @@ Future main() async {
   ThemeMode initialThemeMode =
       SharedPreferencesUtil().getTheme() ?? ThemeMode.system;
 
-  if (kDebugMode) {
-    await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
-  }
-  runApp(MyApp(initialThemeMode));
+  // if (kDebugMode) {
+  //   await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
+  // }
+   runApp(MyApp(initialThemeMode));
 }
 
 class MyApp extends StatelessWidget {
@@ -45,9 +43,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (!kReleaseMode) {
-      FirebaseAuth.instance.useAuthEmulator('127.0.0.1', 9099);
-    }
+    // if (!kReleaseMode) {
+    //   FirebaseAuth.instance.useAuthEmulator('127.0.0.1', 9099);
+    // }
     final platformsRepo = PlatformsRepository(PlatformsDataProvider());
     return MultiRepositoryProvider(
       providers: [
@@ -77,7 +75,6 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => LocaleBloc()..add(InitLocale())),
           BlocProvider(
               create: (context) => ThemeBloc()..add(ChangeTheme(themeMode))),
-          BlocProvider(create: (context) => context.read<FavoritesBloc>())
         ],
         child: BlocBuilder<LocaleBloc, LocaleState>(
           builder: (context, state) {
