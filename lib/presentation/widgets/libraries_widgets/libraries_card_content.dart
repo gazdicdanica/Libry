@@ -31,7 +31,7 @@ class _LibrariesCardContetState extends State<LibrariesCardContet> {
    
     bool position = MediaQuery.of(context).orientation == Orientation.portrait;
     double screenWidth = MediaQuery.of(context).size.width;
-    double remainigWidth =  position ? screenWidth * 0.2 : screenWidth * 0.5;
+    double remainigWidth =  screenWidth * 0.2 ;
     List<String> keywords = [];
     String keywordsString = '';
 
@@ -73,54 +73,34 @@ class _LibrariesCardContetState extends State<LibrariesCardContet> {
                 padding: const EdgeInsets.only(left: 10.0),
                 child: Row(
                   children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          width: position ? 250 : 650,
-                          child: Text(
-                            widget.library.name!,
-                            textAlign: TextAlign.start,
-                            style: Theme.of(context).textTheme.labelLarge,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
+                    SizedBox(
+                      width: position ? 250 : 530,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            child: Text(
+                              widget.library.name!,
+                              textAlign: TextAlign.start,
+                              style: Theme.of(context).textTheme.labelLarge,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 16,
-                        ),
-                        Row(
-                          children: [
-                            Row(
-                              children: [
-                                Row(children: [
-                                  Icon(MdiIcons.sourceRepository, size: 20),
-                                  SizedBox(
-                                    width: position ? 100 : 150,
-                                    child: Text(
-                                      widget.library.latestReleaseNumber!,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                ]),
-                                const SizedBox(
-                                  width: 8,
-                                ),
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    keywordsString == ''
-                                        ? const SizedBox()
-                                        : Icon(MdiIcons.tag,
-                                         size: 20),
+                          const SizedBox(
+                            height: 16,
+                          ),
+                          Row(
+                            children: [
+                              Row(
+                                children: [
+                                  Row(children: [
+                                    Icon(MdiIcons.sourceRepository, size: 20),
                                     SizedBox(
+                                      width: position ? 100 : 200,
                                       child: Text(
-                                        keywordsString,
+                                        widget.library.latestReleaseNumber!,
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyMedium,
@@ -128,13 +108,35 @@ class _LibrariesCardContetState extends State<LibrariesCardContet> {
                                         overflow: TextOverflow.ellipsis,
                                       ),
                                     ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
+                                  ]),
+                                  const SizedBox(
+                                    width: 8,
+                                  ),
+                                  Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      keywordsString == ''
+                                          ? const SizedBox()
+                                          : Icon(MdiIcons.tag,
+                                           size: 20),
+                                      SizedBox(
+                                        child: Text(
+                                          keywordsString,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium,
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                     const SizedBox(
                       width: 5,
@@ -158,6 +160,7 @@ class _LibrariesCardContetState extends State<LibrariesCardContet> {
                           widget.library.isFavorite
                               ? Icons.favorite
                               : Icons.favorite_border,
+                           color: Theme.of(context).colorScheme.onPrimary,
                           size: 30,
                         ),
                       ),

@@ -1,4 +1,3 @@
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_internship_2024_app/bloc/auth_bloc/auth_bloc.dart';
@@ -27,11 +26,10 @@ class _ResetFormState extends State<ResetForm> {
 
 
 void _validateEmail(String email){
-  
-   if ( email.isEmpty ||!EmailValidator.validate(email)) {
+  RegExp emailRegex = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+   if ( email.isEmpty || !emailRegex.hasMatch(email)) {
         setState(() {
            emailError = t.email_format_error;
-    
         });
     } 
     else{
