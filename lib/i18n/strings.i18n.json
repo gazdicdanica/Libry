@@ -69,5 +69,9 @@
     "remove_favorites": "Package removed from favorites",
     "error_favorites": "Error occurred while updating favorites",
     "no_favorites": "There are no favorite packages yet!",
-    "explanation_adding": "If you want to receive updates about your favorite packages, add it to favorites by pressing heart icon."
+    "explanation_adding": "If you want to receive updates about your favorite packages, add it to favorites by pressing heart icon.",
+    "reauthenticate": "Re-authenticate",
+    "enter_password": "Please enter your password to continue",
+    "confirm": "Confirm",
+    "cancel": "Cancel"
 }

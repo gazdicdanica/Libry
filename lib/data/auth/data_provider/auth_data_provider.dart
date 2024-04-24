@@ -30,4 +30,8 @@ class AuthDataProvider {
     );
     await user.reauthenticateWithCredential(credential);
   }
+
+  Future<void> deleteFavoritesForUser(User user) {
+    return _firestore.collection('favorites').doc(user.uid).delete();
+  }
 }

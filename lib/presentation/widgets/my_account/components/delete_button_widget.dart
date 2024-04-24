@@ -40,6 +40,11 @@ class DeleteAccountButton extends StatelessWidget {
             }
           },
           builder: (context, state) {
+            if (state is AuthLoading) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
             if (state is ReauthenticationNeeded) {
               return PasswordInputDialog(
                 onConfirm: (password) {
@@ -48,33 +53,36 @@ class DeleteAccountButton extends StatelessWidget {
                 },
               );
             }
-            return SizedBox(
-              width: 80,
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  backgroundColor: Colors.transparent,
-                ),
-                onPressed: () async {
-                  final confirmed = await showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return CustomDialog(
-                        title: t.delete_account,
-                        content: t.confirm_delete_account,
-                        okText: t.yes,
-                        cancelText: t.no,
-                      );
-                    },
-                  );
-                  if (confirmed == true) {
-                    if (context.mounted) _deleteAccount(context);
-                  }
-                },
-                child: Text(
-                  t.delete_account,
-                  style: const TextStyle(color: darkGreenColor, fontSize: 16),
-                  textAlign: TextAlign.center,
-                ),
+            if (state is ReauthenticationSuccess) {
+              if (context.mounted) _deleteAccount(context);
+            } else if (state is ReauthenticationFailure) {
+              messenger.showSnackBar(
+                SnackBar(content: Text(state.errorMessage)),
+              );
+            }
+            return TextButton(
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.transparent,
+              ),
+              onPressed: () async {
+                final confirmed = await showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return CustomDialog(
+                      title: t.delete_account,
+                      content: t.confirm_delete_account,
+                      okText: t.yes,
+                      cancelText: t.no,
+                    );
+                  },
+                );
+                if (confirmed == true) {
+                  if (context.mounted) openReauth(context);
+                }
+              },
+              child: Text(
+                t.delete_account,
+                style: const TextStyle(color: darkGreenColor, fontSize: 15),
               ),
             );
           },
@@ -85,6 +93,21 @@ class DeleteAccountButton extends StatelessWidget {
 
   void _deleteAccount(BuildContext context) {
     BlocProvider.of<AuthBloc>(context).add(DeleteAccount(user));
+  }
+
+  void openReauth(BuildContext context) async {
+    final password = await showDialog<String>(
+      context: context,
+      builder: (BuildContext context) {
+        return PasswordInputDialog(
+          onConfirm: (password) => password,
+        );
+      },
+    );
+
+    if (password != null && context.mounted) {
+      BlocProvider.of<AuthBloc>(context).add(Reauthenticate(user, password));
+    }
   }
 
   void _navigateToAuthScreen(BuildContext context) {

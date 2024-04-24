@@ -87,3 +87,12 @@ final class ReauthenticationNeeded extends AuthState {
   @override
   List<Object> get props => [];
 }
+
+final class ReauthenticationFailure extends AuthState {
+  final String errorMessage;
+
+  ReauthenticationFailure(this.errorMessage);
+
+  @override
+  List<Object> get props => [errorMessage];
+}

@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 142 (71 per locale)
+/// Strings: 150 (75 per locale)
 ///
-/// Built on 2024-04-23 at 17:29 UTC
+/// Built on 2024-04-23 at 18:28 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -219,6 +219,10 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get error_favorites => 'Error occurred while updating favorites';
 	String get no_favorites => 'There are no favorite packages yet!';
 	String get explanation_adding => 'If you want to receive updates about your favorite packages, add it to favorites by pressing heart icon.';
+	String get reauthenticate => 'Re-authenticate';
+	String get enter_password => 'Please enter your password to continue';
+	String get confirm => 'Confirm';
+	String get cancel => 'Cancel';
 }
 
 // Path: <root>
@@ -316,6 +320,10 @@ class _StringsSr implements Translations {
 	@override String get error_favorites => 'Greška prilikom ažuriranja omiljenih paketa';
 	@override String get no_favorites => 'Nemate omiljene pakete!';
 	@override String get explanation_adding => 'Ako želite da dobijate ažuriranja o vašim omiljenim paketima, dodajte ih u omiljene pritiskom na ikonu srca.';
+	@override String get reauthenticate => 'Autentifikujte se';
+	@override String get enter_password => 'Unesite svoju lozinku da biste nastavili';
+	@override String get confirm => 'Potvrdi';
+	@override String get cancel => 'Otkaži';
 }
 
 /// Flat map(s) containing all translations.
@@ -395,6 +403,10 @@ extension on Translations {
 			case 'error_favorites': return 'Error occurred while updating favorites';
 			case 'no_favorites': return 'There are no favorite packages yet!';
 			case 'explanation_adding': return 'If you want to receive updates about your favorite packages, add it to favorites by pressing heart icon.';
+			case 'reauthenticate': return 'Re-authenticate';
+			case 'enter_password': return 'Please enter your password to continue';
+			case 'confirm': return 'Confirm';
+			case 'cancel': return 'Cancel';
 			default: return null;
 		}
 	}
@@ -474,6 +486,10 @@ extension on _StringsSr {
 			case 'error_favorites': return 'Greška prilikom ažuriranja omiljenih paketa';
 			case 'no_favorites': return 'Nemate omiljene pakete!';
 			case 'explanation_adding': return 'Ako želite da dobijate ažuriranja o vašim omiljenim paketima, dodajte ih u omiljene pritiskom na ikonu srca.';
+			case 'reauthenticate': return 'Autentifikujte se';
+			case 'enter_password': return 'Unesite svoju lozinku da biste nastavili';
+			case 'confirm': return 'Potvrdi';
+			case 'cancel': return 'Otkaži';
 			default: return null;
 		}
 	}

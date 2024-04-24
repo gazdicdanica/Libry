@@ -20,55 +20,49 @@ class AccountDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = Translations.of(context);
-    return Stack(
-      children: [
-        SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const SizedBox(height: 20),
-                ProfileAvatar(photoURL: user.photoURL),
-                const SizedBox(height: 40),
-                // UserInfoRow(label: t.name, value: t.name),
-                // const SizedBox(height: 10),
-                // UserInfoRow(label: t.lastname, value: t.lastname),
-                // const SizedBox(height: 10),
-                UserInfoRow(label: t.email, value: user.email!),
-                const SizedBox(height: 30),
-                BlocBuilder<ThemeBloc, ThemeState>(
-                  builder: (context, state) {
-                    return SettingsInfoRow(
-                      label: t.theme,
-                      subtitle: t[
-                          'theme_${(state as ThemeChanged).themeMode.name.toString()}'],
-                      onPressed: () {
-                        _showModalSheet(context, const ThemeButtons());
-                      },
-                    );
-                  },
-                ),
-                const SizedBox(height: 10),
-                SettingsInfoRow(
-                  label: t.language,
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(height: 20),
+            ProfileAvatar(photoURL: user.photoURL),
+            const SizedBox(height: 40),
+            // UserInfoRow(label: t.name, value: t.name),
+            // const SizedBox(height: 10),
+            // UserInfoRow(label: t.lastname, value: t.lastname),
+            // const SizedBox(height: 10),
+            UserInfoRow(label: t.email, value: user.email!),
+            const SizedBox(height: 30),
+            BlocBuilder<ThemeBloc, ThemeState>(
+              builder: (context, state) {
+                return SettingsInfoRow(
+                  label: t.theme,
                   subtitle: t[
-                      'language_${LocaleSettings.currentLocale.languageCode}'],
+                      'theme_${(state as ThemeChanged).themeMode.name.toString()}'],
                   onPressed: () {
-                    _showModalSheet(context, const LanguageButtons());
+                    _showModalSheet(context, const ThemeButtons());
                   },
-                ),
-                const SizedBox(height: 50),
-                const LogoutButton(),
-              ],
+                );
+              },
             ),
-          ),
+            const SizedBox(height: 10),
+            SettingsInfoRow(
+              label: t.language,
+              subtitle:
+                  t['language_${LocaleSettings.currentLocale.languageCode}'],
+              onPressed: () {
+                _showModalSheet(context, const LanguageButtons());
+              },
+            ),
+            const SizedBox(height: 10),
+            const LogoutButton(),
+            const SizedBox(height: 10),
+            DeleteAccountButton(user: user),
+          ],
         ),
-        Positioned(
-          right: 10,
-          child: DeleteAccountButton(user: user),
-        ),
-      ],
+      ),
     );
   }
 
