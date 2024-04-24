@@ -20,7 +20,7 @@ void main() {
 
       await $('Login').waitUntilVisible(timeout: const Duration(seconds: 5));
 
-      await $.enterText(emailField, 'test@gmail.com');
+      await $.enterText(emailField, 'test1@gmail.com');
       await $.enterText(passwordField, 'testing');
 
       expect($(loginBtn).visible, equals(true), reason: 'Login button is not found before accessing Sign up form');
@@ -141,7 +141,7 @@ void main() {
 
       await $('Login').waitUntilVisible(timeout: const Duration(seconds: 5));
 
-      await $.enterText(emailField, 'test@gmail.com');
+      await $.enterText(emailField, 'test1@gmail.com');
       await $.enterText(passwordField, 'testing');
 
       expect($(loginBtn).visible, equals(true), reason: 'Login button is not found before accessing Sign up form');
