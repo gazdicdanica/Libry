@@ -12,6 +12,8 @@
     "confirm_password_error": "Lozinke se ne podudaraju!",
     "login": "Prijavi se",
     "singup": "Registruj se",
+    "singup_redirect": "Nemate nalog?",
+    "singin_redirect": "Već imate nalog?",
     "email_already_in_use": "Email adresa se već koristi!",
     "invalid_credential": "Email adresa ili lozinka nisu ispravni!",
     "auth_failed": "Autentifikacija nije uspela! Molimo Vas pokušajte kasnije.",

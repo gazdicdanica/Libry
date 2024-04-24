@@ -12,6 +12,8 @@
     "confirm_password_error": "Passwords do not match!",
     "login": "Login",
     "singup": "Sign up",
+    "singup_redirect": "Don't have an account?",
+    "singin_redirect": "Already have an account?",
     "email_already_in_use": "Email is already in use!",
     "invalid_credential": "Invalid email or password!",
     "auth_failed": "Authentication failed! Please try again later!",

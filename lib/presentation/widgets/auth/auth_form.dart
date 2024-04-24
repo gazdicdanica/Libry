@@ -45,6 +45,9 @@ class _AuthFormState extends State<AuthForm> {
                 constraints: const BoxConstraints(maxWidth: 500),
                 child: Column(
                   children: [
+                    const SizedBox(
+                      height: 20,
+                    ),
                     if (state is AuthCredentialsFailure)
                       Text(
                         state.errorMessage,
@@ -159,15 +162,38 @@ class _AuthFormState extends State<AuthForm> {
                     const SizedBox(
                       height: 20,
                     ),
-                    SizedBox(
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          _resetForm(ctx);
-                        },
-                        style: Theme.of(context).textButtonTheme.style,
-                        child: Text(_isLogin ? t.singup : t.login),
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          _isLogin ? t.singin_redirect : t.singup_redirect,
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            _resetForm(ctx);
+                          },
+                          style:
+                              Theme.of(context).textButtonTheme.style!.copyWith(
+                                    backgroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            Colors.transparent),
+                                    padding: MaterialStateProperty.all<
+                                        EdgeInsetsGeometry>(
+                                      const EdgeInsets.all(0),
+                                    ),
+                                  ),
+                          child: Text(
+                            _isLogin ? t.singup : t.login,
+                            style: const TextStyle(
+                                color: Color.fromRGBO(0, 166, 141, 1),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
