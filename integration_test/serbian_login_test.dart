@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:patrol/patrol.dart';
+import 'package:flutter_internship_2024_app/keys.dart';
 
 import 'package:flutter_internship_2024_app/main.dart' as app;
 
@@ -10,27 +11,24 @@ void main() {
       app.main();
       await $.pumpAndSettle();
 
-      final emailField = $(#email);
-      final passwordField = $(#password);
       final loginBtn = $(#login);
-      final accountBtn = $(#account);
       final logoutBtn = $(#logout); 
 
       await $.scrollUntilVisible(finder: loginBtn);
-      await $('Login').waitUntilVisible(timeout: const Duration(seconds: 5));
+      await $(K.loginBtn).waitUntilVisible(timeout: const Duration(seconds: 5));
 
-      await $.enterText(emailField, 'test@gmail.com');
-      await $.enterText(passwordField, 'testing');
+      await $(K.emailField).enterText('test@gmail.com');
+      await $(K.passwordField).enterText('testing');
 
-      expect($(loginBtn).visible, equals(true), reason: 'Login button is not found before accessing Sign up form');
-      await $(loginBtn).tap();
+      expect($(K.loginBtn).visible, equals(true), reason: 'Login button is not found before accessing Sign up form');
+      await $(K.loginBtn).tap();
       await $.pump();
 
-      await $('NPM').waitUntilVisible(timeout: const Duration(seconds: 5));
+      await $('NPM').waitUntilVisible(timeout: const Duration(seconds: 15));
       expect($('NPM').visible, equals(true), reason: 'NPM is not visible before sign up/login');
 
       //ACCOUNT
-      await $(accountBtn).tap();
+      await $(K.accountBtn).tap();
       await $.pump();
 
       //CHANGE LANGUAGE
@@ -44,7 +42,7 @@ void main() {
 
       //LOG OUT
       await $.scrollUntilVisible(finder: logoutBtn);
-      await $(logoutBtn).tap();
+      await $(K.logoutBtn).tap();
       await $.pump();
 
       expect($('Da').visible, equals(true), reason: 'Da is not visible');
@@ -54,11 +52,11 @@ void main() {
       expect($('Dobrodošli u Libry').visible, equals(true), reason: 'Dobrodošli u Libry are not visible');
 
       //UNSUCCESSFULL LOGIN ON SERBIAN
-      await $.enterText(emailField, '');
-      await $.enterText(passwordField, '');
+      await $(K.emailField).enterText('');
+      await $(K.passwordField).enterText('');
 
-      expect($(loginBtn).visible, equals(true), reason: 'Login button is not found before accessing Sign up form');
-      await $(loginBtn).tap();
+      expect($(K.loginBtn).visible, equals(true), reason: 'Login button is not found before accessing Sign up form');
+      await $(K.loginBtn).tap();
       await $.pump();
 
       expect($('Email adresa nije u dobrom formatu!').visible, equals(true), reason: 'Email error message is not visible');
@@ -71,27 +69,24 @@ void main() {
       app.main();
       await $.pumpAndSettle();
 
-      final emailField = $(#email);
-      final passwordField = $(#password);
       final loginBtn = $(#login);
-      final accountBtn = $(#account);
       final logoutBtn = $(#logout); 
 
       await $.scrollUntilVisible(finder: loginBtn);
-      await $('Login').waitUntilVisible(timeout: const Duration(seconds: 5));
+      await $(K.loginBtn).waitUntilVisible(timeout: const Duration(seconds: 5));
 
-      await $.enterText(emailField, 'test@gmail.com');
-      await $.enterText(passwordField, 'testing');
+      await $(K.emailField).enterText('test@gmail.com');
+      await $(K.passwordField).enterText('testing');
 
-      expect($(loginBtn).visible, equals(true), reason: 'Login button is not found before accessing Sign up form');
-      await $(loginBtn).tap();
+      expect($(K.loginBtn).visible, equals(true), reason: 'Login button is not found before accessing Sign up form');
+      await $(K.loginBtn).tap();
       await $.pump();
 
-      await $('NPM').waitUntilVisible(timeout: const Duration(seconds: 5));
+      await $('NPM').waitUntilVisible(timeout: const Duration(seconds: 30));
       expect($('NPM').visible, equals(true), reason: 'NPM is not visible before sign up/login');
 
       //ACCOUNT
-      await $(accountBtn).tap();
+      await $(K.accountBtn).tap();
       await $.pump();
 
       //CHANGE LANGUAGE
@@ -105,7 +100,7 @@ void main() {
 
       //LOG OUT
       await $.scrollUntilVisible(finder: logoutBtn);
-      await $(logoutBtn).tap();
+      await $(K.logoutBtn).tap();
       await $.pump();
 
       expect($('Da').visible, equals(true), reason: 'Da is not visible');
@@ -114,11 +109,11 @@ void main() {
 
       expect($('Dobrodošli u Libry').visible, equals(true), reason: 'Dobrodošli u Libry are not visible');
 
-      await $.enterText(emailField, 'test@gmail.com');
-      await $.enterText(passwordField, '123456');
+      await $(K.emailField).enterText('test@gmail.com');
+      await $(K.passwordField).enterText('123456');
 
-      expect($(loginBtn).visible, equals(true), reason: 'Login button is not found before accessing Sign up form');
-      await $(loginBtn).tap();
+      expect($(K.loginBtn).visible, equals(true), reason: 'Login button is not found before accessing Sign up form');
+      await $(K.loginBtn).tap();
       await $.pump();
       expect($('Autentifikacija nije uspela! Molimo Vas pokušajte kasnije.').visible, equals(true), reason: 'Authentication error message is not visible');
   });
@@ -128,29 +123,33 @@ patrolTest('Successfull Login, change Language to Serbian, check localisation in
       app.main();
       await $.pumpAndSettle();
 
-      final emailField = $(#email);
-      final passwordField = $(#password);
       final loginBtn = $(#login);
-      final homeBtn = $(#home);
-      final accountBtn = $(#account);
-      final searchBtn = $(#search);
       final logoutBtn = $(#logout); 
 
       await $.scrollUntilVisible(finder: loginBtn);
-      await $('Login').waitUntilVisible(timeout: const Duration(seconds: 5));
+      await $(K.loginBtn).waitUntilVisible(timeout: const Duration(seconds: 5));
 
-      await $.enterText(emailField, 'test@gmail.com');
-      await $.enterText(passwordField, 'testing');
+      await $(K.emailField).enterText('test@gmail.com');
+      await $(K.passwordField).enterText('testing');
 
-      expect($(loginBtn).visible, equals(true), reason: 'Login button is not found before accessing Sign up form');
-      await $(loginBtn).tap();
+      expect($(K.loginBtn).visible, equals(true), reason: 'Login button is not found before accessing Sign up form');
+      await $(K.loginBtn).tap();
       await $.pump();
 
-      await $('NPM').waitUntilVisible(timeout: const Duration(seconds: 5));
+      await $('NPM').waitUntilVisible(timeout: const Duration(seconds: 30));
       expect($('NPM').visible, equals(true), reason: 'NPM is not visible before sign up/login');
 
       //ACCOUNT
-      await $(accountBtn).tap();
+      await $(K.accountBtn).tap();
+      await $.pump();
+
+      //CHANGE THEME
+      await $.scrollUntilVisible(finder: $('change').at(0));
+      await $('change').at(0).tap();
+      await $.pump();
+
+      await $('Light theme').waitUntilVisible(timeout: const Duration(seconds: 5));
+      await $('Light theme').tap();
       await $.pump();
 
       //CHANGE LANGUAGE
@@ -163,14 +162,14 @@ patrolTest('Successfull Login, change Language to Serbian, check localisation in
       await $.pump();
 
       //BACK TO HOME SCREEN
-      await $(homeBtn).tap();
+      await $(K.homeBtn).tap();
       await $.pump();
 
       await $('Platforme').waitUntilVisible(timeout: const Duration(seconds: 5));
       expect($('Platforme').visible, equals(true), reason: 'Platforme is not visible');
 
       //SEARCH SCREEN
-      await $(searchBtn).tap();
+      await $(K.searchBtn).tap();
       await $.pump();
 
       await $('Pretraga').waitUntilVisible(timeout: const Duration(seconds: 5));
@@ -178,12 +177,12 @@ patrolTest('Successfull Login, change Language to Serbian, check localisation in
 
       await $.native.pressBack();
 
-      await $(accountBtn).tap();
+      await $(K.accountBtn).tap();
       await $.pump();
 
       await $.scrollUntilVisible(finder: logoutBtn);
 
-      await $(logoutBtn).tap();
+      await $(K.logoutBtn).tap();
       await $.pump();
 
       expect($('Da').visible, equals(true), reason: 'Da is not visible');

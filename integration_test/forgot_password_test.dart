@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:patrol/patrol.dart';
+import 'package:flutter_internship_2024_app/keys.dart';
 
 import 'package:flutter_internship_2024_app/main.dart' as app;
 
@@ -10,27 +11,24 @@ void main() {
       app.main();
       await $.pumpAndSettle();
 
-      final forgotPassword = $(#forgotPassword);
-      final forgotMessage = $(#forgotMessage);
       final resetBtn = $(#resetLink);
-      final resetMessage = $(#resetMessage);
       final goBackBtn = $(#goBack);
 
-      await $(forgotPassword).tap();
+      await $(K.forgotPassword).tap();
       await $.pump();
 
-      expect($(forgotMessage).visible, equals(true), reason: 'Forgot message is not visible');
+      expect($(K.forgotMessage).visible, equals(true), reason: 'Forgot message is not visible');
 
       await $.native.enterTextByIndex('test@gmail.com', index: 0);
 
       await $.scrollUntilVisible(finder: resetBtn);
-      await $(resetBtn).tap();
+      await $(K.resetBtn).tap();
       await $.pump();
 
-      expect($(resetMessage).visible, equals(true), reason: 'Reset message is not visible');
+      expect($(K.resetMessage).visible, equals(true), reason: 'Reset message is not visible');
       
       await $.scrollUntilVisible(finder: goBackBtn);
-      await $(goBackBtn).tap();
+      await $(K.goBackBtn).tap();
       await $.pump();
 
       expect($('Welcome to Libry').visible, equals(true), reason: 'Welcome to Libry are not visible');
@@ -43,20 +41,19 @@ void main() {
       app.main();
       await $.pumpAndSettle();
 
-      final forgotPassword = $(#forgotPassword);
-      final forgotMessage = $(#forgotMessage);
+      
       final resetBtn = $(#resetLink);
-      final fpbackBtn = $(#fpbackBtn);
+      //final fpbackBtn = $(#fpbackBtn);
 
-      await $(forgotPassword).tap();
+      await $(K.forgotPassword).tap();
       await $.pump();
 
-      expect($(forgotMessage).visible, equals(true), reason: 'Forgot message is not visible');
+      expect($(K.forgotMessage).visible, equals(true), reason: 'Forgot message is not visible');
 
       await $.native.enterTextByIndex('test.com', index: 0);
 
       await $.scrollUntilVisible(finder: resetBtn);
-      await $(resetBtn).tap();
+      await $(K.resetBtn).tap();
       await $.pump();
 
       expect($('Email is not in correct format!').visible, equals(true), reason: 'Error email message is not visible');
@@ -78,20 +75,18 @@ void main() {
       app.main();
       await $.pumpAndSettle();
 
-      final forgotPassword = $(#forgotPassword);
-      final forgotMessage = $(#forgotMessage);
       final resetBtn = $(#resetLink);
-      final fpbackBtn = $(#fpbackBtn);
+      //final fpbackBtn = $(#fpbackBtn);
 
-      await $(forgotPassword).tap();
+      await $(K.forgotPassword).tap();
       await $.pump();
 
-      expect($(forgotMessage).visible, equals(true), reason: 'Forgot message is not visible');
+      expect($(K.forgotMessage).visible, equals(true), reason: 'Forgot message is not visible');
 
       await $.native.enterTextByIndex('', index: 0);
 
       await $.scrollUntilVisible(finder: resetBtn);
-      await $(resetBtn).tap();
+      await $(K.resetBtn).tap();
       await $.pump();
 
       expect($('Email is not in correct format!').visible, equals(true), reason: 'Error email message is not visible');

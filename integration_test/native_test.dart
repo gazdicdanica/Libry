@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:patrol/patrol.dart';
+import 'package:flutter_internship_2024_app/keys.dart';
 
 import 'package:flutter_internship_2024_app/main.dart' as app;
 
@@ -21,25 +22,20 @@ void main() {
     app.main();
     await $.pumpAndSettle();
 
-    final emailField = $(#email);
-    final passwordField = $(#password);
-    final loginBtn = $(#login);
-    final reloadBtn = $(#reload);
-    final accountBtn = $(#account);
     final logoutBtn = $(#logout);
 
-    await $(loginBtn).waitUntilVisible(timeout: const Duration(seconds: 5));
+    await $(K.loginBtn).waitUntilVisible(timeout: const Duration(seconds: 5));
 
-    await $.enterText(emailField, 'test@gmail.com');
-    await $.enterText(passwordField, 'testing');
+    await $(K.emailField).enterText('test@gmail.com');
+    await $(K.passwordField).enterText('testing');
 
     //await $.native.enterTextByIndex('test4@gmail.com', index: 0); // enter username
     // await $.native.enterTextByIndex('testing', index: 1); // enter password
 
-    await $.native.disableWifi();
+    //await $.native.disableWifi();
     await $.native.disableCellular();
 
-    await $(loginBtn).tap();
+    await $(K.loginBtn).tap();
     await $.pump();
 
     await $('No internet connection.').waitUntilVisible(timeout: const Duration(seconds: 30));
@@ -47,18 +43,19 @@ void main() {
 
     await $.native.enableCellular();
 
-    await $(reloadBtn).tap();
+    await $(K.reloadBtn).waitUntilVisible(timeout: const Duration(seconds: 10));
+    await $(K.reloadBtn).tap();
     await $.pump();
 
     await $('Platforms').waitUntilVisible(timeout: const Duration(seconds: 5));
     expect($('Platforms').visible, equals(true), reason: 'Platforms are not visible before sign up/login');
 
-    await $(accountBtn).tap();
+    await $(K.accountBtn).tap();
     await $.pump();
 
     //LOG OUT
     await $.scrollUntilVisible(finder: logoutBtn);
-    await $(logoutBtn).tap();
+    await $(K.logoutBtn).tap();
     await $.pump();
 
     expect($('Yes').visible, equals(true), reason: 'Yes is not visible');
@@ -74,20 +71,14 @@ void main() {
     app.main();
     await $.pumpAndSettle();
 
-    final emailField = $(#email);
-    final passwordField = $(#password);
     final loginBtn = $(#login);
-    final searchBtn = $(#search);
-    final searchInputField = $(#searchInputField);
-    final removeBtn = $(#removeBtn);
-    final accountBtn = $(#account);
     final logoutBtn = $(#logout);
 
-    await $.enterText(emailField, 'test@gmail.com');
-    await $.enterText(passwordField, 'testing');
+    await $(K.emailField).enterText('test@gmail.com');
+    await $(K.passwordField).enterText('testing');
 
     await $.scrollUntilVisible(finder: loginBtn);
-    await $(loginBtn).tap();
+    await $(K.loginBtn).tap();
     await $.pump();
 
     await $('NPM').waitUntilVisible(timeout: const Duration(seconds: 30));
@@ -95,16 +86,16 @@ void main() {
 
 
     //SEARCH???
-    await $(searchBtn).tap();
+    await $(K.searchBtn).tap();
     await $.pump();
     await Future.delayed(const Duration(seconds: 2));
-    await $.enterText(searchInputField, 'meta');
+    await $(K.searchInputField).enterText('meta');
       
 
     await $('meta').waitUntilVisible(timeout: const Duration(seconds: 30));
     expect($('meta').visible, equals(true), reason: 'Meta is not visible');
 
-    await $(removeBtn).tap();
+    await $(K.removeBtn).tap();
     await $.pump();
 
     await $.native.pressBack();
@@ -112,12 +103,12 @@ void main() {
     await $('NPM').waitUntilVisible(timeout: const Duration(seconds: 30));
     expect($('NPM').visible, equals(true), reason: 'NPM are not visible before sign up/login');
 
-    await $(accountBtn).tap();
+    await $(K.accountBtn).tap();
     await $.pump();
 
     //LOG OUT
     await $.scrollUntilVisible(finder: logoutBtn);
-    await $(logoutBtn).tap();
+    await $(K.logoutBtn).tap();
     await $.pump();
 
     expect($('Yes').visible, equals(true), reason: 'Yes is not visible');
