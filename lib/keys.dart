@@ -35,4 +35,6 @@ class Keys {
   //MY ACCOUNT KEYS
   static const changeTheme = Key('changeTheme');
 
+  //URADI ISTO I ZA EMAIL I PASSWORD I WELCOME TO LIBRY FOR EXAMPLE
+
 }

@@ -58,7 +58,7 @@ class LibrariesCardContet extends StatelessWidget {
                     Row(
                       children: [
                         Row(children: [
-                          Icon(MdiIcons.sourceRepository, size: 20),
+                          const Icon(Icons.route, size: 20),
                           SizedBox(
                             width: screenWidth * 0.3,
                             child: Text(

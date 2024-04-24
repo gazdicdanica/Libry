@@ -10,9 +10,7 @@ void main() {
   patrolTest('Successfull Sign up and Logout', ($) async {
 
       app.main();
-      await $.pumpAndSettle();
-
-      final logoutBtn = $(#logout); 
+      await $.pumpAndSettle(); 
 
       //SIGN UP
       await $.scrollUntilVisible(finder: $('Sign up'));
@@ -41,7 +39,7 @@ void main() {
       await $.pump();
 
       //LOG OUT
-      await $.scrollUntilVisible(finder: logoutBtn);
+      await $.scrollUntilVisible(finder: $(K.logoutBtn));
       await $(K.logoutBtn).tap();
       await $.pump();
 

@@ -9,12 +9,9 @@ void main() {
   patrolTest('Successfull Login and change Language to Serbian and Logout', ($) async {
 
       app.main();
-      await $.pumpAndSettle();
+      await $.pumpAndSettle(); 
 
-      final loginBtn = $(#login);
-      final logoutBtn = $(#logout); 
-
-      await $.scrollUntilVisible(finder: loginBtn);
+      await $.scrollUntilVisible(finder: $(K.loginBtn));
       await $(K.loginBtn).waitUntilVisible(timeout: const Duration(seconds: 5));
 
       await $(K.emailField).enterText('test@gmail.com');
@@ -41,7 +38,7 @@ void main() {
       await $.pump();
 
       //LOG OUT
-      await $.scrollUntilVisible(finder: logoutBtn);
+      await $.scrollUntilVisible(finder: $(K.logoutBtn));
       await $(K.logoutBtn).tap();
       await $.pump();
 
@@ -69,10 +66,7 @@ void main() {
       app.main();
       await $.pumpAndSettle();
 
-      final loginBtn = $(#login);
-      final logoutBtn = $(#logout); 
-
-      await $.scrollUntilVisible(finder: loginBtn);
+      await $.scrollUntilVisible(finder: $(K.loginBtn));
       await $(K.loginBtn).waitUntilVisible(timeout: const Duration(seconds: 5));
 
       await $(K.emailField).enterText('test@gmail.com');
@@ -99,7 +93,7 @@ void main() {
       await $.pump();
 
       //LOG OUT
-      await $.scrollUntilVisible(finder: logoutBtn);
+      await $.scrollUntilVisible(finder: $(K.logoutBtn));
       await $(K.logoutBtn).tap();
       await $.pump();
 
@@ -123,10 +117,7 @@ patrolTest('Successfull Login, change Language to Serbian, check localisation in
       app.main();
       await $.pumpAndSettle();
 
-      final loginBtn = $(#login);
-      final logoutBtn = $(#logout); 
-
-      await $.scrollUntilVisible(finder: loginBtn);
+      await $.scrollUntilVisible(finder: $(K.loginBtn));
       await $(K.loginBtn).waitUntilVisible(timeout: const Duration(seconds: 5));
 
       await $(K.emailField).enterText('test@gmail.com');
@@ -180,7 +171,7 @@ patrolTest('Successfull Login, change Language to Serbian, check localisation in
       await $(K.accountBtn).tap();
       await $.pump();
 
-      await $.scrollUntilVisible(finder: logoutBtn);
+      await $.scrollUntilVisible(finder: $(K.logoutBtn));
 
       await $(K.logoutBtn).tap();
       await $.pump();

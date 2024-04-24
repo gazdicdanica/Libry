@@ -11,9 +11,6 @@ void main() {
       app.main();
       await $.pumpAndSettle();
 
-      final resetBtn = $(#resetLink);
-      final goBackBtn = $(#goBack);
-
       await $(K.forgotPassword).tap();
       await $.pump();
 
@@ -21,13 +18,13 @@ void main() {
 
       await $.native.enterTextByIndex('test@gmail.com', index: 0);
 
-      await $.scrollUntilVisible(finder: resetBtn);
+      await $.scrollUntilVisible(finder: $(K.resetBtn));
       await $(K.resetBtn).tap();
       await $.pump();
 
       expect($(K.resetMessage).visible, equals(true), reason: 'Reset message is not visible');
       
-      await $.scrollUntilVisible(finder: goBackBtn);
+      await $.scrollUntilVisible(finder: $(K.goBackBtn));
       await $(K.goBackBtn).tap();
       await $.pump();
 
@@ -41,10 +38,6 @@ void main() {
       app.main();
       await $.pumpAndSettle();
 
-      
-      final resetBtn = $(#resetLink);
-      //final fpbackBtn = $(#fpbackBtn);
-
       await $(K.forgotPassword).tap();
       await $.pump();
 
@@ -52,7 +45,7 @@ void main() {
 
       await $.native.enterTextByIndex('test.com', index: 0);
 
-      await $.scrollUntilVisible(finder: resetBtn);
+      await $.scrollUntilVisible(finder: $(K.resetBtn));
       await $(K.resetBtn).tap();
       await $.pump();
 
@@ -75,9 +68,6 @@ void main() {
       app.main();
       await $.pumpAndSettle();
 
-      final resetBtn = $(#resetLink);
-      //final fpbackBtn = $(#fpbackBtn);
-
       await $(K.forgotPassword).tap();
       await $.pump();
 
@@ -85,7 +75,7 @@ void main() {
 
       await $.native.enterTextByIndex('', index: 0);
 
-      await $.scrollUntilVisible(finder: resetBtn);
+      await $.scrollUntilVisible(finder: $(K.resetBtn));
       await $(K.resetBtn).tap();
       await $.pump();
 
