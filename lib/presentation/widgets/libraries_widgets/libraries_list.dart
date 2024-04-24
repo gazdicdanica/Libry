@@ -46,9 +46,6 @@ class _LibrariesListState extends State<LibrariesList> {
     });
 
     _subscription = context.read<LibrariesBloc>().stream.listen((state) {
-      if (state is LibrariesLoading) {
-        
-      }
       if (state is LibrariesSuccess) {
         if (state.libraries.isEmpty) {
           _pagingController.appendLastPage(state.libraries);
