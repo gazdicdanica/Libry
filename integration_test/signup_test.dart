@@ -23,7 +23,7 @@ void main() {
       await $('Sign up').tap();
       await $.pump();
 
-      await $(K.emailField).enterText('test4@gmail.com');
+      await $(K.emailField).enterText('test@gmail.com');
       await $(K.passwordField).enterText('testing');
       await $(K.confirmPasswordField).enterText('testing');
 
