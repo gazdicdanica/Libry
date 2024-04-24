@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_internship_2024_app/bloc/search_bloc/search_bloc.dart';
 import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
-import 'package:flutter_internship_2024_app/models/library.dart';
-import 'package:flutter_internship_2024_app/presentation/screens/library_details_screen.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/card_widget.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/libraries_widgets/libraries_card_content.dart';
 import 'package:flutter_internship_2024_app/theme.dart';
@@ -44,7 +42,7 @@ class _SearchListState extends State<SearchList>
   @override
   Widget build(BuildContext context) {
     final t = Translations.of(context);
-
+    
     return BlocConsumer<SearchBloc, SearchState>(
       listener: (context, state) {
         if (state is SearchSuccess) {
@@ -69,9 +67,7 @@ class _SearchListState extends State<SearchList>
                   final library = state.libraries[index];
                   return CardWidget(
                     color: library.colorObj,
-                    onTap: () {
-                      _goToDetailsScreen(state.libraries[index]);
-                    },
+                    onTap: () {},
                     child: LibrariesCardContet(
                       library: library,
                     ),
@@ -141,7 +137,9 @@ class _SearchListState extends State<SearchList>
                     : const Icon(Icons.search, size: 80,),
                 const SizedBox(height: 20),
                 Text(
-                  state is SearchSuccess ? t.search_empty : t.search_hint,
+                  state is SearchSuccess
+                      ? t.search_empty
+                      : t.search_hint,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontSize: 20,
@@ -153,16 +151,6 @@ class _SearchListState extends State<SearchList>
           );
         }
       },
-    );
-  }
-
-  void _goToDetailsScreen(Library library) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => LibraryDetailsScreen(
-          library: library,
-        ),
-      ),
     );
   }
 }
