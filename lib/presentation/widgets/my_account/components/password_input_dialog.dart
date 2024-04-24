@@ -18,6 +18,7 @@ class PasswordInputDialog extends StatefulWidget {
 }
 
 class _PasswordInputDialogState extends State<PasswordInputDialog> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   late TextEditingController _passwordController;
   String? _errorMessage;
 
@@ -56,21 +57,33 @@ class _PasswordInputDialogState extends State<PasswordInputDialog> {
 
             return AlertDialog(
               title: Text(t.reauthenticate),
-              content: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Text(t.enter_password),
-                  TextFormField(
-                    controller: _passwordController,
-                    obscureText: true,
-                    decoration: InputDecoration(labelText: t.password),
-                  ),
-                  if (_errorMessage != null)
-                    Text(
-                      _errorMessage!,
-                      style: const TextStyle(color: Colors.red, fontSize: 13),
+              content: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Text(t.enter_password),
+                    TextFormField(
+                      controller: _passwordController,
+                      obscureText: true,
+                      decoration: InputDecoration(labelText: t.password),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return t.password_error;
+                        }
+                        if (value.length < 6) {
+                          return t.password_error;
+                        }
+                        return null;
+                      },
                     ),
-                ],
+                    if (_errorMessage != null)
+                      Text(
+                        _errorMessage!,
+                        style: const TextStyle(color: Colors.red, fontSize: 13),
+                      ),
+                  ],
+                ),
               ),
               actions: <Widget>[
                 TextButton(
@@ -78,13 +91,8 @@ class _PasswordInputDialogState extends State<PasswordInputDialog> {
                     backgroundColor: Colors.transparent,
                   ),
                   onPressed: () {
-                    final password = _passwordController.text;
-                    if (password.isNotEmpty && password.length >= 6) {
-                      _reauthenticate(context, password);
-                    } else {
-                      setState(() {
-                        _errorMessage = t.password_error;
-                      });
+                    if (_formKey.currentState!.validate()) {
+                      _reauthenticate(context, _passwordController.text);
                     }
                   },
                   child: Text(t.confirm),
