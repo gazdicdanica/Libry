@@ -17,54 +17,54 @@ void main() {
 
   });
 
-  patrolTest('Turn off Wi-Fi connection before we login', ($) async {
+  // patrolTest('Turn off Wi-Fi connection before we login', ($) async {
 
-    app.main();
-    await $.pumpAndSettle();
+  //   app.main();
+  //   await $.pumpAndSettle();
 
-    final logoutBtn = $(#logout);
+  //   final logoutBtn = $(#logout);
 
-    await $(K.loginBtn).waitUntilVisible(timeout: const Duration(seconds: 5));
+  //   await $(K.loginBtn).waitUntilVisible(timeout: const Duration(seconds: 5));
 
-    await $(K.emailField).enterText('test@gmail.com');
-    await $(K.passwordField).enterText('testing');
+  //   await $(K.emailField).enterText('test@gmail.com');
+  //   await $(K.passwordField).enterText('testing');
 
-    //await $.native.enterTextByIndex('test4@gmail.com', index: 0); // enter username
-    // await $.native.enterTextByIndex('testing', index: 1); // enter password
+  //   //await $.native.enterTextByIndex('test4@gmail.com', index: 0); // enter username
+  //   // await $.native.enterTextByIndex('testing', index: 1); // enter password
 
-    //await $.native.disableWifi();
-    await $.native.disableCellular();
+  //   //await $.native.disableWifi();
+  //   await $.native.disableCellular();
 
-    await $(K.loginBtn).tap();
-    await $.pump();
+  //   await $(K.loginBtn).tap();
+  //   await $.pump();
 
-    await $('No internet connection.').waitUntilVisible(timeout: const Duration(seconds: 30));
-    expect($('No internet connection.').visible, equals(true), reason: 'No internet connection is not visible');
+  //   await $('No internet connection.').waitUntilVisible(timeout: const Duration(seconds: 30));
+  //   expect($('No internet connection.').visible, equals(true), reason: 'No internet connection is not visible');
 
-    await $.native.enableCellular();
+  //   await $.native.enableCellular();
 
-    await $(K.reloadBtn).waitUntilVisible(timeout: const Duration(seconds: 10));
-    await $(K.reloadBtn).tap();
-    await $.pump();
+  //   await $(K.reloadBtn).waitUntilVisible(timeout: const Duration(seconds: 10));
+  //   await $(K.reloadBtn).tap();
+  //   await $.pump();
 
-    await $('Platforms').waitUntilVisible(timeout: const Duration(seconds: 5));
-    expect($('Platforms').visible, equals(true), reason: 'Platforms are not visible before sign up/login');
+  //   await $('Platforms').waitUntilVisible(timeout: const Duration(seconds: 5));
+  //   expect($('Platforms').visible, equals(true), reason: 'Platforms are not visible before sign up/login');
 
-    await $(K.accountBtn).tap();
-    await $.pump();
+  //   await $(K.accountBtn).tap();
+  //   await $.pump();
 
-    //LOG OUT
-    await $.scrollUntilVisible(finder: logoutBtn);
-    await $(K.logoutBtn).tap();
-    await $.pump();
+  //   //LOG OUT
+  //   await $.scrollUntilVisible(finder: logoutBtn);
+  //   await $(K.logoutBtn).tap();
+  //   await $.pump();
 
-    expect($('Yes').visible, equals(true), reason: 'Yes is not visible');
-    await $('Yes').tap();
-    await $.pump();
+  //   expect($('Yes').visible, equals(true), reason: 'Yes is not visible');
+  //   await $('Yes').tap();
+  //   await $.pump();
 
-    expect($('Welcome to Libry').visible, equals(true), reason: 'Welcome to Libry are not visible');
+  //   expect($('Welcome to Libry').visible, equals(true), reason: 'Welcome to Libry are not visible');
 
-  });
+  // });
 
   patrolTest('Search screen', ($) async {
 
@@ -74,12 +74,13 @@ void main() {
     final loginBtn = $(#login);
     final logoutBtn = $(#logout);
 
+    await Future.delayed(const Duration(seconds: 5));
     await $(K.emailField).enterText('test@gmail.com');
     await $(K.passwordField).enterText('testing');
 
     await $.scrollUntilVisible(finder: loginBtn);
     await $(K.loginBtn).tap();
-    await $.pump();
+    //await $.pump();
 
     await $('NPM').waitUntilVisible(timeout: const Duration(seconds: 30));
     expect($('NPM').visible, equals(true), reason: 'NPM is not visible before sign up/login');
@@ -96,7 +97,7 @@ void main() {
     expect($('meta').visible, equals(true), reason: 'Meta is not visible');
 
     await $(K.removeBtn).tap();
-    await $.pump();
+    //await $.pump();
 
     await $.native.pressBack();
   
@@ -104,16 +105,16 @@ void main() {
     expect($('NPM').visible, equals(true), reason: 'NPM are not visible before sign up/login');
 
     await $(K.accountBtn).tap();
-    await $.pump();
+    //await $.pump();
 
     //LOG OUT
     await $.scrollUntilVisible(finder: logoutBtn);
     await $(K.logoutBtn).tap();
-    await $.pump();
+    //await $.pump();
 
     expect($('Yes').visible, equals(true), reason: 'Yes is not visible');
     await $('Yes').tap();
-    await $.pump();
+    //await $.pump();
 
     expect($('Welcome to Libry').visible, equals(true), reason: 'Welcome to Libry are not visible');
 

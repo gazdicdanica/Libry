@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
+import 'package:flutter_internship_2024_app/keys.dart';
 
 class TabBarWidget extends StatelessWidget {
   const TabBarWidget({super.key});
@@ -19,11 +20,11 @@ class TabBarWidget extends StatelessWidget {
         indicatorSize: TabBarIndicatorSize.tab,
         tabs: <Widget>[
           Tab(
-            key: const Key('mpl'),
+            key: K.mpl,
             text: t.tab_most_popular,
           ),
           Tab(
-            key: const Key('nwl'),
+            key: K.nwl,
             text: t.tab_newest,
           ),
         ],

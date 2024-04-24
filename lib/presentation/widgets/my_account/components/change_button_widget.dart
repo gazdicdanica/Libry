@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 import 'package:flutter_internship_2024_app/theme.dart';
+import 'package:flutter_internship_2024_app/keys.dart';
 
 class ChangeButtonWidget extends StatelessWidget {
   const ChangeButtonWidget({
@@ -22,7 +23,7 @@ class ChangeButtonWidget extends StatelessWidget {
       ),
       onPressed: onPressed,
       child: Text(t.change,
-          key: const Key('changeTheme'),
+          key: K.changeTheme,
           style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w700,

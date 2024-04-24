@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 import 'package:flutter_internship_2024_app/theme.dart';
+import 'package:flutter_internship_2024_app/keys.dart';
 
 class LogoutButton extends StatelessWidget {
   const LogoutButton({super.key});
@@ -27,7 +28,7 @@ class LogoutButton extends StatelessWidget {
         }
       },
       child: Text(
-        key: const Key('logout'),
+        key: K.logoutBtn,
         t.logout,
         style: const TextStyle(color: redColor, fontSize: 22),
       ),

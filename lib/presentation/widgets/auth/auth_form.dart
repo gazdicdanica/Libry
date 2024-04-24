@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_internship_2024_app/bloc/auth_bloc/auth_bloc.dart';
 import 'package:flutter_internship_2024_app/presentation/screens/reset_screen.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/auth/form_field.dart';
+import 'package:flutter_internship_2024_app/keys.dart';
 
 class AuthForm extends StatefulWidget {
   const AuthForm({super.key});
@@ -52,7 +53,7 @@ class _AuthFormState extends State<AuthForm> {
                   ),
                   //email
                   CustomFormField(
-                    key: const Key('email'),
+                    key: K.emailField,
                     controller: _emailController,
                     labelText: t.email,
                     hintText: t.email_hint,
@@ -68,7 +69,7 @@ class _AuthFormState extends State<AuthForm> {
                     height: 20,
                   ),
                   CustomFormField(
-                    key: const Key('password'),
+                    key: K.passwordField,
                     controller: _passwordController,
                     labelText: t.password,
                     hintText: t.password_hint,
@@ -105,7 +106,7 @@ class _AuthFormState extends State<AuthForm> {
                                     MaterialStateProperty.all<Color>(
                                         const Color.fromRGBO(0, 166, 141, 1))),
                             child: Text(
-                              key: const Key('forgotPassword'),
+                              key: K.forgotPassword,
                               t.forgot_password,
                               style: const TextStyle(
                                   fontSize: 16, fontWeight: FontWeight.normal),
@@ -125,7 +126,7 @@ class _AuthFormState extends State<AuthForm> {
                           height: 20,
                         ),
                         CustomFormField(
-                          key: const Key('confirmPassword'),
+                          key: K.confirmPasswordField,
                           controller: _confirmPasswordController,
                           labelText: t.confirm_password,
                           hintText: t.confirm_password_hint,
@@ -146,7 +147,7 @@ class _AuthFormState extends State<AuthForm> {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      key: const Key('login'),
+                      key: K.loginBtn,
                       onPressed: () {
                         _validateAndAuthenticate(ctx);
                       },

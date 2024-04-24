@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 import 'package:flutter_internship_2024_app/presentation/screens/search_screen.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/platforms/platforms_list.dart';
+import 'package:flutter_internship_2024_app/keys.dart';
 
 class PlatformsScreen extends StatelessWidget {
   const PlatformsScreen({super.key});
@@ -21,7 +22,7 @@ class PlatformsScreen extends StatelessWidget {
         centerTitle: false,
         actions: [
           Padding(
-            key: const Key('search'),
+            key: K.searchBtn,
             padding: const EdgeInsets.only(right: 10.0),
             child: IconButton(
               icon: const Icon(

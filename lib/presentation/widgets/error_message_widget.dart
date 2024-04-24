@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_internship_2024_app/keys.dart';
 
 class ErrorMessageWidget extends StatelessWidget {
   const ErrorMessageWidget(
@@ -34,7 +35,7 @@ class ErrorMessageWidget extends StatelessWidget {
           bottom: 20,
           right: 20,
           child: FloatingActionButton(
-            key: const Key('reload'),
+            key: K.reloadBtn ,
             onPressed: refreshFunction,
             child: const Icon(Icons.refresh),
           ),

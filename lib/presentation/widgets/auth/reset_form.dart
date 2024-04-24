@@ -5,6 +5,7 @@ import 'package:flutter_internship_2024_app/bloc/auth_bloc/auth_bloc.dart';
 import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 import 'package:flutter_internship_2024_app/presentation/screens/auth_screen.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/auth/form_field.dart';
+import 'package:flutter_internship_2024_app/keys.dart';
 
 class ResetForm extends StatefulWidget {
   const ResetForm({super.key});
@@ -78,7 +79,7 @@ class _ResetFormState extends State<ResetForm> {
                   if (!_messageSend)
                     Column(children: [
                       Text(
-                        key: const Key('forgotMessage'),
+                        key: K.forgotMessage,
                         textAlign: TextAlign.center,
                         t.reset_password_title,
                         style: TextStyle(
@@ -104,7 +105,7 @@ class _ResetFormState extends State<ResetForm> {
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
-                          key: const Key('resetLink'),
+                          key: K.resetBtn,
                           onPressed: () {
                             _sendResetEmail(context);
                           },
@@ -119,7 +120,7 @@ class _ResetFormState extends State<ResetForm> {
                   if (_messageSend)
                     Column(children: [
                       Text(
-                        key: const Key('resetMessage'),
+                        key: K.resetMessage,
                           textAlign: TextAlign.center,
                           t.reset_password_success,
                           style: TextStyle(
@@ -140,7 +141,7 @@ class _ResetFormState extends State<ResetForm> {
                             },
                             style: Theme.of(context).textButtonTheme.style!,
                             child: Text(
-                              key: const Key('goBack'),
+                              key: K.goBackBtn,
                               t.go_back,
                             )),
                       ),

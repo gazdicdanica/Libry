@@ -24,32 +24,32 @@ void main() {
       expect($(loginBtn).visible, equals(true), reason: 'Login button is not found before accessing Sign up form');
       await $.scrollUntilVisible(finder: loginBtn);
       await $(K.loginBtn).tap();
-      await $.pump();
+      //await $.pump();
 
       await $('NPM').waitUntilVisible(timeout: const Duration(seconds: 20));
       expect($('NPM').visible, equals(true), reason: 'NPM are not visible before sign up/login');
 
       //ACCOUNT
       await $(K.accountBtn).tap();
-      await $.pump();
+      //await $.pump();
 
       //CHANGE THEME
       await $.scrollUntilVisible(finder: changeTheme);
       await $(K.changeTheme).tap();
-      await $.pump();
+      //await $.pump();
       
       await $('Dark theme').waitUntilVisible(timeout: const Duration(seconds: 5));
       await $('Dark theme').tap();
-      await $.pump();
+      //await $.pump();
 
       //LOG OUT
       await $.scrollUntilVisible(finder: logoutBtn);
       await $(K.logoutBtn).tap();
-      await $.pump();
+      //await $.pump();
 
       expect($('Yes').visible, equals(true), reason: 'Yes is not visible');
       await $('Yes').tap();
-      await $.pump();
+      //await $.pump();
 
       expect($('Welcome to Libry').visible, equals(true), reason: 'Welcome to Libry are not visible');
   });
@@ -70,7 +70,7 @@ void main() {
       expect($(loginBtn).visible, equals(true), reason: 'Login button is not found before accessing Sign up form');
       await $.scrollUntilVisible(finder: loginBtn);
       await $(K.loginBtn).tap();
-      await $.pump();
+      //await $.pump();
 
       expect($('Email is not in correct format!').visible, equals(true), reason: 'Email error message is not visible');
       expect($('Password should contain 6 characters!').visible, equals(true), reason: 'Password error message is not visible');
@@ -92,7 +92,7 @@ void main() {
       expect($(loginBtn).visible, equals(true), reason: 'Login button is not found before accessing Sign up form');
       await $.scrollUntilVisible(finder: loginBtn);
       await $(K.loginBtn).tap();
-      await $.pump();
+      //await $.pump();
 
       expect($('Authentication failed! Please try again later!').visible, equals(true), reason: 'Authentication error message is not visible');
   });
@@ -112,7 +112,7 @@ void main() {
       expect($(loginBtn).visible, equals(true), reason: 'Login button is not found before accessing Sign up form');
       await $.scrollUntilVisible(finder: loginBtn);
       await $(K.loginBtn).tap();
-      await $.pump();
+      //await $.pump();
 
       expect($('Email is not in correct format!').visible, equals(true), reason: 'Email error message is not visible');
       expect($('Password should contain 6 characters!').visible, equals(true), reason: 'Password error message is not visible');
@@ -135,14 +135,14 @@ void main() {
       expect($(K.loginBtn).visible, equals(true), reason: 'Login button is not found before accessing Sign up form');
       await $.scrollUntilVisible(finder: loginBtn);
       await $(K.loginBtn).tap();
-      await $.pump();
+      //await $.pump();
 
       await $('NPM').waitUntilVisible(timeout: const Duration(seconds: 15));
       expect($('NPM').visible, equals(true), reason: 'NPM are not visible before sign up/login');
 
       await $.scrollUntilExists(finder: $('Meteor'));
       await $('Meteor').tap();
-      await $.pump();
+      //await $.pump();
 
       expect($(K.mpl).visible, equals(true), reason: 'MPL is not visible');
       expect($(K.nwl).visible, equals(true), reason: 'NWL is not visible');
