@@ -9,6 +9,7 @@ class ResetScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = Translations.of(context);
     return Scaffold(
+      key: const Key('fpbackBtn'),
       appBar: AppBar(),
       body: SafeArea(
         child: Center(

@@ -24,6 +24,7 @@ void main() {
       await $.enterText(passwordField, 'testing');
 
       expect($(loginBtn).visible, equals(true), reason: 'Login button is not found before accessing Sign up form');
+      await $.scrollUntilVisible(finder: loginBtn);
       await $(loginBtn).tap();
       await $.pump();
 
@@ -71,6 +72,7 @@ void main() {
       await $.enterText(passwordField, '');
 
       expect($(loginBtn).visible, equals(true), reason: 'Login button is not found before accessing Sign up form');
+      await $.scrollUntilVisible(finder: loginBtn);
       await $(loginBtn).tap();
       await $.pump();
 
@@ -94,6 +96,7 @@ void main() {
       await $.enterText(passwordField, '123456');
 
       expect($(loginBtn).visible, equals(true), reason: 'Login button is not found before accessing Sign up form');
+      await $.scrollUntilVisible(finder: loginBtn);
       await $(loginBtn).tap();
       await $.pump();
 
@@ -115,6 +118,7 @@ void main() {
       await $.enterText(passwordField, '12345');
 
       expect($(loginBtn).visible, equals(true), reason: 'Login button is not found before accessing Sign up form');
+      await $.scrollUntilVisible(finder: loginBtn);
       await $(loginBtn).tap();
       await $.pump();
 
@@ -134,9 +138,6 @@ void main() {
       final loginBtn = $(#login);
       final mpl = $(#mpl);
       final nwl = $(#nwl);
-      // final accountBtn = $(#account);
-      // final changeTheme = $(#changeTheme);
-      // final logoutBtn = $(#logout); 
 
       await $('Login').waitUntilVisible(timeout: const Duration(seconds: 5));
 
@@ -144,6 +145,7 @@ void main() {
       await $.enterText(passwordField, 'testing');
 
       expect($(loginBtn).visible, equals(true), reason: 'Login button is not found before accessing Sign up form');
+      await $.scrollUntilVisible(finder: loginBtn);
       await $(loginBtn).tap();
       await $.pump();
 

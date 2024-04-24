@@ -36,6 +36,7 @@ void main() {
     //await $.native.enterTextByIndex('test4@gmail.com', index: 0); // enter username
     // await $.native.enterTextByIndex('testing', index: 1); // enter password
 
+    await $.native.disableWifi();
     await $.native.disableCellular();
 
     await $(loginBtn).tap();
@@ -56,6 +57,7 @@ void main() {
     await $.pump();
 
     //LOG OUT
+    await $.scrollUntilVisible(finder: logoutBtn);
     await $(logoutBtn).tap();
     await $.pump();
 
@@ -84,6 +86,7 @@ void main() {
     await $.enterText(emailField, 'test@gmail.com');
     await $.enterText(passwordField, 'testing');
 
+    await $.scrollUntilVisible(finder: loginBtn);
     await $(loginBtn).tap();
     await $.pump();
 
@@ -94,10 +97,9 @@ void main() {
     //SEARCH???
     await $(searchBtn).tap();
     await $.pump();
-
+    await Future.delayed(const Duration(seconds: 2));
     await $.enterText(searchInputField, 'meta');
-    await $.pump();
-    
+      
 
     await $('meta').waitUntilVisible(timeout: const Duration(seconds: 30));
     expect($('meta').visible, equals(true), reason: 'Meta is not visible');
@@ -114,6 +116,7 @@ void main() {
     await $.pump();
 
     //LOG OUT
+    await $.scrollUntilVisible(finder: logoutBtn);
     await $(logoutBtn).tap();
     await $.pump();
 
