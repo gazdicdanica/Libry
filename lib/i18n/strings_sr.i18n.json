@@ -75,5 +75,6 @@
     "enter_password": "Unesite svoju lozinku da biste nastavili",
     "confirm": "Potvrdi",
     "cancel": "Otkaži",
-    "wrong_password": "Pogrešna lozinka, pokušajte ponovo."
+    "wrong_password": "Pogrešna lozinka, pokušajte ponovo.",
+    "too_many_requests": "Previše puta ste poslali zahtev, pokušajte ponovo kasnije."
 }

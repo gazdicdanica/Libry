@@ -5,6 +5,7 @@ import 'package:flutter_internship_2024_app/bloc/auth_bloc/auth_bloc.dart';
 import 'package:flutter_internship_2024_app/data/auth/data_provider/auth_data_provider.dart';
 import 'package:flutter_internship_2024_app/data/auth/repository/auth_repository.dart';
 import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
+import 'package:flutter_internship_2024_app/theme.dart';
 
 class PasswordInputDialog extends StatefulWidget {
   const PasswordInputDialog({super.key, required this.user});
@@ -38,8 +39,8 @@ class _PasswordInputDialogState extends State<PasswordInputDialog> {
         child: BlocConsumer<AuthBloc, AuthState>(
           listener: (context, state) {},
           builder: (context, state) {
-            if (state is AuthLoading) {
-              print("auth: AuthLoading reuth");
+            if (state is ReauthLoading) {
+              print("auth: ReauthLoading reuth");
               return const Center(
                 child: CircularProgressIndicator(),
               );
@@ -67,7 +68,16 @@ class _PasswordInputDialogState extends State<PasswordInputDialog> {
                     TextFormField(
                       controller: _passwordController,
                       obscureText: true,
-                      decoration: InputDecoration(labelText: t.password),
+                      decoration: InputDecoration(
+                        labelText: t.password,
+                        labelStyle: const TextStyle(color: darkGreenColor),
+                        enabledBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(color: darkGreenColor),
+                        ),
+                        focusedBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(color: darkGreenColor),
+                        ),
+                      ),
                       onChanged: (_) {
                         _formKey.currentState!.validate();
                       },

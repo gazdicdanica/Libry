@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 154 (77 per locale)
+/// Strings: 156 (78 per locale)
 ///
-/// Built on 2024-04-24 at 11:53 UTC
+/// Built on 2024-04-24 at 12:14 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -225,6 +225,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get confirm => 'Confirm';
 	String get cancel => 'Cancel';
 	String get wrong_password => 'Invalid password, please try again.';
+	String get too_many_requests => 'Too many requests, please try again later.';
 }
 
 // Path: <root>
@@ -328,6 +329,7 @@ class _StringsSr implements Translations {
 	@override String get confirm => 'Potvrdi';
 	@override String get cancel => 'Otkaži';
 	@override String get wrong_password => 'Pogrešna lozinka, pokušajte ponovo.';
+	@override String get too_many_requests => 'Previše puta ste poslali zahtev, pokušajte ponovo kasnije.';
 }
 
 /// Flat map(s) containing all translations.
@@ -413,6 +415,7 @@ extension on Translations {
 			case 'confirm': return 'Confirm';
 			case 'cancel': return 'Cancel';
 			case 'wrong_password': return 'Invalid password, please try again.';
+			case 'too_many_requests': return 'Too many requests, please try again later.';
 			default: return null;
 		}
 	}
@@ -498,6 +501,7 @@ extension on _StringsSr {
 			case 'confirm': return 'Potvrdi';
 			case 'cancel': return 'Otkaži';
 			case 'wrong_password': return 'Pogrešna lozinka, pokušajte ponovo.';
+			case 'too_many_requests': return 'Previše puta ste poslali zahtev, pokušajte ponovo kasnije.';
 			default: return null;
 		}
 	}

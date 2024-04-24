@@ -75,5 +75,6 @@
     "enter_password": "Please enter your password to continue",
     "confirm": "Confirm",
     "cancel": "Cancel",
-    "wrong_password": "Invalid password, please try again."
+    "wrong_password": "Invalid password, please try again.",
+    "too_many_requests": "Too many requests, please try again later."
 }

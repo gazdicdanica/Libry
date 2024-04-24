@@ -99,7 +99,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   void _deleteAccount(DeleteAccount event, Emitter<AuthState> emit) async {
-    emit(AuthLoading());
+    emit(DeleteLoading());
     try {
       await _authRepository.deleteAccount(event.user);
       emit(AuthDeletionSuccess());
@@ -112,16 +112,22 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           emit(ReauthenticationFailure(t.internet_error));
           break;
         default:
-          emit(AuthDeletionFailure(e.toString()));
+          emit(AuthDeletionFailure(t.delete_account_error));
           break;
       }
+    } on FirebaseException catch (e) {
+      if (e.code == 'unavailable') {
+        emit(AuthDeletionFailure(t.internet_error));
+      } else {
+        emit(AuthDeletionFailure(t.delete_account_error));
+      }
     } catch (e) {
-      emit(AuthDeletionFailure(e.toString()));
+      emit(AuthDeletionFailure(t.delete_account_error));
     }
   }
 
   void _reauthenticate(Reauthenticate event, Emitter<AuthState> emit) async {
-    emit(AuthLoading());
+    emit(ReauthLoading());
     try {
       await _authRepository.reauthenticate(event.user, event.password);
       emit(ReauthenticationSuccess());
@@ -133,12 +139,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         case 'network-request-failed':
           emit(ReauthenticationFailure(t.internet_error));
           break;
+        case 'too-many-requests':
+          emit(ReauthenticationFailure(t.too_many_requests));
+          break;
         default:
-          emit(ReauthenticationFailure(e.toString()));
+          emit(ReauthenticationFailure(t.reauth_account_error));
           break;
       }
     } catch (e) {
-      emit(ReauthenticationFailure(e.toString()));
+      emit(ReauthenticationFailure(t.reauth_account_error));
     }
   }
 }

@@ -64,6 +64,11 @@ final class ForgotPasswordFailure extends AuthState {
   List<Object?> get props => [emailError];
 }
 
+final class DeleteLoading extends AuthState {
+  @override
+  List<Object> get props => [];
+}
+
 final class AuthDeletionSuccess extends AuthState {
   @override
   List<Object> get props => [];
@@ -76,6 +81,11 @@ final class AuthDeletionFailure extends AuthState {
 
   @override
   List<Object> get props => [errorMessage];
+}
+
+final class ReauthLoading extends AuthState {
+  @override
+  List<Object> get props => [];
 }
 
 final class ReauthenticationSuccess extends AuthState {
