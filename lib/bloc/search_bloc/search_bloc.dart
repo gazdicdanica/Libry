@@ -17,11 +17,11 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   void _searchLibraries(
       LibrariesSearched event, Emitter<SearchState> emit) async {
-    emit(SearchLoading());
+    emit(SearchLoading( newSearch: event.page == 1 ));
 
     try {
       final libraries =
-          await _repository.getCurrentLibraires(event.searchText, event.sort, 1);
+          await _repository.getCurrentLibraires(event.searchText, event.sort, event.page);
       emit(SearchSuccess(libraries));
     } catch (e) {
       emit(SearchFailure(e.toString()));

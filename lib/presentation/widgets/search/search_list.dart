@@ -48,11 +48,11 @@ class _SearchListState extends State<SearchList>
     _pagingController.addPageRequestListener((pageKey) {
       context
           .read<SearchBloc>()
-          .add(LibrariesSearched(widget.searchText, widget.sort));
+          .add(LibrariesSearched(widget.searchText, widget.sort, page));
     });
 
     _subscription = context.read<SearchBloc>().stream.listen((state) {
-      if(state is SearchLoading && page == 1){
+      if (state is SearchLoading && state.newSearch) {
         _pagingController.refresh();
       }
       if (state is SearchInitial) {
@@ -60,7 +60,6 @@ class _SearchListState extends State<SearchList>
           _showSearchList = false;
           page = 1;
         });
-        
       } else {
         setState(() {
           _showSearchList = true;
@@ -106,10 +105,13 @@ class _SearchListState extends State<SearchList>
             },
             firstPageErrorIndicatorBuilder: (context) => ErrorMessageWidget(
               errorMessage: t.libraries_error,
-              refreshFunction: () => _pagingController.refresh(),),
-            newPageErrorIndicatorBuilder: (context) => NewPageErrorIndicator(onTryAgain: () => _pagingController.retryLastFailedRequest()),
+              refreshFunction: () => _pagingController.refresh(),
+            ),
+            newPageErrorIndicatorBuilder: (context) => NewPageErrorIndicator(
+                onTryAgain: () => _pagingController.retryLastFailedRequest()),
             noMoreItemsIndicatorBuilder: (context) => const EndIndicator(),
-            noItemsFoundIndicatorBuilder: (context) => NoItemsFound(message: t.search_empty),
+            noItemsFoundIndicatorBuilder: (context) =>
+                NoItemsFound(message: t.search_empty),
           ),
         ),
       );
