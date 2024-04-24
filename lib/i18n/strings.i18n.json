@@ -22,8 +22,8 @@
     "go_back": "Go back",
     "platforms": "Platforms",
     "platforms_empty": "There are no platforms found",
-    "tab_most_popular": "Most popular packages",
-    "tab_newest": "Newest packages",
+    "tab_most_popular": "Most popular",
+    "tab_newest": "Newest",
     "search": "Search",
     "search_hint": "Enter search keyword in order to find packages you are looking for.",
     "search_empty": "There are no found packages for the entered search criteria!",
@@ -73,5 +73,6 @@
     "reauthenticate": "Re-authenticate",
     "enter_password": "Please enter your password to continue",
     "confirm": "Confirm",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "wrong_password": "Invalid password, please try again."
 }

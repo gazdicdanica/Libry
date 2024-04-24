@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 150 (75 per locale)
+/// Strings: 152 (76 per locale)
 ///
-/// Built on 2024-04-23 at 18:28 UTC
+/// Built on 2024-04-24 at 09:58 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -171,8 +171,8 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get go_back => 'Go back';
 	String get platforms => 'Platforms';
 	String get platforms_empty => 'There are no platforms found';
-	String get tab_most_popular => 'Most popular packages';
-	String get tab_newest => 'Newest packages';
+	String get tab_most_popular => 'Most popular';
+	String get tab_newest => 'Newest';
 	String get search => 'Search';
 	String get search_hint => 'Enter search keyword in order to find packages you are looking for.';
 	String get search_empty => 'There are no found packages for the entered search criteria!';
@@ -223,6 +223,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get enter_password => 'Please enter your password to continue';
 	String get confirm => 'Confirm';
 	String get cancel => 'Cancel';
+	String get wrong_password => 'Invalid password, please try again.';
 }
 
 // Path: <root>
@@ -272,8 +273,8 @@ class _StringsSr implements Translations {
 	@override String get go_back => 'Idi nazad';
 	@override String get platforms => 'Platforme';
 	@override String get platforms_empty => 'Nema dostupnih platformi';
-	@override String get tab_most_popular => 'Najpopularniji paketi';
-	@override String get tab_newest => 'Najnoviji paketi';
+	@override String get tab_most_popular => 'Najpopularniji';
+	@override String get tab_newest => 'Najnoviji';
 	@override String get search => 'Pretraga';
 	@override String get search_hint => 'Unesite ključnu reč da pronađete paket koji tražite.';
 	@override String get search_empty => 'Nema dostupnih paketa za uneti kriterijum pretrage.';
@@ -324,6 +325,7 @@ class _StringsSr implements Translations {
 	@override String get enter_password => 'Unesite svoju lozinku da biste nastavili';
 	@override String get confirm => 'Potvrdi';
 	@override String get cancel => 'Otkaži';
+	@override String get wrong_password => 'Pogrešna lozinka, pokušajte ponovo.';
 }
 
 /// Flat map(s) containing all translations.
@@ -355,8 +357,8 @@ extension on Translations {
 			case 'go_back': return 'Go back';
 			case 'platforms': return 'Platforms';
 			case 'platforms_empty': return 'There are no platforms found';
-			case 'tab_most_popular': return 'Most popular packages';
-			case 'tab_newest': return 'Newest packages';
+			case 'tab_most_popular': return 'Most popular';
+			case 'tab_newest': return 'Newest';
 			case 'search': return 'Search';
 			case 'search_hint': return 'Enter search keyword in order to find packages you are looking for.';
 			case 'search_empty': return 'There are no found packages for the entered search criteria!';
@@ -407,6 +409,7 @@ extension on Translations {
 			case 'enter_password': return 'Please enter your password to continue';
 			case 'confirm': return 'Confirm';
 			case 'cancel': return 'Cancel';
+			case 'wrong_password': return 'Invalid password, please try again.';
 			default: return null;
 		}
 	}
@@ -438,8 +441,8 @@ extension on _StringsSr {
 			case 'go_back': return 'Idi nazad';
 			case 'platforms': return 'Platforme';
 			case 'platforms_empty': return 'Nema dostupnih platformi';
-			case 'tab_most_popular': return 'Najpopularniji paketi';
-			case 'tab_newest': return 'Najnoviji paketi';
+			case 'tab_most_popular': return 'Najpopularniji';
+			case 'tab_newest': return 'Najnoviji';
 			case 'search': return 'Pretraga';
 			case 'search_hint': return 'Unesite ključnu reč da pronađete paket koji tražite.';
 			case 'search_empty': return 'Nema dostupnih paketa za uneti kriterijum pretrage.';
@@ -490,6 +493,7 @@ extension on _StringsSr {
 			case 'enter_password': return 'Unesite svoju lozinku da biste nastavili';
 			case 'confirm': return 'Potvrdi';
 			case 'cancel': return 'Otkaži';
+			case 'wrong_password': return 'Pogrešna lozinka, pokušajte ponovo.';
 			default: return null;
 		}
 	}

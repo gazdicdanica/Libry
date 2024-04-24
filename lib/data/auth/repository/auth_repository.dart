@@ -25,8 +25,4 @@ class AuthRepository {
   Future<void> reauthenticate(User user, String password) async {
     return _authDataProvider.reauthenticate(user, password);
   }
-
-  Future<void> deleteFavoritesForUser(User user) async {
-    return _authDataProvider.deleteFavoritesForUser(user);
-  }
 }

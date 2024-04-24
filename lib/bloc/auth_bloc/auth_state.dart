@@ -64,7 +64,7 @@ final class ForgotPasswordFailure extends AuthState {
   List<Object?> get props => [emailError];
 }
 
-final class AccountDeleted extends AuthState {
+final class AuthDeletionSuccess extends AuthState {
   @override
   List<Object> get props => [];
 }

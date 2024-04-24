@@ -1,9 +1,15 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_internship_2024_app/bloc/auth_bloc/auth_bloc.dart';
+import 'package:flutter_internship_2024_app/data/auth/data_provider/auth_data_provider.dart';
+import 'package:flutter_internship_2024_app/data/auth/repository/auth_repository.dart';
 import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 
 class PasswordInputDialog extends StatefulWidget {
-  const PasswordInputDialog({super.key, required this.onConfirm});
-  final Function(String password) onConfirm;
+  const PasswordInputDialog({super.key, required this.user});
+
+  final User user;
 
   @override
   State<StatefulWidget> createState() {
@@ -13,6 +19,7 @@ class PasswordInputDialog extends StatefulWidget {
 
 class _PasswordInputDialogState extends State<PasswordInputDialog> {
   late TextEditingController _passwordController;
+  String? _errorMessage;
 
   @override
   void initState() {
@@ -23,39 +30,89 @@ class _PasswordInputDialogState extends State<PasswordInputDialog> {
   @override
   Widget build(BuildContext context) {
     final t = Translations.of(context);
-    return AlertDialog(
-      title: Text(t.reauthenticate),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Text(t.enter_password),
-          TextFormField(
-            controller: _passwordController,
-            obscureText: true,
-            decoration: InputDecoration(labelText: t.password),
-          ),
-        ],
-      ),
-      actions: <Widget>[
-        TextButton(
-          style: TextButton.styleFrom(
-            backgroundColor: Colors.transparent,
-          ),
-          onPressed: () {
-            widget.onConfirm(_passwordController.text);
-            Navigator.pop(context);
+    return RepositoryProvider(
+      create: (context) => AuthRepository(AuthDataProvider()),
+      child: BlocProvider(
+        create: (context) => AuthBloc(context.read<AuthRepository>()),
+        child: BlocConsumer<AuthBloc, AuthState>(
+          listener: (context, state) {},
+          builder: (context, state) {
+            if (state is AuthLoading) {
+              print("auth: AuthLoading reuth");
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            if (state is ReauthenticationSuccess) {
+              print("auth: ReauthenticationSuccess");
+              if (context.mounted) _deleteAccount(context);
+              Navigator.pop(context);
+            } else if (state is ReauthenticationFailure) {
+              print("auth: ReauthenticationFailure");
+              _errorMessage = state.errorMessage;
+            } else {
+              _errorMessage = null;
+            }
+
+            return AlertDialog(
+              title: Text(t.reauthenticate),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Text(t.enter_password),
+                  TextFormField(
+                    controller: _passwordController,
+                    obscureText: true,
+                    decoration: InputDecoration(labelText: t.password),
+                  ),
+                  if (_errorMessage != null)
+                    Text(
+                      _errorMessage!,
+                      style: const TextStyle(color: Colors.red, fontSize: 13),
+                    ),
+                ],
+              ),
+              actions: <Widget>[
+                TextButton(
+                  style: TextButton.styleFrom(
+                    backgroundColor: Colors.transparent,
+                  ),
+                  onPressed: () {
+                    final password = _passwordController.text;
+                    if (password.isNotEmpty && password.length >= 6) {
+                      _reauthenticate(context, password);
+                    } else {
+                      setState(() {
+                        _errorMessage = t.password_error;
+                      });
+                    }
+                  },
+                  child: Text(t.confirm),
+                ),
+                TextButton(
+                  style: TextButton.styleFrom(
+                    backgroundColor: Colors.transparent,
+                  ),
+                  onPressed: () => Navigator.pop(context),
+                  child: Text(t.cancel),
+                ),
+              ],
+            );
           },
-          child: Text(t.confirm),
         ),
-        TextButton(
-          style: TextButton.styleFrom(
-            backgroundColor: Colors.transparent,
-          ),
-          onPressed: () => Navigator.pop(context),
-          child: Text(t.cancel),
-        ),
-      ],
+      ),
     );
+  }
+
+  void _deleteAccount(BuildContext context) {
+    print("auth: _deleteAccount reuth");
+    BlocProvider.of<AuthBloc>(context).add(DeleteAccount(widget.user));
+  }
+
+  void _reauthenticate(BuildContext context, String password) {
+    print("auth: _reauthenticate reuth");
+    BlocProvider.of<AuthBloc>(context)
+        .add(Reauthenticate(widget.user, password));
   }
 
   @override

@@ -25,7 +25,8 @@ class DeleteAccountButton extends StatelessWidget {
         create: (context) => AuthBloc(context.read<AuthRepository>()),
         child: BlocConsumer<AuthBloc, AuthState>(
           listener: (context, state) {
-            if (state is AccountDeleted) {
+            if (state is AuthDeletionSuccess) {
+              print("auth: AuthDeletionSuccess");
               messenger.showSnackBar(
                 SnackBar(content: Text(t.sorry_youre_leaving)),
               );
@@ -34,6 +35,7 @@ class DeleteAccountButton extends StatelessWidget {
                 _navigateToAuthScreen(context);
               });
             } else if (state is AuthDeletionFailure) {
+              print("auth: AuthDeletionFailure");
               messenger.showSnackBar(
                 SnackBar(content: Text(state.errorMessage)),
               );
@@ -41,24 +43,22 @@ class DeleteAccountButton extends StatelessWidget {
           },
           builder: (context, state) {
             if (state is AuthLoading) {
+              print("auth: AuthLoading");
               return const Center(
                 child: CircularProgressIndicator(),
               );
             }
             if (state is ReauthenticationNeeded) {
-              return PasswordInputDialog(
-                onConfirm: (password) {
-                  BlocProvider.of<AuthBloc>(context)
-                      .add(Reauthenticate(user, password));
-                },
-              );
-            }
-            if (state is ReauthenticationSuccess) {
-              if (context.mounted) _deleteAccount(context);
-            } else if (state is ReauthenticationFailure) {
-              messenger.showSnackBar(
-                SnackBar(content: Text(state.errorMessage)),
-              );
+              print("auth: ReauthenticationNeeded");
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return PasswordInputDialog(
+                        user: user,
+                      );
+                    });
+              });
             }
             return TextButton(
               style: TextButton.styleFrom(
@@ -77,7 +77,8 @@ class DeleteAccountButton extends StatelessWidget {
                   },
                 );
                 if (confirmed == true) {
-                  if (context.mounted) openReauth(context);
+                  if (context.mounted) _deleteAccount(context);
+                  // if (context.mounted) _reauthenticate(context);
                 }
               },
               child: Text(
@@ -92,22 +93,8 @@ class DeleteAccountButton extends StatelessWidget {
   }
 
   void _deleteAccount(BuildContext context) {
+    print("auth: _deleteAccount");
     BlocProvider.of<AuthBloc>(context).add(DeleteAccount(user));
-  }
-
-  void openReauth(BuildContext context) async {
-    final password = await showDialog<String>(
-      context: context,
-      builder: (BuildContext context) {
-        return PasswordInputDialog(
-          onConfirm: (password) => password,
-        );
-      },
-    );
-
-    if (password != null && context.mounted) {
-      BlocProvider.of<AuthBloc>(context).add(Reauthenticate(user, password));
-    }
   }
 
   void _navigateToAuthScreen(BuildContext context) {
