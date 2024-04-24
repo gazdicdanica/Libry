@@ -59,6 +59,7 @@ class _PasswordInputDialogState extends State<PasswordInputDialog> {
               title: Text(t.reauthenticate),
               content: Form(
                 key: _formKey,
+                autovalidateMode: AutovalidateMode.always,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
@@ -67,6 +68,9 @@ class _PasswordInputDialogState extends State<PasswordInputDialog> {
                       controller: _passwordController,
                       obscureText: true,
                       decoration: InputDecoration(labelText: t.password),
+                      onChanged: (_) {
+                        _formKey.currentState!.validate();
+                      },
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return t.password_error;

@@ -104,10 +104,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       await _authRepository.deleteAccount(event.user);
       emit(AuthDeletionSuccess());
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'requires-recent-login') {
-        emit(ReauthenticationNeeded());
-      } else {
-        emit(AuthDeletionFailure(e.toString()));
+      switch (e.code) {
+        case 'requires-recent-login':
+          emit(ReauthenticationNeeded());
+          break;
+        case 'network-request-failed':
+          emit(ReauthenticationFailure(t.internet_error));
+          break;
+        default:
+          emit(AuthDeletionFailure(e.toString()));
+          break;
       }
     } catch (e) {
       emit(AuthDeletionFailure(e.toString()));
@@ -120,10 +126,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       await _authRepository.reauthenticate(event.user, event.password);
       emit(ReauthenticationSuccess());
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'invalid-credential') {
-        emit(ReauthenticationFailure(t.wrong_password));
-      } else {
-        emit(ReauthenticationFailure(e.toString()));
+      switch (e.code) {
+        case 'invalid-credential':
+          emit(ReauthenticationFailure(t.wrong_password));
+          break;
+        case 'network-request-failed':
+          emit(ReauthenticationFailure(t.internet_error));
+          break;
+        default:
+          emit(ReauthenticationFailure(e.toString()));
+          break;
       }
     } catch (e) {
       emit(ReauthenticationFailure(e.toString()));
