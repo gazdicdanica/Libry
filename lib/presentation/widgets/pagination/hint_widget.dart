@@ -14,7 +14,7 @@ class HintWidget extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(Icons.emoji_nature_outlined, size: 80),
+            Icon(icon, size: 80),
             const SizedBox(height: 20),
             Text(
               message,
