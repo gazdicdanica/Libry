@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 124 (62 per locale)
+/// Strings: 100 (50 per locale)
 ///
-/// Built on 2024-04-22 at 12:26 UTC
+/// Built on 2024-04-23 at 08:10 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -262,6 +262,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
   String get theme_dark => 'Dark theme';
   String get back_history => 'No back history item';
   String get forward_history => 'No forward history item';
+	String get end_of_list => 'You\'ve reached the end';
 }
 
 // Path: <root>
@@ -436,6 +437,7 @@ class _StringsSr implements Translations {
   @override
   String get explanation_adding =>
       'Ako želite da dobijate ažuriranja o vašim omiljenim paketima, dodajte ih u omiljene pritiskom na ikonu srca.';
+	@override String get end_of_list => 'Došli ste do kraja';
 }
 
 /// Flat map(s) containing all translations.
@@ -564,6 +566,7 @@ extension on Translations {
         return 'Light theme';
       case 'theme_dark':
         return 'Dark theme';
+			case 'end_of_list': return 'You\'ve reached the end';
       case 'back_history':
         return 'No back history item';
       case 'forward_history':
@@ -707,6 +710,7 @@ extension on _StringsSr {
         return 'Svetla tema';
       case 'theme_dark':
         return 'Tamna tema';
+			case 'end_of_list': return 'Došli ste do kraja';
       case 'back_history':
         return 'Nema stavki u istoriji';
       case 'forward_history':

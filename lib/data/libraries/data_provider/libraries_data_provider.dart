@@ -5,13 +5,13 @@ import 'dart:async';
 import 'dart:io';
 
 class LibrariesDataProvider {
-  Future<String> getCurrentLibraires(String packageName, String sort) async {
+  Future<String> getCurrentLibraires(String packageName, String sort, int page) async {
     final apiKey = dotenv.env['API_KEY'];
     try {
       final res = await http
           .get(
             Uri.parse(
-              'https://libraries.io/api/search?q=$packageName&api_key=$apiKey&sort=$sort',
+              'https://libraries.io/api/search?q=$packageName&api_key=$apiKey&sort=$sort&page=$page',
             ),
           )
           .timeout(const Duration(seconds: 60),
