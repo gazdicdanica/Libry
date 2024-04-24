@@ -17,4 +17,8 @@ final class SearchFailure extends SearchState {
   SearchFailure(this.errorMessage);
 }
 
-final class SearchLoading extends SearchState {}
+final class SearchLoading extends SearchState {
+  final bool newSearch;
+
+  SearchLoading({required this.newSearch});
+}
