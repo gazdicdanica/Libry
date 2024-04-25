@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_internship_2024_app/bloc/search_bloc/search_bloc.dart';
 import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 import 'package:flutter_internship_2024_app/models/library.dart';
+import 'package:flutter_internship_2024_app/presentation/screens/library_details_screen.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/card_widget.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/error_message_widget.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/libraries_widgets/libraries_card_content.dart';
@@ -97,7 +98,9 @@ class _SearchListState extends State<SearchList>
             itemBuilder: (context, library, index) {
               return CardWidget(
                 color: library.colorObj,
-                onTap: () {},
+                onTap: () {
+                  _goToDetailsScreen(library);
+                },
                 child: LibrariesCardContet(
                   library: library,
                 ),
@@ -121,6 +124,16 @@ class _SearchListState extends State<SearchList>
         icon: Icons.search,
       );
     }
+  }
+
+  void _goToDetailsScreen(Library library) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => LibraryDetailsScreen(
+          library: library,
+        ),
+      ),
+    );
   }
 
   @override
