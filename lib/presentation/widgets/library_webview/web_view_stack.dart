@@ -21,25 +21,33 @@ class _WebViewStackState extends State<WebViewStack> {
     widget.controller.setNavigationDelegate(
       NavigationDelegate(
         onPageStarted: (url) {
-          setState(() {
-            loadingPercentage = 0;
-            hasError = false;
-          });
+          if (mounted) {
+            setState(() {
+              loadingPercentage = 0;
+              hasError = false;
+            });
+          }
         },
         onProgress: (progress) {
-          setState(() {
-            loadingPercentage = progress;
-          });
+          if (mounted) {
+            setState(() {
+              loadingPercentage = progress;
+            });
+          }
         },
         onPageFinished: (url) {
-          setState(() {
-            loadingPercentage = 100;
-          });
+          if (mounted) {
+            setState(() {
+              loadingPercentage = 100;
+            });
+          }
         },
         onWebResourceError: (error) {
-          setState(() {
-            hasError = true;
-          });
+          if (mounted) {
+            setState(() {
+              hasError = true;
+            });
+          }
         },
       ),
     );
