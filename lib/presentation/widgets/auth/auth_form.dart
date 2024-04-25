@@ -211,7 +211,7 @@ class _AuthFormState extends State<AuthForm> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Text(
-                          _isLogin ? t.singin_redirect : t.singup_redirect,
+                          _isLogin ? t.singup_redirect : t.singin_redirect,
                         ),
                         const SizedBox(
                           width: 10,
@@ -280,6 +280,7 @@ class _AuthFormState extends State<AuthForm> {
       StartAuth(
         _emailController.text.trim(),
         _passwordController.text.trim(),
+        _confirmPasswordController.text.trim(),
         _isLogin,
       ),
     );

@@ -6,9 +6,10 @@ sealed class AuthEvent {}
 final class StartAuth extends AuthEvent {
   final String email;
   final String password;
+  final String? confirmPassword;
   final bool isLogin;
 
-  StartAuth(this.email, this.password, this.isLogin);
+  StartAuth(this.email, this.password, this.confirmPassword, this.isLogin);
 }
 
 final class ResetAuth extends AuthEvent {}
