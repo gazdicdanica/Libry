@@ -201,6 +201,8 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get confirm_password_error => 'Passwords do not match!';
 	String get login => 'Login';
 	String get singup => 'Sign up';
+	String get singup_redirect => 'Don\'t have an account?';
+	String get singin_redirect => 'Already have an account?';
 	String get email_already_in_use => 'Email is already in use!';
 	String get invalid_credential => 'Invalid email or password!';
 	String get auth_failed => 'Authentication failed! Please try again later!';
@@ -312,6 +314,8 @@ class _StringsSr implements Translations {
 	@override String get confirm_password_error => 'Lozinke se ne podudaraju!';
 	@override String get login => 'Prijavi se';
 	@override String get singup => 'Registruj se';
+	@override String get singup_redirect => 'Nemate nalog?';
+	@override String get singin_redirect => 'Već imate nalog?';
 	@override String get email_already_in_use => 'Email adresa se već koristi!';
 	@override String get invalid_credential => 'Email adresa ili lozinka nisu ispravni!';
 	@override String get auth_failed => 'Autentifikacija nije uspela! Molimo Vas pokušajte kasnije.';
@@ -398,6 +402,8 @@ extension on Translations {
 			case 'confirm_password_error': return 'Passwords do not match!';
 			case 'login': return 'Login';
 			case 'singup': return 'Sign up';
+			case 'singup_redirect': return 'Don\'t have an account?';
+			case 'singin_redirect': return 'Already have an account?';
 			case 'email_already_in_use': return 'Email is already in use!';
 			case 'invalid_credential': return 'Invalid email or password!';
 			case 'auth_failed': return 'Authentication failed! Please try again later!';
@@ -484,6 +490,8 @@ extension on _StringsSr {
 			case 'confirm_password_error': return 'Lozinke se ne podudaraju!';
 			case 'login': return 'Prijavi se';
 			case 'singup': return 'Registruj se';
+			case 'singup_redirect': return 'Nemate nalog?';
+			case 'singin_redirect': return 'Već imate nalog?';
 			case 'email_already_in_use': return 'Email adresa se već koristi!';
 			case 'invalid_credential': return 'Email adresa ili lozinka nisu ispravni!';
 			case 'auth_failed': return 'Autentifikacija nije uspela! Molimo Vas pokušajte kasnije.';

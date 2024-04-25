@@ -103,6 +103,7 @@ class _LibrariesCardContetState extends State<LibrariesCardContet> {
                             children: [
                               Row(
                                 children: [
+                                   if (widget.library.latestReleaseNumber != null)
                                   Row(children: [
                                     const Icon(Icons.route, size: 20),
                                     SizedBox(
@@ -117,6 +118,9 @@ class _LibrariesCardContetState extends State<LibrariesCardContet> {
                                       ),
                                     ),
                                   ]),
+                                 if (widget.library.latestReleaseNumber == null)
+                                SizedBox(
+                                    width: position ? 100 : 150,),
                                   const SizedBox(
                                     width: 8,
                                   ),

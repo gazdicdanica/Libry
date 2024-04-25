@@ -11,22 +11,24 @@ final class StartAuth extends AuthEvent {
   StartAuth(this.email, this.password, this.isLogin);
 }
 
-final class ValidateAuth extends AuthEvent {
+final class ResetAuth extends AuthEvent {}
+
+final class ChangedEmail extends AuthEvent {
   final String? email;
+  final String? passwordError;
+  final String? confirmPasswordError;
+
+  ChangedEmail(this.email, this.passwordError, this.confirmPasswordError);
+
+}
+
+final class ChangedPassword extends AuthEvent {
   final String? password;
+  final String? emailError;
   final String? confirmPassword;
   final bool isLogin;
 
-  ValidateAuth(
-      {this.email, this.password, this.confirmPassword, required this.isLogin});
-}
-
-final class ResetAuth extends AuthEvent {}
-
-class ValidateEmail extends AuthEvent {
-  final String? email;
-
-  ValidateEmail({this.email});
+  ChangedPassword(this.password, this.confirmPassword, this.emailError, this.isLogin);
 }
 
 class SendResetEmail extends AuthEvent {
