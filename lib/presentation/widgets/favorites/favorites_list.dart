@@ -24,14 +24,16 @@ class _FavoritesListState extends State<FavoritesList> {
     return SafeArea(
       child: widget.libraries.isEmpty
           ? SingleChildScrollView(
-            child: Padding(
+              child: Padding(
                 padding: const EdgeInsets.fromLTRB(20, 200, 20, 20),
                 child: Center(
                   child: Column(children: [
                     const SizedBox(
                         width: 70,
-                        child: Icon(Icons.emoji_nature_outlined,
-                            size: 90,)),
+                        child: Icon(
+                          Icons.emoji_nature_outlined,
+                          size: 90,
+                        )),
                     const SizedBox(
                       height: 20,
                     ),
@@ -49,14 +51,13 @@ class _FavoritesListState extends State<FavoritesList> {
                     Text(
                       t.explanation_adding,
                       style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
+                          fontSize: 20, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center,
                     )
                   ]),
                 ),
               ),
-          )
+            )
           : Center(
               child: ListView.builder(
                   itemCount: widget.libraries.length,

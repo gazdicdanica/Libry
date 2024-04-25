@@ -80,7 +80,7 @@ class _LibrariesListState extends State<LibrariesList> with AutomaticKeepAliveCl
             return CardWidget(
               color: widget.platform.colorObj,
               onTap: () {
-                  _goToDetailsScreen(library);
+                _goToDetailsScreen(library);
               },
               child: LibrariesCardContet(
                 library: library,
@@ -99,7 +99,7 @@ class _LibrariesListState extends State<LibrariesList> with AutomaticKeepAliveCl
     );
   }
 
-    void _goToDetailsScreen(Library library) {
+  void _goToDetailsScreen(Library library) {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => LibraryDetailsScreen(
@@ -108,6 +108,7 @@ class _LibrariesListState extends State<LibrariesList> with AutomaticKeepAliveCl
       ),
     );
   }
+
   @override
   void dispose() {
     super.dispose();

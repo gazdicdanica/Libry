@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_internship_2024_app/bloc/theme_bloc/theme_bloc.dart';
 import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
+import 'package:flutter_internship_2024_app/presentation/widgets/my_account/components/delete_button_widget.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/my_account/components/logout_button_widget.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/my_account/components/modals/language_buttons.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/my_account/components/modals/modal_sheet.dart';
@@ -38,7 +39,8 @@ class AccountDetails extends StatelessWidget {
               builder: (context, state) {
                 return SettingsInfoRow(
                   label: t.theme,
-                  subtitle: t['theme_${(state as ThemeChanged).themeMode.name.toString()}'],
+                  subtitle: t[
+                      'theme_${(state as ThemeChanged).themeMode.name.toString()}'],
                   onPressed: () {
                     _showModalSheet(context, const ThemeButtons());
                   },
@@ -54,14 +56,15 @@ class AccountDetails extends StatelessWidget {
                 _showModalSheet(context, const LanguageButtons());
               },
             ),
-            const SizedBox(height: 50),
+            const SizedBox(height: 10),
             const LogoutButton(),
+            const SizedBox(height: 10),
+            DeleteAccountButton(user: user),
           ],
         ),
       ),
     );
   }
-
 
   void _showModalSheet(BuildContext context, Widget content) {
     showModalBottomSheet(
