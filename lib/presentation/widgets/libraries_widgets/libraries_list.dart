@@ -6,6 +6,7 @@ import 'package:flutter_internship_2024_app/bloc/libraries_bloc/libraries_bloc.d
 import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 import 'package:flutter_internship_2024_app/models/library.dart';
 import 'package:flutter_internship_2024_app/models/platform.dart';
+import 'package:flutter_internship_2024_app/presentation/screens/library_details_screen.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/card_widget.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/error_message_widget.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/libraries_widgets/libraries_card_content.dart';
@@ -76,7 +77,9 @@ class _LibrariesListState extends State<LibrariesList> {
           itemBuilder: (context, library, index) {
             return CardWidget(
               color: widget.platform.colorObj,
-              onTap: () {},
+              onTap: () {
+                  _goToDetailsScreen(library);
+              },
               child: LibrariesCardContet(
                 library: library,
               ),
@@ -94,6 +97,15 @@ class _LibrariesListState extends State<LibrariesList> {
     );
   }
 
+    void _goToDetailsScreen(Library library) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => LibraryDetailsScreen(
+          library: library,
+        ),
+      ),
+    );
+  }
   @override
   void dispose() {
     super.dispose();

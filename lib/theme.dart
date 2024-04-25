@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 const textColor = Color.fromARGB(255, 72, 75, 73);
 const themeSeedColor = Color.fromARGB(255, 205, 232, 223);
 const darkGreenColor = Color.fromRGBO(0, 166, 141, 1);
+const lightGreenColor = Color.fromRGBO(205, 232, 223, 1);
 const darkAppBarColor = Color.fromRGBO(0, 81, 68, 1);
 const darkGreyColor = Color.fromRGBO(72, 75, 73, 1);
 const lightGreyColor = Color.fromRGBO(233, 239, 236, 1);
@@ -12,13 +13,16 @@ const bottomNavigationColor = Color.fromARGB(255, 233, 239, 236);
 final theme = ThemeData.light().copyWith(
   colorScheme: ColorScheme.fromSeed(
       seedColor: themeSeedColor,
+      primary: lightGreenColor,
       onPrimary: textColor,
       onBackground: textColor,
+      background: lightGreyColor,
       brightness: Brightness.light),
   tabBarTheme: const TabBarTheme().copyWith(
     indicator: const BoxDecoration(
       color: themeSeedColor,
     ),
+    labelColor: darkGreyColor,
   ),
   textTheme: ThemeData.light().textTheme.copyWith(
         headlineSmall: const TextStyle(
@@ -64,8 +68,10 @@ final theme = ThemeData.light().copyWith(
 
 final darkTheme = ThemeData.dark().copyWith(
   colorScheme: ColorScheme.fromSeed(
+    primary: darkGreenColor,
     seedColor: darkGreenColor,
     onPrimary: lightGreyColor,
+    background: darkGreyColor,
     onBackground: lightGreyColor,
     brightness: Brightness.dark,
   ),
