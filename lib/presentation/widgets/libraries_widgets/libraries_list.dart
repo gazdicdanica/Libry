@@ -27,7 +27,8 @@ class LibrariesList extends StatefulWidget {
   }
 }
 
-class _LibrariesListState extends State<LibrariesList> with AutomaticKeepAliveClientMixin<LibrariesList> {
+class _LibrariesListState extends State<LibrariesList>
+    with AutomaticKeepAliveClientMixin<LibrariesList> {
   int page = 1;
 
   final PagingController<int, Library> _pagingController =
@@ -39,7 +40,7 @@ class _LibrariesListState extends State<LibrariesList> with AutomaticKeepAliveCl
   @override
   void initState() {
     super.initState();
-    _librariesBloc =  LibrariesBloc(context.read<LibrariesRepository>());
+    _librariesBloc = LibrariesBloc(context.read<LibrariesRepository>());
     _pagingController.addPageRequestListener((pageKey) {
       _librariesBloc
           .add(FetchLibraries(widget.platform.name, widget.sort, page));
@@ -47,7 +48,6 @@ class _LibrariesListState extends State<LibrariesList> with AutomaticKeepAliveCl
 
     _subscription = _librariesBloc.stream.listen((state) {
       if (state is LibrariesSuccess) {
-        
         if (state.libraries.isEmpty) {
           _pagingController.appendLastPage(state.libraries);
         } else {
@@ -115,7 +115,7 @@ class _LibrariesListState extends State<LibrariesList> with AutomaticKeepAliveCl
     _pagingController.dispose();
     _subscription.cancel();
   }
-  
+
   @override
   bool get wantKeepAlive => true;
 }

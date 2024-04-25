@@ -114,7 +114,8 @@ class _LibrariesCardContetState extends State<LibrariesCardContet> {
                                 ]),
                               if (widget.library.latestReleaseNumber == null)
                                 SizedBox(
-                                    width: position ? 100 : 150,),
+                                  width: position ? 100 : 150,
+                                ),
                               const SizedBox(
                                 width: 8,
                               ),
