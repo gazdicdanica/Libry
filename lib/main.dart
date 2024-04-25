@@ -105,7 +105,7 @@ class MyApp extends StatelessWidget {
                         if (snapshot.hasData) {
                           return const BottomNavigation();
                         }
-                        return  Onbording();
+                        return  const Onbording();
                       },
                     ),
                   ),
