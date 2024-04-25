@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_internship_2024_app/bloc/libraries_bloc/libraries_bloc.dart';
+import 'package:flutter_internship_2024_app/data/libraries/repository/libraries_repository.dart';
 import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 import 'package:flutter_internship_2024_app/models/library.dart';
 import 'package:flutter_internship_2024_app/models/platform.dart';
@@ -26,27 +27,26 @@ class LibrariesList extends StatefulWidget {
   }
 }
 
-class _LibrariesListState extends State<LibrariesList> {
-  String? platfromName;
-  String? sort;
+class _LibrariesListState extends State<LibrariesList>
+    with AutomaticKeepAliveClientMixin<LibrariesList> {
   int page = 1;
 
   final PagingController<int, Library> _pagingController =
       PagingController(firstPageKey: 0);
   late StreamSubscription _subscription;
 
+  late final LibrariesBloc _librariesBloc;
+
   @override
   void initState() {
     super.initState();
-    platfromName = widget.platform.name;
-    sort = widget.sort;
+    _librariesBloc = LibrariesBloc(context.read<LibrariesRepository>());
     _pagingController.addPageRequestListener((pageKey) {
-      context
-          .read<LibrariesBloc>()
-          .add(FetchLibraries(platfromName!, sort!, page));
+      _librariesBloc
+          .add(FetchLibraries(widget.platform.name, widget.sort, page));
     });
 
-    _subscription = context.read<LibrariesBloc>().stream.listen((state) {
+    _subscription = _librariesBloc.stream.listen((state) {
       if (state is LibrariesSuccess) {
         if (state.libraries.isEmpty) {
           _pagingController.appendLastPage(state.libraries);
@@ -69,16 +69,18 @@ class _LibrariesListState extends State<LibrariesList> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final t = Translations.of(context);
     return SafeArea(
       child: PagedListView<int, Library>(
+        key: PageStorageKey<String>(widget.platform.name + widget.sort),
         pagingController: _pagingController,
         builderDelegate: PagedChildBuilderDelegate<Library>(
           itemBuilder: (context, library, index) {
             return CardWidget(
               color: widget.platform.colorObj,
               onTap: () {
-                  _goToDetailsScreen(library);
+                _goToDetailsScreen(library);
               },
               child: LibrariesCardContet(
                 library: library,
@@ -97,7 +99,7 @@ class _LibrariesListState extends State<LibrariesList> {
     );
   }
 
-    void _goToDetailsScreen(Library library) {
+  void _goToDetailsScreen(Library library) {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => LibraryDetailsScreen(
@@ -106,10 +108,14 @@ class _LibrariesListState extends State<LibrariesList> {
       ),
     );
   }
+
   @override
   void dispose() {
     super.dispose();
     _pagingController.dispose();
     _subscription.cancel();
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

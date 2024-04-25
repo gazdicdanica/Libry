@@ -19,7 +19,7 @@ class InfoContainers extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.only(bottom: 32),
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.primary,
+              color: Theme.of(context).colorScheme.secondaryContainer,
               borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(15),
               ),
