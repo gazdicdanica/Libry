@@ -70,8 +70,21 @@ class _AuthFormState extends State<AuthForm> {
                               state.emailError != null)
                           ? const Icon(Icons.error)
                           : null,
-                      onChanged: (value) => ctx.read<AuthBloc>()..add(
-                        ValidateAuth(email: value, password: _passwordController.text.trim(), confirmPassword: _confirmPasswordController.text.trim(), isLogin: _isLogin),)
+                      onChanged: (value) {
+                        final bloc = ctx.read<AuthBloc>();
+                        final state = bloc.state;
+                        bloc.add(
+                          ChangedEmail(
+                            value,
+                            state is AuthValidationFailure
+                                ? state.passwordError
+                                : null,
+                            state is AuthValidationFailure
+                                ? state.confirmPasswordError
+                                : null,
+                          ),
+                        );
+                      },
                     ),
                     const SizedBox(
                       height: 20,
@@ -80,7 +93,7 @@ class _AuthFormState extends State<AuthForm> {
                       controller: _passwordController,
                       labelText: t.password,
                       hintText: t.password_hint,
-                      errorText: (state is AuthValidationFailure&&
+                      errorText: (state is AuthValidationFailure &&
                               state.passwordError != null)
                           ? state.passwordError
                           : null,
@@ -89,10 +102,21 @@ class _AuthFormState extends State<AuthForm> {
                           ? const Icon(Icons.error)
                           : null,
                       obscureText: true,
-                      onChanged: (value) => ctx.read<AuthBloc>()
-                        ..add(
-                          ValidateAuth(password: value, confirmPassword: _confirmPasswordController.text.trim(), email: _emailController.text.trim(), isLogin: _isLogin),
-                        ),
+                      onChanged: (value) {
+                        final bloc = ctx.read<AuthBloc>();
+                        final state = bloc.state;
+                        bloc.add(
+                          ChangedPassword(
+                            value,
+                            state is AuthValidationFailure
+                                ? state.emailError
+                                : null,
+                            state is AuthValidationFailure
+                                ? state.confirmPasswordError
+                                : null,
+                          ),
+                        );
+                      },
                     ),
 
                     if (_isLogin)
@@ -140,28 +164,34 @@ class _AuthFormState extends State<AuthForm> {
                             height: 20,
                           ),
                           CustomFormField(
-                            controller: _confirmPasswordController,
-                            labelText: t.confirm_password,
-                            hintText: t.confirm_password_hint,
-                            errorText: (state is AuthValidationFailure &&
-                                    state.confirmPasswordError != null)
-                                ? state.confirmPasswordError
-                                : null,
-                            suffixIcon: (state is AuthValidationFailure &&
-                                    state.confirmPasswordError != null)
-                                ? const Icon(Icons.error)
-                                : null,
-                            obscureText: true,
-                            onChanged: (value) => ctx.read<AuthBloc>()
-                              ..add(
-                                ValidateAuth(
-                                  confirmPassword: value,
-                                  email: _emailController.text.trim(),
-                                  isLogin: _isLogin,
-                                  password: _passwordController.text.trim(),
-                                ),
-                              ),
-                          ),
+                              controller: _confirmPasswordController,
+                              labelText: t.confirm_password,
+                              hintText: t.confirm_password_hint,
+                              errorText: (state is AuthValidationFailure &&
+                                      state.confirmPasswordError != null)
+                                  ? state.confirmPasswordError
+                                  : null,
+                              suffixIcon: (state is AuthValidationFailure &&
+                                      state.confirmPasswordError != null)
+                                  ? const Icon(Icons.error)
+                                  : null,
+                              obscureText: true,
+                              onChanged: (value) {
+                                final bloc = ctx.read<AuthBloc>();
+                                final state = bloc.state;
+                                bloc.add(
+                                  ChangedConfirmPassword(
+                                    value,
+                                    _passwordController.text,
+                                    state is AuthValidationFailure
+                                        ? state.emailError
+                                        : null,
+                                    state is AuthValidationFailure
+                                        ? state.passwordError
+                                        : null,
+                                  ),
+                                );
+                              }),
                           const SizedBox(
                             height: 40,
                           ),

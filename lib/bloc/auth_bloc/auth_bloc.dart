@@ -13,7 +13,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc(this._authRepository) : super(AuthInitial()) {
     on<StartAuth>(_authenticate);
     on<ResetAuth>(_reset);
-    on<ValidateAuth>(_validate);
+    on<ChangedEmail>(_validateEmail);
+    on<ChangedPassword>(_validatePassword);
+    on<ChangedConfirmPassword>(_validateConfirmPassword);
     on<SendResetEmail>(_sendForgotPasswordEmail);
   }
 
@@ -31,29 +33,53 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       confirmPassword.isNotEmpty &&
       confirmPassword == password;
 
-  void _validate(ValidateAuth event, Emitter<AuthState> emit) {
+  void _validateEmail(ChangedEmail event, Emitter<AuthState> emit) {
     String? emailError;
-    String? passwordError;
-    String? confirmPasswordError;
     if (!_isEmailValid(event.email)) {
       emailError = t.email_format_error;
     }
+    if (emailError != null ||
+        event.passwordError != null ||
+        event.confirmPasswordError != null) {
+      emit(AuthValidationFailure(
+          emailError: emailError,
+          passwordError: event.passwordError,
+          confirmPasswordError: event.confirmPasswordError));
+    } else {
+      emit(AuthValidationSuccess());
+    }
+  }
+
+  void _validatePassword(ChangedPassword event, Emitter<AuthState> emit) {
+    String? passwordError;
     if (!_isPasswordValid(event.password)) {
       passwordError = t.password_error;
     }
-    if (!event.isLogin) {
-      if (!_isConfirmPasswordValid(event.password, event.confirmPassword)) {
-        confirmPasswordError = t.confirm_password_error;
-      }
-    }
-    if (emailError != null ||
+    if (event.emailError != null ||
         passwordError != null ||
+        event.confirmPasswordError != null) {
+      emit(AuthValidationFailure(
+          emailError: event.emailError,
+          passwordError: passwordError,
+          confirmPasswordError: event.confirmPasswordError));
+    } else {
+      emit(AuthValidationSuccess());
+    }
+  }
+
+  void _validateConfirmPassword(ChangedConfirmPassword event, Emitter<AuthState> emit) {
+    String? confirmPasswordError;
+    if (!_isConfirmPasswordValid(event.password, event.confirmPassword)) {
+      confirmPasswordError = t.confirm_password_error;
+    }
+    if (event.emailError != null ||
+        event.passwordError != null ||
         confirmPasswordError != null) {
       emit(AuthValidationFailure(
-          emailError: emailError,
-          passwordError: passwordError,
+          emailError: event.emailError,
+          passwordError: event.passwordError,
           confirmPasswordError: confirmPasswordError));
-    }else{
+    } else {
       emit(AuthValidationSuccess());
     }
   }

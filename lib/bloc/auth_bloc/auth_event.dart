@@ -13,13 +13,30 @@ final class StartAuth extends AuthEvent {
 
 final class ResetAuth extends AuthEvent {}
 
-final class ValidateAuth extends AuthEvent{
+final class ChangedEmail extends AuthEvent {
   final String? email;
-  final String? password;
-  final String? confirmPassword;
-  final bool isLogin;
+  final String? passwordError;
+  final String? confirmPasswordError;
 
-  ValidateAuth({this.email, this.password, this.confirmPassword, required this.isLogin});
+  ChangedEmail(this.email, this.passwordError, this.confirmPasswordError);
+
+}
+
+final class ChangedPassword extends AuthEvent {
+  final String? password;
+  final String? emailError;
+  final String? confirmPasswordError;
+
+  ChangedPassword(this.password, this.emailError, this.confirmPasswordError);
+}
+
+final class ChangedConfirmPassword extends AuthEvent {
+  final String? confirmPassword;
+  final String? password;
+  final String? emailError;
+  final String? passwordError;
+
+  ChangedConfirmPassword(this.confirmPassword, this.password, this.emailError, this.passwordError);
 }
 
 class SendResetEmail extends AuthEvent {

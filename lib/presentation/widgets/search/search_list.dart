@@ -90,7 +90,6 @@ class _SearchListState extends State<SearchList>
     final t = Translations.of(context);
 
     if (_showSearchList) {
-      // _pagingController.refresh();
       return SafeArea(
         child: PagedListView<int, Library>(
           pagingController: _pagingController,
