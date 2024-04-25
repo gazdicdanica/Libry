@@ -70,47 +70,52 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
   void _removeFavorites(
       FavoriteRemove event, Emitter<FavoritesState> emit) async {
         emit(FavoritesInitial());
-    try {
-      bool isConnected = await checkInternetConnection();
+           bool isConnected = await checkInternetConnection();
 
       if (!isConnected) {
         emit(FavoriteNoInternet());
         return;
       }
+    try {
+   
         String userId = user.uid;
         String libraryName =
             event.library.name!.replaceAll(RegExp(r'[^\w\s]+'), '');
-
+        String platform =event.library.platform.toString();
+        String uniqueKey = '$libraryName-$platform';
         await FirebaseFirestore.instance
             .collection('favorites')
             .doc(userId)
             .collection('libraries')
-            .doc(libraryName)
+            .doc(uniqueKey)
             .delete();
         emit(FavoritesRemoveSucess());
       
     } catch (e) {
-      emit(FavoritesFailure());
+      emit(FavoritesRemoveFailure());
     }
   }
 
   void _addFavorites(FavoritesAdd event, Emitter<FavoritesState> emit) async 
   {
      emit(FavoritesInitial());
-    try {
-      bool isConnected = await checkInternetConnection();
+     bool isConnected = await checkInternetConnection();
 
       if (!isConnected) {
         emit(FavoriteNoInternet());
         return;
       }
+    try {
+      
         String userId = user.uid;
         String libraryName = library!.name!.replaceAll(RegExp(r'[^\w\s]+'), '');
+        String platform =event.library.platform.toString();
+        String uniqueKey = '$libraryName-$platform';
         await FirebaseFirestore.instance
             .collection('favorites')
             .doc(userId)
             .collection('libraries')
-            .doc(libraryName)
+            .doc(uniqueKey)
             .set({
           'name': library!.name,
           'description': library!.description,
@@ -143,11 +148,13 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
         String userId = user.uid;
         String libraryName =
             library!.name!.replaceAll(RegExp(r'[^\w\s]+'), '');
+        String platform =event.library.platform.toString();
+        String uniqueKey = '$libraryName-$platform';
         DocumentSnapshot doc = await FirebaseFirestore.instance
             .collection('favorites')
             .doc(userId)
             .collection('libraries')
-            .doc(libraryName)
+            .doc(uniqueKey)
             .get();
         if (doc.exists) {
             library!.isFavorite = true;
@@ -157,7 +164,7 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
         
     } emit( FavoritesCheckStatusSucess());
     } catch (e){
-         emit(FavoritesFailure());
+         emit(FavoritesCheckStatusFailure());
     }
     
   }

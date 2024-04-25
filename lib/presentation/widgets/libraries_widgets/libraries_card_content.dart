@@ -59,12 +59,17 @@ class _LibrariesCardContetState extends State<LibrariesCardContet> {
                   setState(() {
                     widget.library.isFavorite = widget.library.isFavorite;
                   });
-              }
+              } else
               if (state is FavoritesSucess || state is FavoritesRemoveSucess) {
                 favoritesBloc.add(FavoritesCheckStatus(widget.library,user!));
                MessageHelper.showSnackBarMessage(context, state);
-              } else if (state is FavoritesFailure ) {
+                } else if (state is FavoritesFailure  ) {
                   MessageHelper.showSnackBarMessage(context, state);
+                  FavoritesInitial();
+              }
+              else if( state is FavoritesRemoveFailure){
+                    MessageHelper.showSnackBarMessage(context, state);
+                     FavoritesInitial();
               }
               else if( state is FavoriteNoInternet) {
                 MessageHelper.showSnackBarMessage(context, state);
