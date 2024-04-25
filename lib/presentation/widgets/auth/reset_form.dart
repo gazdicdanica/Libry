@@ -1,4 +1,3 @@
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_internship_2024_app/bloc/auth_bloc/auth_bloc.dart';
@@ -25,32 +24,29 @@ class _ResetFormState extends State<ResetForm> {
   String? errorMessage;
   String? emailError = '';
 
-  @override
-  void dispose() {
-    _emailController.dispose();
-    super.dispose();
-  }
 
-  void _validateEmail(String email) {
-    if (email.isEmpty || !EmailValidator.validate(email)) {
-      setState(() {
-        emailError = t.email_format_error;
-      });
-    } else {
+void _validateEmail(String email){
+  RegExp emailRegex = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+   if ( email.isEmpty || !emailRegex.hasMatch(email)) {
+        setState(() {
+           emailError = t.email_format_error;
+        });
+    } 
+    else{
       setState(() {
         emailError = '';
       });
     }
-  }
+}
 
-  void _sendResetEmail(BuildContext context) {
-    _validateEmail(_emailController.text.trim());
-    if (emailError == '') {
-      BlocProvider.of<AuthBloc>(context).add(SendResetEmail(
-        email: _emailController.text.trim(),
-      ));
-    }
+void _sendResetEmail(BuildContext context) {
+  _validateEmail(_emailController.text.trim());
+  if(emailError == ''){
+     BlocProvider.of<AuthBloc>(context).add(SendResetEmail(
+    email: _emailController.text.trim(),
+  ));
   }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -167,4 +163,10 @@ class _ResetFormState extends State<ResetForm> {
       ),
     );
   }
+  @override
+  void dispose() {
+    _emailController.dispose();
+    super.dispose();
+  }
+
 }
