@@ -15,28 +15,27 @@ class LibraryHeaderDetails extends StatefulWidget {
 }
 
 class _LibraryHeaderDetailsState extends State<LibraryHeaderDetails> {
-   User? user = FirebaseAuth.instance.currentUser;
-    
+  User? user = FirebaseAuth.instance.currentUser;
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => FavoritesBloc(widget.library,user!),
+      create: (context) => FavoritesBloc(widget.library, user!),
       child: BlocConsumer<FavoritesBloc, FavoritesState>(
         listener: (context, state) {
           if (state is FavoritesSucess) {
-                 setState(() {
-                    widget.library.isFavorite = true;
-                  });
-               MessageHelper.showSnackBarMessage(context, state);
-              }else if(state is FavoritesRemoveSucess){
-                setState(() {
-                    widget.library.isFavorite = false;
-                  });
-               MessageHelper.showSnackBarMessage(context, state);
-              }
-               else if (state is FavoritesFailure || state is FavoriteNoInternet) {
-                MessageHelper.showSnackBarMessage(context, state);
-              } 
+            setState(() {
+              widget.library.isFavorite = true;
+            });
+            MessageHelper.showSnackBarMessage(context, state);
+          } else if (state is FavoritesRemoveSucess) {
+            setState(() {
+              widget.library.isFavorite = false;
+            });
+            MessageHelper.showSnackBarMessage(context, state);
+          } else if (state is FavoritesFailure || state is FavoriteNoInternet) {
+            MessageHelper.showSnackBarMessage(context, state);
+          }
         },
         builder: (context, state) {
           return Column(
@@ -51,7 +50,7 @@ class _LibraryHeaderDetailsState extends State<LibraryHeaderDetails> {
                   bottom: 12,
                 ),
                 decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.primary,
+                  color: Theme.of(context).colorScheme.secondaryContainer,
                   borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(15),
                     topRight: Radius.circular(15),
@@ -101,10 +100,10 @@ class _LibraryHeaderDetailsState extends State<LibraryHeaderDetails> {
                             widget.library.isFavorite
                                 ? context
                                     .read<FavoritesBloc>()
-                                    .add(FavoriteRemove(widget.library,user!))
+                                    .add(FavoriteRemove(widget.library, user!))
                                 : context
                                     .read<FavoritesBloc>()
-                                    .add(FavoritesAdd(widget.library,user!));
+                                    .add(FavoritesAdd(widget.library, user!));
                           },
                           padding: const EdgeInsets.only(bottom: 2),
                         ),

@@ -13,42 +13,64 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc(this._authRepository) : super(AuthInitial()) {
     on<StartAuth>(_authenticate);
     on<ResetAuth>(_reset);
-    on<ValidateAuth>(_validate);
+    on<ChangedEmail>(_validateEmail);
+    on<ChangedPassword>(_validatePassword);
     on<SendResetEmail>(_sendForgotPasswordEmail);
+    on<DeleteAccount>(_deleteAccount);
+    on<Reauthenticate>(_reauthenticate);
   }
 
-  bool _isEmailValid(String email) => RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email);
+  bool _isEmailValid(String? email) =>
+      email != null &&
+      email.isNotEmpty &&
+      RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+          .hasMatch(email);
 
-  void _validate(ValidateAuth event, Emitter<AuthState> emit) {
+  bool _isPasswordValid(String? password) =>
+      password != null && password.isNotEmpty && password.length >= 6;
+
+  bool _isConfirmPasswordValid(String? password, String? confirmPassword) =>
+      confirmPassword != null &&
+      confirmPassword.isNotEmpty &&
+      confirmPassword == password;
+
+  void _validateEmail(ChangedEmail event, Emitter<AuthState> emit) {
     String? emailError;
-    String? passwordError;
-    String? confirmPasswordError;
-    if (event.email == null ||
-        event.email!.isEmpty ||
-        !_isEmailValid(event.email!)) {
+    if (!_isEmailValid(event.email)) {
       emailError = t.email_format_error;
     }
-    if (event.password == null ||
-        event.password!.isEmpty ||
-        event.password!.length < 6) {
+    if (emailError != null ||
+        event.passwordError != null ||
+        event.confirmPasswordError != null) {
+      emit(AuthValidationFailure(
+          emailError: emailError,
+          passwordError: event.passwordError,
+          confirmPasswordError: event.confirmPasswordError));
+    } else {
+      emit(AuthValidationSuccess());
+    }
+  }
+
+  void _validatePassword(ChangedPassword event, Emitter<AuthState> emit) {
+    String? confirmPasswordError;
+    String? passwordError;
+    if (!_isPasswordValid(event.password)) {
       passwordError = t.password_error;
     }
     if (!event.isLogin) {
-      if (event.confirmPassword == null ||
-          event.confirmPassword!.isEmpty ||
-          event.confirmPassword != event.password) {
+      if (!_isConfirmPasswordValid(event.password, event.confirmPassword)) {
         confirmPasswordError = t.confirm_password_error;
       }
     }
-    if (emailError != null ||
+    if (event.emailError != null ||
         passwordError != null ||
         confirmPasswordError != null) {
       emit(AuthValidationFailure(
-          emailError: emailError,
+          emailError: event.emailError,
           passwordError: passwordError,
           confirmPasswordError: confirmPasswordError));
     } else {
-      add(StartAuth(event.email!, event.password!, event.isLogin));
+      emit(AuthValidationSuccess());
     }
   }
 
@@ -91,6 +113,53 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(ForgotPasswordSuccess());
     } on FirebaseAuthException catch (e) {
       emit(ForgotPasswordFailure(emailError: e.message));
+    }
+  }
+
+  void _deleteAccount(DeleteAccount event, Emitter<AuthState> emit) async {
+    emit(DeleteLoading());
+    try {
+      await _authRepository.deleteAccount(event.user);
+      emit(AuthDeletionSuccess());
+    } on FirebaseAuthException catch (e) {
+      switch (e.code) {
+        case 'requires-recent-login':
+          emit(ReauthenticationNeeded());
+          break;
+        case 'network-request-failed':
+          emit(AuthDeletionFailure(t.internet_error));
+          break;
+        default:
+          emit(AuthDeletionFailure(t.delete_account_error));
+          break;
+      }
+    } catch (e) {
+      emit(AuthDeletionFailure(t.delete_account_error));
+    }
+  }
+
+  void _reauthenticate(Reauthenticate event, Emitter<AuthState> emit) async {
+    emit(ReauthLoading());
+    try {
+      await _authRepository.reauthenticate(event.user, event.password);
+      emit(ReauthenticationSuccess());
+    } on FirebaseAuthException catch (e) {
+      switch (e.code) {
+        case 'invalid-credential':
+          emit(ReauthenticationFailure(t.wrong_password));
+          break;
+        case 'network-request-failed':
+          emit(ReauthenticationFailure(t.internet_error));
+          break;
+        case 'too-many-requests':
+          emit(ReauthenticationFailure(t.too_many_requests));
+          break;
+        default:
+          emit(ReauthenticationFailure(t.reauth_account_error));
+          break;
+      }
+    } catch (e) {
+      emit(ReauthenticationFailure(t.reauth_account_error));
     }
   }
 }

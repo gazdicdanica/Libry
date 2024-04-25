@@ -35,7 +35,7 @@ class LogoutButton extends StatelessWidget {
       child: Text(
         key: K.logoutBtn,
         t.logout,
-        style: const TextStyle(color: redColor, fontSize: 22),
+        style: const TextStyle(color: redColor, fontSize: 24),
       ),
     );
   }

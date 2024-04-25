@@ -7,6 +7,7 @@ class CustomFormField extends StatefulWidget {
   final Widget? suffixIcon;
   final String? errorText;
   final bool obscureText;
+  final Function(String) onChanged;
 
   const CustomFormField(
       {super.key,
@@ -15,7 +16,7 @@ class CustomFormField extends StatefulWidget {
       required this.hintText,
       this.suffixIcon,
       this.errorText,
-      this.obscureText = false});
+      this.obscureText = false, required this.onChanged});
 
   @override
   State<CustomFormField> createState() => _CustomFormFieldState();
@@ -40,6 +41,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
       autocorrect: false,
       textCapitalization: TextCapitalization.none,
       obscureText: widget.obscureText,
+      onChanged: (value) => widget.onChanged( widget.controller.text.trim()),
     );
   }
 }

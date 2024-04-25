@@ -13,7 +13,7 @@ const bottomNavigationColor = Color.fromARGB(255, 233, 239, 236);
 final theme = ThemeData.light().copyWith(
   colorScheme: ColorScheme.fromSeed(
       seedColor: themeSeedColor,
-      primary: lightGreenColor,
+      secondaryContainer: lightGreenColor,
       onPrimary: textColor,
       onBackground: textColor,
       background: lightGreyColor,
@@ -68,7 +68,7 @@ final theme = ThemeData.light().copyWith(
 
 final darkTheme = ThemeData.dark().copyWith(
   colorScheme: ColorScheme.fromSeed(
-    primary: darkGreenColor,
+    secondaryContainer: darkGreenColor,
     seedColor: darkGreenColor,
     onPrimary: lightGreyColor,
     background: darkGreyColor,
