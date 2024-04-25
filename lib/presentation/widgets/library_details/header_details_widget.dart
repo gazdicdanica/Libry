@@ -51,7 +51,7 @@ class _LibraryHeaderDetailsState extends State<LibraryHeaderDetails> {
                   bottom: 12,
                 ),
                 decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.primary,
+                  color: Theme.of(context).colorScheme.secondaryContainer,
                   borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(15),
                     topRight: Radius.circular(15),

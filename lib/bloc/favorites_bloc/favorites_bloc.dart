@@ -1,14 +1,10 @@
-
-
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:connectivity/connectivity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_internship_2024_app/models/library.dart';
-import 'package:flutter_internship_2024_app/presentation/widgets/check_internet.dart';
-
 part 'favorites_event.dart';
 part 'favorites_state.dart';
 
@@ -26,7 +22,7 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
   FavoritesBloc(this.library,this.user) : super(FavoritesInitial()) {
     on<FavoritesAdd>(_addFavorites);
     on<FavoriteRemove>(_removeFavorites);
-   on<FavoritesCheckStatus>(_checkFavoriteStatus);
+    on<FavoritesCheckStatus>(_checkFavoriteStatus);
     _fetchFavoriteLibraries();
   }
 
@@ -57,7 +53,7 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
           license: doc['license'],
           latestStableReleaseNumber: doc['latestStableReleaseNumber'],
           latestStableReleasePublishedAt:
-              doc['latestStableReleasePublishedAt'],
+          doc['latestStableReleasePublishedAt'],
           latestReleasePublishedAt: doc['latestReleasePublishedAt'],
           repositoryStatus: doc['repositoryStatus'],
           stars: doc['stars'],
@@ -67,17 +63,14 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
     });
   }
 
-  void _removeFavorites(
-      FavoriteRemove event, Emitter<FavoritesState> emit) async {
+  void _removeFavorites(FavoriteRemove event, Emitter<FavoritesState> emit) async {
         emit(FavoritesInitial());
-           bool isConnected = await checkInternetConnection();
-
-      if (!isConnected) {
-        emit(FavoriteNoInternet());
-        return;
-      }
-    try {
-   
+           var connectivityResult = await Connectivity().checkConnectivity();
+          if (connectivityResult == ConnectivityResult.none) {
+            emit(FavoriteNoInternet());
+            return;
+          }
+          try {
         String userId = user.uid;
         String libraryName =
             event.library.name!.replaceAll(RegExp(r'[^\w\s]+'), '');
@@ -89,24 +82,24 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
             .collection('libraries')
             .doc(uniqueKey)
             .delete();
+         event.library.isFavorite = false;
         emit(FavoritesRemoveSucess());
-      
-    } catch (e) {
-      emit(FavoritesRemoveFailure());
-    }
+    
+        } catch (e) {
+          emit(FavoritesRemoveFailure());
+        }
+  
   }
 
   void _addFavorites(FavoritesAdd event, Emitter<FavoritesState> emit) async 
   {
-     emit(FavoritesInitial());
-     bool isConnected = await checkInternetConnection();
-
-      if (!isConnected) {
+      var connectivityResult = await Connectivity().checkConnectivity();
+      if (connectivityResult == ConnectivityResult.none) {
         emit(FavoriteNoInternet());
         return;
       }
-    try {
-      
+     emit(FavoritesInitial());
+        try {
         String userId = user.uid;
         String libraryName = library!.name!.replaceAll(RegExp(r'[^\w\s]+'), '');
         String platform =event.library.platform.toString();
@@ -141,9 +134,9 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
     } catch (e) {
       emit(FavoritesFailure());
     }
+
   }
   void _checkFavoriteStatus(FavoritesCheckStatus event, Emitter<FavoritesState> emit) async {
-  
     try{
         String userId = user.uid;
         String libraryName =

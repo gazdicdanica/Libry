@@ -1,3 +1,4 @@
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -59,21 +60,28 @@ class _LibrariesCardContetState extends State<LibrariesCardContet> {
                   setState(() {
                     widget.library.isFavorite = widget.library.isFavorite;
                   });
-              } else
-              if (state is FavoritesSucess || state is FavoritesRemoveSucess) {
+              } 
+              if (state is FavoritesSucess) {
                 favoritesBloc.add(FavoritesCheckStatus(widget.library,user!));
-               MessageHelper.showSnackBarMessage(context, state);
-                } else if (state is FavoritesFailure  ) {
+                MessageHelper.showSnackBarMessage(context, state);
+              }  
+                if(state is FavoritesRemoveSucess){
+                 favoritesBloc.add(FavoritesCheckStatus(widget.library,user!));
+                
+                MessageHelper.showSnackBarMessage(context, state);
+                }
+                 if (state is FavoritesFailure  ) {
                   MessageHelper.showSnackBarMessage(context, state);
                   FavoritesInitial();
               }
-              else if( state is FavoritesRemoveFailure){
+               if( state is FavoritesRemoveFailure){
                     MessageHelper.showSnackBarMessage(context, state);
                      FavoritesInitial();
               }
-              else if( state is FavoriteNoInternet) {
-                MessageHelper.showSnackBarMessage(context, state);
-              } 
+               if(state is FavoriteNoInternet){
+                 MessageHelper.showSnackBarMessage(context, state);
+                   FavoritesInitial();
+              }
             },
             builder: (context, state) {
               favoritesBloc.add(FavoritesCheckStatus(widget.library,user!));
@@ -118,9 +126,10 @@ class _LibrariesCardContetState extends State<LibrariesCardContet> {
                                       ),
                                     ),
                                   ]),
-                                 if (widget.library.latestReleaseNumber == null)
+                     if (widget.library.latestReleaseNumber == null)
                                 SizedBox(
                                     width: position ? 100 : 150,),
+
                                   const SizedBox(
                                     width: 8,
                                   ),
