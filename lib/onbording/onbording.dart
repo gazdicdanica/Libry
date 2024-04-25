@@ -5,7 +5,7 @@ import 'package:flutter_onboarding_slider/flutter_onboarding_slider.dart';
 import 'package:flutter_internship_2024_app/theme.dart';
 
 class Onbording extends StatefulWidget{
-  //const Onbording({super.key});
+  const Onbording({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -47,15 +47,25 @@ class _OnbordingState extends State<Onbording>{
           child: Container(
               alignment: Alignment.center,
               padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 80),
-              child:  Column(
+              child: MediaQuery.of(context).orientation == Orientation.portrait
+               ? Column(
                 children: [
                  //   SizedBox(height: contents[index].height,),
                     Image.asset(contents[index].image),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     Text(contents[index].title),
-                     SizedBox(height: 10,),
+                     const SizedBox(height: 10,),
                     Text(contents[index].discription),
-              ],),
+              ],)
+              : Row(
+                children: [
+                  Image.asset(contents[index].image),
+                    const SizedBox(height: 10,),
+                    Text(contents[index].title),
+                     const SizedBox(height: 10,),
+                    Text(contents[index].discription),
+                ],
+              ),
           ),
         );
         },),  

@@ -262,6 +262,14 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
   String get theme_dark => 'Dark theme';
   String get back_history => 'No back history item';
   String get forward_history => 'No forward history item';
+  String get onborading_title_search => '';
+  String get onborading_title_details => '';
+  String get onborading_title_favorites => '';
+  String get onborading_title_welcome => '';
+  String get onborading_description_welcome => "Get ready to dive into the world of programming tools! We'll guide you through the vast landscape of programming tools by introducing essential packages";
+  String get onborading_description_search => 'Embark on a journey of library exploration with our intuitive search feature. Quickly find the perfect libraries to enhance your projects!';
+  String get onborading_description_details => '';
+  String get onborading_description_favorites => '';
 }
 
 // Path: <root>
@@ -436,6 +444,22 @@ class _StringsSr implements Translations {
   @override
   String get explanation_adding =>
       'Ako želite da dobijate ažuriranja o vašim omiljenim paketima, dodajte ih u omiljene pritiskom na ikonu srca.';
+  @override
+    String get onborading_title_search => '';
+  @override
+   String get onborading_title_details => '';
+  @override
+   String get onborading_title_favorites => '';
+  @override
+   String get onborading_title_welcome => '';
+  @override
+  String get onborading_description_welcome => '';
+  @override
+   String get onborading_description_search => '';
+  @override
+   String get onborading_description_details => '';
+  @override
+   String get onborading_description_favorites => '';
 }
 
 /// Flat map(s) containing all translations.

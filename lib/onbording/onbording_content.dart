@@ -19,21 +19,17 @@ List<OnbordingContent> contents=[
   OnbordingContent(
     image: 'assets/images/libry_transparent.png', 
     title: t.welcome, 
-    discription: 'This is going to be libraries page'),
+    discription: ""),
   OnbordingContent(
     image: 'assets/images/1713866345900.jpeg', 
-    title: 'Libraries page', 
-    discription: 'This is going to be libraries page'),
-  OnbordingContent(
-    image: 'assets/images/search.jpeg', 
-    title: 'Searcing libraries', 
-    discription: 'this is going to be search page'),
+    title: 'Find Your Perfect Code Companion', 
+    discription: ''),
   OnbordingContent(
     image: 'assets/images/details.jpeg', 
-    title: 'Details of library', 
-    discription: 'this is going to be detailspage'),
+    title: 'Discover Package Details', 
+    discription: "Explore in-depth information about package to elevate your projects. Dive into detailed descriptions, versions, and more with our package details feature."),
   OnbordingContent(
     image: 'assets/images/favorites.jpeg', 
     title: 'Your favorites!', 
-    discription: 'this is going to be favorites  page'),
+    discription: "Curate your favorite libraries effortlessly and access them anytime, anywhere. Easily add and organize your preferred libraries, then enjoy seamless access to your curated list whenever you need it."),
 ];
