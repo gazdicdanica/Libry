@@ -16,6 +16,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<ChangedEmail>(_validateEmail);
     on<ChangedPassword>(_validatePassword);
     on<SendResetEmail>(_sendForgotPasswordEmail);
+    on<DeleteAccount>(_deleteAccount);
+    on<Reauthenticate>(_reauthenticate);
   }
 
   bool _isEmailValid(String? email) =>
@@ -111,6 +113,53 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(ForgotPasswordSuccess());
     } on FirebaseAuthException catch (e) {
       emit(ForgotPasswordFailure(emailError: e.message));
+    }
+  }
+
+  void _deleteAccount(DeleteAccount event, Emitter<AuthState> emit) async {
+    emit(DeleteLoading());
+    try {
+      await _authRepository.deleteAccount(event.user);
+      emit(AuthDeletionSuccess());
+    } on FirebaseAuthException catch (e) {
+      switch (e.code) {
+        case 'requires-recent-login':
+          emit(ReauthenticationNeeded());
+          break;
+        case 'network-request-failed':
+          emit(AuthDeletionFailure(t.internet_error));
+          break;
+        default:
+          emit(AuthDeletionFailure(t.delete_account_error));
+          break;
+      }
+    } catch (e) {
+      emit(AuthDeletionFailure(t.delete_account_error));
+    }
+  }
+
+  void _reauthenticate(Reauthenticate event, Emitter<AuthState> emit) async {
+    emit(ReauthLoading());
+    try {
+      await _authRepository.reauthenticate(event.user, event.password);
+      emit(ReauthenticationSuccess());
+    } on FirebaseAuthException catch (e) {
+      switch (e.code) {
+        case 'invalid-credential':
+          emit(ReauthenticationFailure(t.wrong_password));
+          break;
+        case 'network-request-failed':
+          emit(ReauthenticationFailure(t.internet_error));
+          break;
+        case 'too-many-requests':
+          emit(ReauthenticationFailure(t.too_many_requests));
+          break;
+        default:
+          emit(ReauthenticationFailure(t.reauth_account_error));
+          break;
+      }
+    } catch (e) {
+      emit(ReauthenticationFailure(t.reauth_account_error));
     }
   }
 }

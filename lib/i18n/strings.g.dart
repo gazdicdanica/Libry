@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 140 (70 per locale)
+/// Strings: 156 (78 per locale)
 ///
-/// Built on 2024-04-25 at 07:24 UTC
+/// Built on 2024-04-25 at 08:10 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -173,8 +173,8 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get go_back => 'Go back';
 	String get platforms => 'Platforms';
 	String get platforms_empty => 'There are no platforms found';
-	String get tab_most_popular => 'Most popular packages';
-	String get tab_newest => 'Newest packages';
+	String get tab_most_popular => 'Most popular';
+	String get tab_newest => 'Newest';
 	String get search => 'Search';
 	String get search_hint => 'Enter search keyword in order to find packages you are looking for.';
 	String get search_empty => 'There are no found packages for the entered search criteria!';
@@ -210,6 +210,10 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get theme_system => 'System theme';
 	String get theme_light => 'Light theme';
 	String get theme_dark => 'Dark theme';
+	String get delete_account => 'Delete account';
+	String get confirm_delete_account => 'Are you sure you want to delete your account?';
+	String get delete_account_error => 'Failed to delete user account, please try again later.';
+	String get reauth_account_error => 'Failed to reauthenticate, please try again later.';
 	String get end_of_list => 'You\'ve reached the end';
 	String get back_history => 'No back history item';
 	String get forward_history => 'No forward history item';
@@ -218,6 +222,12 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get error_favorites => 'Error occurred while updating favorites';
 	String get no_favorites => 'There are no favorite packages yet!';
 	String get explanation_adding => 'If you want to receive updates about your favorite packages, add it to favorites by pressing heart icon.';
+	String get reauthenticate => 'Re-authenticate';
+	String get enter_password => 'Please enter your password to continue';
+	String get confirm => 'Confirm';
+	String get cancel => 'Cancel';
+	String get wrong_password => 'Invalid password, please try again.';
+	String get too_many_requests => 'Too many requests, please try again later.';
 }
 
 // Path: <root>
@@ -269,8 +279,8 @@ class _StringsSr implements Translations {
 	@override String get go_back => 'Idi nazad';
 	@override String get platforms => 'Platforme';
 	@override String get platforms_empty => 'Nema dostupnih platformi';
-	@override String get tab_most_popular => 'Najpopularniji paketi';
-	@override String get tab_newest => 'Najnoviji paketi';
+	@override String get tab_most_popular => 'Najpopularniji';
+	@override String get tab_newest => 'Najnoviji';
 	@override String get search => 'Pretraga';
 	@override String get search_hint => 'Unesite ključnu reč da pronađete paket koji tražite.';
 	@override String get search_empty => 'Nema dostupnih paketa za uneti kriterijum pretrage.';
@@ -306,6 +316,10 @@ class _StringsSr implements Translations {
 	@override String get theme_system => 'Sistemska tema';
 	@override String get theme_light => 'Svetla tema';
 	@override String get theme_dark => 'Tamna tema';
+	@override String get delete_account => 'Obriši nalog';
+	@override String get confirm_delete_account => 'Da li ste sigurni da želite da obrišete svoj nalog?';
+	@override String get delete_account_error => 'Nije uspelo brisanje korisničkog naloga, molimo pokušajte kasnije.';
+	@override String get reauth_account_error => 'Nije uspela autentifikacija, molimo pokušajte kasnije.';
 	@override String get end_of_list => 'Došli ste do kraja';
 	@override String get back_history => 'Nema stavki u istoriji';
 	@override String get forward_history => 'Nema stavki ispred';
@@ -314,6 +328,12 @@ class _StringsSr implements Translations {
 	@override String get error_favorites => 'Greška prilikom ažuriranja omiljenih paketa';
 	@override String get no_favorites => 'Nemate omiljene pakete!';
 	@override String get explanation_adding => 'Ako želite da dobijate ažuriranja o vašim omiljenim paketima, dodajte ih u omiljene pritiskom na ikonu srca.';
+	@override String get reauthenticate => 'Autentifikujte se';
+	@override String get enter_password => 'Unesite svoju lozinku da biste nastavili';
+	@override String get confirm => 'Potvrdi';
+	@override String get cancel => 'Otkaži';
+	@override String get wrong_password => 'Pogrešna lozinka, pokušajte ponovo.';
+	@override String get too_many_requests => 'Previše puta ste poslali zahtev, pokušajte ponovo kasnije.';
 }
 
 /// Flat map(s) containing all translations.
@@ -347,8 +367,8 @@ extension on Translations {
 			case 'go_back': return 'Go back';
 			case 'platforms': return 'Platforms';
 			case 'platforms_empty': return 'There are no platforms found';
-			case 'tab_most_popular': return 'Most popular packages';
-			case 'tab_newest': return 'Newest packages';
+			case 'tab_most_popular': return 'Most popular';
+			case 'tab_newest': return 'Newest';
 			case 'search': return 'Search';
 			case 'search_hint': return 'Enter search keyword in order to find packages you are looking for.';
 			case 'search_empty': return 'There are no found packages for the entered search criteria!';
@@ -384,6 +404,10 @@ extension on Translations {
 			case 'theme_system': return 'System theme';
 			case 'theme_light': return 'Light theme';
 			case 'theme_dark': return 'Dark theme';
+			case 'delete_account': return 'Delete account';
+			case 'confirm_delete_account': return 'Are you sure you want to delete your account?';
+			case 'delete_account_error': return 'Failed to delete user account, please try again later.';
+			case 'reauth_account_error': return 'Failed to reauthenticate, please try again later.';
 			case 'end_of_list': return 'You\'ve reached the end';
 			case 'back_history': return 'No back history item';
 			case 'forward_history': return 'No forward history item';
@@ -392,6 +416,12 @@ extension on Translations {
 			case 'error_favorites': return 'Error occurred while updating favorites';
 			case 'no_favorites': return 'There are no favorite packages yet!';
 			case 'explanation_adding': return 'If you want to receive updates about your favorite packages, add it to favorites by pressing heart icon.';
+			case 'reauthenticate': return 'Re-authenticate';
+			case 'enter_password': return 'Please enter your password to continue';
+			case 'confirm': return 'Confirm';
+			case 'cancel': return 'Cancel';
+			case 'wrong_password': return 'Invalid password, please try again.';
+			case 'too_many_requests': return 'Too many requests, please try again later.';
 			default: return null;
 		}
 	}
@@ -425,8 +455,8 @@ extension on _StringsSr {
 			case 'go_back': return 'Idi nazad';
 			case 'platforms': return 'Platforme';
 			case 'platforms_empty': return 'Nema dostupnih platformi';
-			case 'tab_most_popular': return 'Najpopularniji paketi';
-			case 'tab_newest': return 'Najnoviji paketi';
+			case 'tab_most_popular': return 'Najpopularniji';
+			case 'tab_newest': return 'Najnoviji';
 			case 'search': return 'Pretraga';
 			case 'search_hint': return 'Unesite ključnu reč da pronađete paket koji tražite.';
 			case 'search_empty': return 'Nema dostupnih paketa za uneti kriterijum pretrage.';
@@ -462,6 +492,10 @@ extension on _StringsSr {
 			case 'theme_system': return 'Sistemska tema';
 			case 'theme_light': return 'Svetla tema';
 			case 'theme_dark': return 'Tamna tema';
+			case 'delete_account': return 'Obriši nalog';
+			case 'confirm_delete_account': return 'Da li ste sigurni da želite da obrišete svoj nalog?';
+			case 'delete_account_error': return 'Nije uspelo brisanje korisničkog naloga, molimo pokušajte kasnije.';
+			case 'reauth_account_error': return 'Nije uspela autentifikacija, molimo pokušajte kasnije.';
 			case 'end_of_list': return 'Došli ste do kraja';
 			case 'back_history': return 'Nema stavki u istoriji';
 			case 'forward_history': return 'Nema stavki ispred';
@@ -470,6 +504,12 @@ extension on _StringsSr {
 			case 'error_favorites': return 'Greška prilikom ažuriranja omiljenih paketa';
 			case 'no_favorites': return 'Nemate omiljene pakete!';
 			case 'explanation_adding': return 'Ako želite da dobijate ažuriranja o vašim omiljenim paketima, dodajte ih u omiljene pritiskom na ikonu srca.';
+			case 'reauthenticate': return 'Autentifikujte se';
+			case 'enter_password': return 'Unesite svoju lozinku da biste nastavili';
+			case 'confirm': return 'Potvrdi';
+			case 'cancel': return 'Otkaži';
+			case 'wrong_password': return 'Pogrešna lozinka, pokušajte ponovo.';
+			case 'too_many_requests': return 'Previše puta ste poslali zahtev, pokušajte ponovo kasnije.';
 			default: return null;
 		}
 	}

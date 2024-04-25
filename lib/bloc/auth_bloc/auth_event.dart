@@ -36,3 +36,16 @@ class SendResetEmail extends AuthEvent {
 
   SendResetEmail({this.email});
 }
+
+final class DeleteAccount extends AuthEvent {
+  final User user;
+
+  DeleteAccount(this.user);
+}
+
+final class Reauthenticate extends AuthEvent {
+  final User user;
+  final String password;
+
+  Reauthenticate(this.user, this.password);
+}

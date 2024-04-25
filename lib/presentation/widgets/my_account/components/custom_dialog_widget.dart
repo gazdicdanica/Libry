@@ -38,7 +38,6 @@ class CustomDialog extends StatelessWidget {
           },
           child: Text(cancelText),
         ),
-        
       ],
     );
   }
