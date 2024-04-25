@@ -25,18 +25,10 @@ final class ChangedEmail extends AuthEvent {
 final class ChangedPassword extends AuthEvent {
   final String? password;
   final String? emailError;
-  final String? confirmPasswordError;
-
-  ChangedPassword(this.password, this.emailError, this.confirmPasswordError);
-}
-
-final class ChangedConfirmPassword extends AuthEvent {
   final String? confirmPassword;
-  final String? password;
-  final String? emailError;
-  final String? passwordError;
+  final bool isLogin;
 
-  ChangedConfirmPassword(this.confirmPassword, this.password, this.emailError, this.passwordError);
+  ChangedPassword(this.password, this.confirmPassword, this.emailError, this.isLogin);
 }
 
 class SendResetEmail extends AuthEvent {

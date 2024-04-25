@@ -15,7 +15,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<ResetAuth>(_reset);
     on<ChangedEmail>(_validateEmail);
     on<ChangedPassword>(_validatePassword);
-    on<ChangedConfirmPassword>(_validateConfirmPassword);
     on<SendResetEmail>(_sendForgotPasswordEmail);
   }
 
@@ -51,33 +50,22 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   void _validatePassword(ChangedPassword event, Emitter<AuthState> emit) {
+    String? confirmPasswordError;
     String? passwordError;
     if (!_isPasswordValid(event.password)) {
       passwordError = t.password_error;
     }
+    if (!event.isLogin) {
+      if (!_isConfirmPasswordValid(event.password, event.confirmPassword)) {
+        confirmPasswordError = t.confirm_password_error;
+      }
+    }
     if (event.emailError != null ||
         passwordError != null ||
-        event.confirmPasswordError != null) {
-      emit(AuthValidationFailure(
-          emailError: event.emailError,
-          passwordError: passwordError,
-          confirmPasswordError: event.confirmPasswordError));
-    } else {
-      emit(AuthValidationSuccess());
-    }
-  }
-
-  void _validateConfirmPassword(ChangedConfirmPassword event, Emitter<AuthState> emit) {
-    String? confirmPasswordError;
-    if (!_isConfirmPasswordValid(event.password, event.confirmPassword)) {
-      confirmPasswordError = t.confirm_password_error;
-    }
-    if (event.emailError != null ||
-        event.passwordError != null ||
         confirmPasswordError != null) {
       emit(AuthValidationFailure(
           emailError: event.emailError,
-          passwordError: event.passwordError,
+          passwordError: passwordError,
           confirmPasswordError: confirmPasswordError));
     } else {
       emit(AuthValidationSuccess());

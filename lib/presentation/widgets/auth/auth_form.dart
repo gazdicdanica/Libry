@@ -108,12 +108,11 @@ class _AuthFormState extends State<AuthForm> {
                         bloc.add(
                           ChangedPassword(
                             value,
+                            _confirmPasswordController.text,
                             state is AuthValidationFailure
                                 ? state.emailError
                                 : null,
-                            state is AuthValidationFailure
-                                ? state.confirmPasswordError
-                                : null,
+                            _isLogin,
                           ),
                         );
                       },
@@ -164,34 +163,32 @@ class _AuthFormState extends State<AuthForm> {
                             height: 20,
                           ),
                           CustomFormField(
-                              controller: _confirmPasswordController,
-                              labelText: t.confirm_password,
-                              hintText: t.confirm_password_hint,
-                              errorText: (state is AuthValidationFailure &&
-                                      state.confirmPasswordError != null)
-                                  ? state.confirmPasswordError
-                                  : null,
-                              suffixIcon: (state is AuthValidationFailure &&
-                                      state.confirmPasswordError != null)
-                                  ? const Icon(Icons.error)
-                                  : null,
-                              obscureText: true,
-                              onChanged: (value) {
-                                final bloc = ctx.read<AuthBloc>();
-                                final state = bloc.state;
-                                bloc.add(
-                                  ChangedConfirmPassword(
-                                    value,
+                            controller: _confirmPasswordController,
+                            labelText: t.confirm_password,
+                            hintText: t.confirm_password_hint,
+                            errorText: (state is AuthValidationFailure &&
+                                    state.confirmPasswordError != null)
+                                ? state.confirmPasswordError
+                                : null,
+                            suffixIcon: (state is AuthValidationFailure &&
+                                    state.confirmPasswordError != null)
+                                ? const Icon(Icons.error)
+                                : null,
+                            obscureText: true,
+                            onChanged: (value) {
+                              final bloc = ctx.read<AuthBloc>();
+                              final state = bloc.state;
+                              bloc.add(
+                                ChangedPassword(
                                     _passwordController.text,
+                                    value,
                                     state is AuthValidationFailure
                                         ? state.emailError
                                         : null,
-                                    state is AuthValidationFailure
-                                        ? state.passwordError
-                                        : null,
-                                  ),
-                                );
-                              }),
+                                    _isLogin),
+                              );
+                            },
+                          ),
                           const SizedBox(
                             height: 40,
                           ),
