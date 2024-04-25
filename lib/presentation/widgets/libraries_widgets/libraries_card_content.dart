@@ -99,7 +99,7 @@ class _LibrariesCardContetState extends State<LibrariesCardContet> {
                               Row(
                                 children: [
                                   Row(children: [
-                                    Icon(MdiIcons.sourceRepository, size: 20),
+                                    const Icon(Icons.route, size: 20),
                                     SizedBox(
                                       width: position ? 100 : 150,
                                       child: Text(
