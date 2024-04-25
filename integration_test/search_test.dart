@@ -33,7 +33,6 @@ patrolTest('Search screen', ($) async {
     expect($('meta').visible, equals(true), reason: 'Meta is not visible');
 
     await $(K.removeBtn).tap();
-    //await $.pump();
 
     await $.native.pressBack();
   

@@ -19,9 +19,8 @@ void main() {
 
       expect($('Sign up').visible, equals(true), reason: 'Sign up button is not found before accessing Sign up form');
       await $('Sign up').tap();
-      await $.pump();
 
-      await $(K.emailField).enterText('test@gmail.com');
+      await $(K.emailField).enterText('test33@gmail.com');
       await $(K.passwordField).enterText('testing');
       await $(K.confirmPasswordField).enterText('testing');
 
@@ -29,23 +28,19 @@ void main() {
       await $.scrollUntilVisible(finder: $('Sign up'));
       expect($('Sign up').visible, equals(true), reason: 'Sign up button is not found before accessing Sign up form');
       await $('Sign up').tap();
-      await $.pump();
 
       await $('NPM').waitUntilVisible(timeout: const Duration(seconds: 20));
       expect($('NPM').visible, equals(true), reason: 'NPM are not visible before sign up/login');
 
       //ACCOUNT
       await $(K.accountBtn).tap();
-      await $.pump();
 
       //LOG OUT
       await $.scrollUntilVisible(finder: $(K.logoutBtn));
       await $(K.logoutBtn).tap();
-      await $.pump();
 
       expect($('Yes').visible, equals(true), reason: 'Yes is not visible');
       await $('Yes').tap();
-      await $.pump();
 
       expect($('Welcome to Libry').visible, equals(true), reason: 'Welcome to Libry are not visible');
   });
@@ -61,7 +56,6 @@ void main() {
 
       expect($('Sign up').visible, equals(true), reason: 'Sign up button is not found before accessing Sign up form');
       await $('Sign up').tap();
-      await $.pump();
 
       await $(K.emailField).enterText('');
       await $(K.passwordField).enterText('');
@@ -70,7 +64,6 @@ void main() {
       await $.scrollUntilVisible(finder: $('Sign up'));
       expect($('Sign up').visible, equals(true), reason: 'Sign up button is not found before accessing Sign up form');
       await $('Sign up').tap();
-      await $.pump();
 
       expect($('Email is not in correct format!').visible, equals(true), reason: 'Email error message is not visible');
       expect($('Password should contain 6 characters!').visible, equals(true), reason: 'Password error message is not visible');
@@ -89,7 +82,6 @@ void main() {
 
       expect($('Sign up').visible, equals(true), reason: 'Sign up button is not found before accessing Sign up form');
       await $('Sign up').tap();
-      await $.pump();
 
       await $(K.emailField).enterText('testt.com');
       await $(K.passwordField).enterText('123');
@@ -98,7 +90,6 @@ void main() {
       await $.scrollUntilVisible(finder: $('Sign up'));
       expect($('Sign up').visible, equals(true), reason: 'Sign up button is not found before accessing Sign up form');
       await $('Sign up').tap();
-      await $.pump();
 
       expect($('Email is not in correct format!').visible, equals(true), reason: 'Email error message is not visible');
       expect($('Password should contain 6 characters!').visible, equals(true), reason: 'Password error message is not visible');
@@ -118,7 +109,6 @@ void main() {
 
       expect($('Sign up').visible, equals(true), reason: 'Sign up button is not found before accessing Sign up form');
       await $('Sign up').tap();
-      await $.pump();
 
       await $(K.emailField).enterText('test@gmail.com');
       await $(K.passwordField).enterText('testing');
@@ -128,7 +118,6 @@ void main() {
       await $.scrollUntilVisible(finder: $('Sign up'));
       expect($('Sign up').visible, equals(true), reason: 'Sign up button is not found before accessing Sign up form');
       await $('Sign up').tap();
-      await $.pump();
 
       expect($('Email is already in use!').visible, equals(true), reason: 'Email error message is not visible');
   });
