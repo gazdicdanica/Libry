@@ -1,3 +1,4 @@
+
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -78,7 +79,36 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(AuthInitial());
   }
 
+  bool _validate(StartAuth event, Emitter<AuthState> emit){
+    String? emailError;
+    String? passwordError;
+    String? confirmPasswordError;
+
+    if (!_isEmailValid(event.email)) {
+      emailError = t.email_format_error;
+    }
+    if (!_isPasswordValid(event.password)) {
+      passwordError = t.password_error;
+    }
+    if (!event.isLogin) {
+      if (!_isConfirmPasswordValid(event.password, event.confirmPassword)) {
+        confirmPasswordError = t.confirm_password_error;
+      }
+    }
+    if (emailError != null ||
+        passwordError != null ||
+        confirmPasswordError != null) {
+      emit(AuthValidationFailure(
+          emailError: emailError,
+          passwordError: passwordError,
+          confirmPasswordError: confirmPasswordError));
+      return false;
+    }
+    return true;
+  }
+
   void _authenticate(StartAuth event, Emitter<AuthState> emit) async {
+    if(!_validate(event, emit)) return;
     emit(AuthLoading());
     try {
       if (!event.isLogin) {
