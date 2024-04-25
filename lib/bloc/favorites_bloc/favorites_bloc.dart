@@ -1,12 +1,10 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:connectivity/connectivity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_internship_2024_app/models/library.dart';
-import 'package:flutter_internship_2024_app/presentation/widgets/check_internet.dart';
-
 part 'favorites_event.dart';
 part 'favorites_state.dart';
 
@@ -53,7 +51,8 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
           rank: doc['rank'],
           license: doc['license'],
           latestStableReleaseNumber: doc['latestStableReleaseNumber'],
-          latestStableReleasePublishedAt: doc['latestStableReleasePublishedAt'],
+          latestStableReleasePublishedAt:
+          doc['latestStableReleasePublishedAt'],
           latestReleasePublishedAt: doc['latestReleasePublishedAt'],
           repositoryStatus: doc['repositoryStatus'],
           stars: doc['stars'],
@@ -63,93 +62,101 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
     });
   }
 
-  void _removeFavorites(
-      FavoriteRemove event, Emitter<FavoritesState> emit) async {
-    emit(FavoritesInitial());
-    try {
-      bool isConnected = await checkInternetConnection();
+  void _removeFavorites(FavoriteRemove event, Emitter<FavoritesState> emit) async {
+        emit(FavoritesInitial());
+           var connectivityResult = await Connectivity().checkConnectivity();
+          if (connectivityResult == ConnectivityResult.none) {
+            emit(FavoriteNoInternet());
+            return;
+          }
+          try {
+        String userId = user.uid;
+        String libraryName =
+            event.library.name!.replaceAll(RegExp(r'[^\w\s]+'), '');
+        String platform =event.library.platform.toString();
+        String uniqueKey = '$libraryName-$platform';
+        await FirebaseFirestore.instance
+            .collection('favorites')
+            .doc(userId)
+            .collection('libraries')
+            .doc(uniqueKey)
+            .delete();
+         event.library.isFavorite = false;
+        emit(FavoritesRemoveSucess());
+    
+        } catch (e) {
+          emit(FavoritesRemoveFailure());
+        }
+  
+  }
 
-      if (!isConnected) {
+  void _addFavorites(FavoritesAdd event, Emitter<FavoritesState> emit) async 
+  {
+      var connectivityResult = await Connectivity().checkConnectivity();
+      if (connectivityResult == ConnectivityResult.none) {
         emit(FavoriteNoInternet());
         return;
       }
-      String userId = user.uid;
-      String libraryName =
-          event.library.name!.replaceAll(RegExp(r'[^\w\s]+'), '');
-
-      await FirebaseFirestore.instance
-          .collection('favorites')
-          .doc(userId)
-          .collection('libraries')
-          .doc(libraryName)
-          .delete();
-      emit(FavoritesRemoveSucess());
+     emit(FavoritesInitial());
+        try {
+        String userId = user.uid;
+        String libraryName = library!.name!.replaceAll(RegExp(r'[^\w\s]+'), '');
+        String platform =event.library.platform.toString();
+        String uniqueKey = '$libraryName-$platform';
+        await FirebaseFirestore.instance
+            .collection('favorites')
+            .doc(userId)
+            .collection('libraries')
+            .doc(uniqueKey)
+            .set({
+          'name': library!.name,
+          'description': library!.description,
+          'latestRelaseNumber': library!.latestReleaseNumber,
+          'keywords': library!.keywords,
+          'isFavorite': true,
+          'colorHex': library!.platformColor,
+          'homepage': library!.homepage,
+          'repositoryStatus': library!.repositoryStatus,
+          'platform': library!.platform,
+          'language': library!.language,
+          'license': library!.license,
+          'stars': library!.stars,
+          'rank': library!.rank,
+          'latestReleaseNumber': library!.latestReleaseNumber,
+          'latestReleasePublishedAt': library!.latestReleasePublishedAt,
+          'latestStableReleaseNumber': library!.latestStableReleaseNumber,
+          'latestStableReleasePublishedAt':
+              library!.latestStableReleasePublishedAt,
+        });
+        emit(FavoritesSucess());
+      
     } catch (e) {
       emit(FavoritesFailure());
     }
+
   }
-
-  void _addFavorites(FavoritesAdd event, Emitter<FavoritesState> emit) async {
-    emit(FavoritesInitial());
-    try {
-      bool isConnected = await checkInternetConnection();
-
-      if (!isConnected) {
-        emit(FavoriteNoInternet());
-        return;
-      }
-      String userId = user.uid;
-      String libraryName = library!.name!.replaceAll(RegExp(r'[^\w\s]+'), '');
-      await FirebaseFirestore.instance
-          .collection('favorites')
-          .doc(userId)
-          .collection('libraries')
-          .doc(libraryName)
-          .set({
-        'name': library!.name,
-        'description': library!.description,
-        'latestRelaseNumber': library!.latestReleaseNumber,
-        'keywords': library!.keywords,
-        'isFavorite': true,
-        'colorHex': library!.platformColor,
-        'homepage': library!.homepage,
-        'repositoryStatus': library!.repositoryStatus,
-        'platform': library!.platform,
-        'language': library!.language,
-        'license': library!.license,
-        'stars': library!.stars,
-        'rank': library!.rank,
-        'latestReleaseNumber': library!.latestReleaseNumber,
-        'latestReleasePublishedAt': library!.latestReleasePublishedAt,
-        'latestStableReleaseNumber': library!.latestStableReleaseNumber,
-        'latestStableReleasePublishedAt':
-            library!.latestStableReleasePublishedAt,
-      });
-      emit(FavoritesSucess());
-    } catch (e) {
-      emit(FavoritesFailure());
-    }
-  }
-
-  void _checkFavoriteStatus(
-      FavoritesCheckStatus event, Emitter<FavoritesState> emit) async {
-    try {
-      String userId = user.uid;
-      String libraryName = library!.name!.replaceAll(RegExp(r'[^\w\s]+'), '');
-      DocumentSnapshot doc = await FirebaseFirestore.instance
-          .collection('favorites')
-          .doc(userId)
-          .collection('libraries')
-          .doc(libraryName)
-          .get();
-      if (doc.exists) {
-        library!.isFavorite = true;
-      } else {
+  void _checkFavoriteStatus(FavoritesCheckStatus event, Emitter<FavoritesState> emit) async {
+    try{
+        String userId = user.uid;
+        String libraryName =
+            library!.name!.replaceAll(RegExp(r'[^\w\s]+'), '');
+        String platform =event.library.platform.toString();
+        String uniqueKey = '$libraryName-$platform';
+        DocumentSnapshot doc = await FirebaseFirestore.instance
+            .collection('favorites')
+            .doc(userId)
+            .collection('libraries')
+            .doc(uniqueKey)
+            .get();
+        if (doc.exists) {
+            library!.isFavorite = true;
+        } else {
         library!.isFavorite = false;
-      }
-      emit(FavoritesCheckStatusSucess());
-    } catch (e) {
-      emit(FavoritesFailure());
+        
+        
+    } emit( FavoritesCheckStatusSucess());
+    } catch (e){
+         emit(FavoritesCheckStatusFailure());
     }
   }
 
@@ -159,4 +166,5 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
     _favoriteLibrariesController.close();
     return super.close();
   }
+  
 }
