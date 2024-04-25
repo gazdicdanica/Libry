@@ -19,17 +19,17 @@ List<OnbordingContent> contents=[
   OnbordingContent(
     image: 'assets/images/libry_transparent.png', 
     title: t.welcome, 
-    discription: ""),
+    discription: t.onborading_description_welcome),
   OnbordingContent(
     image: 'assets/images/1713866345900.jpeg', 
-    title: 'Find Your Perfect Code Companion', 
-    discription: ''),
+    title: t.onborading_title_details, 
+    discription: t.onborading_description_details),
   OnbordingContent(
     image: 'assets/images/details.jpeg', 
-    title: 'Discover Package Details', 
-    discription: "Explore in-depth information about package to elevate your projects. Dive into detailed descriptions, versions, and more with our package details feature."),
+    title: t.onborading_title_search, 
+    discription: t.onborading_title_search),
   OnbordingContent(
     image: 'assets/images/favorites.jpeg', 
-    title: 'Your favorites!', 
-    discription: "Curate your favorite libraries effortlessly and access them anytime, anywhere. Easily add and organize your preferred libraries, then enjoy seamless access to your curated list whenever you need it."),
+    title: t.onborading_title_favorites, 
+    discription: t.onborading_description_favorites,)
 ];

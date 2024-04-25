@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_internship_2024_app/onbording/onbording_content.dart';
 import 'package:flutter_internship_2024_app/presentation/screens/auth_screen.dart';
@@ -18,7 +19,7 @@ class _OnbordingState extends State<Onbording>{
   Widget build(BuildContext context) {
    return SafeArea(
      child: Padding(
-       padding: const EdgeInsets.all(20.0),
+       padding: const EdgeInsets.all(10.0),
        child: OnBoardingSlider(
         onFinish: (){
           Navigator.of(context).push(
@@ -39,31 +40,49 @@ class _OnbordingState extends State<Onbording>{
          Container(color:  Theme.of(context).colorScheme.background,),
          Container(color:  Theme.of(context).colorScheme.background,),
          Container(color:  Theme.of(context).colorScheme.background,),
-         Container(color:  Theme.of(context).colorScheme.background,)
           ], 
         pageBodies: 
         List.generate(contents.length,(index){
         return SingleChildScrollView(
           child: Container(
               alignment: Alignment.center,
-              padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 80),
               child: MediaQuery.of(context).orientation == Orientation.portrait
-               ? Column(
-                children: [
-                 //   SizedBox(height: contents[index].height,),
-                    Image.asset(contents[index].image),
-                    const SizedBox(height: 10,),
-                    Text(contents[index].title),
-                     const SizedBox(height: 10,),
-                    Text(contents[index].discription),
-              ],)
+               ? Padding(
+                 padding: const EdgeInsets.fromLTRB(8,80,8,40),
+                 child: Column(
+                  children: [
+                      Image.asset(contents[index].image),
+                      const SizedBox(height: 10,),
+                      Text(
+                       contents[index].title,
+                       style: Theme.of(context).textTheme.labelLarge,
+                       textAlign: TextAlign.center,),
+                       const SizedBox(height: 10,),
+                      Text(contents[index].discription,
+                       style: Theme.of(context).textTheme.bodyMedium,
+                       textAlign: TextAlign.center,),
+                               ],),
+               )
               : Row(
                 children: [
-                  Image.asset(contents[index].image),
-                    const SizedBox(height: 10,),
-                    Text(contents[index].title),
-                     const SizedBox(height: 10,),
-                    Text(contents[index].discription),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Image.asset(contents[index].image),
+                      ],
+                    ),
+                  ),
+                    const SizedBox(width: 10,),
+                    Expanded(
+                      child: Column(
+                        children: [
+                          Text(contents[index].title),
+                          const SizedBox(height: 10,),
+                        Text(contents[index].discription),
+                       ],
+                      ),
+                    ),
+                     
                 ],
               ),
           ),
