@@ -97,19 +97,24 @@ class _LibrariesCardContetState extends State<LibrariesCardContet> {
                         children: [
                           Row(
                             children: [
-                              Row(children: [
-                                Icon(MdiIcons.sourceRepository, size: 20),
-                                SizedBox(
-                                  width: position ? 100 : 150,
-                                  child: Text(
-                                    widget.library.latestReleaseNumber!,
-                                    style:
-                                        Theme.of(context).textTheme.bodyMedium,
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
+                              if (widget.library.latestReleaseNumber != null)
+                                Row(children: [
+                                  const Icon(Icons.route, size: 20),
+                                  SizedBox(
+                                    width: position ? 100 : 150,
+                                    child: Text(
+                                      widget.library.latestReleaseNumber!,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
                                   ),
-                                ),
-                              ]),
+                                ]),
+                              if (widget.library.latestReleaseNumber == null)
+                                SizedBox(
+                                    width: position ? 100 : 150,),
                               const SizedBox(
                                 width: 8,
                               ),

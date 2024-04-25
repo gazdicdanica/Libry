@@ -96,6 +96,7 @@ class _ResetFormState extends State<ResetForm> {
                           suffixIcon: (emailError != '')
                               ? const Icon(Icons.error)
                               : null,
+                          onChanged: (value) {},
                         ),
                         const SizedBox(
                           height: 30,
