@@ -63,6 +63,7 @@
     "confirm_delete_account": "Da li ste sigurni da želite da obrišete svoj nalog?",
     "delete_account_error": "Nije uspelo brisanje korisničkog naloga, molimo pokušajte kasnije.",
     "reauth_account_error": "Nije uspela autentifikacija, molimo pokušajte kasnije.",
+    "end_of_list": "Došli ste do kraja",
     "back_history": "Nema stavki u istoriji",
     "forward_history": "Nema stavki ispred",
     "add_favorites": "Paket dodat u omiljene",

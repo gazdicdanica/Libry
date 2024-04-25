@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 154 (77 per locale)
+/// Strings: 156 (78 per locale)
 ///
-/// Built on 2024-04-25 at 06:47 UTC
+/// Built on 2024-04-25 at 08:10 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -212,6 +212,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get confirm_delete_account => 'Are you sure you want to delete your account?';
 	String get delete_account_error => 'Failed to delete user account, please try again later.';
 	String get reauth_account_error => 'Failed to reauthenticate, please try again later.';
+	String get end_of_list => 'You\'ve reached the end';
 	String get back_history => 'No back history item';
 	String get forward_history => 'No forward history item';
 	String get add_favorites => 'Package added to favorites.';
@@ -315,6 +316,7 @@ class _StringsSr implements Translations {
 	@override String get confirm_delete_account => 'Da li ste sigurni da želite da obrišete svoj nalog?';
 	@override String get delete_account_error => 'Nije uspelo brisanje korisničkog naloga, molimo pokušajte kasnije.';
 	@override String get reauth_account_error => 'Nije uspela autentifikacija, molimo pokušajte kasnije.';
+	@override String get end_of_list => 'Došli ste do kraja';
 	@override String get back_history => 'Nema stavki u istoriji';
 	@override String get forward_history => 'Nema stavki ispred';
 	@override String get add_favorites => 'Paket dodat u omiljene';
@@ -400,6 +402,7 @@ extension on Translations {
 			case 'confirm_delete_account': return 'Are you sure you want to delete your account?';
 			case 'delete_account_error': return 'Failed to delete user account, please try again later.';
 			case 'reauth_account_error': return 'Failed to reauthenticate, please try again later.';
+			case 'end_of_list': return 'You\'ve reached the end';
 			case 'back_history': return 'No back history item';
 			case 'forward_history': return 'No forward history item';
 			case 'add_favorites': return 'Package added to favorites.';
@@ -485,6 +488,7 @@ extension on _StringsSr {
 			case 'confirm_delete_account': return 'Da li ste sigurni da želite da obrišete svoj nalog?';
 			case 'delete_account_error': return 'Nije uspelo brisanje korisničkog naloga, molimo pokušajte kasnije.';
 			case 'reauth_account_error': return 'Nije uspela autentifikacija, molimo pokušajte kasnije.';
+			case 'end_of_list': return 'Došli ste do kraja';
 			case 'back_history': return 'Nema stavki u istoriji';
 			case 'forward_history': return 'Nema stavki ispred';
 			case 'add_favorites': return 'Paket dodat u omiljene';

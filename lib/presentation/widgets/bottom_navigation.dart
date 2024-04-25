@@ -17,7 +17,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
 
   final List<Widget> _widgetOptions = <Widget>[
     const PlatformsScreen(),
-    const FavoritesScreen(),
+    FavoritesScreen(),
     const MyAccountScreen(),
   ];
 

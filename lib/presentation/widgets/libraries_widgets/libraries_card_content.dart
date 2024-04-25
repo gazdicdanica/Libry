@@ -4,9 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_internship_2024_app/bloc/favorites_bloc/favorites_bloc.dart';
 import 'package:flutter_internship_2024_app/models/library.dart';
-import 'package:flutter_internship_2024_app/theme.dart';
+import 'package:flutter_internship_2024_app/presentation/widgets/message_helper.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 
 class LibrariesCardContet extends StatefulWidget {
   const LibrariesCardContet({super.key, required this.library});
@@ -18,15 +17,18 @@ class LibrariesCardContet extends StatefulWidget {
 }
 
 class _LibrariesCardContetState extends State<LibrariesCardContet> {
+  late FavoritesBloc favoritesBloc;
+  User? user = FirebaseAuth.instance.currentUser;
+
   @override
   void initState() {
-    checkFavoriteStatus();
+    favoritesBloc = FavoritesBloc(widget.library, user!);
+    favoritesBloc.add(FavoritesCheckStatus(widget.library, user!));
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    checkFavoriteStatus();
     bool position = MediaQuery.of(context).orientation == Orientation.portrait;
     double screenWidth = MediaQuery.of(context).size.width;
     double remainigWidth = screenWidth * 0.2;
@@ -50,97 +52,91 @@ class _LibrariesCardContetState extends State<LibrariesCardContet> {
     keywordsString = keywords.join(',');
 
     return BlocProvider(
-      create: (context) => FavoritesBloc(widget.library),
+      create: (context) => favoritesBloc,
       child: BlocConsumer<FavoritesBloc, FavoritesState>(
         listener: (context, state) {
-          if (state is FavoritesSucess) {
-            checkFavoriteStatus();
-            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(t.add_favorites)),
-            );
-          } else if (state is FavoritesRemoveSucess) {
-            checkFavoriteStatus();
-            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(t.remove_favorites)),
-            );
+          if (state is FavoritesCheckStatusSucess) {
+            setState(() {
+              widget.library.isFavorite = widget.library.isFavorite;
+            });
+          }
+          if (state is FavoritesSucess || state is FavoritesRemoveSucess) {
+            favoritesBloc.add(FavoritesCheckStatus(widget.library, user!));
+            MessageHelper.showSnackBarMessage(context, state);
           } else if (state is FavoritesFailure) {
-            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(t.error_favorites)),
-            );
+            MessageHelper.showSnackBarMessage(context, state);
           } else if (state is FavoriteNoInternet) {
-            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(t.internet_error)),
-            );
+            MessageHelper.showSnackBarMessage(context, state);
           }
         },
         builder: (context, state) {
+          favoritesBloc.add(FavoritesCheckStatus(widget.library, user!));
           return Padding(
             padding: const EdgeInsets.only(left: 10.0),
             child: Row(
               children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      width: position ? 250 : 500,
-                      child: Text(
-                        widget.library.name!,
-                        textAlign: TextAlign.start,
-                        style: Theme.of(context).textTheme.labelLarge,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
+                SizedBox(
+                  width: position ? screenWidth * 0.6 : screenWidth * 0.7,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        child: Text(
+                          widget.library.name!,
+                          textAlign: TextAlign.start,
+                          style: Theme.of(context).textTheme.labelLarge,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    Row(
-                      children: [
-                        Row(
-                          children: [
-                            Row(children: [
-                              Icon(MdiIcons.sourceRepository, size: 20),
-                              SizedBox(
-                                width: position ? 100 : 150,
-                                child: Text(
-                                  widget.library.latestReleaseNumber!,
-                                  style: Theme.of(context).textTheme.bodyMedium,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                            ]),
-                            const SizedBox(
-                              width: 8,
-                            ),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                keywordsString == ''
-                                    ? const SizedBox()
-                                    : Icon(MdiIcons.tag,
-                                        color: textColor, size: 20),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      Row(
+                        children: [
+                          Row(
+                            children: [
+                              Row(children: [
+                                Icon(MdiIcons.sourceRepository, size: 20),
                                 SizedBox(
+                                  width: position ? 100 : 150,
                                   child: Text(
-                                    keywordsString,
+                                    widget.library.latestReleaseNumber!,
                                     style:
                                         Theme.of(context).textTheme.bodyMedium,
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
+                              ]),
+                              const SizedBox(
+                                width: 8,
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  keywordsString == ''
+                                      ? const SizedBox()
+                                      : Icon(MdiIcons.tag, size: 20),
+                                  SizedBox(
+                                    child: Text(
+                                      keywordsString,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(
                   width: 5,
@@ -149,22 +145,23 @@ class _LibrariesCardContetState extends State<LibrariesCardContet> {
                   width: 30,
                   height: 30,
                   child: FloatingActionButton(
+                    heroTag: null,
                     backgroundColor: Colors.transparent,
                     elevation: 0,
                     onPressed: () {
                       widget.library.isFavorite
-                          ? context
-                              .read<FavoritesBloc>()
-                              .add(FavoriteRemove(widget.library))
+                          ? context.read<FavoritesBloc>().add(
+                                FavoriteRemove(widget.library, user!),
+                              )
                           : context
                               .read<FavoritesBloc>()
-                              .add(FavoritesAdd(widget.library));
+                              .add(FavoritesAdd(widget.library, user!));
                     },
                     child: Icon(
                       widget.library.isFavorite
                           ? Icons.favorite
                           : Icons.favorite_border,
-                      color: const Color.fromARGB(255, 72, 75, 73),
+                      color: Theme.of(context).colorScheme.onPrimary,
                       size: 30,
                     ),
                   ),

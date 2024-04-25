@@ -1,9 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_internship_2024_app/models/library.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/library_webview/library_webview_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_internship_2024_app/bloc/favorites_bloc/favorites_bloc.dart';
-import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
+import 'package:flutter_internship_2024_app/presentation/widgets/message_helper.dart';
 
 class LibraryHeaderDetails extends StatefulWidget {
   final Library library;
@@ -14,37 +15,26 @@ class LibraryHeaderDetails extends StatefulWidget {
 }
 
 class _LibraryHeaderDetailsState extends State<LibraryHeaderDetails> {
+  User? user = FirebaseAuth.instance.currentUser;
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => FavoritesBloc(widget.library),
+      create: (context) => FavoritesBloc(widget.library, user!),
       child: BlocConsumer<FavoritesBloc, FavoritesState>(
         listener: (context, state) {
           if (state is FavoritesSucess) {
             setState(() {
               widget.library.isFavorite = true;
             });
-            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(t.add_favorites)),
-            );
+            MessageHelper.showSnackBarMessage(context, state);
           } else if (state is FavoritesRemoveSucess) {
             setState(() {
               widget.library.isFavorite = false;
             });
-            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(t.remove_favorites)),
-            );
-          } else if (state is FavoritesFailure) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(t.error_favorites)),
-            );
-          } else if (state is FavoriteNoInternet) {
-            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(t.internet_error)),
-            );
+            MessageHelper.showSnackBarMessage(context, state);
+          } else if (state is FavoritesFailure || state is FavoriteNoInternet) {
+            MessageHelper.showSnackBarMessage(context, state);
           }
         },
         builder: (context, state) {
@@ -110,10 +100,10 @@ class _LibraryHeaderDetailsState extends State<LibraryHeaderDetails> {
                             widget.library.isFavorite
                                 ? context
                                     .read<FavoritesBloc>()
-                                    .add(FavoriteRemove(widget.library))
+                                    .add(FavoriteRemove(widget.library, user!))
                                 : context
                                     .read<FavoritesBloc>()
-                                    .add(FavoritesAdd(widget.library));
+                                    .add(FavoritesAdd(widget.library, user!));
                           },
                           padding: const EdgeInsets.only(bottom: 2),
                         ),

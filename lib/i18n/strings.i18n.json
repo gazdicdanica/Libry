@@ -63,6 +63,7 @@
     "confirm_delete_account": "Are you sure you want to delete your account?",
     "delete_account_error": "Failed to delete user account, please try again later.",
     "reauth_account_error": "Failed to reauthenticate, please try again later.",
+    "end_of_list": "You've reached the end",
     "back_history": "No back history item",
     "forward_history": "No forward history item",
     "add_favorites": "Package added to favorites.",
