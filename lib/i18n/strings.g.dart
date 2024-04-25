@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 156 (78 per locale)
+/// Strings: 154 (77 per locale)
 ///
-/// Built on 2024-04-24 at 12:14 UTC
+/// Built on 2024-04-25 at 06:47 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -210,7 +210,6 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get theme_dark => 'Dark theme';
 	String get delete_account => 'Delete account';
 	String get confirm_delete_account => 'Are you sure you want to delete your account?';
-	String get sorry_youre_leaving => 'Sorry you are leaving...';
 	String get delete_account_error => 'Failed to delete user account, please try again later.';
 	String get reauth_account_error => 'Failed to reauthenticate, please try again later.';
 	String get back_history => 'No back history item';
@@ -314,7 +313,6 @@ class _StringsSr implements Translations {
 	@override String get theme_dark => 'Tamna tema';
 	@override String get delete_account => 'Obriši nalog';
 	@override String get confirm_delete_account => 'Da li ste sigurni da želite da obrišete svoj nalog?';
-	@override String get sorry_youre_leaving => 'Žao nam je što odlazite...';
 	@override String get delete_account_error => 'Nije uspelo brisanje korisničkog naloga, molimo pokušajte kasnije.';
 	@override String get reauth_account_error => 'Nije uspela autentifikacija, molimo pokušajte kasnije.';
 	@override String get back_history => 'Nema stavki u istoriji';
@@ -400,7 +398,6 @@ extension on Translations {
 			case 'theme_dark': return 'Dark theme';
 			case 'delete_account': return 'Delete account';
 			case 'confirm_delete_account': return 'Are you sure you want to delete your account?';
-			case 'sorry_youre_leaving': return 'Sorry you are leaving...';
 			case 'delete_account_error': return 'Failed to delete user account, please try again later.';
 			case 'reauth_account_error': return 'Failed to reauthenticate, please try again later.';
 			case 'back_history': return 'No back history item';
@@ -486,7 +483,6 @@ extension on _StringsSr {
 			case 'theme_dark': return 'Tamna tema';
 			case 'delete_account': return 'Obriši nalog';
 			case 'confirm_delete_account': return 'Da li ste sigurni da želite da obrišete svoj nalog?';
-			case 'sorry_youre_leaving': return 'Žao nam je što odlazite...';
 			case 'delete_account_error': return 'Nije uspelo brisanje korisničkog naloga, molimo pokušajte kasnije.';
 			case 'reauth_account_error': return 'Nije uspela autentifikacija, molimo pokušajte kasnije.';
 			case 'back_history': return 'Nema stavki u istoriji';

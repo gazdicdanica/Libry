@@ -109,7 +109,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           emit(ReauthenticationNeeded());
           break;
         case 'network-request-failed':
-          emit(ReauthenticationFailure(t.internet_error));
+          emit(AuthDeletionFailure(t.internet_error));
           break;
         default:
           emit(AuthDeletionFailure(t.delete_account_error));

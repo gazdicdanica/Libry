@@ -20,14 +20,17 @@ class AuthDataProvider {
   }
 
   Future<void> deleteAccount(User user) async {
-    // final favoritesDoc =
-    //     await _firestore.collection('favorites').doc(user.uid).get();
-    // await _firestore.runTransaction((transaction) async {
-    //   if (favoritesDoc.exists) {
-    //     transaction.delete(favoritesDoc.reference);
-    //   }
+    await _firestore
+        .collection('favorites')
+        .doc(user.uid)
+        .collection('libraries')
+        .get()
+        .then((querySnapshot) {
+      for (var doc in querySnapshot.docs) {
+        doc.reference.delete();
+      }
+    });
     await user.delete();
-    // });
   }
 
   Future<void> reauthenticate(User user, String password) async {

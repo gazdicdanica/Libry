@@ -61,7 +61,6 @@
     "theme_dark": "Dark theme",
     "delete_account": "Delete account",
     "confirm_delete_account": "Are you sure you want to delete your account?",
-    "sorry_youre_leaving": "Sorry you are leaving...",
     "delete_account_error": "Failed to delete user account, please try again later.",
     "reauth_account_error": "Failed to reauthenticate, please try again later.",
     "back_history": "No back history item",

@@ -40,17 +40,14 @@ class _PasswordInputDialogState extends State<PasswordInputDialog> {
           listener: (context, state) {},
           builder: (context, state) {
             if (state is ReauthLoading) {
-              print("auth: ReauthLoading reuth");
               return const Center(
                 child: CircularProgressIndicator(),
               );
             }
             if (state is ReauthenticationSuccess) {
-              print("auth: ReauthenticationSuccess");
               if (context.mounted) _deleteAccount(context);
               Navigator.pop(context);
             } else if (state is ReauthenticationFailure) {
-              print("auth: ReauthenticationFailure");
               _errorMessage = state.errorMessage;
             } else {
               _errorMessage = null;
@@ -127,12 +124,10 @@ class _PasswordInputDialogState extends State<PasswordInputDialog> {
   }
 
   void _deleteAccount(BuildContext context) {
-    print("auth: _deleteAccount reuth");
     BlocProvider.of<AuthBloc>(context).add(DeleteAccount(widget.user));
   }
 
   void _reauthenticate(BuildContext context, String password) {
-    print("auth: _reauthenticate reuth");
     BlocProvider.of<AuthBloc>(context)
         .add(Reauthenticate(widget.user, password));
   }

@@ -23,13 +23,7 @@ class DeleteAccountButton extends StatelessWidget {
         create: (context) => AuthBloc(context.read<AuthRepository>()),
         child: BlocConsumer<AuthBloc, AuthState>(
           listener: (context, state) {
-            if (state is AuthDeletionSuccess) {
-              print("auth: AuthDeletionSuccess");
-              messenger.showSnackBar(
-                SnackBar(content: Text(t.sorry_youre_leaving)),
-              );
-            } else if (state is AuthDeletionFailure) {
-              print("auth: AuthDeletionFailure");
+            if (state is AuthDeletionFailure) {
               messenger.showSnackBar(
                 SnackBar(content: Text(state.errorMessage)),
               );
@@ -37,13 +31,11 @@ class DeleteAccountButton extends StatelessWidget {
           },
           builder: (context, state) {
             if (state is DeleteLoading) {
-              print("auth: DeleteLoading");
               return const Center(
                 child: CircularProgressIndicator(),
               );
             }
             if (state is ReauthenticationNeeded) {
-              print("auth: ReauthenticationNeeded");
               WidgetsBinding.instance.addPostFrameCallback((_) {
                 showDialog(
                     context: context,
@@ -72,7 +64,6 @@ class DeleteAccountButton extends StatelessWidget {
                 );
                 if (confirmed == true) {
                   if (context.mounted) _deleteAccount(context);
-                  // if (context.mounted) _reauthenticate(context);
                 }
               },
               child: Text(
@@ -87,7 +78,6 @@ class DeleteAccountButton extends StatelessWidget {
   }
 
   void _deleteAccount(BuildContext context) {
-    print("auth: _deleteAccount");
     BlocProvider.of<AuthBloc>(context).add(DeleteAccount(user));
   }
 }

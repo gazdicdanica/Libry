@@ -30,9 +30,9 @@ Future main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  // if (kDebugMode) {
-  //   await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
-  // }
+  if (kDebugMode) {
+    await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
+  }
 
   final prefsDataProvider = PrefsDataProvider();
   await prefsDataProvider.init();
