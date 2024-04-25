@@ -115,12 +115,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           emit(AuthDeletionFailure(t.delete_account_error));
           break;
       }
-    } on FirebaseException catch (e) {
-      if (e.code == 'unavailable') {
-        emit(AuthDeletionFailure(t.internet_error));
-      } else {
-        emit(AuthDeletionFailure(t.delete_account_error));
-      }
     } catch (e) {
       emit(AuthDeletionFailure(t.delete_account_error));
     }
