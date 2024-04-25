@@ -24,28 +24,29 @@ class _ResetFormState extends State<ResetForm> {
   String? errorMessage;
   String? emailError = '';
 
-  void _validateEmail(String email) {
-    RegExp emailRegex = RegExp(
-        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
-    if (email.isEmpty || !emailRegex.hasMatch(email)) {
-      setState(() {
-        emailError = t.email_format_error;
-      });
-    } else {
+
+void _validateEmail(String email){
+  RegExp emailRegex = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+   if ( email.isEmpty || !emailRegex.hasMatch(email)) {
+        setState(() {
+           emailError = t.email_format_error;
+        });
+    } 
+    else{
       setState(() {
         emailError = '';
       });
     }
-  }
+}
 
-  void _sendResetEmail(BuildContext context) {
-    _validateEmail(_emailController.text.trim());
-    if (emailError == '') {
-      BlocProvider.of<AuthBloc>(context).add(SendResetEmail(
-        email: _emailController.text.trim(),
-      ));
-    }
+void _sendResetEmail(BuildContext context) {
+  _validateEmail(_emailController.text.trim());
+  if(emailError == ''){
+     BlocProvider.of<AuthBloc>(context).add(SendResetEmail(
+    email: _emailController.text.trim(),
+  ));
   }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -163,10 +164,10 @@ class _ResetFormState extends State<ResetForm> {
       ),
     );
   }
-
   @override
   void dispose() {
     _emailController.dispose();
     super.dispose();
   }
+
 }
