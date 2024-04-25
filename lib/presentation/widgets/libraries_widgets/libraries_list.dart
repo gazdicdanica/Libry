@@ -80,7 +80,7 @@ class _LibrariesListState extends State<LibrariesList>
             return CardWidget(
               color: widget.platform.colorObj,
               onTap: () {
-                  _goToDetailsScreen(library);
+                _goToDetailsScreen(library);
               },
               child: LibrariesCardContet(
                 library: library,

@@ -11,15 +11,14 @@ part 'favorites_state.dart';
 class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
   final Library? library;
   final User user;
-   late StreamSubscription _subscription;
+  late StreamSubscription _subscription;
 
   final _favoriteLibrariesController = StreamController<List<Library>>();
 
   Stream<List<Library>> get favoriteLibrariesStream =>
       _favoriteLibrariesController.stream;
 
-
-  FavoritesBloc(this.library,this.user) : super(FavoritesInitial()) {
+  FavoritesBloc(this.library, this.user) : super(FavoritesInitial()) {
     on<FavoritesAdd>(_addFavorites);
     on<FavoriteRemove>(_removeFavorites);
     on<FavoritesCheckStatus>(_checkFavoriteStatus);
@@ -159,7 +158,6 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
     } catch (e){
          emit(FavoritesCheckStatusFailure());
     }
-    
   }
 
   @override

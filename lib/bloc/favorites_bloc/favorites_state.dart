@@ -1,7 +1,7 @@
 part of 'favorites_bloc.dart';
 
-@immutable 
-sealed class FavoritesState{}
+@immutable
+sealed class FavoritesState {}
 
 final class FavoritesInitial extends FavoritesState{}
 final class FavoritesSucess extends FavoritesState{}
