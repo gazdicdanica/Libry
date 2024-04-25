@@ -69,6 +69,7 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
 
   void _removeFavorites(
       FavoriteRemove event, Emitter<FavoritesState> emit) async {
+        emit(FavoritesInitial());
     try {
       bool isConnected = await checkInternetConnection();
 
@@ -95,6 +96,7 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
 
   void _addFavorites(FavoritesAdd event, Emitter<FavoritesState> emit) async 
   {
+     emit(FavoritesInitial());
     try {
       bool isConnected = await checkInternetConnection();
 

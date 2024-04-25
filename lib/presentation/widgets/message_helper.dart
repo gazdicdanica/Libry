@@ -5,6 +5,7 @@ import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 class MessageHelper {
   static void showSnackBarMessage(BuildContext context, FavoritesState state) {
     final t = Translations.of(context);
+    
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
 
     String message = '';

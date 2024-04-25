@@ -63,7 +63,10 @@ class _LibrariesCardContetState extends State<LibrariesCardContet> {
               if (state is FavoritesSucess || state is FavoritesRemoveSucess) {
                 favoritesBloc.add(FavoritesCheckStatus(widget.library,user!));
                MessageHelper.showSnackBarMessage(context, state);
-              } else if (state is FavoritesFailure || state is FavoriteNoInternet) {
+              } else if (state is FavoritesFailure ) {
+                  MessageHelper.showSnackBarMessage(context, state);
+              }
+              else if( state is FavoriteNoInternet) {
                 MessageHelper.showSnackBarMessage(context, state);
               } 
             },
@@ -74,7 +77,7 @@ class _LibrariesCardContetState extends State<LibrariesCardContet> {
                 child: Row(
                   children: [
                     SizedBox(
-                      width: position ? 250 : 530,
+                      width:position ? screenWidth * 0.6 : screenWidth * 0.7 , 
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,7 +101,7 @@ class _LibrariesCardContetState extends State<LibrariesCardContet> {
                                   Row(children: [
                                     Icon(MdiIcons.sourceRepository, size: 20),
                                     SizedBox(
-                                      width: position ? 100 : 200,
+                                      width: position ? 100 : 150,
                                       child: Text(
                                         widget.library.latestReleaseNumber!,
                                         style: Theme.of(context)
@@ -145,6 +148,7 @@ class _LibrariesCardContetState extends State<LibrariesCardContet> {
                       width: 30,
                       height: 30,
                       child: FloatingActionButton(
+                        heroTag: null,
                         backgroundColor: Colors.transparent,
                         elevation: 0,
                         onPressed: () {

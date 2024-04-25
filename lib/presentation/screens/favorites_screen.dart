@@ -47,54 +47,6 @@ class FavoritesScreen extends StatelessWidget {
               }
               return FavoritesList(libraries: snapshot.data!);
             }
-          // StreamBuilder<QuerySnapshot>(
-          //   stream: FirebaseFirestore.instance
-          //       .collection('favorites')
-          //       .doc(user?.uid)
-          //       .collection('libraries')
-            //     .snapshots(),
-            // builder: (context, snapshot) {
-            //   if (snapshot.connectionState == ConnectionState.waiting) {
-            //     return const Center(
-            //       child: CircularProgressIndicator(),
-            //     );
-            //   }
-            //   if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            //     return const FavoritesList(libraries: []);
-            //   }
-            //   final List<Library> favoriteLibraries = snapshot.data!.docs
-            //       .map((doc) => Library(
-            //             name: doc['name'],
-            //             latestReleaseNumber: doc['latestRelaseNumber'],
-            //             keywords: List<String>.from(doc['keywords']),
-            //             isFavorite: doc['isFavorite'],
-            //             platformColor: doc['colorHex'],
-            //             contributionsCount: null,
-            //             dependentReposCount: null,
-            //             description: doc['description'],
-            //             dependentsCount: null,
-          //               forks: null,
-          //               homepage: doc['homepage'],
-          //               language: doc['language'],
-          //               latestDownloadUrl: '',
-          //               platform: doc['platform'],
-          //               rank: doc['rank'],
-          //               license: doc['license'],
-          //               latestStableReleaseNumber:
-          //                   doc['latestStableReleaseNumber'],
-          //               latestStableReleasePublishedAt:
-          //                   doc['latestStableReleasePublishedAt'],
-          //               latestReleasePublishedAt:
-          //                   doc['latestReleasePublishedAt'],
-          //               repositoryStatus: doc['repositoryStatus'],
-          //               stars: doc['stars'],
-          //             ))
-          //         .toList();
-          //     return FavoritesList(
-          //       libraries: favoriteLibraries,
-          //     );
-          //   },
-          // ),
         ),
         ),)
     );

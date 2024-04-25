@@ -23,38 +23,40 @@ class _FavoritesListState extends State<FavoritesList> {
 
     return SafeArea(
       child: widget.libraries.isEmpty
-          ? Padding(
-              padding: const EdgeInsets.fromLTRB(20, 230, 20, 20),
-              child: Center(
-                child: Column(children: [
-                  const SizedBox(
-                      width: 70,
-                      child: Icon(Icons.emoji_nature_outlined,
-                          size: 90,)),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    t.no_favorites,
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+          ? SingleChildScrollView(
+            child: Padding(
+                padding: const EdgeInsets.fromLTRB(20, 200, 20, 20),
+                child: Center(
+                  child: Column(children: [
+                    const SizedBox(
+                        width: 70,
+                        child: Icon(Icons.emoji_nature_outlined,
+                            size: 90,)),
+                    const SizedBox(
+                      height: 20,
                     ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    t.explanation_adding,
-                    style: const TextStyle(
+                    Text(
+                      t.no_favorites,
+                      style: const TextStyle(
                         fontSize: 20,
-                        fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center,
-                  )
-                ]),
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      t.explanation_adding,
+                      style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
+                    )
+                  ]),
+                ),
               ),
-            )
+          )
           : Center(
               child: ListView.builder(
                   itemCount: widget.libraries.length,
