@@ -68,7 +68,7 @@
     "end_of_list": "You've reached the end",
     "back_history": "No back history item",
     "forward_history": "No forward history item",
-    "add_favorites": "Package added to favorites.",
+    "add_favorites": "Package added to favorites",
     "remove_favorites": "Package removed from favorites",
     "error_favorites": "Error occurred while updating favorites",
     "no_favorites": "There are no favorite packages yet!",

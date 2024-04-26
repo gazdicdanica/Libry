@@ -257,7 +257,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get end_of_list => 'You\'ve reached the end';
 	String get back_history => 'No back history item';
 	String get forward_history => 'No forward history item';
-	String get add_favorites => 'Package added to favorites.';
+	String get add_favorites => 'Package added to favorites';
 	String get remove_favorites => 'Package removed from favorites';
 	String get error_favorites => 'Error occurred while updating favorites';
 	String get no_favorites => 'There are no favorite packages yet!';
@@ -483,7 +483,7 @@ extension on Translations {
 			case 'end_of_list': return 'You\'ve reached the end';
 			case 'back_history': return 'No back history item';
 			case 'forward_history': return 'No forward history item';
-			case 'add_favorites': return 'Package added to favorites.';
+			case 'add_favorites': return 'Package added to favorites';
 			case 'remove_favorites': return 'Package removed from favorites';
 			case 'error_favorites': return 'Error occurred while updating favorites';
 			case 'no_favorites': return 'There are no favorite packages yet!';

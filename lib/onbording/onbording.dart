@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_internship_2024_app/onbording/onbording_content.dart';
 import 'package:flutter_internship_2024_app/presentation/screens/auth_screen.dart';
+import 'package:flutter_internship_2024_app/theme.dart';
 import 'package:flutter_onboarding_slider/flutter_onboarding_slider.dart';
 
 class Onbording extends StatefulWidget{
@@ -28,9 +29,13 @@ class _OnbordingState extends State<Onbording>{
           ),
         );
         },
-        finishButtonText: 'Sign up',
+        finishButtonText:  'Sign up',
+        finishButtonTextStyle: const TextStyle(color: textColor),
         finishButtonStyle: FinishButtonStyle(
+          focusColor: textColor,
+          hoverColor: textColor,
            backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+           foregroundColor: textColor,
            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80),
            )
         ),
@@ -100,7 +105,7 @@ class _OnbordingState extends State<Onbording>{
           ),
         );
         },),  
-        skipTextButton:  const Text('Skip', style: TextStyle(color: Colors.white,fontSize: 11),)
+        skipTextButton:  const Text('Skip', style: TextStyle(color: textColor,fontSize: 11),)
         ),
         
      ),
