@@ -25,18 +25,27 @@ const AppLocale _baseLocale = AppLocale.en;
 /// - Locale locale = AppLocale.en.flutterLocale // get flutter locale from enum
 /// - if (LocaleSettings.currentLocale == AppLocale.en) // locale check
 enum AppLocale with BaseAppLocale<AppLocale, Translations> {
-	en(languageCode: 'en', build: Translations.build),
-	sr(languageCode: 'sr', build: _StringsSr.build);
+  en(languageCode: 'en', build: Translations.build),
+  sr(languageCode: 'sr', build: _StringsSr.build);
 
-	const AppLocale({required this.languageCode, this.scriptCode, this.countryCode, required this.build}); // ignore: unused_element
+  const AppLocale(
+      {required this.languageCode,
+      this.scriptCode, // ignore: unused_element
+      this.countryCode, // ignore: unused_element
+      required this.build}); // ignore: unused_element
 
-	@override final String languageCode;
-	@override final String? scriptCode;
-	@override final String? countryCode;
-	@override final TranslationBuilder<AppLocale, Translations> build;
+  @override
+  final String languageCode;
+  @override
+  final String? scriptCode;
+  @override
+  final String? countryCode;
+  @override
+  final TranslationBuilder<AppLocale, Translations> build;
 
-	/// Gets current instance managed by [LocaleSettings].
-	Translations get translations => LocaleSettings.instance.translationMap[this]!;
+  /// Gets current instance managed by [LocaleSettings].
+  Translations get translations =>
+      LocaleSettings.instance.translationMap[this]!;
 }
 
 /// Method A: Simple
@@ -65,10 +74,14 @@ Translations get t => LocaleSettings.instance.currentTranslations;
 /// final t = Translations.of(context); // Get t variable.
 /// String a = t.someKey.anotherKey; // Use t variable.
 /// String b = t['someKey.anotherKey']; // Only for edge cases!
-class TranslationProvider extends BaseTranslationProvider<AppLocale, Translations> {
-	TranslationProvider({required super.child}) : super(settings: LocaleSettings.instance);
+class TranslationProvider
+    extends BaseTranslationProvider<AppLocale, Translations> {
+  TranslationProvider({required super.child})
+      : super(settings: LocaleSettings.instance);
 
-	static InheritedLocaleData<AppLocale, Translations> of(BuildContext context) => InheritedLocaleData.of<AppLocale, Translations>(context);
+  static InheritedLocaleData<AppLocale, Translations> of(
+          BuildContext context) =>
+      InheritedLocaleData.of<AppLocale, Translations>(context);
 }
 
 /// Method B shorthand via [BuildContext] extension method.
@@ -77,75 +90,102 @@ class TranslationProvider extends BaseTranslationProvider<AppLocale, Translation
 /// Usage (e.g. in a widget's build method):
 /// context.t.someKey.anotherKey
 extension BuildContextTranslationsExtension on BuildContext {
-	Translations get t => TranslationProvider.of(this).translations;
+  Translations get t => TranslationProvider.of(this).translations;
 }
 
 /// Manages all translation instances and the current locale
-class LocaleSettings extends BaseFlutterLocaleSettings<AppLocale, Translations> {
-	LocaleSettings._() : super(utils: AppLocaleUtils.instance);
+class LocaleSettings
+    extends BaseFlutterLocaleSettings<AppLocale, Translations> {
+  LocaleSettings._() : super(utils: AppLocaleUtils.instance);
 
-	static final instance = LocaleSettings._();
+  static final instance = LocaleSettings._();
 
-	// static aliases (checkout base methods for documentation)
-	static AppLocale get currentLocale => instance.currentLocale;
-	static Stream<AppLocale> getLocaleStream() => instance.getLocaleStream();
-	static AppLocale setLocale(AppLocale locale, {bool? listenToDeviceLocale = false}) => instance.setLocale(locale, listenToDeviceLocale: listenToDeviceLocale);
-	static AppLocale setLocaleRaw(String rawLocale, {bool? listenToDeviceLocale = false}) => instance.setLocaleRaw(rawLocale, listenToDeviceLocale: listenToDeviceLocale);
-	static AppLocale useDeviceLocale() => instance.useDeviceLocale();
-	@Deprecated('Use [AppLocaleUtils.supportedLocales]') static List<Locale> get supportedLocales => instance.supportedLocales;
-	@Deprecated('Use [AppLocaleUtils.supportedLocalesRaw]') static List<String> get supportedLocalesRaw => instance.supportedLocalesRaw;
-	static void setPluralResolver({String? language, AppLocale? locale, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver}) => instance.setPluralResolver(
-		language: language,
-		locale: locale,
-		cardinalResolver: cardinalResolver,
-		ordinalResolver: ordinalResolver,
-	);
+  // static aliases (checkout base methods for documentation)
+  static AppLocale get currentLocale => instance.currentLocale;
+  static Stream<AppLocale> getLocaleStream() => instance.getLocaleStream();
+  static AppLocale setLocale(AppLocale locale,
+          {bool? listenToDeviceLocale = false}) =>
+      instance.setLocale(locale, listenToDeviceLocale: listenToDeviceLocale);
+  static AppLocale setLocaleRaw(String rawLocale,
+          {bool? listenToDeviceLocale = false}) =>
+      instance.setLocaleRaw(rawLocale,
+          listenToDeviceLocale: listenToDeviceLocale);
+  static AppLocale useDeviceLocale() => instance.useDeviceLocale();
+  @Deprecated('Use [AppLocaleUtils.supportedLocales]')
+  static List<Locale> get supportedLocales => instance.supportedLocales;
+  @Deprecated('Use [AppLocaleUtils.supportedLocalesRaw]')
+  static List<String> get supportedLocalesRaw => instance.supportedLocalesRaw;
+  static void setPluralResolver(
+          {String? language,
+          AppLocale? locale,
+          PluralResolver? cardinalResolver,
+          PluralResolver? ordinalResolver}) =>
+      instance.setPluralResolver(
+        language: language,
+        locale: locale,
+        cardinalResolver: cardinalResolver,
+        ordinalResolver: ordinalResolver,
+      );
 }
 
 /// Provides utility functions without any side effects.
 class AppLocaleUtils extends BaseAppLocaleUtils<AppLocale, Translations> {
-	AppLocaleUtils._() : super(baseLocale: _baseLocale, locales: AppLocale.values);
+  AppLocaleUtils._()
+      : super(baseLocale: _baseLocale, locales: AppLocale.values);
 
-	static final instance = AppLocaleUtils._();
+  static final instance = AppLocaleUtils._();
 
-	// static aliases (checkout base methods for documentation)
-	static AppLocale parse(String rawLocale) => instance.parse(rawLocale);
-	static AppLocale parseLocaleParts({required String languageCode, String? scriptCode, String? countryCode}) => instance.parseLocaleParts(languageCode: languageCode, scriptCode: scriptCode, countryCode: countryCode);
-	static AppLocale findDeviceLocale() => instance.findDeviceLocale();
-	static List<Locale> get supportedLocales => instance.supportedLocales;
-	static List<String> get supportedLocalesRaw => instance.supportedLocalesRaw;
+  // static aliases (checkout base methods for documentation)
+  static AppLocale parse(String rawLocale) => instance.parse(rawLocale);
+  static AppLocale parseLocaleParts(
+          {required String languageCode,
+          String? scriptCode,
+          String? countryCode}) =>
+      instance.parseLocaleParts(
+          languageCode: languageCode,
+          scriptCode: scriptCode,
+          countryCode: countryCode);
+  static AppLocale findDeviceLocale() => instance.findDeviceLocale();
+  static List<Locale> get supportedLocales => instance.supportedLocales;
+  static List<String> get supportedLocalesRaw => instance.supportedLocalesRaw;
 }
 
 // translations
 
 // Path: <root>
 class Translations implements BaseTranslations<AppLocale, Translations> {
-	/// Returns the current translations of the given [context].
-	///
-	/// Usage:
-	/// final t = Translations.of(context);
-	static Translations of(BuildContext context) => InheritedLocaleData.of<AppLocale, Translations>(context).translations;
+  /// Returns the current translations of the given [context].
+  ///
+  /// Usage:
+  /// final t = Translations.of(context);
+  static Translations of(BuildContext context) =>
+      InheritedLocaleData.of<AppLocale, Translations>(context).translations;
 
-	/// You can call this constructor and build your own translation instance of this locale.
-	/// Constructing via the enum [AppLocale.build] is preferred.
-	Translations.build({Map<String, Node>? overrides, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver})
-		: assert(overrides == null, 'Set "translation_overrides: true" in order to enable this feature.'),
-		  $meta = TranslationMetadata(
-		    locale: AppLocale.en,
-		    overrides: overrides ?? {},
-		    cardinalResolver: cardinalResolver,
-		    ordinalResolver: ordinalResolver,
-		  ) {
-		$meta.setFlatMapFunction(_flatMapFunction);
-	}
+  /// You can call this constructor and build your own translation instance of this locale.
+  /// Constructing via the enum [AppLocale.build] is preferred.
+  Translations.build(
+      {Map<String, Node>? overrides,
+      PluralResolver? cardinalResolver,
+      PluralResolver? ordinalResolver})
+      : assert(overrides == null,
+            'Set "translation_overrides: true" in order to enable this feature.'),
+        $meta = TranslationMetadata(
+          locale: AppLocale.en,
+          overrides: overrides ?? {},
+          cardinalResolver: cardinalResolver,
+          ordinalResolver: ordinalResolver,
+        ) {
+    $meta.setFlatMapFunction(_flatMapFunction);
+  }
 
-	/// Metadata for the translations of <en>.
-	@override final TranslationMetadata<AppLocale, Translations> $meta;
+  /// Metadata for the translations of <en>.
+  @override
+  final TranslationMetadata<AppLocale, Translations> $meta;
 
-	/// Access flat map
-	dynamic operator[](String key) => $meta.getTranslation(key);
+  /// Access flat map
+  dynamic operator [](String key) => $meta.getTranslation(key);
 
-	late final Translations _root = this; // ignore: unused_field
+  late final Translations _root = this; // ignore: unused_field
 
 	// Translations
 	String get welcome => 'Welcome to Libry';
@@ -217,41 +257,57 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	String get end_of_list => 'You\'ve reached the end';
 	String get back_history => 'No back history item';
 	String get forward_history => 'No forward history item';
-	String get add_favorites => 'Package added to favorites.';
+	String get add_favorites => 'Package added to favorites';
 	String get remove_favorites => 'Package removed from favorites';
 	String get error_favorites => 'Error occurred while updating favorites';
 	String get no_favorites => 'There are no favorite packages yet!';
-	String get explanation_adding => 'If you want to receive updates about your favorite packages, add it to favorites by pressing heart icon.';
+	String get explanation_adding => 'If you want to add a package to your favorites, press the heart icon.';
 	String get reauthenticate => 'Re-authenticate';
 	String get enter_password => 'Please enter your password to continue';
 	String get confirm => 'Confirm';
 	String get cancel => 'Cancel';
 	String get wrong_password => 'Invalid password, please try again.';
 	String get too_many_requests => 'Too many requests, please try again later.';
+  String get onborading_title_search => 'Find your perfect code companion!';
+  String get welcome_onboarding => 'Welcome to Libry!';
+  String get onborading_title_details => 'Discover package details!';
+  String get onborading_title_favorites => 'Create your favorites!';
+  String get onborading_description_welcome => "Get ready to dive into the world of programming tools! We'll guide you through the vast landscape of programming tools by introducing essential packages.";
+  String get onborading_description_search => 'Embark on a journey of library exploration with our intuitive search feature. Quickly find the perfect libraries to enhance your projects.';
+  String get onborading_description_details => 'Explore in-depth information about package to elevate your projects. Dive into detailed descriptions, versions, and more with our package details feature.';
+  String get onborading_description_favorites => 'Curate your favorite libraries effortlessly. Easily add your preferred libraries, then enjoy access to your curated list whenever you need it.';
+
 }
 
 // Path: <root>
 class _StringsSr implements Translations {
-	/// You can call this constructor and build your own translation instance of this locale.
-	/// Constructing via the enum [AppLocale.build] is preferred.
-	_StringsSr.build({Map<String, Node>? overrides, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver})
-		: assert(overrides == null, 'Set "translation_overrides: true" in order to enable this feature.'),
-		  $meta = TranslationMetadata(
-		    locale: AppLocale.sr,
-		    overrides: overrides ?? {},
-		    cardinalResolver: cardinalResolver,
-		    ordinalResolver: ordinalResolver,
-		  ) {
-		$meta.setFlatMapFunction(_flatMapFunction);
-	}
+  /// You can call this constructor and build your own translation instance of this locale.
+  /// Constructing via the enum [AppLocale.build] is preferred.
+  _StringsSr.build(
+      {Map<String, Node>? overrides,
+      PluralResolver? cardinalResolver,
+      PluralResolver? ordinalResolver})
+      : assert(overrides == null,
+            'Set "translation_overrides: true" in order to enable this feature.'),
+        $meta = TranslationMetadata(
+          locale: AppLocale.sr,
+          overrides: overrides ?? {},
+          cardinalResolver: cardinalResolver,
+          ordinalResolver: ordinalResolver,
+        ) {
+    $meta.setFlatMapFunction(_flatMapFunction);
+  }
 
-	/// Metadata for the translations of <sr>.
-	@override final TranslationMetadata<AppLocale, Translations> $meta;
+  /// Metadata for the translations of <sr>.
+  @override
+  final TranslationMetadata<AppLocale, Translations> $meta;
 
-	/// Access flat map
-	@override dynamic operator[](String key) => $meta.getTranslation(key);
+  /// Access flat map
+  @override
+  dynamic operator [](String key) => $meta.getTranslation(key);
 
-	@override late final _StringsSr _root = this; // ignore: unused_field
+  @override
+  late final _StringsSr _root = this; // ignore: unused_field
 
 	// Translations
 	@override String get welcome => 'Dobrodošli u Libry';
@@ -327,13 +383,29 @@ class _StringsSr implements Translations {
 	@override String get remove_favorites => 'Paket uklonjen iz omiljenih';
 	@override String get error_favorites => 'Greška prilikom ažuriranja omiljenih paketa';
 	@override String get no_favorites => 'Nemate omiljene pakete!';
-	@override String get explanation_adding => 'Ako želite da dobijate ažuriranja o vašim omiljenim paketima, dodajte ih u omiljene pritiskom na ikonu srca.';
+	@override String get explanation_adding => 'Ako želite da dodate paket u omiljene, pritisnite na ikonu srca.';
 	@override String get reauthenticate => 'Autentifikujte se';
 	@override String get enter_password => 'Unesite svoju lozinku da biste nastavili';
 	@override String get confirm => 'Potvrdi';
 	@override String get cancel => 'Otkaži';
 	@override String get wrong_password => 'Pogrešna lozinka, pokušajte ponovo.';
 	@override String get too_many_requests => 'Previše puta ste poslali zahtev, pokušajte ponovo kasnije.';
+  @override String get welcome_onboarding => 'Dobrodošli u Libry!';
+  @override
+    String get onborading_title_search => 'Pronađite idealnog saradnika za kodiranje!';
+  @override
+   String get onborading_title_details => 'Otkrijte detalje o paketu!';
+  @override
+   String get onborading_title_favorites => 'Vaša lista favorita!';
+  @override
+  String get onborading_description_welcome => 'Pripremite se za istraživanje sveta programskih alata! Vodićemo vas kroz raznovrstno okruženje alata predstavljajući vam osnovne pakete.';
+  @override
+   String get onborading_description_search => 'Krenite na putovanje istraživanja biblioteka uz našu intuitivnu pretragu. Brzo pronađite savršene biblioteke koje će unaprediti vaše projekte.';
+  @override
+   String get onborading_description_details => 'Istražite detaljne informacije o paketu kako biste unapredili svoje projekte. Zaronite u detaljne opise, verzije i dodatne informacije pomoću naše funkcije detalja o paketu.';
+  @override
+   String get onborading_description_favorites => 'Jednostavno dodajte i organizujte vaše preferirane biblioteke, a zatim uživajte u pristupu vašoj odabranoj listi kad god vam je potrebno.';
+
 }
 
 /// Flat map(s) containing all translations.
@@ -411,17 +483,25 @@ extension on Translations {
 			case 'end_of_list': return 'You\'ve reached the end';
 			case 'back_history': return 'No back history item';
 			case 'forward_history': return 'No forward history item';
-			case 'add_favorites': return 'Package added to favorites.';
+			case 'add_favorites': return 'Package added to favorites';
 			case 'remove_favorites': return 'Package removed from favorites';
 			case 'error_favorites': return 'Error occurred while updating favorites';
 			case 'no_favorites': return 'There are no favorite packages yet!';
-			case 'explanation_adding': return 'If you want to receive updates about your favorite packages, add it to favorites by pressing heart icon.';
+			case 'explanation_adding': return 'If you want to add a package to your favorites, press the heart icon.';
 			case 'reauthenticate': return 'Re-authenticate';
 			case 'enter_password': return 'Please enter your password to continue';
 			case 'confirm': return 'Confirm';
 			case 'cancel': return 'Cancel';
 			case 'wrong_password': return 'Invalid password, please try again.';
 			case 'too_many_requests': return 'Too many requests, please try again later.';
+      case 'welcome_onboarding' : return  'Welcome to Libry!';
+      case 'onborading_title_search' : return 'Find your perfect code companion!';
+      case 'onborading_title_details' : return 'Discover package cetails!';
+      case 'onborading_title_favorites' : return 'Create your favorites!';
+      case 'onborading_description_search' : return 'Embark on a journey of library exploration with our intuitive search feature. Quickly find the perfect libraries to enhance your projects.';
+      case 'onborading_description_welcome' : return "Get ready to dive into the world of programming tools! We'll guide you through the vast landscape of programming tools by introducing essential packages.";
+      case 'onborading_description_details' : return 'Explore in-depth information about package to elevate your projects. Dive into detailed descriptions, versions, and more with our package details feature.';
+      case 'onborading_description_favorites' : return 'Curate your favorite libraries effortlessly. Easily add your preferred libraries, then enjoy access to your curated list whenever you need it.';    
 			default: return null;
 		}
 	}
@@ -503,13 +583,22 @@ extension on _StringsSr {
 			case 'remove_favorites': return 'Paket uklonjen iz omiljenih';
 			case 'error_favorites': return 'Greška prilikom ažuriranja omiljenih paketa';
 			case 'no_favorites': return 'Nemate omiljene pakete!';
-			case 'explanation_adding': return 'Ako želite da dobijate ažuriranja o vašim omiljenim paketima, dodajte ih u omiljene pritiskom na ikonu srca.';
+			case 'explanation_adding': return 'Ako želite da dodate paket u omiljene, pritisnite na ikonu srca.';
 			case 'reauthenticate': return 'Autentifikujte se';
 			case 'enter_password': return 'Unesite svoju lozinku da biste nastavili';
 			case 'confirm': return 'Potvrdi';
 			case 'cancel': return 'Otkaži';
 			case 'wrong_password': return 'Pogrešna lozinka, pokušajte ponovo.';
 			case 'too_many_requests': return 'Previše puta ste poslali zahtev, pokušajte ponovo kasnije.';
+      case 'welcome_onboarding' : return  'Dobrodošli u Libry!';
+      case 'onborading_title_search' : return 'Pronađite idealnog saradnika za kodiranje!';
+      case 'onborading_title_details' : return 'Otkrijte detalje o paketu!';
+      case 'onborading_title_favorites' : return 'Vaša lista favorita!';
+      case 'onborading_description_search' : return 'Krenite na putovanje istraživanja biblioteka uz našu intuitivnu pretragu. Brzo pronađite savršene biblioteke koje će unaprediti vaše projekte.';
+      case 'onborading_description_welcome' : return "Pripremite se za istraživanje sveta programskih alata! Vodićemo vas kroz raznovrstno okruženje alata predstavljajući vam osnovne pakete";
+      case 'onborading_description_details' : return 'Istražite detaljne informacije o paketu kako biste unapredili svoje projekte. Zaronite u detaljne opise, verzije i dodatne informacije pomoću naše funkcije detalja o paketu';
+      case 'onborading_description_favorites' : return 'Jednostavno dodajte i organizujte vaše preferirane biblioteke, a zatim uživajte u pristupu vašoj odabranoj listi kad god vam je potrebno.';    
+
 			default: return null;
 		}
 	}

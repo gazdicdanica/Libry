@@ -68,15 +68,26 @@
     "end_of_list": "You've reached the end",
     "back_history": "No back history item",
     "forward_history": "No forward history item",
-    "add_favorites": "Package added to favorites.",
+    "add_favorites": "Package added to favorites",
     "remove_favorites": "Package removed from favorites",
     "error_favorites": "Error occurred while updating favorites",
     "no_favorites": "There are no favorite packages yet!",
-    "explanation_adding": "If you want to receive updates about your favorite packages, add it to favorites by pressing heart icon.",
+    "explanation_adding": "If you want to add a package to your favorites, press the heart icon.",
     "reauthenticate": "Re-authenticate",
     "enter_password": "Please enter your password to continue",
     "confirm": "Confirm",
     "cancel": "Cancel",
     "wrong_password": "Invalid password, please try again.",
-    "too_many_requests": "Too many requests, please try again later."
+    "too_many_requests": "Too many requests, please try again later.",
+    "welcome_onboarding" : "Welcome to Libry!",
+    "onborading_title_search" : "Find your perfect code companion!",
+    "onborading_title_details" : "Discover package details!",
+    "onborading_title_favorites" : "Create your favorites!",
+    "onborading_description_welcome " : "Get ready to dive into the world of programming tools! We'll guide you through the vast landscape of programming tools by introducing essential packages.",
+    "onborading_description_search" : "Embark on a journey of library exploration with our intuitive search feature. Quickly find the perfect libraries to enhance your projects.",
+    "onborading_description_details ": "Explore in-depth information about package to elevate your projects. Dive into detailed descriptions, versions, and more with our package details feature.",
+    "onborading_description_favorites " : "Curate your favorite libraries effortlessly. Easily add your preferred libraries, then enjoy access to your curated list whenever you need it."
+ 
+
+  
 }
