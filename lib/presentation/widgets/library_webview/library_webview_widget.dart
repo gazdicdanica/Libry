@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/library_webview/navigation_controls.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/library_webview/web_view_stack.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
 
 class LibraryWebView extends StatefulWidget {
   final String url;
@@ -17,7 +18,17 @@ class _LibraryWebViewState extends State<LibraryWebView> {
   @override
   void initState() {
     super.initState();
-    controller = WebViewController()
+    late final PlatformWebViewControllerCreationParams params;
+    if (WebViewPlatform.instance is WebKitWebViewPlatform) {
+      params = WebKitWebViewControllerCreationParams(
+        allowsInlineMediaPlayback: true,
+        mediaTypesRequiringUserAction: const <PlaybackMediaTypes>{},
+      );
+    } else {
+      params = const PlatformWebViewControllerCreationParams();
+    }
+
+    controller = WebViewController.fromPlatformCreationParams(params)
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..loadRequest(
         Uri.parse(widget.url),
@@ -36,7 +47,10 @@ class _LibraryWebViewState extends State<LibraryWebView> {
         ],
       ),
       body: SafeArea(
-        child: WebViewStack(controller: controller),
+        child: WebViewStack(
+          controller: controller,
+          url: widget.url,
+        ),
       ),
     );
   }

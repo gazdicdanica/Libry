@@ -29,6 +29,7 @@ dependencies:
   infinite_scroll_pagination: ^4.0.0
   bloc_concurrency: ^0.2.5
   uuid: ^3.0.0
+  webview_flutter_wkwebview: ^3.13.0
   connectivity: ^3.0.6
   flutter_onboarding_slider: ^1.0.11
 
