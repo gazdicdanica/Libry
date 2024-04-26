@@ -20,6 +20,7 @@ List<OnbordingContent> contents=[
     image: 'assets/images/[removal.ai]_66785f13-6589-429b-84ec-f65944e4b9ce-libraries.png', 
     title: t.welcome, 
     discription: t.onborading_description_welcome),
+    discription: t.onborading_description_welcome),
   OnbordingContent(
     image: 'assets/images/1713866345900.jpeg', 
     title: t.onborading_title_details, 

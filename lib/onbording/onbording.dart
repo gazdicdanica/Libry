@@ -1,4 +1,5 @@
 
+
 import 'package:flutter/material.dart';
 import 'package:flutter_internship_2024_app/onbording/onbording_content.dart';
 import 'package:flutter_internship_2024_app/presentation/screens/auth_screen.dart';
@@ -6,6 +7,7 @@ import 'package:flutter_onboarding_slider/flutter_onboarding_slider.dart';
 import 'package:flutter_internship_2024_app/theme.dart';
 
 class Onbording extends StatefulWidget{
+  const Onbording({super.key});
   const Onbording({super.key});
 
   @override
@@ -19,6 +21,7 @@ class _OnbordingState extends State<Onbording>{
   Widget build(BuildContext context) {
    return SafeArea(
      child: Padding(
+       padding: const EdgeInsets.all(10.0),
        padding: const EdgeInsets.all(10.0),
        child: OnBoardingSlider(
         onFinish: (){
