@@ -17,19 +17,19 @@ class OnbordingContent {
 
 List<OnbordingContent> contents=[
   OnbordingContent(
-    image: 'assets/images/libry_transparent.png', 
+    image: 'assets/images/[removal.ai]_66785f13-6589-429b-84ec-f65944e4b9ce-libraries.png', 
     title: t.welcome, 
-    discription: "Get ready to dive into the world of programming tools! We'll guide you through the extensive landscape of programming tools by introducing essential packages!",),
+    discription: t.onborading_description_welcome),
   OnbordingContent(
     image: 'assets/images/1713866345900.jpeg', 
-    title: 'Find Your Perfect Code Companion', 
-    discription: 'Embark on a journey of library exploration with our intuitive search feature. Quickly find the perfect libraries to enhance your projects!'),
-  OnbordingContent(
-    image: 'assets/images/search.jpeg', 
-    title: 'Discover Package Details', 
-    discription: "Explore in-depth information about package to elevate your projects. Dive into detailed descriptions, versions, and more with our package details feature."),
-  OnbordingContent(
-    image: 'assets/images/details.jpeg', 
-    title: 'Details of library', 
-    discription: 'Curate your favorite libraries effortlessly and access them anytime. Easily add and organize your preferred libraries, then enjoy seamless access to your curated list whenever you need it.'),
-];
+    title: t.onborading_title_details, 
+    discription: t.onborading_description_details),
+     OnbordingContent(
+    image: 'assets/images/Removal-670.png', 
+    title: t.onborading_title_search, 
+    discription:t.onborading_description_search ),
+    OnbordingContent(
+    image: 'assets/images/[removal.ai]_0036c995-d2df-45fa-96f5-abc4420b9000-favorites.png', 
+    title: t.onborading_title_favorites, 
+    discription: t.onborading_description_favorites),
+    ];

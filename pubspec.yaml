@@ -43,12 +43,10 @@ flutter:
   uses-material-design: true
   assets: 
     - .env
-    - assets/images/libry_transparent.png
-    - assets/images/favorites.jpeg
-    - assets/images/search.jpeg
-    - assets/images/details.jpeg
-    - assets/images/1713866345889.jpeg
-    - assets/images/1713866345900.jpeg
+    - assets/images/libry_transparent.png 
+    - assets/images/Removal-670.png
+    - assets/images/[removal.ai]_66785f13-6589-429b-84ec-f65944e4b9ce-libraries.png
+    - assets/images/[removal.ai]_0036c995-d2df-45fa-96f5-abc4420b9000-favorites.png
 
 flutter_launcher_icons:
   android: "launcher_icon"

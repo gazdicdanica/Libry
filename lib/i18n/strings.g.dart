@@ -262,6 +262,14 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
   String get theme_dark => 'Dark theme';
   String get back_history => 'No back history item';
   String get forward_history => 'No forward history item';
+  String get onborading_title_search => 'Find Your Perfect Code Companion';
+  String get onborading_title_details => 'Discover Package Details';
+  String get onborading_title_favorites => 'Create Your Favorites';
+  String get onborading_description_welcome => "Get ready to dive into the world of programming tools! We'll guide you through the vast landscape of programming tools by introducing essential packages.";
+  String get onborading_description_search => 'Embark on a journey of library exploration with our intuitive search feature. Quickly find the perfect libraries to enhance your projects.';
+  String get onborading_description_details => 'Explore in-depth information about package to elevate your projects. Dive into detailed descriptions, versions, and more with our package details feature.';
+  String get onborading_description_favorites => 'Curate your favorite libraries effortlessly and access them anytime, anywhere. Easily add and organize your preferred libraries, then enjoy seamless access to your curated list whenever you need it.';
+
 }
 
 // Path: <root>
@@ -436,6 +444,21 @@ class _StringsSr implements Translations {
   @override
   String get explanation_adding =>
       'Ako želite da dobijate ažuriranja o vašim omiljenim paketima, dodajte ih u omiljene pritiskom na ikonu srca.';
+  @override
+    String get onborading_title_search => 'Pronađite idealnog saradnika za kodiranje!';
+  @override
+   String get onborading_title_details => 'Otkrijte detalje o paketu!';
+  @override
+   String get onborading_title_favorites => 'Vaša lista favorita!';
+  @override
+  String get onborading_description_welcome => 'Pripremite se za istraživanje sveta programskih alata! Vodićemo vas kroz raznovrstno okruženje alata predstavljajući vam osnovne pakete';
+  @override
+   String get onborading_description_search => 'Krenite na putovanje istraživanja biblioteka uz našu intuitivnu pretragu. Brzo pronađite savršene biblioteke koje će unaprediti vaše projekte.';
+  @override
+   String get onborading_description_details => 'Istražite detaljne informacije o paketu kako biste unapredili svoje projekte. Zaronite u detaljne opise, verzije i dodatne informacije pomoću naše funkcije detalja o paketu';
+  @override
+   String get onborading_description_favorites => 'Jednostavno dodajte i organizujte vaše preferirane biblioteke, a zatim uživajte u pristupu vašoj odabranoj listi kad god vam je potrebno.';
+
 }
 
 /// Flat map(s) containing all translations.
@@ -721,6 +744,7 @@ extension on _StringsSr {
         return 'Nemate omiljene pakete!';
       case 'explanation_adding':
         return 'Ako želite da dobijate ažuriranja o vašim omiljenim paketima, dodajte ih u omiljene pritiskom na ikonu srca.';
+
       default:
         return null;
     }

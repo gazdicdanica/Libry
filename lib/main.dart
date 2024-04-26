@@ -16,7 +16,6 @@ import 'package:flutter_internship_2024_app/data/platforms/data_provider/platfor
 import 'package:flutter_internship_2024_app/data/platforms/repository/platforms_repository.dart';
 import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 import 'package:flutter_internship_2024_app/onbording/onbording.dart';
-import 'package:flutter_internship_2024_app/presentation/screens/auth_screen.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/bottom_navigation.dart';
 import 'package:flutter_internship_2024_app/theme.dart';
 import 'package:firebase_core/firebase_core.dart';

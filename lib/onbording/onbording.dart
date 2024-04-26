@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_internship_2024_app/onbording/onbording_content.dart';
 import 'package:flutter_internship_2024_app/presentation/screens/auth_screen.dart';
 import 'package:flutter_onboarding_slider/flutter_onboarding_slider.dart';
@@ -49,14 +48,14 @@ class _OnbordingState extends State<Onbording>{
               alignment: Alignment.center,
               child:   MediaQuery.of(context).orientation == Orientation.portrait 
               ? Padding(
-                padding: const EdgeInsets.only(top: 10.0),
+                padding: const EdgeInsets.fromLTRB(20,50.0,10,10),
                 child: Column(
                   children: [
-                      Image.asset(contents[index].image),
-                      const SizedBox(height: 10,),
-                      Text(contents[index].title),
-                       const SizedBox(height: 10,),
-                      Text(contents[index].discription),
+                      SizedBox(child: Image.asset(contents[index].image,height: 400,)),
+                      const SizedBox(height: 20,),
+                      Text(contents[index].title,style: Theme.of(context).textTheme.titleMedium,),
+                       const SizedBox(height: 20,),
+                      Text(contents[index].discription,style: Theme.of(context).textTheme.bodyLarge,),
                 ],),
               )
               : Padding(
@@ -74,9 +73,10 @@ class _OnbordingState extends State<Onbording>{
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(contents[index].title),
+                            Text(contents[index].title, style: Theme.of(context).textTheme.titleMedium,),
                             const SizedBox(height: 10,),
-                            Text(contents[index].discription),
+                            Text(contents[index].discription, 
+                              style: Theme.of(context).textTheme.bodyLarge,),
                           ],
                         ),
                       ),
