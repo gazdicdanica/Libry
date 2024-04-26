@@ -47,7 +47,10 @@ class _LibraryWebViewState extends State<LibraryWebView> {
         ],
       ),
       body: SafeArea(
-        child: WebViewStack(controller: controller),
+        child: WebViewStack(
+          controller: controller,
+          url: widget.url,
+        ),
       ),
     );
   }
