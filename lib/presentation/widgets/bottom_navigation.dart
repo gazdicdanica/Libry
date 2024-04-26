@@ -17,7 +17,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
 
   final List<Widget> _widgetOptions = <Widget>[
     const PlatformsScreen(),
-    const FavoritesScreen(),
+    FavoritesScreen(),
     const MyAccountScreen(),
   ];
 
@@ -25,7 +25,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
   Widget build(BuildContext context) {
     final t = Translations.of(context);
     return Scaffold(
-      body: _widgetOptions.elementAt(_selectedIndex),
+      body: IndexedStack(index: _selectedIndex, children: _widgetOptions,),
       bottomNavigationBar: NavigationBar(
         selectedIndex: _selectedIndex,
         onDestinationSelected: _onItemTap,

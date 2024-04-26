@@ -17,20 +17,19 @@ class OnbordingContent {
 
 List<OnbordingContent> contents=[
   OnbordingContent(
-    image: 'assets/images/[removal.ai]_66785f13-6589-429b-84ec-f65944e4b9ce-libraries.png', 
-    title: t.welcome, 
-    discription: t.onborading_description_welcome),
+    image: 'assets/images/packages.png', 
+    title: t.welcome_onboarding, 
     discription: t.onborading_description_welcome),
   OnbordingContent(
-    image: 'assets/images/1713866345900.jpeg', 
+    image: 'assets/images/details.png', 
     title: t.onborading_title_details, 
     discription: t.onborading_description_details),
      OnbordingContent(
-    image: 'assets/images/Removal-670.png', 
+    image: 'assets/images/search.png', 
     title: t.onborading_title_search, 
     discription:t.onborading_description_search ),
     OnbordingContent(
-    image: 'assets/images/[removal.ai]_0036c995-d2df-45fa-96f5-abc4420b9000-favorites.png', 
+    image: 'assets/images/favorites.png', 
     title: t.onborading_title_favorites, 
     discription: t.onborading_description_favorites),
     ];

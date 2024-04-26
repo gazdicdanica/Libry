@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_internship_2024_app/data/auth/data_provider/auth_data_provider.dart';
+import 'package:flutter_internship_2024_app/data/auth/repository/auth_repository.dart';
 import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_internship_2024_app/bloc/auth_bloc/auth_bloc.dart';
@@ -23,150 +25,227 @@ class _AuthFormState extends State<AuthForm> {
   @override
   Widget build(BuildContext context) {
     final t = Translations.of(context);
-    return BlocProvider<AuthBloc>(
-      create: (context) => AuthBloc(),
-      child: BlocConsumer<AuthBloc, AuthState>(
-        listener: (context, state) => {
-          if (state is AuthUnknownFailure) {_showSnackbar(state.errorMessage)}
-        },
-        builder: (ctx, state) {
-          if (state is AuthLoading) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          return Form(
-            key: _form,
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 500),
-              child: Column(
-                children: [
-                  if (state is AuthCredentialsFailure)
-                    Text(
-                      state.errorMessage,
-                      style: const TextStyle(
-                          color: Color.fromARGB(255, 151, 10, 0)),
+    return RepositoryProvider(
+      create: (context) => AuthRepository(AuthDataProvider()),
+      child: BlocProvider<AuthBloc>(
+        create: (context) => AuthBloc(context.read<AuthRepository>()),
+        child: BlocConsumer<AuthBloc, AuthState>(
+          listener: (context, state) => {
+            if (state is AuthUnknownFailure) {_showSnackbar(state.errorMessage)}
+          },
+          builder: (ctx, state) {
+            if (state is AuthLoading) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            return Form(
+              key: _form,
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 500),
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 20,
                     ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  //email
-                  CustomFormField(
-                    controller: _emailController,
-                    labelText: t.email,
-                    hintText: t.email_hint,
-                    errorText: (state is AuthValidationFailure)
-                        ? state.emailError
-                        : null,
-                    suffixIcon: (state is AuthValidationFailure &&
-                            state.emailError != null)
-                        ? const Icon(Icons.error)
-                        : null,
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  CustomFormField(
-                    controller: _passwordController,
-                    labelText: t.password,
-                    hintText: t.password_hint,
-                    errorText: (state is AuthValidationFailure)
-                        ? state.passwordError
-                        : null,
-                    suffixIcon: (state is AuthValidationFailure &&
-                            state.passwordError != null)
-                        ? const Icon(Icons.error)
-                        : null,
-                    obscureText: true,
-                  ),
+                    if (state is AuthCredentialsFailure)
+                      Text(
+                        state.errorMessage,
+                        style: const TextStyle(
+                            color: Color.fromARGB(255, 151, 10, 0)),
+                      ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    //email
+                    CustomFormField(
+                      controller: _emailController,
+                      labelText: t.email,
+                      hintText: t.email_hint,
+                      errorText: (state is AuthValidationFailure &&
+                              state.emailError != null)
+                          ? state.emailError
+                          : null,
+                      suffixIcon: (state is AuthValidationFailure &&
+                              state.emailError != null)
+                          ? const Icon(Icons.error)
+                          : null,
+                      onChanged: (value) {
+                        final bloc = ctx.read<AuthBloc>();
+                        final state = bloc.state;
+                        bloc.add(
+                          ChangedEmail(
+                            value,
+                            state is AuthValidationFailure
+                                ? state.passwordError
+                                : null,
+                            state is AuthValidationFailure
+                                ? state.confirmPasswordError
+                                : null,
+                          ),
+                        );
+                      },
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    CustomFormField(
+                      controller: _passwordController,
+                      labelText: t.password,
+                      hintText: t.password_hint,
+                      errorText: (state is AuthValidationFailure &&
+                              state.passwordError != null)
+                          ? state.passwordError
+                          : null,
+                      suffixIcon: (state is AuthValidationFailure &&
+                              state.passwordError != null)
+                          ? const Icon(Icons.error)
+                          : null,
+                      obscureText: true,
+                      onChanged: (value) {
+                        final bloc = ctx.read<AuthBloc>();
+                        final state = bloc.state;
+                        bloc.add(
+                          ChangedPassword(
+                            value,
+                            _confirmPasswordController.text,
+                            state is AuthValidationFailure
+                                ? state.emailError
+                                : null,
+                            _isLogin,
+                          ),
+                        );
+                      },
+                    ),
 
-                  if (_isLogin)
-                    SizedBox(
-                      width: double.infinity,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
+                    if (_isLogin)
+                      SizedBox(
+                        width: double.infinity,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => const ResetScreen(),
+                                  ),
+                                );
+                              },
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Colors.transparent),
+                                  foregroundColor: MaterialStateProperty.all<
+                                          Color>(
+                                      const Color.fromRGBO(0, 166, 141, 1))),
+                              child: Text(
+                                t.forgot_password,
+                                style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.normal),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                          ],
+                        ),
+                      ),
+
+                    if (!_isLogin)
+                      Column(
                         children: [
                           const SizedBox(
-                            height: 5,
+                            height: 20,
                           ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => const ResetScreen(),
-                                ),
+                          CustomFormField(
+                            controller: _confirmPasswordController,
+                            labelText: t.confirm_password,
+                            hintText: t.confirm_password_hint,
+                            errorText: (state is AuthValidationFailure &&
+                                    state.confirmPasswordError != null)
+                                ? state.confirmPasswordError
+                                : null,
+                            suffixIcon: (state is AuthValidationFailure &&
+                                    state.confirmPasswordError != null)
+                                ? const Icon(Icons.error)
+                                : null,
+                            obscureText: true,
+                            onChanged: (value) {
+                              final bloc = ctx.read<AuthBloc>();
+                              final state = bloc.state;
+                              bloc.add(
+                                ChangedPassword(
+                                    _passwordController.text,
+                                    value,
+                                    state is AuthValidationFailure
+                                        ? state.emailError
+                                        : null,
+                                    _isLogin),
                               );
                             },
-                            style: ButtonStyle(
-                                backgroundColor:MaterialStateProperty.all<Color> (Colors.transparent),
-                                foregroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        const Color.fromRGBO(0, 166, 141, 1))),
-                            child: Text(
-                              t.forgot_password,
-                              style: const TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.normal),
-                            ),
                           ),
                           const SizedBox(
-                            height: 5,
+                            height: 40,
                           ),
                         ],
                       ),
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          _authenticateIfValid(ctx);
+                        },
+                        style: Theme.of(context).textButtonTheme.style,
+                        child: Text(_isLogin ? t.login : t.singup),
+                      ),
                     ),
-
-                  if (!_isLogin)
-                    Column(
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        CustomFormField(
-                          controller: _confirmPasswordController,
-                          labelText: t.confirm_password,
-                          hintText: t.confirm_password_hint,
-                          errorText: (state is AuthValidationFailure)
-                              ? state.confirmPasswordError
-                              : null,
-                          suffixIcon: (state is AuthValidationFailure &&
-                                  state.confirmPasswordError != null)
-                              ? const Icon(Icons.error)
-                              : null,
-                          obscureText: true,
+                        Text(
+                          _isLogin ? t.singup_redirect : t.singin_redirect,
                         ),
                         const SizedBox(
-                          height: 40,
+                          width: 10,
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            _resetForm(ctx);
+                          },
+                          style:
+                              Theme.of(context).textButtonTheme.style!.copyWith(
+                                    backgroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            Colors.transparent),
+                                    padding: MaterialStateProperty.all<
+                                        EdgeInsetsGeometry>(
+                                      const EdgeInsets.all(0),
+                                    ),
+                                  ),
+                          child: Text(
+                            _isLogin ? t.singup : t.login,
+                            style: const TextStyle(
+                                color: Color.fromRGBO(0, 166, 141, 1),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400),
+                          ),
                         ),
                       ],
                     ),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        _validateAndAuthenticate(ctx);
-                      },
-                      style: Theme.of(context).textButtonTheme.style,
-                      child: Text(_isLogin ? t.login : t.singup),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        _resetForm(ctx);
-                      },
-                      style: Theme.of(context).textButtonTheme.style,
-                      child: Text(_isLogin ? t.singup : t.login),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }
@@ -191,13 +270,20 @@ class _AuthFormState extends State<AuthForm> {
     _passwordController.clear();
     _confirmPasswordController.clear();
   }
-  
-  void _validateAndAuthenticate(BuildContext context) {
-    BlocProvider.of<AuthBloc>(context).add(ValidateAuth(
-        isLogin: _isLogin,
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim(),
-        confirmPassword: _confirmPasswordController.text.trim()));
+
+  void _authenticateIfValid(BuildContext context) {
+    final state = context.read<AuthBloc>().state;
+    if (state is AuthValidationFailure) {
+      return;
+    }
+    BlocProvider.of<AuthBloc>(context).add(
+      StartAuth(
+        _emailController.text.trim(),
+        _passwordController.text.trim(),
+        _confirmPasswordController.text.trim(),
+        _isLogin,
+      ),
+    );
   }
 
   @override

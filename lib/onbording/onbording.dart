@@ -4,10 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_internship_2024_app/onbording/onbording_content.dart';
 import 'package:flutter_internship_2024_app/presentation/screens/auth_screen.dart';
 import 'package:flutter_onboarding_slider/flutter_onboarding_slider.dart';
-import 'package:flutter_internship_2024_app/theme.dart';
 
 class Onbording extends StatefulWidget{
-  const Onbording({super.key});
   const Onbording({super.key});
 
   @override
@@ -21,20 +19,21 @@ class _OnbordingState extends State<Onbording>{
   Widget build(BuildContext context) {
    return SafeArea(
      child: Padding(
-       padding: const EdgeInsets.all(10.0),
-       padding: const EdgeInsets.all(10.0),
+       padding: const EdgeInsets.all(0),
        child: OnBoardingSlider(
         onFinish: (){
           Navigator.of(context).push(
             MaterialPageRoute(
-            builder: (context) => const AuthScreen(  ),
+            builder: (context) => const AuthScreen(),
           ),
         );
         },
+        finishButtonText: 'Sign up',
         finishButtonStyle: FinishButtonStyle(
-           backgroundColor: Theme.of(context).colorScheme.background,
+           backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(80),
+           )
         ),
-       
         totalPage: contents.length, 
         headerBackgroundColor: Theme.of(context).colorScheme.background, 
         speed: 1.5, 
@@ -51,19 +50,23 @@ class _OnbordingState extends State<Onbording>{
               alignment: Alignment.center,
               child:   MediaQuery.of(context).orientation == Orientation.portrait 
               ? Padding(
-                padding: const EdgeInsets.fromLTRB(20,50.0,10,10),
+                padding: const EdgeInsets.fromLTRB(10,60,10,10),
                 child: Column(
                   children: [
                       SizedBox(child: Image.asset(contents[index].image,height: 400,)),
                       const SizedBox(height: 20,),
-                      Text(contents[index].title,style: Theme.of(context).textTheme.titleMedium,),
+                      Text(contents[index].title,
+                        style: Theme.of(context).textTheme.labelLarge, 
+                        textAlign: TextAlign.center,),
                        const SizedBox(height: 20,),
-                      Text(contents[index].discription,style: Theme.of(context).textTheme.bodyLarge,),
+                      Text(contents[index].discription,style: Theme.of(context).textTheme.bodyLarge
+                      ,textAlign: TextAlign.center,),
                 ],),
               )
               : Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(children: [
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  children: [
                       Expanded(
                         child: Column(
                           children: [
@@ -76,10 +79,19 @@ class _OnbordingState extends State<Onbording>{
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(contents[index].title, style: Theme.of(context).textTheme.titleMedium,),
-                            const SizedBox(height: 10,),
-                            Text(contents[index].discription, 
-                              style: Theme.of(context).textTheme.bodyLarge,),
+                            Align(
+                              alignment: Alignment.topCenter,
+                              child: Column(
+                                children: [
+                                  Text(contents[index].title, style: Theme.of(context).textTheme.titleMedium,
+                                  textAlign: TextAlign.right,),
+                                  const SizedBox(height: 10,),
+                                  Text(contents[index].discription, 
+                                    style: Theme.of(context).textTheme.bodyLarge,
+                                    textAlign: TextAlign.center,),
+                                ],
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -88,14 +100,9 @@ class _OnbordingState extends State<Onbording>{
           ),
         );
         },),  
+        skipTextButton:  const Text('Skip', style: TextStyle(color: Colors.white,fontSize: 11),)
+        ),
         
-        skipTextButton: const Text(
-        'Skip',
-          style: TextStyle(
-            color: textColor,
-         ),
-        ),
-        ),
      ),
    );
   }

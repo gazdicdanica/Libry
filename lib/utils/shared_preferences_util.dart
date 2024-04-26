@@ -19,22 +19,24 @@ class SharedPreferencesUtil {
     _sharedPreferences.setString("locale", value);
   }
 
-  AppLocale? getLocale(){
+  AppLocale? getLocale() {
     String? locale = _sharedPreferences.getString("locale");
     if (locale == null) {
       return null;
     }
-    return AppLocale.values.firstWhere((element) => element.languageCode == locale);
+    return AppLocale.values
+        .firstWhere((element) => element.languageCode == locale);
   }
 
   void saveTheme(String value) {
     _sharedPreferences.setString("theme", value);
   }
 
-  ThemeMode? getTheme(){
+  ThemeMode? getTheme() {
     String? theme = _sharedPreferences.getString("theme");
     if (theme == null) return null;
 
-    return ThemeMode.values.firstWhere((element) => element.toString() == theme);
+    return ThemeMode.values
+        .firstWhere((element) => element.toString() == theme);
   }
 }
