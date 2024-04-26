@@ -36,16 +36,16 @@ class _ResetFormState extends State<ResetForm> {
         emailError = '';
       });
     }
-  }
+}
 
-  void _sendResetEmail(BuildContext context) {
-    _validateEmail(_emailController.text.trim());
-    if (emailError == '') {
-      BlocProvider.of<AuthBloc>(context).add(SendResetEmail(
-        email: _emailController.text.trim(),
-      ));
-    }
+void _sendResetEmail(BuildContext context) {
+  _validateEmail(_emailController.text.trim());
+  if(emailError == ''){
+     BlocProvider.of<AuthBloc>(context).add(SendResetEmail(
+    email: _emailController.text.trim(),
+  ));
   }
+}
 
   @override
   Widget build(BuildContext context) {

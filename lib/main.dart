@@ -1,3 +1,4 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -16,11 +17,12 @@ import 'package:flutter_internship_2024_app/data/platforms/repository/platforms_
 import 'package:flutter_internship_2024_app/data/shared_preferences/prefs_data_provider/prefs_data_provider.dart';
 import 'package:flutter_internship_2024_app/data/shared_preferences/prefs_repository/prefs_repository.dart';
 import 'package:flutter_internship_2024_app/i18n/strings.g.dart';
-import 'package:flutter_internship_2024_app/presentation/screens/auth_screen.dart';
+import 'package:flutter_internship_2024_app/onbording/onbording.dart';
 import 'package:flutter_internship_2024_app/presentation/widgets/bottom_navigation.dart';
 import 'package:flutter_internship_2024_app/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -88,6 +90,7 @@ class MyApp extends StatelessWidget {
             } else {
               LocaleSettings.useDeviceLocale();
             }
+            
             return BlocBuilder<ThemeBloc, ThemeState>(
               builder: (context, state) {
                 return TranslationProvider(
@@ -103,7 +106,7 @@ class MyApp extends StatelessWidget {
                         if (snapshot.hasData) {
                           return const BottomNavigation();
                         }
-                        return const AuthScreen();
+                        return  const Onbording();
                       },
                     ),
                   ),
