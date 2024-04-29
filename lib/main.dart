@@ -25,6 +25,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 
+
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   LocaleSettings.useDeviceLocale();
@@ -91,6 +92,7 @@ class MyApp extends StatelessWidget {
             } else {
               LocaleSettings.useDeviceLocale();
             }
+            
             
             return BlocBuilder<ThemeBloc, ThemeState>(
               builder: (context, state) {
