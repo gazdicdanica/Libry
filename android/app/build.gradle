@@ -45,10 +45,15 @@ android {
         applicationId "com.levi9.flutter_internship_2024_app"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion flutter.minSdkVersion
+        minSdkVersion 21
+        //minSdkVersion flutter.minSdkVersion
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        testInstrumentationRunner "pl.leancode.patrol.PatrolJUnitRunner"
+        testInstrumentationRunnerArguments clearPackageData: "true"
+
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -58,10 +63,19 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+
+    testOptions {
+        execution "ANDROIDX_TEST_ORCHESTRATOR"
+  }
+
 }
 
 flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+      androidTestUtil "androidx.test:orchestrator:1.4.2"
+
+    implementation 'com.android.support:multidex:2.0.1'
+}
