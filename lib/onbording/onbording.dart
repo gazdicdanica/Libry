@@ -16,6 +16,8 @@ class Onbording extends StatefulWidget{
 }
 
 class _OnbordingState extends State<Onbording>{
+
+
   @override
   Widget build(BuildContext context) {
    return SafeArea(
@@ -23,11 +25,11 @@ class _OnbordingState extends State<Onbording>{
        padding: const EdgeInsets.all(0),
        child: OnBoardingSlider(
         onFinish: (){
-          Navigator.of(context).push(
+                  Navigator.of(context).pushReplacement(
             MaterialPageRoute(
-            builder: (context) => const AuthScreen(),
-          ),
-        );
+              builder: (context) => const AuthScreen(),
+            ),
+          );
         },
         finishButtonText:  'Sign up',
         finishButtonTextStyle: const TextStyle(color: textColor),

@@ -1,4 +1,5 @@
 
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -106,7 +107,13 @@ class MyApp extends StatelessWidget {
                         if (snapshot.hasData) {
                           return const BottomNavigation();
                         }
-                        return  const Onbording();
+                        return  Navigator( 
+                        onGenerateRoute: (routeSettings) {
+                          return MaterialPageRoute(
+                            builder: (context) => const Onbording(),
+                          );
+                        },
+                      );
                       },
                     ),
                   ),
